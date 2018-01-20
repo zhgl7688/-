@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Form Connection="LUOLAI1401Context" Table="fw_userinfo" IsView="False" FilterTreeBindField="userid" TreeGridIdField="userid" TreeGridNameField="userid" TreeGridParentIdField="userid">
+  <SubTables />
+  <SaveProducre />
+  <Buttons />
+  <GroupFilters />
+  <Fields>
+    <Field Table="fw_userinfo" Field="userid" DbType="int" Required="True" ListVisible="True" FormVisible="True" ControlType="AutoId" ReadOnly="True" Title="用户编号" />
+    <Field Table="fw_userinfo" Field="username" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="用户名" />
+    <Field Table="fw_userinfo" Field="userpass" DbType="char" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="密码" />
+    <Field Table="fw_userinfo" Field="regtime" DbType="smalldatetime" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="注册时间" />
+    <Field Table="fw_userinfo" Field="lasttime" DbType="smalldatetime" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="最后登录" />
+    <Field Table="fw_userinfo" Field="isadmin" DbType="int" Required="False" ListVisible="True" FormVisible="True" ControlType="NumberBox" Title="是否管理员" />
+    <Field Table="fw_userinfo" Field="isenabled" DbType="int" Required="False" ListVisible="True" FormVisible="True" ControlType="NumberBox" Title="是否启用" />
+    <Field Table="fw_userinfo" Field="usercode" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="Guid编号" />
+  </Fields>
+</Form>

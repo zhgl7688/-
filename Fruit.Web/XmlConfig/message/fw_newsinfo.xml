@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Form Connection="LUOLAI1401Context" Table="fw_newsinfo" IsView="False" FilterTreeBindField="newsid" TreeGridIdField="newsid" TreeGridNameField="newsid" TreeGridParentIdField="newsid">
+  <SubTables />
+  <SaveProducre />
+  <Buttons />
+  <GroupFilters />
+  <Fields>
+    <Field Table="fw_newsinfo" Field="newsid" DbType="int" Required="True" ListVisible="True" FormVisible="True" ControlType="AutoId" ReadOnly="True" Title="编号" />
+    <Field Table="fw_newsinfo" Field="newstitle" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="标题" />
+    <Field Table="fw_newsinfo" Field="newscontent" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="内容" />
+    <Field Table="fw_newsinfo" Field="category" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="频道" />
+    <Field Table="fw_newsinfo" Field="clicks" DbType="int" Required="False" ListVisible="True" FormVisible="True" ControlType="NumberBox" Title="热度" />
+    <Field Table="fw_newsinfo" Field="isslide" DbType="int" Required="False" ListVisible="True" FormVisible="True" ControlType="NumberBox" Title="是否资讯页轮播新闻" />
+    <Field Table="fw_newsinfo" Field="slidepicurl" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="轮播图片" />
+    <Field Table="fw_newsinfo" Field="imgurl" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="标题图" />
+    <Field Table="fw_newsinfo" Field="userid" DbType="int" Required="False" ListVisible="True" FormVisible="True" ControlType="NumberBox" Title="发布人" />
+    <Field Table="fw_newsinfo" Field="pubtime" DbType="datetime" Required="False" ListVisible="True" FormVisible="True" ControlType="Date" Title="发布时间" />
+    <Field Table="fw_newsinfo" Field="newscode" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="Guid编号" />
+  </Fields>
+</Form>

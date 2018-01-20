@@ -591,6 +591,47 @@
     <Compile Include="Areas\Message\Controllers\Fw_RecordinfoController.Build.cs">
       <DependentUpon>Fw_RecordinfoController.cs</DependentUpon>
     </Compile>
+    <Compile Include="Models\Build\fw_newsinfo.cs" />
+    <Compile Include="Areas\Message\Controllers\Fw_NewsinfoController.cs" />
+    <Compile Include="Areas\Message\Controllers\Fw_NewsinfoController.Build.cs">
+      <DependentUpon>Fw_NewsinfoController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Build\fw_slideinfo.cs" />
+    <Compile Include="Areas\Message\Controllers\Fw_SlideinfoController.cs" />
+    <Compile Include="Areas\Message\Controllers\Fw_SlideinfoController.Build.cs">
+      <DependentUpon>Fw_SlideinfoController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Build\fw_helpinfo.cs" />
+    <Compile Include="Areas\Message\Controllers\Fw_HelpinfoController.cs" />
+    <Compile Include="Areas\Message\Controllers\Fw_HelpinfoController.Build.cs">
+      <DependentUpon>Fw_HelpinfoController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Build\fw_categoryinfo.cs" />
+    <Compile Include="Areas\Baseinfo\Controllers\Fw_CategoryinfoController.cs" />
+    <Compile Include="Areas\Baseinfo\Controllers\Fw_CategoryinfoController.Build.cs">
+      <DependentUpon>Fw_CategoryinfoController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Build\fw_calendarinfo.cs" />
+    <Compile Include="Areas\Baseinfo\Controllers\Fw_CalendarinfoController.cs" />
+    <Compile Include="Areas\Baseinfo\Controllers\Fw_CalendarinfoController.Build.cs">
+      <DependentUpon>Fw_CalendarinfoController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Build\fw_contractinfo.cs" />
+    <Compile Include="Areas\Baseinfo\Controllers\Fw_ContractinfoController.cs" />
+    <Compile Include="Areas\Baseinfo\Controllers\Fw_ContractinfoController.Build.cs">
+      <DependentUpon>Fw_ContractinfoController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Build\fw_memberinfo.cs" />
+    <Compile Include="Areas\Member\MemberAreaRegistration.cs" />
+    <Compile Include="Areas\Member\Controllers\Fw_MemberinfoController.cs" />
+    <Compile Include="Areas\Member\Controllers\Fw_MemberinfoController.Build.cs">
+      <DependentUpon>Fw_MemberinfoController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Build\fw_userinfo.cs" />
+    <Compile Include="Areas\Member\Controllers\Fw_UserinfoController.cs" />
+    <Compile Include="Areas\Member\Controllers\Fw_UserinfoController.Build.cs">
+      <DependentUpon>Fw_UserinfoController.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\easyui\datagrid-detailview.js" />
@@ -3478,6 +3519,19 @@
     <Folder Include="Areas\Message\Views\Shared" />
     <Folder Include="Areas\Message\Views\Fw_Messageinfo" />
     <Folder Include="Areas\Message\Views\Fw_Recordinfo" />
+    <Folder Include="Areas\Message\Views\Fw_Newsinfo" />
+    <Folder Include="Areas\Message\Views\Fw_Slideinfo" />
+    <Folder Include="Areas\Message\Views\Fw_Helpinfo" />
+    <Folder Include="Areas\Baseinfo\Views\Fw_Categoryinfo" />
+    <Folder Include="Areas\Baseinfo\Views\Fw_Calendarinfo" />
+    <Folder Include="Areas\Baseinfo\Views\Fw_Contractinfo" />
+    <Folder Include="Areas\Member" />
+    <Folder Include="Areas\Member\Controllers" />
+    <Folder Include="Areas\Member\Models" />
+    <Folder Include="Areas\Member\Views" />
+    <Folder Include="Areas\Member\Views\Shared" />
+    <Folder Include="Areas\Member\Views\Fw_Memberinfo" />
+    <Folder Include="Areas\Member\Views\Fw_Userinfo" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -3611,6 +3665,25 @@
     <Content Include="Areas\Message\Views\Fw_Messageinfo\Edit.cshtml" />
     <Content Include="Areas\Message\Views\Fw_Recordinfo\Index.cshtml" />
     <Content Include="Areas\Message\Views\Fw_Recordinfo\Edit.cshtml" />
+    <Content Include="Areas\Message\Views\Fw_Newsinfo\Index.cshtml" />
+    <Content Include="Areas\Message\Views\Fw_Newsinfo\Edit.cshtml" />
+    <Content Include="Areas\Message\Views\Fw_Slideinfo\Index.cshtml" />
+    <Content Include="Areas\Message\Views\Fw_Slideinfo\Edit.cshtml" />
+    <Content Include="Areas\Message\Views\Fw_Helpinfo\Index.cshtml" />
+    <Content Include="Areas\Message\Views\Fw_Helpinfo\Edit.cshtml" />
+    <Content Include="Areas\Baseinfo\Views\Fw_Categoryinfo\Index.cshtml" />
+    <Content Include="Areas\Baseinfo\Views\Fw_Categoryinfo\Edit.cshtml" />
+    <Content Include="Areas\Baseinfo\Views\Fw_Calendarinfo\Index.cshtml" />
+    <Content Include="Areas\Baseinfo\Views\Fw_Calendarinfo\Edit.cshtml" />
+    <Content Include="Areas\Baseinfo\Views\Fw_Contractinfo\Index.cshtml" />
+    <Content Include="Areas\Baseinfo\Views\Fw_Contractinfo\Edit.cshtml" />
+    <Content Include="Areas\Member\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\Member\Views\web.config" />
+    <Content Include="Areas\Member\Views\Shared\_Layout.cshtml" />
+    <Content Include="Areas\Member\Views\Fw_Memberinfo\Index.cshtml" />
+    <Content Include="Areas\Member\Views\Fw_Memberinfo\Edit.cshtml" />
+    <Content Include="Areas\Member\Views\Fw_Userinfo\Index.cshtml" />
+    <Content Include="Areas\Member\Views\Fw_Userinfo\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Fruit.Core\Fruit.Core.csproj">

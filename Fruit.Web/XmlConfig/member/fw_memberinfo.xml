@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Form Connection="LUOLAI1401Context" Table="fw_memberinfo" IsView="False" FilterTreeBindField="memid" TreeGridIdField="memid" TreeGridNameField="memid" TreeGridParentIdField="memid">
+  <SubTables />
+  <SaveProducre />
+  <Buttons />
+  <GroupFilters />
+  <Fields>
+    <Field Table="fw_memberinfo" Field="memid" DbType="char" Required="True" ListVisible="True" FormVisible="True" ControlType="AutoId" ReadOnly="True" Title="会员手机" />
+    <Field Table="fw_memberinfo" Field="mempass" DbType="char" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="密码" />
+    <Field Table="fw_memberinfo" Field="realname" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="真实姓名" />
+    <Field Table="fw_memberinfo" Field="gender" DbType="int" Required="False" ListVisible="True" FormVisible="True" ControlType="NumberBox" Title="性别" />
+    <Field Table="fw_memberinfo" Field="email" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="Email" />
+    <Field Table="fw_memberinfo" Field="qq" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="QQ" />
+    <Field Table="fw_memberinfo" Field="wechat" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="微信" />
+    <Field Table="fw_memberinfo" Field="regtime" DbType="datetime" Required="False" ListVisible="True" FormVisible="True" ControlType="Date" Title="注册时间" />
+    <Field Table="fw_memberinfo" Field="lasttime" DbType="datetime" Required="False" ListVisible="True" FormVisible="True" ControlType="Date" Title="最后登录" />
+    <Field Table="fw_memberinfo" Field="ispassed" DbType="int" Required="False" ListVisible="True" FormVisible="True" ControlType="NumberBox" Title="是否已认证" />
+    <Field Table="fw_memberinfo" Field="isenabled" DbType="int" Required="False" ListVisible="True" FormVisible="True" ControlType="NumberBox" Title="是否启用" />
+    <Field Table="fw_memberinfo" Field="corpid" DbType="int" Required="False" ListVisible="True" FormVisible="True" ControlType="NumberBox" Title="企业编号" />
+    <Field Table="fw_memberinfo" Field="memcode" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="Guid编号" />
+  </Fields>
+</Form>

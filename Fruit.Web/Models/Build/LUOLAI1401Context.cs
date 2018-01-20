@@ -87,6 +87,14 @@ namespace Fruit.Web.Models
         public virtual DbSet<fw_longterminfo> fw_longterminfo { get; set; }
         public virtual DbSet<fw_messageinfo> fw_messageinfo { get; set; }
         public virtual DbSet<fw_recordinfo> fw_recordinfo { get; set; }
+        public virtual DbSet<fw_newsinfo> fw_newsinfo { get; set; }
+        public virtual DbSet<fw_slideinfo> fw_slideinfo { get; set; }
+        public virtual DbSet<fw_helpinfo> fw_helpinfo { get; set; }
+        public virtual DbSet<fw_categoryinfo> fw_categoryinfo { get; set; }
+        public virtual DbSet<fw_calendarinfo> fw_calendarinfo { get; set; }
+        public virtual DbSet<fw_contractinfo> fw_contractinfo { get; set; }
+        public virtual DbSet<fw_memberinfo> fw_memberinfo { get; set; }
+        public virtual DbSet<fw_userinfo> fw_userinfo { get; set; }
         // -- INSERT POINT --
     }
 }

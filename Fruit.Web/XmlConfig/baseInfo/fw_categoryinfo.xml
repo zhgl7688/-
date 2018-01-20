@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Form Connection="LUOLAI1401Context" Table="fw_categoryinfo" IsView="False" FilterTreeBindField="catid" TreeGridIdField="catid" TreeGridNameField="catid" TreeGridParentIdField="catid">
+  <SubTables />
+  <SaveProducre />
+  <Buttons />
+  <GroupFilters />
+  <Fields>
+    <Field Table="fw_categoryinfo" Field="catid" DbType="int" Required="True" ListVisible="True" FormVisible="True" ControlType="AutoId" ReadOnly="True" Title="编号" />
+    <Field Table="fw_categoryinfo" Field="catname" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="分类" />
+    <Field Table="fw_categoryinfo" Field="parentid" DbType="int" Required="False" ListVisible="True" FormVisible="True" ControlType="NumberBox" Title="父分类编号" />
+    <Field Table="fw_categoryinfo" Field="catcode" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="guid编号" />
+  </Fields>
+</Form>

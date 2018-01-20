@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Form Connection="LUOLAI1401Context" Table="fw_helpinfo" IsView="False" FilterTreeBindField="helpid" TreeGridIdField="helpid" TreeGridNameField="helpid" TreeGridParentIdField="helpid">
+  <SubTables />
+  <SaveProducre />
+  <Buttons />
+  <GroupFilters />
+  <Fields>
+    <Field Table="fw_helpinfo" Field="helpid" DbType="varchar" Required="True" ListVisible="True" FormVisible="True" ControlType="AutoId" ReadOnly="True" Title="编号" />
+    <Field Table="fw_helpinfo" Field="helptitle" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="标题" />
+    <Field Table="fw_helpinfo" Field="helpcontent" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="内容" />
+    <Field Table="fw_helpinfo" Field="isenabled" DbType="int" Required="False" ListVisible="True" FormVisible="True" ControlType="NumberBox" Title="是否启用或删除" />
+    <Field Table="fw_helpinfo" Field="handleuserid" DbType="int" Required="False" ListVisible="True" FormVisible="True" ControlType="NumberBox" Title="操作人" />
+    <Field Table="fw_helpinfo" Field="createtime" DbType="smalldatetime" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="创建日期" />
+    <Field Table="fw_helpinfo" Field="modifytime" DbType="smalldatetime" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="修改日期" />
+    <Field Table="fw_helpinfo" Field="helpcode" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="Guid编号" />
+  </Fields>
+</Form>

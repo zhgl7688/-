@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Form Connection="LUOLAI1401Context" Table="fw_slideinfo" IsView="False" FilterTreeBindField="id" TreeGridIdField="id" TreeGridNameField="id" TreeGridParentIdField="id">
+  <SubTables />
+  <SaveProducre />
+  <Buttons />
+  <GroupFilters />
+  <Fields>
+    <Field Table="fw_slideinfo" Field="id" DbType="int" Required="True" ListVisible="True" FormVisible="True" ControlType="AutoId" ReadOnly="True" Title="编号" />
+    <Field Table="fw_slideinfo" Field="title" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="标题" />
+    <Field Table="fw_slideinfo" Field="imgurl" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="图片地址" />
+    <Field Table="fw_slideinfo" Field="linkurl" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="链接地址" />
+    <Field Table="fw_slideinfo" Field="clickcounts" DbType="int" Required="False" ListVisible="True" FormVisible="True" ControlType="NumberBox" Title="热度" />
+    <Field Table="fw_slideinfo" Field="code" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="Guid编号" />
+  </Fields>
+</Form>
