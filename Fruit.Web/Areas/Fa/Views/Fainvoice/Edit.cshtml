@@ -1,0 +1,131 @@
+﻿@section scripts {
+<script type="text/javascript">
+    var data = @MvcHtmlString.Create(JsonExtension.ToJson(Model));
+    $(function(){
+        var db = fruit.databind.root;
+        data.form._row_state = @ViewBag.RowState;
+        db.loadData(data);
+        function loadDetial(){
+        }
+        loadDetial();
+        $.extend(db, {
+            refreshClick:function(){
+                location.assign(top.$(window.frameElement).data('src'));
+            },
+            rejectClick:function(){
+                location.assign(top.$(window.frameElement).data('src'));
+            },
+            newClick:function(){
+                fruit.ajax({
+                        url:'/api/Fa/Fainvoice/NewInvoicesID',
+                        success:function(data) {
+                            parent.changeDocTab(window.frameElement, '/Fa/Fainvoice/edit/' + data);
+                        }
+                    })
+            },
+            deleteClick:function(){
+                $.messager.confirm('确认', '您确认要删除当前记录吗？', function(r){
+                    if(r){
+                        fruit.ajax({
+                            method:'DELETE',
+                            url: '/api/Fa/Fainvoice/'+db.getData('form').InvoicesID,
+                            success: function(data) {
+                                fruit.message('success', '删除成功');
+                                top.closeDocTab(window.frameElement);
+                            }
+                        });
+                    }
+                });
+            },
+            saveClick:function(){
+                if(!db.validate()){fruit.message('error', '请更正验证错误！'); return;}
+                var data = db.getData();
+                fruit.ajax({
+                    url: '/api/Fa/Fainvoice/',
+                    data: JSON.stringify(data),
+                    success:function(result){
+                        if(result && result.success){
+                            fruit.message('success', '保存成功');
+                            if(result.form){
+                                db.loadData(result);
+                                loadDetial();
+                            }
+                        }
+                    }
+                });
+            }
+        });
+    });
+</script>
+}
+
+
+<div class="z-toolbar">
+    <a id="a_save" href="#" plain="true" class="easyui-linkbutton" icon="icon-save" data-bind="click:'saveClick',disable:'readonly'" title="保存">保存</a>
+    <a id="a_undo" href="#" plain="true" class="easyui-linkbutton" icon="icon-undo" data-bind="click:'rejectClick',disable:'readonly'" title="撤消">撤消</a>
+    <div class="datagrid-btn-separator"></div>
+    <a id="a_other" href="#" class="easyui-splitbutton" data-options="menu:'#divother',iconCls:'icon-application_go'" title="其他">其他</a>
+</div>
+
+<div id="divother" style="width:100px; display:none;">
+    <div data-options="iconCls:'icon-add'" data-bind="click:'newClick'">新增</div>
+    <div data-options="iconCls:'icon-cross'" data-bind="click:'deleteClick'">删除</div>
+    <div data-options="iconCls:'icon-arrow_refresh'" data-bind="click:'refreshClick'">刷新</div>
+</div>
+
+<div id="divrelations" style="width:100px; display:none;"></div>
+<div id="master" class="container_12" data-bind="inputwidth:0.9">
+<input type="hidden" data-bind="value:'form._row_state'" />
+<input type="hidden" data-bind="value:'form.InvoicesID'" />
+    <div class="grid-group-1"><div class="lbl">发票号</div>
+   <div class="val">
+<input type="text" data-bind="value:'form.invoiceCode'" class="easyui-validatebox z-txt" data-options="required:false" /></div></div>
+    <div class="grid-group-1"><div class="lbl">公司</div>
+   <div class="val">
+<input type="text" data-bind="value:'form.Corp',datasource:'dataSource.Corp'" class="z-txt easyui-combobox" data-options="required:true, readonly:false" /></div></div>
+    <div class="grid-group-1"><div class="lbl">分部负责人</div>
+   <div class="val">
+<input type="text" data-bind="value:'form.CustID', text:'form.CustID_RefText'" class="z-txt easyui-popup" data-options="rule:'合作单位选择',textField:'CustID_RefText',required:false, onSelect:fruit.popupSelected, displayFields:'FID,Contact,Address|FID||Contact', multipleChoice:false, maxChoiceItems:0" /></div></div>
+    <div class="grid-group-1"><div class="lbl">关联合同</div>
+   <div class="val">
+<input type="text" data-bind="value:'form.PID', text:'form.PID_RefText'" class="z-txt easyui-popup" data-options="rule:'合同选择',textField:'PID_RefText',required:false, onSelect:fruit.popupSelected, displayFields:'Code|Code||Code', multipleChoice:false, maxChoiceItems:0" /></div></div>
+    <div class="grid-group-1"><div class="lbl">开票日期</div>
+   <div class="val">
+<input type="text" data-bind="value:'form.FDate', readOnly:false" class="z-txt easyui-datebox" data-options="required:true" /></div></div>
+    <div class="grid-group-1"><div class="lbl">开票金额</div>
+   <div class="val">
+<input type="text" data-bind="value:'form.Amt'" class="z-txt easyui-numberbox" data-options="required:true,precision:2" /></div></div>
+    <div class="grid-group-1"><div class="lbl">发票抬头单位</div>
+   <div class="val">
+<input type="text" data-bind="value:'form.invoiceTitle'" class="easyui-validatebox z-txt" data-options="required:false" /></div></div>
+    <div class="grid-group-1"><div class="lbl">对方纳税识别号</div>
+   <div class="val">
+<input type="text" data-bind="value:'form.taxNumber'" class="easyui-validatebox z-txt" data-options="required:false" /></div></div>
+    <div class="grid-group-1"><div class="lbl">对方纳税类别</div>
+   <div class="val">
+<input type="text" data-bind="value:'form.taxType',datasource:'dataSource.taxType'" class="z-txt easyui-combobox" data-options="required:true, readonly:false" /></div></div>
+    <div class="grid-group-1"><div class="lbl">发票类型</div>
+   <div class="val">
+<input type="text" data-bind="value:'form.invoiceType',datasource:'dataSource.invoiceType'" class="z-txt easyui-combobox" data-options="required:true, readonly:false" /></div></div>
+    <div class="grid-group-1"><div class="lbl">开票内容</div>
+   <div class="val">
+<input type="text" data-bind="value:'form.invoiceContent'" class="easyui-validatebox z-txt" data-options="required:false" /></div></div>
+    <div class="grid-group-3"><div class="lbl">备注</div>
+   <div class="val">
+<input type="text" data-bind="value:'form.Remark'" class="easyui-validatebox z-txt" data-options="required:false" /></div></div>
+</div>
+<div id="tt" class="easyui-tabs">
+    <div title="表单信息" style="padding-top:2px;">
+        <div class="container_12" id="BillDetail" data-bind="inputwidth:0.9,autoheight:181">
+    <div class="grid-group-1"><div class="lbl">创建人</div>
+   <div class="val">
+<input type="text" data-bind="value:'form.CreatePerson', readOnly:true" class="z-txt readonly" /></div></div>
+    <div class="grid-group-1"><div class="lbl">创建时间</div>
+   <div class="val">
+<input type="text" data-bind="value:'form.CreateDate', readOnly:true" class="z-txt easyui-datebox" data-options="required:true" /></div></div>
+    <div class="grid-group-1"><div class="lbl">更新时间</div>
+   <div class="val">
+<input type="text" data-bind="value:'form.UpdateDate', readOnly:true" class="z-txt easyui-datebox" data-options="required:true" /></div></div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,177 @@
+﻿
+@{
+    ViewBag.Title = "组织结构";
+}
+
+@section scripts {
+    <script type="text/javascript">
+        $(function(){
+
+            var f = fruit.databind.root;
+
+            var editBindOptions = {
+                cancelClick: function(){
+                    this.jq.dialog('close');
+                },
+                confirmClick: function() {
+                    if(this.invoke('validate')) {
+                        this.invoke('save');
+                    }
+                },
+                onSave: function(){
+                    this.jq.dialog('close');
+                    f.invoke('refresh');
+                }
+            };
+
+            function freeDialog(){
+                $(this).dialog('destroy').empty();
+            };
+
+
+            // 向根自动绑定加入自定义事件处理函数
+            $.extend(f.options, {
+                add:function(){
+                    var node = f.invoke('getSelected');
+                    var dialog = $($('#edit-template').html());
+                    var bindContext = new fruit.databind(dialog, editBindOptions);
+                    var treeData = f.invoke('getTreeData');
+                    bindContext.jq.find('#ParentCode').combotree('loadData', treeData);
+
+                    if(node != null) {
+                        bindContext.loadData({
+                            ParentCode:node.OrganizeCode
+                        });
+                    }
+
+                    dialog.dialog({ title: '新增机构', cache: false, modal: true, width: 400, height: 240, onClose:freeDialog });
+                },
+                edit:function(){
+                    var node = f.invoke('getSelected');
+                    if(node == null) {
+                        fruit.message('warning', '请先选择一个机构！');
+                        return;
+                    }
+                    var dialog = $($('#edit-template').html());
+                    var bindContext = new fruit.databind(dialog, editBindOptions);
+                    var treeData = f.invoke('getTreeData');
+                    bindContext.jq.find('#ParentCode').combotree('loadData', treeData);
+
+                    node._id = node.OrganizeCode;
+                    bindContext.loadData(node);
+                    dialog.dialog({ title: '编辑机构-'+node.OrganizeName, cache: false, modal: true, width: 400, height: 240, onClose:freeDialog });
+                },
+                'delete':function(){
+                    var node = f.invoke('getSelected');
+                    if(node == null) {
+                        fruit.message('warning', '请先选择一个机构！');
+                        return;
+                    }
+                    $.messager.confirm('确定','确定要删除此机构吗？', function(r){
+                        if(r){
+                            fruit.ajax({
+                                method:'DELETE',
+                                url:'/api/sys/organize/'+node.OrganizeCode,
+                                success: function(data) {
+                                    if(data) {
+                                        f.tree.delete();
+                                    }
+                                }
+                            })
+                        }
+                    });
+                },
+                roleSetting: function(){
+                    var node = f.invoke('getSelected');
+                    if(node == null) {
+                        fruit.message('warning', '请先选择一个机构！');
+                        return;
+                    }
+                    var dialog = $($('#role-template').html());
+                    var bindContext = new fruit.databind(dialog, {
+                        urlArgs:'/' + node.OrganizeCode,
+                        idField:'RoleCode',
+                        cancelClick:function(){
+                            dialog.dialog('close');
+                        },
+                        confirmClick:function(){
+                            bindContext.invoke('save');
+                        },
+                        onSave:function(){                            
+                            dialog.dialog('close');
+                        }
+                    });
+                    dialog.dialog({title: '编辑机构权限-'+node.OrganizeName, cache: false, modal: true, width: 586, height: 415, onClose:freeDialog });
+                }
+            });
+        });
+    </script>
+}
+
+<div class="z-toolbar">
+    <a href="#" class="easyui-linkbutton" plain="true" icon="icon-arrow_refresh" data-bind="click:'refresh'">刷新</a>
+    <a href="#" class="easyui-linkbutton" plain="true" icon="icon-add" data-bind="click:'add'">新增</a>
+    <a href="#" class="easyui-linkbutton" plain="true" icon="icon-edit" data-bind="click:'edit'">编辑</a>
+    <a href="#" class="easyui-linkbutton" plain="true" icon="icon-cross" data-bind="click:'delete'">删除</a>
+    <a href="#" class="easyui-linkbutton" plain="true" icon="icon-group" data-bind="click:'roleSetting'">设置角色</a>
+</div>
+
+<div data-bind="orgtree" url="/api/sys/organize" idfield="OrganizeCode" parentfield="ParentCode" treefield="OrganizeName" nodedblclick="edit"></div>
+
+<script id="edit-template" type="text/html">
+    <div>
+        <form class="form-single" data-bind="form,saveUrl:'/api/sys/organize'">
+            <input type="hidden" name="_id" />
+            <div>
+                <label for="ParentCode">所属机构</label>
+                <select id="ParentCode" name="ParentCode" class="easyui-combotree" data-options="required:true" data-bind="field:'ParentCode'"></select>
+            </div>
+            <div>
+                <label for="OrganizeCode">机构编码</label>
+                <input id="OrganizeCode" name="OrganizeCode" type="text" class="easyui-validatebox" data-options="required:true" />
+            </div>
+            <div>
+                <label for="OrganizeName">机构名称</label>
+                <input id="OrganizeName" name="OrganizeName" type="text" class="easyui-validatebox" data-options="required:true" />
+            </div>
+            <div>
+                <label for="Description">备注</label>
+                <textarea id="Description" name="Description"></textarea>
+            </div>
+
+            <div style="text-align:center;">
+                <a class="easyui-linkbutton" data-options="iconCls:'icon-ok'" data-bind="click:'confirmClick'" href="javascript:void(0)">确定</a>
+                <a class="easyui-linkbutton" data-options="iconCls:'icon-cancel'" data-bind="click:'cancelClick'" href="javascript:void(0)">取消</a>
+            </div>
+        </form>
+    </div>
+</script>
+
+<script id="role-template" type="text/html">
+    <div>
+        <style type="text/css">
+            .listview {
+                margin: 0 !important;
+            }
+
+                .listview li {
+                    width: 100px !important;
+                    background-color: skyblue !important;
+                    float: left;
+                    margin: 3px;
+                }
+        </style>
+        <div style="margin:5px;height:330px;overflow:auto;">
+            <div> 拥有角色(请点击勾选)：</div>
+            <div class="metrouicss">
+                <ul class="listview" data-bind="checklist,url:'/api/sys/organize/getroles',saveUrl:'/api/sys/organize/saveroles'" style="clear:both">
+                    <li><span class="icon" data-bind="text:'RoleName'"></span></li>
+                </ul>
+            </div>
+        </div>
+        <div style="text-align:center;">
+            <a class="easyui-linkbutton" data-options="iconCls:'icon-ok'" data-bind="click:'confirmClick'" href="javascript:void(0)">确定</a>
+            <a class="easyui-linkbutton" data-options="iconCls:'icon-cancel'" data-bind="click:'cancelClick'" href="javascript:void(0)">取消</a>
+        </div>
+    </div>
+</script>

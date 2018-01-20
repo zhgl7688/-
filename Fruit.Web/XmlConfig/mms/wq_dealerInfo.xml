@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Form Connection="LUOLAI1401Context" Table="wq_dealerInfo" CustomSaveProducre="True">
+  <SubTables />
+  <Fields>
+    <Field Connection="LUOLAI1401Context" Table="wq_dealerInfo" Field="DealerCode" Required="True" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="客户编号" FieldType="varchar" ControlValue="客户编号" MaxLength="10" DbType="varchar" Validation="" ReadOnly="False" Searchable="True" />
+    <Field Connection="LUOLAI1401Context" Table="wq_dealerInfo" Field="DealerName" Required="True" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="客户名称" FieldType="varchar" MaxLength="50" ColumnWidth="0" DbType="varchar" DefaultValue="" Validation="" Searchable="True" />
+    <Field Connection="LUOLAI1401Context" Table="wq_dealerInfo" Field="DealerType" Required="False" ListVisible="False" FormVisible="False" ControlType="Dropdown" Title="客户类型" ControlValue="客户类型" FieldType="varchar" MaxLength="10" DbType="varchar" Searchable="True" />
+    <Field Connection="LUOLAI1401Context" Table="wq_dealerInfo" Field="Contact1" Required="True" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="联系人1" FieldType="varchar" MaxLength="20" DbType="varchar" Searchable="True" />
+    <Field Connection="LUOLAI1401Context" Table="wq_dealerInfo" Field="Tel1" Required="True" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="联系电话1" FieldType="varchar" MaxLength="15" DbType="varchar" />
+    <Field Connection="LUOLAI1401Context" Table="wq_dealerInfo" Field="Mobile1" Required="True" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="手机1" FieldType="varchar" MaxLength="15" DbType="varchar" Validation="" />
+    <Field Connection="LUOLAI1401Context" Table="wq_dealerInfo" Field="Contact2" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="联系人2" FieldType="varchar" MaxLength="20" DbType="varchar" />
+    <Field Connection="LUOLAI1401Context" Table="wq_dealerInfo" Field="Tel2" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="联系电话2" FieldType="varchar" MaxLength="15" DbType="varchar" />
+    <Field Connection="LUOLAI1401Context" Table="wq_dealerInfo" Field="Mobile2" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="手机2" FieldType="varchar" MaxLength="15" DbType="varchar" />
+    <Field Connection="LUOLAI1401Context" Table="wq_dealerInfo" Field="DealerStatus" Required="True" ListVisible="True" FormVisible="True" ControlType="CheckBox" Title="是否启用" ControlValue="客户状态" FieldType="varchar" MaxLength="10" DbType="varchar" Searchable="True" />
+    <Field Connection="LUOLAI1401Context" Table="wq_dealerInfo" Field="Long" Required="False" ListVisible="False" FormVisible="True" ControlType="TextBox" Title="位置（经度）" MaxLength="20" DbType="numeric" DefaultValue="" FieldType="float" />
+    <Field Connection="LUOLAI1401Context" Table="wq_dealerInfo" Field="Lat" Required="False" ListVisible="False" FormVisible="True" ControlType="TextBox" Title="位置（纬度）" MaxLength="20" FormWidth="1" ColumnWidth="0" DbType="numeric" DefaultValue="" FieldType="float" />
+    <Field Connection="LUOLAI1401Context" Table="wq_dealerInfo" Field="UserCode" Required="True" ListVisible="True" FormVisible="True" ControlType="PopupSelect" Title="所属业务员" ControlValue="用户选择" FieldType="varchar" MaxLength="20" FormWidth="1" DbType="varchar" Searchable="True" />
+    <Field Connection="LUOLAI1401Context" Table="wq_dealerInfo" Field="higher" Required="True" ListVisible="True" FormVisible="True" ControlType="PopupSelect" Title="所属上级组织" FieldType="varchar" MaxLength="50" ColumnWidth="0" DbType="varchar" DefaultValue="" Validation="" Searchable="True" ControlValue="所属组织" />
+    <Field Connection="LUOLAI1401Context" Table="wq_dealerInfo" Field="Address" Required="True" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="地址" FieldType="text" MaxLength="100" DbType="varchar" FormWidth="2" />
+    <Field Connection="LUOLAI1401Context" Table="wq_dealerInfo" Field="Remark" Required="False" ListVisible="False" FormVisible="True" ControlType="MultiTextBox" Title="备注" MaxLength="100" FieldType="text" FormWidth="2" ColumnWidth="0" DbType="varchar" />
+    <Field Connection="LUOLAI1401Context" Table="wq_dealerInfo" Field="CreatePerson" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="创建人" ReadOnly="True" FieldType="varchar" MaxLength="20" DefaultValue="{用户名}" FormWidth="1" DbType="varchar" />
+    <Field Connection="LUOLAI1401Context" Table="wq_dealerInfo" Field="CreateDate" Required="False" ListVisible="True" FormVisible="True" ControlType="Date" Title="创建时间" ReadOnly="True" DefaultValue="{现在}" FieldType="datetime" MaxLength="20" DbType="datetime" Searchable="True" />
+    <Field Connection="LUOLAI1401Context" Table="wq_dealerInfo" Field="UpdatePerson" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="最后修改人" ReadOnly="True" FieldType="varchar" MaxLength="20" DbType="varchar" DefaultValue="{用户名}" />
+    <Field Connection="LUOLAI1401Context" Table="wq_dealerInfo" Field="UpdateDate" Required="False" ListVisible="True" FormVisible="True" ControlType="Date" Title="最后修改时间" ReadOnly="True" FieldType="datetime" MaxLength="20" DbType="datetime" DefaultValue="{现在}" />
+    <Field Connection="LUOLAI1401Context" Table="wq_dealerInfo" ControlType="AutoId" Field="id" ControlValue="十二位编号" Title="序号" DbType="varchar" />
+    <Field Connection="LUOLAI1401Context" Table="wq_dealerInfo" Title="字母" Field="Pinyin" DbType="varchar" />
+  </Fields>
+  <SaveProducre Connection="LUOLAI1401Context" StoredProcedure="u_assign_privileges" />
+  <Buttons />
+  <GroupFilters />
+</Form>

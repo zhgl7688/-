@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Form Connection="LUOLAI1401Context" Table="sys_company" CustomSaveProducre="False">
+  <SubTables />
+  <SaveProducre Connection="LUOLAI1401Context" StoredProcedure="" />
+  <Buttons />
+  <Fields>
+    <Field Table="sys_company" Field="comcode" DbType="varchar" Required="True" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="公司编号" ReadOnly="True" />
+    <Field Table="sys_company" Field="comname" DbType="varchar" Required="True" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="公司名称" FieldType="varchar" ReadOnly="True" />
+    <Field Table="sys_company" Field="ID" DbType="varchar" Required="False" ListVisible="False" FormVisible="False" ControlType="AutoId" ControlValue="十二位编号" Title="id" />
+  </Fields>
+  <GroupFilters />
+</Form>

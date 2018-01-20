@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Form Connection="LUOLAI1401Context" Table="wq_distributionclient" Filter="a.CompCode= '{USER.CompCode}'">
+  <SubTables />
+  <SaveProducre />
+  <Buttons />
+  <GroupFilters />
+  <Fields>
+    <Field Table="wq_distributionclient" Field="CompCode" DbType="varchar" Required="False" ListVisible="False" FormVisible="False" ControlType="Dropdown" Title="所属公司" ControlValue="所属公司" DefaultValue="{USER.CompCode}" />
+    <Field Table="wq_distributionclient" Field="DealerCode" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="客户编号" Searchable="True" />
+    <Field Table="wq_distributionclient" Field="DealerType" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="客户类型" DefaultValue="流通客户" ReadOnly="True" Searchable="False" />
+    <Field Table="wq_distributionclient" Field="DealertypeCode" DbType="varchar" Required="False" ListVisible="False" FormVisible="False" ControlType="TextBox" Title="客户类型编码" Searchable="True" />
+    <Field Table="wq_distributionclient" Field="Businessarea" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="营业面积" />
+    <Field Table="wq_distributionclient" Field="Appearancenumber" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="门面数" />
+    <Field Table="wq_distributionclient" Field="Winecapacity" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="酒水容量" />
+    <Field Table="wq_distributionclient" Field="CreatePerson" DbType="varchar" Required="False" ListVisible="False" FormVisible="True" ControlType="TextBox" ReadOnly="True" Title="创建人" />
+    <Field Table="wq_distributionclient" Field="CreateDate" DbType="datetime" Required="False" ListVisible="False" FormVisible="True" ControlType="Date" ReadOnly="True" Title="创建日期" Searchable="True" />
+    <Field Table="wq_distributionclient" Field="UpdatePerson" DbType="varchar" Required="False" ListVisible="False" FormVisible="True" ControlType="TextBox" ReadOnly="True" Title="更改人" />
+    <Field Table="wq_distributionclient" Field="UpdateDate" DbType="datetime" Required="False" ListVisible="False" FormVisible="True" ControlType="Date" ReadOnly="True" Title="更改日期" />
+    <Field Table="wq_distributionclient" Field="id" DbType="varchar" Required="False" ListVisible="False" FormVisible="False" ControlType="AutoId" ControlValue="序号" Title="id" />
+    <Field Table="wq_distributionclient" Field="Remark" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="备注" />
+  </Fields>
+</Form>

@@ -1,0 +1,183 @@
+﻿@*_NaturePartialPage*@
+
+
+ <div style=" width:80%; ">
+     <div id="vo" style="width:20%; height:360px; background:#C7EDCC; border: 1px solid black;float:left">
+         <table width="100%" class="functions">
+             <tbody>
+                 <!-- Cols 1 -->
+                 <tr>
+                     <td width="16.65%">
+                         <button type="button" id="initBtn" class="btn btn-block btn-success btn-sm" onclick="initDevice()">启动</button>
+                     </td>
+                 </tr>
+                 <tr>
+                     <td width="16.65%">
+                         <button type="button" id="uninitBtn" class="btn btn-block btn-success btn-sm init" onclick="uninitDevice()" disabled>关闭</button>
+                     </td>
+
+                 </tr>
+
+
+                 <!-- Cols 3 -->
+                 <tr>
+                     <td width="16.65%">
+                         <button type="button" class="btn btn-block btn-success btn-sm init" onclick="clearInk()" disabled>清除</button>
+                     </td>
+
+                 </tr>
+
+                 <tr>
+                     <td width="16.65%">
+                         <button type="button" class="btn btn-block btn-success btn-sm init" id="updata" onclick="UpdataFontFile();" disabled>签字上传</button>
+                     </td>
+
+                 </tr>
+
+             </tbody>
+         </table>
+
+     </div>
+
+
+
+    <div style="width:80%; float:left; ">
+        <canvas id="ppCanvas" width="500" height="356"></canvas>
+        <div class="shutdown"></div>
+    </div>
+
+
+
+</div>
+
+
+
+
+
+ 
+<script type="text/javascript">
+ 
+
+
+    var base64Data;
+    function saveDrawing() {
+        var getsdType = $('#sdType').val();
+        var getsdDpi = $('#sdDpi').val();
+        var localPath = 'DrawImage.';
+        var sdT, sdD;
+
+        switch (getsdType) {
+            case '1':
+                sdT = 'BMP';
+                break;
+            case '2':
+                sdT = 'JPG';
+                break;
+            case '3':
+                sdT = 'PNG';
+                break;
+            case '4':
+                sdT = 'GIF';
+                break;
+            case '5':
+                sdT = 'TIFF';
+                break;
+        };
+
+        if (getsdDpi == '0') {
+            sdD = '150';
+        } else {
+            sdD = '300';
+        };
+
+        $.ajax({
+            url: savedrawUrl + 'type=' + getsdType + '&dpi=' + getsdDpi + '&path=' + localPath + sdT,
+            type: 'GET'
+        }).done(function (resp) {
+            if (navigator.userAgent.indexOf("WOW64") != -1 || navigator.userAgent.indexOf("Win64") != -1) {
+                alert('檔案：' + resp + ' 已儲存\nDpi：' + sdD);
+            } else {
+                alert('檔案：' + resp + ' 已儲存\nDpi：' + sdD);
+            }
+        });
+    };
+    // Encode
+    function Get64encode() {
+
+        var encodeType = 3;// $('#encodeType').val();
+
+        $.ajax({
+            url: encodeUrl + encodeType,
+            type: 'GET'
+        }).done(function (data) {
+            base64Data = data;
+            upData();
+        });
+    };
+
+    function UpdataFontFile() {
+        //判断启动状态
+        if ($('#initBtn').prop('disabled') == false) {
+            alert("请签字后上传"); return;
+        }
+        Get64encode();
+    }
+    function upData() {
+
+        var url = "/file/UploadBase64";
+        var timestamp = Date.parse(new Date());
+        captureCount = timestamp / 1000;
+        //当前时间戳为：1403149534
+
+        var fid = document.getElementById("FID");
+        alert(fid);
+        var filename = fid.value + "_" + captureCount + ".PNG";
+        alert(filename);
+        var data = { base64Data: base64Data, filename: filename };
+        console.log(data);
+        $.ajax({
+            url: url,
+            type: "post",
+            data: data,
+            dataType: "json",
+            success: function (data) {
+                if (data.success == true) {
+                    var obj = document.getElementById("Scan");
+                    obj.value = data.filename;
+                   
+                    // alert(picPath)
+                    if (data.filename.length > 10) {
+                        $('#pic').attr('src', '/upload/image/' + data.filename);
+                    }
+                    console.log(data.filename);
+                    console.log("上传成功");
+                } else {
+                    alert("上传失败");
+                }
+            },
+            error: function () {
+                console.log("上传失败");
+            }
+        });
+    }
+</script>
+
+@* 一、放入edit.cshtml文件 中
+
+        <div id="tt" class="easyui-tabs">
+        <div title="附件" style="padding-top:2px;">
+            <div class="container_12" id="BillDetail" data-bind="inputwidth:0.9,autoheight:181">
+                <div class="grid-group-1">
+                    <div class="lbl">附件</div>
+                    <div class="val">
+
+                        <input type="text" id="Scan" name="scan" data-bind="value:'form.Scan'" class="easyui-validatebox z-txt" style="width:120px;" data-options="required:false" />
+                        <a href="#" class="easyui-linkbutton" id="updata" onclick="UpdataFile();" iconcls="icon-upload">签字上传</a>
+                    </div>
+                    @Html.Partial("_NaturePartialPage")
+                </div>
+            </div>
+        </div>
+    </div>
+        二、给edit中流水号fid增加id='FID'
+*@

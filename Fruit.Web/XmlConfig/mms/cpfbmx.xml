@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report CommonReport="True" From="KZ_cpfbmx" OrderField="省份">
+  <Fields>
+    <Field Table="KZ_cpfbmx" Field="省份" Title="省份" FieldType="varchar" Alias="省份" ControlType="TextBox" />
+    <Field Table="KZ_cpfbmx" Field="城市" Title="城市" FieldType="varchar" Alias="城市" ControlType="TextBox" />
+    <Field Table="KZ_cpfbmx" Field="终端类型" Title="终端类型" FieldType="varchar" Alias="终端类型" />
+    <Field Table="KZ_cpfbmx" Field="客户名称" Title="终端名称" FieldType="varchar" Alias="客户名称" />
+    <Field Table="KZ_cpfbmx" Field="库存量" Title="库存量" FieldType="varchar" Alias="库存量" />
+    <Field Table="KZ_cpfbmx" Field="产品" Title="产品" FieldType="varchar" Alias="产品" ControlType="TextBox" />
+  </Fields>
+  <DrillReports />
+  <Charts>
+    <XAxis />
+    <YAxis />
+    <Series />
+  </Charts>
+</Report>

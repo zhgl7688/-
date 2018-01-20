@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Form Connection="LUOLAI1401Context" Table="sys_rolet">
+  <SubTables>
+    <Table Table="sys_roleMenuMap_app" Filter="" AddSource="app权限弹出">
+      <Rels>
+        <FieldRel RelField="RoleCode" MainField="RoleCode" />
+      </Rels>
+      <Fields>
+        <Field Table="sys_roleMenuMap_app" Field="MenuCode" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="模块编号" ColumnWidth="100" ReadOnly="True" />
+        <Field Table="sys_roleMenuMap_app" Field="id" DbType="int" Required="False" ListVisible="False" FormVisible="False" ControlType="AutoId" Title="id" ControlValue="序号" />
+        <Field Table="sys_roleMenuMap_app" Field="RMenuName" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="模块名称" ReadOnly="True" />
+      </Fields>
+    </Table>
+  </SubTables>
+  <SaveProducre />
+  <Buttons />
+  <GroupFilters />
+  <Fields>
+    <Field Table="sys_rolet" Field="RoleCode" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="AutoId" Title="角色编号" ControlValue="序号" Searchable="False" />
+    <Field Table="sys_rolet" Field="RoleName" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="角色名称" Searchable="True" ControlValue="所属角色" />
+    <Field Table="sys_rolet" Field="Description" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="说明" />
+  </Fields>
+</Form>

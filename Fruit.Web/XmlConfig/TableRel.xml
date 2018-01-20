@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TableRels>
+  <TableRel MainTableConnection="MmsContext" MainTable="mms_material" RelTableConnection="MmsContext" RelTable="mms_materialType">
+    <FieldRel RelField="MaterialType" MainField="MaterialType" />
+    <FieldGet MainField="Unit" RelField="Unit" />
+  </TableRel>
+  <TableRel MainTableConnection="MmsContext" MainTable="mms_check" RelTableConnection="MmsContext" RelTable="mms_warehouse">
+    <FieldRel RelField="WarehouseCode" MainField="WarehouseCode" />
+    <FieldGet RelField="WarehouseName" />
+  </TableRel>
+</TableRels>

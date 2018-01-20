@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Form Connection="SMTERPContext" Table="ProjectContract">
+  <SubTables>
+    <Table Table="ProjectFiles" Filter="">
+      <Rels>
+        <FieldRel RelField="Code" MainField="Code" />
+        <FieldRel RelField="SheetID" MainField="SheetID" />
+        <FieldRel RelField="SourceSheetID" MainField="SourceSheetID" />
+      </Rels>
+      <Fields>
+        <Field Table="ProjectFiles" Field="Address" DbType="nvarchar" Required="False" ListVisible="True" FormVisible="True" ControlType="MultiTextBox" FieldType="text" Title="项目地址" />
+        <Field Table="ProjectFiles" Field="ClientID" DbType="uniqueidentifier" Required="False" ListVisible="True" FormVisible="True" ControlType="PopupSelect" FieldType="varchar" Title="客户名称" />
+        <Field Table="ProjectFiles" Field="Litigant" DbType="uniqueidentifier" Required="False" ListVisible="True" FormVisible="True" ControlType="PopupSelect" FieldType="varchar" Title="销售工程师" />
+        <Field Table="ProjectFiles" Field="fuzeren" DbType="nvarchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" FieldType="varchar" Title="负责人" />
+        <Field Table="ProjectFiles" Field="tel" DbType="nvarchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" FieldType="varchar" Title="联系电话" />
+        <Field Table="ProjectFiles" Field="memo" DbType="nvarchar" Required="False" ListVisible="True" FormVisible="True" ControlType="MultiTextBox" FieldType="varchar" Title="备注" />
+        <Field Table="ProjectFiles" Field="OpTime" DbType="datetime" Required="False" ListVisible="True" FormVisible="True" ControlType="Date" FieldType="datetime" Title="制单日期" />
+        <Field Table="ProjectFiles" Field="Inputer" DbType="uniqueidentifier" Required="False" ListVisible="True" FormVisible="True" ControlType="PopupSelect" FieldType="varchar" Title="制单员" />
+        <Field Table="ProjectFiles" Field="AuditDate" DbType="datetime" Required="False" ListVisible="True" FormVisible="True" ControlType="Date" FieldType="datetime" Title="审核日期" />
+        <Field Table="ProjectFiles" Field="InputDepartment" DbType="uniqueidentifier" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" FieldType="text" Title="制单部门" />
+        <Field Table="ProjectFiles" Field="Record" DbType="uniqueidentifier" Required="False" ListVisible="True" FormVisible="True" ControlType="NumberBox" Title="状态" />
+      </Fields>
+    </Table>
+  </SubTables>
+  <SaveProducre />
+  <Buttons />
+  <GroupFilters />
+  <Fields>
+    <Field Table="ProjectContract" Field="Code" DbType="uniqueidentifier" Required="True" ListVisible="True" FormVisible="True" ControlType="AutoId" FieldType="" Title="电脑序号" ControlValue="序号" />
+    <Field Table="ProjectContract" Field="SheetID" DbType="nvarchar" Required="False" ListVisible="True" FormVisible="True" ControlType="AutoId" FieldType="varchar" Title="项目编号" ControlValue="十二位编号" />
+    <Field Table="ProjectContract" Field="SourceSheetID" DbType="nvarchar" Required="False" ListVisible="True" FormVisible="True" ControlType="AutoId" FieldType="varchar" Title="立项编号" ControlValue="十二位编号" />
+    <Field Table="ProjectContract" Field="Jexplain" DbType="nvarchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="项目名称" FieldType="varchar" />
+    <Field Table="ProjectContract" Field="Address" DbType="nvarchar" Required="False" ListVisible="True" FormVisible="True" ControlType="MultiTextBox" FieldType="text" Title="项目地址" />
+    <Field Table="ProjectContract" Field="ClientID" DbType="uniqueidentifier" Required="False" ListVisible="True" FormVisible="True" ControlType="PopupSelect" FieldType="varchar" Title="客户名称" />
+    <Field Table="ProjectContract" Field="Litigent" DbType="uniqueidentifier" Required="False" ListVisible="True" FormVisible="True" ControlType="PopupSelect" FieldType="varchar" Title="销售工程师" />
+    <Field Table="ProjectContract" Field="fuzeren" DbType="nvarchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" FieldType="varchar" Title="负责人" />
+    <Field Table="ProjectContract" Field="tel" DbType="nvarchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" FieldType="varchar" Title="联系电话" />
+    <Field Table="ProjectContract" Field="memo" DbType="nvarchar" Required="False" ListVisible="True" FormVisible="True" ControlType="MultiTextBox" FieldType="text" Title="备注" />
+    <Field Table="ProjectContract" Field="QYOptime" DbType="datetime" Required="False" ListVisible="True" FormVisible="True" ControlType="Date" FieldType="datetime" Title="签约日期" />
+    <Field Table="ProjectContract" Field="Totalcharge" DbType="real" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" FieldType="money" Title="合同总金额" />
+    <Field Table="ProjectContract" Field="Collection" DbType="nvarchar" Required="False" ListVisible="True" FormVisible="True" ControlType="PopupSelect" FieldType="varchar" Title="收款方式" />
+    <Field Table="ProjectContract" Field="Ban_FinishSum" DbType="real" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" FieldType="varchar" Title="已收款金额" />
+    <Field Table="ProjectContract" Field="OpTime" DbType="datetime" Required="False" ListVisible="True" FormVisible="True" ControlType="Date" FieldType="datetime" Title="制单日期" />
+    <Field Table="ProjectContract" Field="Inputer" DbType="uniqueidentifier" Required="False" ListVisible="True" FormVisible="True" ControlType="PopupSelect" FieldType="varchar" Title="制单员" />
+    <Field Table="ProjectContract" Field="AuditDate" DbType="datetime" Required="False" ListVisible="True" FormVisible="True" ControlType="Date" FieldType="datetime" Title="审核日期" />
+    <Field Table="ProjectContract" Field="InputDepartment" DbType="uniqueidentifier" Required="False" ListVisible="True" FormVisible="True" ControlType="PopupSelect" FieldType="varchar" Title="制单部门" />
+    <Field Table="ProjectContract" Field="Accessory" DbType="nvarchar" Required="False" ListVisible="True" FormVisible="True" ControlType="File" Title="附件" FieldType="text">
+      <FileControlInfo />
+    </Field>
+    <Field Table="ProjectContract" Field="Record" DbType="uniqueidentifier" Required="False" ListVisible="True" FormVisible="True" ControlType="NumberBox" Title="状态" />
+  </Fields>
+</Form>

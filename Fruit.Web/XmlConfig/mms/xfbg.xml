@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report CommonReport="True" From="KZ_xfbg" OrderField="巡店日期" AddCondition="(员工编号 IN (SELECT UserCode FROM dbo.sys_user WHERE OrganizeName LIKE '{SESSION.OrganizeName}%') or '{USER.UserCode}'='super')">
+  <Fields>
+    <Field Table="KZ_xfbg" Field="巡访类型" Alias="巡访类型" FieldType="varchar" Title="巡访类型" ControlValue="巡访类型" ControlType="Dropdown" />
+    <Field Table="KZ_xfbg" Field="所属角色" Alias="所属角色" FieldType="varchar" Title="所属角色" />
+    <Field Table="KZ_xfbg" Field="部门" Alias="部门" ControlValue="所属组织" ControlType="Dropdown" FieldType="varchar" Title="部门" />
+    <Field Table="KZ_xfbg" Field="员工编号" FieldType="varchar" Title="员工编号" Alias="员工编号" ControlType="TextBox" />
+    <Field Table="KZ_xfbg" Field="员工姓名" Alias="员工姓名" FieldType="varchar" Title="员工姓名" ControlType="TextBox" />
+    <Field Table="KZ_xfbg" Field="客户编号" FieldType="varchar" Title="终端编号" Alias="客户编号" ControlType="TextBox" />
+    <Field Table="KZ_xfbg" Field="客户名称" FieldType="varchar" Title="终端名称" Alias="客户名称" ControlType="TextBox" />
+    <Field Table="KZ_xfbg" Field="经销商编号" Alias="经销商编号" FieldType="varchar" Title="经销商编号" ControlType="TextBox" />
+    <Field Table="KZ_xfbg" Field="经销商名称" Alias="经销商名称" Title="经销商名称" FieldType="varchar" ControlType="TextBox" />
+    <Field Table="KZ_xfbg" Field="客户类型" FieldType="varchar" Title="终端类型" Alias="客户类型" ControlType="Dropdown" ControlValue="终端类型" />
+    <Field Table="KZ_xfbg" Field="经度" FieldType="varchar" Title="经度" Alias="经度" />
+    <Field Field="纬度" Table="KZ_xfbg" FieldType="varchar" Title="纬度" Alias="纬度" />
+    <Field Field="巡店日期" Table="KZ_xfbg" FieldType="varchar" Alias="巡店日期" Title="巡店日期" ControlType="Date" />
+    <Field Field="照片" Table="KZ_xfbg" FieldType="varchar" Alias="照片" Title="照片" ControlType="File" ColumnWidth="33" />
+    <Field Field="照片类型" Alias="照片类型" Title="照片类型" Table="KZ_xfbg" ControlValue="拍照类型" ControlType="Dropdown" FieldType="varchar" />
+    <Field Table="KZ_xfbg" Field="备注" Alias="备注" FieldType="varchar" Title="备注" ColumnWidth="200" />
+  </Fields>
+  <DrillReports />
+  <Charts>
+    <XAxis />
+    <YAxis />
+    <Series />
+  </Charts>
+</Report>

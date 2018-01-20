@@ -1,0 +1,33 @@
+﻿
+@{
+    ViewBag.Title = "授权代码";
+}@section scripts{
+    <script type="text/javascript">
+        window.treeLoadFilter = fruit.tree.createLoadFilter("PermissionCode", "ParentCode", function (row) {
+            row._id = row.PermissionCode;
+            row._parentId = row.ParentCode;
+        }, "", "0");
+        var formatterParent = function (value, row) { return row.ParentName };
+    </script>
+}
+
+@Html.Toolbar(b =>
+        b.AddButton("btnRefresh", "icon-arrow_refresh", "刷新", "refresh")
+            .AddButton("btnAdd", "icon-add", "新增", "add")
+            .AddButton("btnEdit", "icon-edit", "编辑", "edit")
+            .AddButton("btnDelete", "icon-cross", "删除", "delete")
+            .AddButton("btnSave", "icon-save", "保存", "save")
+    )
+
+@Html.TreeGrid(b =>
+{
+    b.Id("gridlist");
+    b.DataBind()
+    .Data("options", "loadFilter:treeLoadFilter,url:'/api/sys/permission',method:'GET',saveUrl:'/api/sys/permission',idField:'PermissionCode',treeField:'PermissionName',parentField:'ParentCode', parentNameField:'ParentName'")
+    .RowNumbers(true)
+    .AddHiddenColumn("_id")
+    .AddColumn("PermissionName", "授权名称", width: 150, editor: "{type:'validatebox',options:{required: true }}")
+    .AddColumn("PermissionCode", "授权代码", width: 80, editor: "{type:'validatebox',options:{required: true }}")
+    .AddColumn("ParentCode", "上级授权", width: 150, editor: "combotree", formatter: "formatterParent");
+}
+    )

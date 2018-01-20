@@ -1,0 +1,62 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Form Connection="LUOLAI1401Context" Table="FA_Invoices" IsView="False" FilterTreeBindField="FID" TreeGridIdField="FID" TreeGridNameField="FID" TreeGridParentIdField="FID">
+  <SubTables />
+  <SaveProducre />
+  <Buttons />
+  <GroupFilters />
+  <Fields>
+    <Field Table="FA_Invoices" Field="FID" DbType="int" Required="True" ListVisible="False" FormVisible="False" ControlType="TextBox" ReadOnly="True" Title="流水号" ControlValue="序号">
+      <CascadeFilter />
+    </Field>
+    <Field Connection="LUOLAI1401Context" Table="FA_Invoices" Field="InvoicesID" ControlType="AutoId" FormVisible="False" ListVisible="False" Title="开票编号" DbType="varchar" ControlValue="十二位编号">
+      <CascadeFilter />
+    </Field>
+    <Field Connection="LUOLAI1401Context" Table="FA_Invoices" ControlType="TextBox" ListVisible="True" FormVisible="True" Title="发票号" Field="invoiceCode" DbType="varchar">
+      <CascadeFilter />
+    </Field>
+    <Field Connection="LUOLAI1401Context" Table="FA_Invoices" ControlType="Dropdown" Searchable="True" FormVisible="True" ListVisible="True" ControlValue="单位" Required="True" Title="公司" Field="Corp" DbType="varchar">
+      <CascadeFilter />
+    </Field>
+    <Field Table="FA_Invoices" Field="CustID" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="PopupSelect" Title="分部负责人" ControlValue="合作单位选择">
+      <CascadeFilter />
+      <PopupOption />
+    </Field>
+    <Field Table="FA_Invoices" Field="PID" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="PopupSelect" Title="关联合同" ControlValue="合同选择">
+      <CascadeFilter />
+      <PopupOption />
+    </Field>
+    <Field Table="FA_Invoices" Field="FDate" DbType="datetime" Required="True" ListVisible="True" FormVisible="True" ControlType="Date" Title="开票日期">
+      <CascadeFilter />
+    </Field>
+    <Field Table="FA_Invoices" Field="Amt" DbType="numeric" Required="True" ListVisible="True" FormVisible="True" ControlType="NumberBox" Title="开票金额">
+      <CascadeFilter />
+    </Field>
+    <Field Table="FA_Invoices" Field="invoiceTitle" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="发票抬头单位">
+      <CascadeFilter />
+    </Field>
+    <Field Table="FA_Invoices" Field="taxNumber" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="对方纳税识别号">
+      <CascadeFilter />
+    </Field>
+    <Field Table="FA_Invoices" Field="taxType" DbType="varchar" Required="True" ListVisible="True" FormVisible="True" ControlType="Dropdown" Title="对方纳税类别" ControlValue="纳税类别" DefaultValue="1">
+      <CascadeFilter />
+    </Field>
+    <Field Table="FA_Invoices" Field="invoiceType" DbType="varchar" Required="True" ListVisible="True" FormVisible="True" ControlType="Dropdown" Title="发票类型" ControlValue="发票类型" DefaultValue="5">
+      <CascadeFilter />
+    </Field>
+    <Field Table="FA_Invoices" Field="invoiceContent" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="开票内容">
+      <CascadeFilter />
+    </Field>
+    <Field Table="FA_Invoices" Field="Remark" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="备注" FormWidth="3">
+      <CascadeFilter />
+    </Field>
+    <Field Table="FA_Invoices" Field="CreatePerson" DbType="varchar" Required="False" ListVisible="False" FormVisible="True" ControlType="TextBox" Title="创建人" ReadOnly="True">
+      <CascadeFilter />
+    </Field>
+    <Field Table="FA_Invoices" Field="CreateDate" DbType="datetime" Required="True" ListVisible="False" FormVisible="True" ControlType="Date" Title="创建时间" ReadOnly="True">
+      <CascadeFilter />
+    </Field>
+    <Field Table="FA_Invoices" Field="UpdateDate" DbType="datetime" Required="True" ListVisible="False" FormVisible="True" ControlType="Date" Title="更新时间" ReadOnly="True">
+      <CascadeFilter />
+    </Field>
+  </Fields>
+</Form>

@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report CommonReport="True" From="R_InvAccepts" OrderField="收票日期">
+  <DrillReports />
+  <Fields>
+    <Field Table="R_InvAccepts" Field="公司" Alias="公司" ControlType="Dropdown" Title="公司" ControlValue="报表单位" />
+    <Field Table="R_InvAccepts" Field="分部负责人" Alias="分部负责人" Title="分部负责人" ControlType="Dropdown" ControlValue="报表分部负责人" />
+    <Field Table="R_InvAccepts" Field="收票日期" Alias="收票日期" Title="收票日期" ControlType="Date" />
+    <Field Table="R_InvAccepts" Field="金额" Alias="金额" IsSumField="True" Title="金额" />
+  </Fields>
+  <Charts>
+    <XAxis FieldUid="R_InvAccepts_" />
+    <YAxis FieldUid="R_InvAccepts_" />
+    <Series />
+  </Charts>
+</Report>

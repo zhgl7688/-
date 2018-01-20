@@ -1,0 +1,95 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Form Connection="SMTERPContext" Table="tbWmInWarehouses" UseDynamicReadOnly="False" UseFilterTree="False" FilterTreeSql="select Guid id, parent = null, Name text from tbBdWarehouse" FilterTreeFilter="WareHouse={TreeFilter}" FilterTreeBindField="WareHouse" TreeGridMode="True" TreeGridIdField="Guid" TreeGridNameField="Guid" TreeGridParentIdField="ParentCode">
+  <SubTables />
+  <SaveProducre />
+  <Buttons>
+    <Button Id="btnFirst" Title="Button1">
+      <ServerBehavior />
+    </Button>
+    <Button Id="Button4" Title="|" Group="" Order="0">
+      <ServerBehavior />
+    </Button>
+    <Button Id="Button2" Title="Button2" Group="MyGroup">
+      <ServerBehavior />
+    </Button>
+    <Button Id="ShowMyDateDialog" Title="自定义按钮日期弹出" Group="MyGroup">
+      <ServerBehavior Connection="SMTERPContext" CommandText="select @date" DataType="Value">
+        <Inputs>
+          <Input SourceField="date" ParameterName="@date" />
+        </Inputs>
+      </ServerBehavior>
+      <ScriptBefore><![CDATA[// 初始化对话框
+var dialog = $('<div><div style="margin:8px"><label>日期</label></div><div style="margin:8px"><input id="dd" type="text" class="easyui-datebox" required="required"></div></div>');
+// 显示对话框
+dialog.dialog({
+    title:'选择操作日期', 
+    width:240,
+    height:200,
+    modal:true,
+    buttons:[{
+        text:'确定',
+        handler: function() {
+            // 将选择的日期加入到l回调参数中
+            row.date = $('#dd').datebox('getValue');
+            // 回调代码，可直接通过查看生成的输出中复制过来
+            fruit.ajax({url:'/api/Whe/Wminwarehousem/doShowMyDateDialog', method:'post', data: JSON.stringify(row), success:ScriptAfter});
+        }
+    }]
+});
+// 初始化对话框内的 EasyUI 控件
+$.parser.parse(dialog);
+// 中断服务端行为，回调需要在按对话框按钮之后运行
+return false;
+]]></ScriptBefore>
+      <ScriptAfter><![CDATA[alert(data);]]></ScriptAfter>
+    </Button>
+    <Button Id="Button3" Title="Button3" Group="MyGroup" Order="2">
+      <ServerBehavior />
+    </Button>
+  </Buttons>
+  <GroupFilters />
+  <Fields>
+    <Field Table="tbWmInWarehouses" Field="Guid" DbType="uniqueidentifier" Required="True" ListVisible="True" FormVisible="True" ControlType="AutoId" UseLinks="True">
+      <Links Url="http://cn.bing.com/search?q={Guid}" />
+    </Field>
+    <Field Table="tbWmInWarehouses" Field="ParentCode" DbType="uniqueidentifier" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" />
+    <Field Table="tbWmInWarehouses" Field="Customer" DbType="uniqueidentifier" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" />
+    <Field Table="tbWmInWarehouses" Field="Department" DbType="uniqueidentifier" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" />
+    <Field Table="tbWmInWarehouses" Field="Source" DbType="nvarchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" />
+    <Field Table="tbWmInWarehouses" Field="SourceCode" DbType="nvarchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" />
+    <Field Table="tbWmInWarehouses" Field="SourceSheetID" DbType="nvarchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" />
+    <Field Table="tbWmInWarehouses" Field="Supplier" DbType="uniqueidentifier" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" />
+    <Field Table="tbWmInWarehouses" Field="ProductCode" DbType="uniqueidentifier" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" />
+    <Field Table="tbWmInWarehouses" Field="EnglishName" DbType="nvarchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" />
+    <Field Table="tbWmInWarehouses" Field="ProductCategory" DbType="uniqueidentifier" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" />
+    <Field Table="tbWmInWarehouses" Field="Width" DbType="real" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" />
+    <Field Table="tbWmInWarehouses" Field="Height" DbType="real" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" />
+    <Field Table="tbWmInWarehouses" Field="WareHouse" DbType="uniqueidentifier" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" />
+    <Field Table="tbWmInWarehouses" Field="SaleCode" DbType="uniqueidentifier" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" />
+    <Field Table="tbWmInWarehouses" Field="SaleSheetID" DbType="nvarchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" />
+    <Field Table="tbWmInWarehouses" Field="Color" DbType="uniqueidentifier" Required="False" ListVisible="True" FormVisible="True" ControlType="Dropdown" ControlValue="颜色选择" />
+    <Field Table="tbWmInWarehouses" Field="LotsCode" DbType="nvarchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" />
+    <Field Table="tbWmInWarehouses" Field="SN" DbType="nvarchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" />
+    <Field Table="tbWmInWarehouses" Field="Unit" DbType="uniqueidentifier" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" />
+    <Field Table="tbWmInWarehouses" Field="OutAmount" DbType="real" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" />
+    <Field Table="tbWmInWarehouses" Field="Amount" DbType="real" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" />
+    <Field Table="tbWmInWarehouses" Field="WarehouseLocation" DbType="uniqueidentifier" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" />
+    <Field Table="tbWmInWarehouses" Field="ManufactureDate" DbType="datetime" Required="False" ListVisible="True" FormVisible="True" ControlType="Date" />
+    <Field Table="tbWmInWarehouses" Field="Price" DbType="decimal" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" />
+    <Field Table="tbWmInWarehouses" Field="SalePrice" DbType="decimal" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" />
+    <Field Table="tbWmInWarehouses" Field="Tax" DbType="real" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" />
+    <Field Table="tbWmInWarehouses" Field="TotalCharge" DbType="decimal" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" />
+    <Field Table="tbWmInWarehouses" Field="Remark" DbType="nvarchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" />
+    <Field Table="tbWmInWarehouses" Field="ReviceDate" DbType="datetime" Required="False" ListVisible="True" FormVisible="True" ControlType="Date" />
+    <Field Table="tbWmInWarehouses" Field="RepertoryUid" DbType="uniqueidentifier" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" />
+  </Fields>
+  <DynamicReadOnlyConditions>
+    <Condition PropertyName="ParentCode" GroupStarts="0" IsOr="True">
+      <Values>
+        <Item IsNull="True" />
+      </Values>
+      <Value><![CDATA[NULL]]></Value>
+    </Condition>
+    <Condition PropertyName="ParentCode" />
+  </DynamicReadOnlyConditions>
+</Form>

@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Form Connection="LUOLAI1401Context" Table="wq_termPop">
+  <SubTables />
+  <Fields>
+    <Field Connection="LUOLAI1401Context" Table="wq_termPop" Field="CompCode" Required="False" ListVisible="True" FormVisible="True" ControlType="AutoId" />
+    <Field Connection="LUOLAI1401Context" Table="wq_termPop" Field="PopCode" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" />
+    <Field Connection="LUOLAI1401Context" Table="wq_termPop" Field="PopName" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" />
+    <Field Connection="LUOLAI1401Context" Table="wq_termPop" Field="Address" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" />
+    <Field Connection="LUOLAI1401Context" Table="wq_termPop" Field="Contact1" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" />
+    <Field Connection="LUOLAI1401Context" Table="wq_termPop" Field="Tel1" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" />
+    <Field Connection="LUOLAI1401Context" Table="wq_termPop" Field="Mobile1" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" />
+    <Field Connection="LUOLAI1401Context" Table="wq_termPop" Field="Contact2" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" />
+    <Field Connection="LUOLAI1401Context" Table="wq_termPop" Field="Tel2" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" />
+    <Field Connection="LUOLAI1401Context" Table="wq_termPop" Field="Mobile2" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" />
+    <Field Connection="LUOLAI1401Context" Table="wq_termPop" Field="Long" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" />
+    <Field Connection="LUOLAI1401Context" Table="wq_termPop" Field="Lat" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" />
+    <Field Connection="LUOLAI1401Context" Table="wq_termPop" Field="PopType" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" />
+    <Field Connection="LUOLAI1401Context" Table="wq_termPop" Field="PopStatus" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" />
+    <Field Connection="LUOLAI1401Context" Table="wq_termPop" Field="UserCode" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" />
+    <Field Connection="LUOLAI1401Context" Table="wq_termPop" Field="Remark" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" />
+    <Field Connection="LUOLAI1401Context" Table="wq_termPop" Field="CreatePerson" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" />
+    <Field Connection="LUOLAI1401Context" Table="wq_termPop" Field="CreateDate" Required="False" ListVisible="True" FormVisible="True" ControlType="Date" />
+    <Field Connection="LUOLAI1401Context" Table="wq_termPop" Field="UpdatePerson" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" />
+    <Field Connection="LUOLAI1401Context" Table="wq_termPop" Field="UpdateDate" Required="False" ListVisible="True" FormVisible="True" ControlType="Date" />
+  </Fields>
+</Form>

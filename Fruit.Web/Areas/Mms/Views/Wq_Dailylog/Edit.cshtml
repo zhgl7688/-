@@ -1,0 +1,121 @@
+﻿@section scripts {
+<script type="text/javascript">
+    var data = @MvcHtmlString.Create(JsonExtension.ToJson(Model));
+    $(function(){
+        var db = fruit.databind.root;
+        data.form._row_state = @ViewBag.RowState;
+        db.loadData(data);
+        function loadDetial(){
+        }
+        loadDetial();
+        $.extend(db, {
+            refreshClick:function(){
+                location.assign(top.$(window.frameElement).data('src'));
+            },
+            rejectClick:function(){
+                location.assign(top.$(window.frameElement).data('src'));
+            },
+            newClick:function(){
+                fruit.ajax({
+                        url:'/api/Mms/Wq_Dailylog/Newcode',
+                        success:function(data) {
+                            parent.changeDocTab(window.frameElement, '/Mms/Wq_Dailylog/edit/' + data);
+                        }
+                    })
+            },
+            deleteClick:function(){
+                $.messager.confirm('确认', '您确认要删除当前记录吗？', function(r){
+                    if(r){
+                        fruit.ajax({
+                            method:'DELETE',
+                            url: '/api/Mms/Wq_Dailylog/'+db.getData('form').code,
+                            success: function(data) {
+                                fruit.message('success', '删除成功');
+                                top.closeDocTab(window.frameElement);
+                            }
+                        });
+                    }
+                });
+            },
+            saveClick:function(){
+                if(!db.validate()){fruit.message('error', '请更正验证错误！'); return;}
+                var data = db.getData();
+                fruit.ajax({
+                    url: '/api/Mms/Wq_Dailylog/',
+                    data: JSON.stringify(data),
+                    success:function(result){
+                        if(result && result.success){
+                            fruit.message('success', '保存成功');
+                            if(result.form){
+                                db.loadData(result);
+                                loadDetial();
+                            }
+                        }
+                    }
+                });
+            }
+        });
+    });
+</script>
+}
+
+
+<div class="z-toolbar">
+    <a id="a_save" href="#" plain="true" class="easyui-linkbutton" icon="icon-save" data-bind="click:'saveClick',disable:'readonly'" title="保存">保存</a>
+    <a id="a_undo" href="#" plain="true" class="easyui-linkbutton" icon="icon-undo" data-bind="click:'rejectClick',disable:'readonly'" title="撤消">撤消</a>
+    <div class="datagrid-btn-separator"></div>
+    <a id="a_other" href="#" class="easyui-splitbutton" data-options="menu:'#divother',iconCls:'icon-application_go'" title="其他">其他</a>
+</div>
+
+<div id="divother" style="width:100px; display:none;">
+    <div data-options="iconCls:'icon-add'" data-bind="click:'newClick'">新增</div>
+    <div data-options="iconCls:'icon-cross'" data-bind="click:'deleteClick'">删除</div>
+    <div data-options="iconCls:'icon-arrow_refresh'" data-bind="click:'refreshClick'">刷新</div>
+</div>
+<div id="master" class="container_12" data-bind="inputwidth:0.9">
+<input type="hidden" data-bind="value:'form._row_state'" />
+<input type="hidden" data-bind="value:'form.code'" />
+    <div class="grid_1 lbl">用户编码</div>
+   <div class="grid_3 val"><input type="text" data-bind="value:'form.UserCode', text:'form.UserCode_RefText'" class="z-txt easyui-popup" data-options="rule:'用户选择',textField:'UserCode_RefText',required:true, onSelect:fruit.popupSelected" /></div>
+    <div class="grid_1 lbl">日期时间</div>
+   <div class="grid_3 val"><input type="text" data-bind="value:'form.AttDateTime', readOnly:false" class="z-txt easyui-datebox" data-options="required:true" /></div>
+
+    <div class="clear"></div>
+
+    <div class="grid_1 lbl">今日工作总结</div>
+   <div class="grid_11 val"><textarea data-bind="value:'form.DailySummary'" class="easyui-validatebox" data-options="required:true"></textarea></div>
+
+    <div class="clear"></div>
+
+    <div class="grid_1 lbl">明日工作计划</div>
+   <div class="grid_11 val"><textarea data-bind="value:'form.DailyPlan'" class="easyui-validatebox" data-options="required:true"></textarea></div>
+
+    <div class="clear"></div>
+
+    <div class="grid_1 lbl">今日心得体会</div>
+   <div class="grid_11 val"><textarea data-bind="value:'form.DailyExper'" class="easyui-validatebox" data-options="required:true"></textarea></div>
+
+    <div class="clear"></div>
+
+
+    <div class="clear"></div>
+
+</div>
+<div id="tt" class="easyui-tabs">
+    <div title="表单信息" style="padding-top:2px;">
+        <div class="container_12" id="BillDetail" data-bind="inputwidth:0.9,autoheight:181">
+            <div class="clear"></div>
+    <div class="grid_1 lbl">最后修改时间</div>
+   <div class="grid_3 val"><input type="text" data-bind="value:'form.UpdateDate',readOnly:true" class="z-txt easyui-datebox" /></div>
+    <div class="grid_1 lbl">最后修改人</div>
+   <div class="grid_3 val"><input type="text" data-bind="value:'form.UpdatePerson', readOnly:true" class="z-txt readonly" /></div>
+    <div class="grid_1 lbl">创建时间</div>
+   <div class="grid_3 val"><input type="text" data-bind="value:'form.CreateDate',readOnly:true" class="z-txt easyui-datebox" /></div>
+
+            <div class="clear"></div>
+
+    <div class="grid_1 lbl">创建人</div>
+   <div class="grid_3 val"><input type="text" data-bind="value:'form.CreatePerson', readOnly:true" class="z-txt readonly" /></div>
+        </div>
+    </div>
+</div>

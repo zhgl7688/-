@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Form Connection="LUOLAI1401Context" Table="HR_HousingFundSet" IsView="False" FilterTreeBindField="ID" TreeGridIdField="ID" TreeGridNameField="ID" TreeGridParentIdField="ID" UseGridEdit="True">
+  <SubTables />
+  <SaveProducre />
+  <Buttons />
+  <GroupFilters />
+  <Fields>
+    <Field Table="HR_HousingFundSet" Field="ID" DbType="int" Required="True" ListVisible="False" FormVisible="True" ControlType="AutoId" ReadOnly="True" Title="主键" ControlValue="公积金流水">
+      <CascadeFilter />
+    </Field>
+    <Field Table="HR_HousingFundSet" Field="FType" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="Dropdown" Title="公积金类别" ControlValue="公积金类别" ColumnWidth="100">
+      <CascadeFilter />
+    </Field>
+    <Field Table="HR_HousingFundSet" Field="pIndv" DbType="numeric" Required="False" ListVisible="True" FormVisible="True" ControlType="NumberBox" Title="个人缴纳比例" ColumnWidth="80">
+      <CascadeFilter />
+    </Field>
+    <Field Table="HR_HousingFundSet" Field="pCorp" DbType="numeric" Required="False" ListVisible="True" FormVisible="True" ControlType="NumberBox" Title="公司缴纳比例" ColumnWidth="80">
+      <CascadeFilter />
+    </Field>
+    <Field Table="HR_HousingFundSet" Field="Remark" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="备注" ColumnWidth="150">
+      <CascadeFilter />
+    </Field>
+    <Field Table="HR_HousingFundSet" Field="CreatePerson" DbType="varchar" Required="False" ListVisible="False" FormVisible="True" ControlType="TextBox" ReadOnly="True" Title="创建人">
+      <CascadeFilter />
+    </Field>
+    <Field Table="HR_HousingFundSet" Field="CreateDate" DbType="datetime" Required="False" ListVisible="False" FormVisible="True" ControlType="TextBox" ReadOnly="True" Title="创建日期">
+      <CascadeFilter />
+    </Field>
+    <Field Table="HR_HousingFundSet" Field="UpdatePerson" DbType="varchar" Required="False" ListVisible="False" FormVisible="True" ControlType="TextBox" ReadOnly="True" Title="更改人">
+      <CascadeFilter />
+    </Field>
+    <Field Table="HR_HousingFundSet" Field="UpdateDate" DbType="datetime" Required="False" ListVisible="False" FormVisible="True" ControlType="TextBox" ReadOnly="True" Title="更改日期">
+      <CascadeFilter />
+    </Field>
+  </Fields>
+</Form>

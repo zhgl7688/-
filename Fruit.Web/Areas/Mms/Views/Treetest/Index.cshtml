@@ -1,0 +1,142 @@
+﻿@section scripts {
+<script type="text/javascript">
+    $(function(){
+        if($('#searchDialogTemplate').length == 1) {
+            $('#showSearch').show();
+        }
+        var db = fruit.databind.root;
+
+            $.extend(db.options, {
+                searchClick: function(){
+                    var serach = db.getData('serach');
+                    db.invoke('setLoadParams', serach);
+                },
+                showSearchClick: function() {
+                    var serachDialog = $('<div></div>').html($('#searchDialogTemplate').html());
+                    var serachDialogDB = new fruit.databind(serachDialog[0], {
+                        onInit:function(){
+                            this.loadData(data);
+                            var serach = db.getData('serach');
+                            this.loadData({serach:serach});
+                        }
+                    });
+                    serachDialog.dialog({title:'搜索', width:600, height:500, cache:false,modal:true,buttons:[
+                        {text:'搜索',handler:function(){
+                            var serach = serachDialogDB.getData('serach');
+                            db.loadData({serach:serach});
+                            db.invoke('setLoadParams', serach);
+                            serachDialog.dialog('close');
+                        }},
+                        {text:'关闭',handler:function(){
+                            serachDialog.dialog('close');
+                        }},
+                    ], onClose:function(){
+                        serachDialog.dialog('destroy');
+                    }});
+                },
+                clearClick: function(){
+                    db.clearData('serach');
+                    db.invoke('setLoadParams', {});
+                }
+            });
+        $.extend(db.options, {
+            add: function(){
+                        var treeSelectedNode = fruit.databind.root.binds[0].jq.tree('getSelected');
+                        if(treeSelectedNode)
+                            parent.newItemBinds={ParentCode :treeSelectedNode.id, ParentCode_RefText :treeSelectedNode.text};
+                        else
+                            parent.newItemBinds={};
+                fruit.ajax({
+                        url:'/api/Mms/Treetest/NewOrganizeCode',
+                        success:function(data) {
+                            parent.showDocTab('icon-group', '测试明细', '/Mms/Treetest/edit/' + data);
+                        }
+                    })
+            },
+            edit: function(){
+                    var grid = db.binds.grid;
+                    var row = grid.getSelected();
+                    if(row == null) {
+                        fruit.message('warning', '请先选择一个测试');
+                        return;
+                    }
+                    parent.showDocTab('icon-house_in', '测试明细', '/Mms/Treetest/edit/' + row.OrganizeCode);
+            },
+             'delete': function() {
+                    var grid = db.binds.grid;
+                    var rows = grid.getSelections();
+                    if(rows.length == 0) return;
+                    var ids = [];
+                    $.each(rows, function(){
+                        ids.push(this.OrganizeCode);
+                    });
+                    $.messager.confirm('确认', '您确认要删除所选记录吗？', function(r){
+                        if(r){
+                            grid.jq.showLoading('正在处理…');
+                            fruit.ajax({
+                                method:'DELETE',
+                                url: '/api/Mms/Treetest/'+ids.join(),
+                                success: function(data) {
+                                    grid.jq.hideLoading();
+                                    grid.refresh();
+                                }
+                            })
+                        }
+                    });
+                },
+        });
+    });
+
+    function fixSize() {
+        var w = $(window).innerWidth();
+        var h = $(window).innerHeight();
+
+        $('#plLeft').panel('resize', { width: 200, height: h - 4 });
+        $('#plCenter').css({
+            left: 204,
+            top: 2,
+            width: w - 206,
+            height: h - 4
+        });
+    }
+
+    $(function () {
+        $(window).resize(fixSize);
+        fixSize();
+    });
+
+    function typeSelect(node){
+        fruit.databind.root.binds.grid.options.preQueryParams = {TreeFilter:node.id};
+        fruit.databind.root.binds.grid.jq.datagrid('options').queryParams = $.extend(fruit.databind.root.binds.grid.jq.datagrid('options').queryParams, fruit.databind.root.binds.grid.options.preQueryParams);
+        fruit.databind.root.binds.grid.refresh();
+    }
+</script>
+}
+<div id="plLeft" class="easyui-panel" style="position:absolute" data-options="iconCls:'icon-node_tree', title:'分类', width:200, collapsible:false">
+    <div data-bind="tree" data-options="loadFilter:fruit.tree.createLoadFilter('id', 'parent', null, {id:'', text:'全部', parent:null}), url:'/api/Mms/Treetest/types', method:'get', onSelect:typeSelect"></div>
+</div>
+<div id="plCenter" style="position:absolute">
+<div class="z-toolbar">
+
+    <a class="easyui-linkbutton" iconcls="icon-arrow_refresh" plain="true" data-bind="click:'refresh'">刷新</a>
+    <a class="easyui-linkbutton" iconcls="icon-add" plain="true" data-bind="click:'add'">新增</a>
+    <a class="easyui-linkbutton" iconcls="icon-edit" plain="true" data-bind="click:'edit'">编辑</a>
+    <a class="easyui-linkbutton" iconcls="icon-cross" plain="true" data-bind="click:'delete'">删除</a>
+    <a class="easyui-splitbutton" plain="true" data-options="iconCls:'icon-download'" suffix="xls" data-bind="click:'download'">导出</a>
+</div>
+<table id="grid" data-bind="datagrid" data-options="fixSize:{w:206, h:40}, rownumbers:true, method:'get', url:'/api/mms/treetest', pagination:true, pageSize:20, checkOnSelect:true, selectOnCheck:true, singleSelect:false">
+<thead>
+<tr>
+    <th field="SelectedRowKey" data-options="checkbox:true"></th>
+    <th field="OrganizeCode" data-options="editor:{type:'validatebox',options:{required:true}}">OrganizeCode    </th>
+    <th field="ParentCode" data-options="editor:{type:'validatebox',options:{required:false}}">ParentCode    </th>
+    <th field="ParentCode_N" data-options="editor:{type:'validatebox',options:{required:false}}">ParentCode_N    </th>
+    <th field="OrganizeSeq" data-options="editor:{type:'validatebox',options:{required:false}}">OrganizeSeq    </th>
+    <th field="OrganizeName" data-options="editor:{type:'validatebox',options:{required:false}}">OrganizeName    </th>
+    <th field="Description" data-options="editor:{type:'validatebox',options:{required:false}}">Description    </th>
+    <th field="CompCode" data-options="editor:{type:'validatebox',options:{required:true}}">CompCode    </th>
+    <th field="N_Code" data-options="editor:{type:'validatebox',options:{required:false}}">N_Code    </th>
+</tr>
+</thead>
+</table>
+</div>

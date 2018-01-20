@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report CommonReport="True" From="FA_Deposit " OrderField="CreatedTime desc">
+  <DrillReports />
+  <Fields>
+    <Field Table="FA_Deposit " Field="FID" Alias="FID" Title="FID" ListVisible="False" />
+    <Field Table="FA_Deposit " Field="PID" Alias="PID" Title="项目编号" ControlType="TextBox" />
+    <Field Table="FA_Deposit " Field="depAmtStatus" Alias="depAmtStatus" Title="保证金状态" ControlType="Dropdown" ControlValue="保证金状态报表" />
+    <Field Table="FA_Deposit " Field="depAmt" Alias="depAmt" Title="保证金" ControlType="TextBox" />
+    <Field Table="FA_Deposit " Field="CreatorID" Alias="CreatorID" Title="创建人" />
+    <Field Table="FA_Deposit " Field="CreatedTime" Alias="CreatedTime" Title="创建时间" ControlType="Date" />
+  </Fields>
+  <Charts>
+    <XAxis FieldUid="FA_Deposit _" />
+    <YAxis FieldUid="FA_Deposit _" />
+    <Series />
+  </Charts>
+</Report>

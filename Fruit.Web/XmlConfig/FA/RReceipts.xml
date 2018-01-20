@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report CommonReport="True" From="R_Receipts" OrderField="日期">
+  <DrillReports />
+  <Fields>
+    <Field Table="R_Receipts" Field="公司" Alias="公司" ControlType="Dropdown" Title="公司" ControlValue="报表单位" />
+    <Field Table="R_Receipts" Field="分部负责人" Alias="分部负责人" Title="分部负责人" ControlValue="报表分部负责人" ControlType="Dropdown" />
+    <Field Table="R_Receipts" Field="收支类型" Alias="收支类型" Title="收支类型" ControlValue="报表收支类型" ControlType="Dropdown" />
+    <Field Table="R_Receipts" Field="日期" Alias="日期" Title="日期" ControlType="Date" />
+    <Field Table="R_Receipts" Field="收付款方式" Alias="收付款方式" Title="收付款方式" />
+    <Field Table="R_Receipts" Field="金额" Alias="金额" IsSumField="True" Title="金额" />
+  </Fields>
+  <Charts>
+    <XAxis FieldUid="R_Receipts_" />
+    <YAxis FieldUid="R_Receipts_" />
+    <Series />
+  </Charts>
+</Report>

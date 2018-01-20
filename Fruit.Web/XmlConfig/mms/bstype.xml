@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Form Connection="LUOLAI1401Context" Table="SYS_BSDATATYPE">
+  <SubTables>
+    <Table Table="SYS_BSDATA" Filter="">
+      <Rels>
+        <FieldRel RelField="DataTypeID" MainField="DataTypeID" />
+      </Rels>
+      <Fields>
+        <Field Table="SYS_BSDATA" Field="Series" DbType="int" Required="False" ListVisible="False" FormVisible="True" ControlType="AutoId" Title="序号" MaxLength="10" ControlValue="序号" DefaultValue="1" FieldType="int" />
+        <Field Table="SYS_BSDATA" Field="DataID" DbType="varchar" Required="True" ListVisible="True" FormVisible="True" ControlType="TextBox" MaxLength="10" Title="数据编号" FieldType="varchar" />
+        <Field Table="SYS_BSDATA" Field="DataName" DbType="varchar" Required="True" ListVisible="True" FormVisible="True" ControlType="TextBox" MaxLength="30" Title="数据名称" FieldType="varchar" />
+        <Field Table="SYS_BSDATA" Field="Remark" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" MaxLength="200" Title="备注" FieldType="text" />
+        <Field Table="SYS_BSDATA" Field="CancelSign" DbType="char" Required="False" ListVisible="False" FormVisible="False" ControlType="TextBox" />
+        <Field Table="SYS_BSDATA" Field="InsertData" DbType="char" Required="False" ListVisible="False" FormVisible="False" ControlType="TextBox" />
+        <Field Table="SYS_BSDATA" Field="UpdateData" DbType="char" Required="False" ListVisible="False" FormVisible="False" ControlType="TextBox" />
+        <Field Table="SYS_BSDATA" Field="DeleteData" DbType="char" Required="False" ListVisible="False" FormVisible="False" ControlType="TextBox" />
+        <Field Table="SYS_BSDATA" Field="SendData" DbType="char" Required="False" ListVisible="False" FormVisible="False" ControlType="TextBox" />
+        <Field Table="SYS_BSDATA" Field="AlreadySend" DbType="char" Required="False" ListVisible="False" FormVisible="False" ControlType="TextBox" />
+        <Field Table="SYS_BSDATA" Field="PosUpdateSign" DbType="char" Required="False" ListVisible="False" FormVisible="False" ControlType="TextBox" />
+        <Field Table="SYS_BSDATA" Field="PosSendSign" DbType="char" Required="False" ListVisible="False" FormVisible="False" ControlType="TextBox" />
+      </Fields>
+    </Table>
+  </SubTables>
+  <Fields>
+    <Field Table="SYS_BSDATATYPE" Field="Series" DbType="int" Required="False" ListVisible="False" FormVisible="False" ControlType="TextBox" />
+    <Field Table="SYS_BSDATATYPE" Field="DataTypeID" DbType="varchar" Required="True" ListVisible="True" FormVisible="True" ControlType="AutoId" Title="类型编号" MaxLength="20" ControlValue="十二位编号" ReadOnly="True" DefaultValue="" FieldType="varchar" />
+    <Field Table="SYS_BSDATATYPE" Field="DataTypeName" DbType="varchar" Required="True" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="类型名称" MaxLength="30" FieldType="varchar" />
+    <Field Table="SYS_BSDATATYPE" Field="Remark" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="MultiTextBox" Title="备注" MaxLength="200" FieldType="text" />
+    <Field Table="SYS_BSDATATYPE" Field="CancelSign" DbType="char" Required="False" ListVisible="False" FormVisible="False" ControlType="TextBox" />
+    <Field Table="SYS_BSDATATYPE" Field="InsertData" DbType="char" Required="False" ListVisible="False" FormVisible="False" ControlType="TextBox" />
+    <Field Table="SYS_BSDATATYPE" Field="UpdateData" DbType="char" Required="False" ListVisible="False" FormVisible="False" ControlType="TextBox" />
+    <Field Table="SYS_BSDATATYPE" Field="DeleteData" DbType="char" Required="False" ListVisible="False" FormVisible="False" ControlType="TextBox" />
+    <Field Table="SYS_BSDATATYPE" Field="SendData" DbType="char" Required="False" ListVisible="False" FormVisible="False" ControlType="TextBox" />
+    <Field Table="SYS_BSDATATYPE" Field="AlreadySend" DbType="char" Required="False" ListVisible="False" FormVisible="False" ControlType="TextBox" />
+    <Field Table="SYS_BSDATATYPE" Field="PosUpdateSign" DbType="char" Required="False" ListVisible="False" FormVisible="False" ControlType="TextBox" />
+    <Field Table="SYS_BSDATATYPE" Field="PosSendSign" DbType="char" Required="False" ListVisible="False" FormVisible="False" ControlType="TextBox" />
+    <Field Table="SYS_BSDATATYPE" Field="ID" DbType="varchar" Required="False" ListVisible="False" FormVisible="False" ControlType="TextBox" />
+  </Fields>
+</Form>

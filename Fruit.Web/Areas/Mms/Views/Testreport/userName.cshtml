@@ -1,0 +1,44 @@
+﻿@{
+    Layout = "~/Views/Shared/_EmptyLayout.cshtml";
+}
+@section scripts {
+    <script type="text/javascript">
+        var parentReportParams = @MvcHtmlString.Create(ViewBag.ParentReportParams);
+        function userName_load(db){
+            $.extend(db.options, {
+                searchClick: function(){
+                    var form = db.getData('form');
+                    db.invoke('setLoadParams', form);
+                },
+                clearClick: function(){
+                    db.clearData('form');
+                    db.invoke('setLoadParams', {});
+                }
+                , onInit: function(){
+                }
+            });
+        }
+
+    </script>
+}
+
+<div class="z-toolbar">
+
+    <a class="easyui-linkbutton" iconcls="icon-arrow_refresh" plain="true" data-bind="click:'refresh'">刷新</a>
+    <div class="condition_buttons">
+        <a class="easyui-linkbutton" data-bind="click:'searchClick'" data-options="iconCls:'icon-search', plain:true" href="#">搜索</a>
+        <a class="easyui-linkbutton" data-bind="click:'clearClick'" data-options="iconCls:'icon-clear', plain:true" href="#">清空</a>
+    </div>
+</div>
+<div id="condition" class="container_12" style="position:relative;height:35px">
+    <div class="grid_1 lbl">用户名</div>
+    <div class="grid_2 val"><input data-bind="value:'form.UserName'" type="text" class="z-txt" /></div>
+    <div class="clear"></div>
+</div>
+<table id="griduserName" data-bind="datagrid" data-options="fixSize:{w:4, h:101}, rownumbers:true, method:'get', url:'/api/mms/testreport/getuserName', pagination:true, pageSize:20, holdTotal:true,preQueryParams:parentReportParams">
+<thead>
+<tr>
+<th field="UserName" data-options="">用户名</th>
+</tr>
+</thead>
+</table>

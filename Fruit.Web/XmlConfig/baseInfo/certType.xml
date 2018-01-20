@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Form Connection="LUOLAI1401Context" Table="BD_CertTypes" IsView="False" FilterTreeBindField="FID" TreeGridIdField="FID" TreeGridNameField="FID" TreeGridParentIdField="FID">
+  <SubTables />
+  <SaveProducre />
+  <Buttons />
+  <GroupFilters />
+  <Fields>
+    <Field Table="BD_CertTypes" Field="FID" DbType="bigint" Required="True" ListVisible="False" FormVisible="False" ControlType="AutoId" ReadOnly="True" Title="系统流水号">
+      <CascadeFilter />
+    </Field>
+    <Field Table="BD_CertTypes" Field="Code" DbType="varchar" Required="True" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="编号">
+      <CascadeFilter />
+    </Field>
+    <Field Table="BD_CertTypes" Field="Name" DbType="varchar" Required="True" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="名称">
+      <CascadeFilter />
+    </Field>
+    <Field Connection="LUOLAI1401Context" Table="BD_CertTypes" Field="Ratio" ControlType="TextBox" Title="挂证费率（元/月）" FormVisible="True" ListVisible="True" DbType="numeric">
+      <CascadeFilter />
+    </Field>
+    <Field Table="BD_CertTypes" Field="Remark" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="备注" FormWidth="3">
+      <CascadeFilter />
+    </Field>
+    <Field Table="BD_CertTypes" Field="CreatePerson" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="创建人" ReadOnly="True" DefaultValue="" FormInfoArea="表单信息">
+      <CascadeFilter />
+    </Field>
+    <Field Table="BD_CertTypes" Field="CreateDate" DbType="datetime" Required="True" ListVisible="True" FormVisible="True" ControlType="DateTime" Title="创建时间" ReadOnly="True" DefaultValue="" FormInfoArea="表单信息">
+      <CascadeFilter />
+    </Field>
+    <Field Table="BD_CertTypes" Field="UpdateDate" DbType="datetime" Required="True" ListVisible="False" FormVisible="True" ControlType="DateTime" Title="最近更新时间" ReadOnly="True" FormInfoArea="表单信息">
+      <CascadeFilter />
+    </Field>
+  </Fields>
+</Form>

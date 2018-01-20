@@ -1,0 +1,22 @@
+[
+  {
+    "includeInProject": true,
+    "outputFileName": "Content/js/fruit.js",
+    "inputFiles": [
+      "Content/js/fruit/core.js",
+      "Content/js/fruit/easyui-ext.js",
+      "Content/js/fruit/databind.js",
+      "Content/js/fruit/relations.js",
+      "Content/js/fruit/report.js",
+      "Content/js/fruit/binder.click.js",
+      "Content/js/fruit/binder.form.js",
+      "Content/js/fruit/binder.checklist.js",
+      "Content/js/fruit/binder.tree.js",
+      "Content/js/fruit/binder.datagrid.js",
+      "Content/js/fruit/binder.treegrid.js",
+      "Content/js/fruit/binder.orgtree.js",
+      "Content/js/fruit/binder.cascadeFilter.js",
+      "Content/js/fruit/search-scheme.js"
+    ]
+  }
+]

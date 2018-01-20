@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Form Connection="LUOLAI1401Context" Table="a_hd">
+  <SubTables>
+    <Table Table="a_bd" Filter="" Title="子表" AddButtonTitle="增加产品" AddSource="">
+      <Rels>
+        <FieldRel RelField="hid" MainField="id" />
+      </Rels>
+      <Fields>
+        <Field Table="a_bd" Field="serial" DbType="int" Required="False" ListVisible="True" FormVisible="True" ControlType="AutoId" ReadOnly="True" Title="序号" />
+        <Field Table="a_bd" Field="subtitle" DbType="nvarchar" Required="False" ListVisible="True" FormVisible="True" ControlType="PopupSelect" ReadOnly="False" ControlValue="选择产品" ColumnWidth="120" Title="标题" />
+        <Field Table="a_bd" Field="unit" DbType="nchar" Required="False" ListVisible="True" FormVisible="True" ColumnWidth="60" Title="单位" />
+        <Field Table="a_bd" Field="price" DbType="numeric" Required="False" ListVisible="True" FormVisible="True" ControlType="NumberBox" Title="价格" />
+        <Field Table="a_bd" Field="num" DbType="int" Required="False" ListVisible="True" FormVisible="True" ControlType="NumberBox" Title="数量" />
+        <Field Table="a_bd" Field="total" DbType="numeric" Required="False" ListVisible="True" FormVisible="True" ControlType="NumberBox" DefaultValue="={price}*{num}" Title="总计" />
+      </Fields>
+    </Table>
+  </SubTables>
+  <Fields>
+    <Field Table="a_hd" Field="id" DbType="uniqueidentifier" Required="True" ListVisible="True" FormVisible="True" ControlType="AutoId" ControlValue="十二位编号" ReadOnly="True" Title="编号" />
+    <Field Table="a_hd" Field="title" DbType="nvarchar" Required="True" ListVisible="True" FormVisible="True" ControlType="File" ControlValue="用户选择" Title="标题" FormWidth="3" DefaultValue="">
+      <FileControlInfo />
+    </Field>
+    <Field Connection="LUOLAI1401Context" Table="a_hd" Field="value" Title="值" FormVisible="True" ListVisible="True" DbType="decimal" ControlType="NumberBox">
+      <FileControlInfo />
+    </Field>
+  </Fields>
+</Form>

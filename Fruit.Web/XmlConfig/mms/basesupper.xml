@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Form Connection="SMTERPContext" Table="tbBdLitigant">
+  <SubTables />
+  <SaveProducre />
+  <Buttons />
+  <GroupFilters />
+  <Fields>
+    <Field Table="tbBdLitigant" Field="Code" DbType="uniqueidentifier" Required="True" ListVisible="True" FormVisible="True" ControlType="AutoId" />
+    <Field Table="tbBdLitigant" Field="PeopleCode" DbType="uniqueidentifier" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" />
+    <Field Table="tbBdLitigant" Field="Name" DbType="nvarchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" />
+    <Field Table="tbBdLitigant" Field="Remark" DbType="nvarchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" />
+    <Field Table="tbBdLitigant" Field="IfStop" DbType="bit" Required="False" ListVisible="True" FormVisible="True" ControlType="CheckBox" />
+    <Field Table="tbBdLitigant" Field="Sort" DbType="int" Required="False" ListVisible="True" FormVisible="True" ControlType="NumberBox" />
+  </Fields>
+</Form>

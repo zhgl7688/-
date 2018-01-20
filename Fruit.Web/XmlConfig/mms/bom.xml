@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Form Connection="SMTERPContext" Table="tblBom" FilterTreeBindField="guidmain" TreeGridIdField="guid" TreeGridNameField="ProductCode" TreeGridParentIdField="parentGUID" TreeGridMode="True" UseGridEdit="False">
+  <SubTables />
+  <SaveProducre />
+  <Buttons />
+  <GroupFilters />
+  <Fields>
+    <Field Table="tblBom" Field="ProductCode" DbType="uniqueidentifier" Required="True" ListVisible="True" FormVisible="True" ControlType="PopupSelect" ControlValue="产品选择" />
+    <Field Table="tblBom" Field="guidmain" DbType="uniqueidentifier" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" />
+    <Field Table="tblBom" Field="guid" DbType="uniqueidentifier" Required="True" ListVisible="False" FormVisible="False" ControlType="AutoId" />
+    <Field Table="tblBom" Field="parentGUID" DbType="uniqueidentifier" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" />
+    <Field Table="tblBom" Field="qty" DbType="numeric" Required="True" ListVisible="True" FormVisible="True" ControlType="NumberBox" />
+    <Field Table="tblBom" Field="waste" DbType="numeric" Required="False" ListVisible="True" FormVisible="True" ControlType="NumberBox" />
+    <Field Table="tblBom" Field="unit" DbType="nvarchar" Required="True" ListVisible="True" FormVisible="True" ControlType="TextBox" />
+    <Field Table="tblBom" Field="isBOM" DbType="bit" Required="True" ListVisible="True" FormVisible="True" ControlType="CheckBox" />
+    <Field Table="tblBom" Field="Status" DbType="nvarchar" Required="True" ListVisible="True" FormVisible="True" ControlType="TextBox" />
+    <Field Table="tblBom" Field="Audit" DbType="nvarchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" />
+    <Field Table="tblBom" Field="AuditDate" DbType="datetime" Required="False" ListVisible="True" FormVisible="True" ControlType="Date" />
+    <Field Table="tblBom" Field="CreatePerson" DbType="nvarchar" Required="False" ListVisible="False" FormVisible="True" ControlType="TextBox" ReadOnly="True" Title="创建人" />
+    <Field Table="tblBom" Field="CreateDate" DbType="datetime" Required="False" ListVisible="False" FormVisible="True" ControlType="Date" ReadOnly="True" Title="创建日期" />
+    <Field Table="tblBom" Field="remark" DbType="nvarchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" />
+    <Field Table="tblBom" Field="productkindguid" DbType="uniqueidentifier" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" />
+    <Field Table="tblBom" Field="price" DbType="numeric" Required="False" ListVisible="True" FormVisible="True" ControlType="NumberBox" />
+    <Field Table="tblBom" Field="totalmoney" DbType="numeric" Required="False" ListVisible="True" FormVisible="True" ControlType="NumberBox" />
+    <Field Table="tblBom" Field="version" DbType="nvarchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" />
+    <Field Table="tblBom" Field="bommodel" DbType="nvarchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" />
+    <Field Table="tblBom" Field="CT" DbType="nvarchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" />
+    <Field Table="tblBom" Field="position" DbType="nvarchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" />
+    <Field Table="tblBom" Field="speccode" DbType="nvarchar" Required="False" ListVisible="True" FormVisible="True" ControlType="PopupSelect" ControlValue="终端类型" />
+    <Field Table="tblBom" Field="color" DbType="nvarchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" />
+    <Field Table="tblBom" Field="height" DbType="nvarchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" />
+    <Field Table="tblBom" Field="lenght" DbType="nvarchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" />
+    <Field Table="tblBom" Field="width" DbType="nvarchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" />
+    <Field Table="tblBom" Field="clientguid" DbType="uniqueidentifier" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" />
+    <Field Table="tblBom" Field="begindate" DbType="datetime" Required="False" ListVisible="True" FormVisible="True" ControlType="Date" />
+    <Field Table="tblBom" Field="pirtuce" DbType="image" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" />
+    <Field Table="tblBom" Field="supplierguid" DbType="uniqueidentifier" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" />
+  </Fields>
+</Form>

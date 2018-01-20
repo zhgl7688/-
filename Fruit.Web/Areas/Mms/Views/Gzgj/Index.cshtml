@@ -1,0 +1,55 @@
+﻿@section scripts {
+    <script type="text/javascript">
+        $(function(){
+            var db = fruit.databind.root;
+
+            $.extend(db.options, {
+                searchClick: function(){
+                    var form = db.getData('form');
+                    db.invoke('setLoadParams', form);
+                },
+                clearClick: function(){
+                    db.clearData('form');
+                    db.invoke('setLoadParams', {});
+                }
+            });
+        });
+    </script>
+}
+
+<div class="z-toolbar">
+
+    <a class="easyui-linkbutton" iconcls="icon-arrow_refresh" plain="true" data-bind="click:'refresh'">刷新</a>
+        <a id="a_search" href="#" class="easyui-linkbutton" iconcls="icon-magnifier" plain="true" data-bind="click:'searchClick'">查询</a>
+    <a id="a_reset" href="#" class="easyui-linkbutton" iconcls="icon-clear" plain="true" data-bind="click:'clearClick'">清空</a>
+</div>
+<div id="condition" class="container_12" style="position:relative;height:50px">
+    <div class="grid_1 lbl">员工编码</div>
+    <div class="grid_2 val"><input data-bind="value:'form.UserCode'" type="text" class="z-txt" /></div>
+    <div class="grid_1 lbl">员工姓名</div>
+    <div class="grid_2 val"><input data-bind="value:'form.UserName'" type="text" class="z-txt" /></div>
+    <div class="grid_1 lbl">上报时间</div>
+    <div class="grid_2 val"><input data-bind="value:'form.CreateDate'" type="text" class="z-txt" /></div>
+    <div class="clear"></div>
+    <div class="clear"></div>
+<!--
+    <div class="prefix_9" style="position:absolute;top:5px;height:0;">
+        <a id="a_search" href="#" class="buttonHuge button-blue" data-bind="click:'searchClick'" style="margin:0 15px;">查询</a>
+        <a id="a_reset" href="#" class="buttonHuge button-blue" data-bind="click:'clearClick'">清空</a>
+    </div>-->
+</div>
+<table id="grid" data-bind="datagrid" data-options="fixSize:{w:4, h:90}, rownumbers:true, method:'get', url:'/api/mms/gzgj', pagination:true, pageSize:20, holdTotal:true">
+<thead>
+<tr>
+<th field="UserCode" data-options="">员工编码</th>
+<th field="UserName" data-options="">员工姓名</th>
+<th field="Mobile" data-options="">手机号</th>
+<th field="OrganizeName" data-options="">部门</th>
+<th field="CreateDate" data-options="">上报时间</th>
+<th field="TckLong" data-options="">经度</th>
+<th field="TckLat" data-options="">纬度</th>
+<th field="Address" data-options="">地址</th>
+<th field="tp" data-options="">上报类型</th>
+</tr>
+</thead>
+</table>

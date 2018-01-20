@@ -1,0 +1,91 @@
+﻿@section scripts {
+<script type="text/javascript">
+    var data = @MvcHtmlString.Create(JsonExtension.ToJson(Model));
+    $(function(){
+        var db = fruit.databind.root;
+        db.loadData(data);
+        function loadDetial(){
+        }
+        loadDetial();
+        $.extend(db, {
+            saveClick:function(){
+                if(!db.validate()){fruit.message('error', '请更正验证错误！'); return;}
+                var data = db.getData();
+                fruit.ajax({
+                    url: '/api/Psi/Warehouse/',
+                    data: JSON.stringify(data),
+                    success:function(result){
+                        if(result && result.success){
+                            fruit.message('success', '保存成功');
+                            if(result.form){
+                                db.loadData(result);
+                                loadDetial();
+                            }
+                        }
+                    }
+                });
+            }
+        });
+    });
+</script>
+}
+
+
+<div class="z-toolbar">
+    <a id="a_save" href="#" plain="true" class="easyui-linkbutton" icon="icon-save" data-bind="click:'saveClick',disable:'readonly'" title="保存">保存</a>
+    <a id="a_undo" href="#" plain="true" class="easyui-linkbutton" icon="icon-undo" data-bind="click:'rejectClick',disable:'readonly'" title="撤消">撤消</a>
+    <div class="datagrid-btn-separator"></div>
+    <a id="a_other" href="#" class="easyui-splitbutton" data-options="menu:'#divother',iconCls:'icon-application_go'" title="其他">其他</a>
+</div>
+
+<div id="divother" style="width:100px; display:none;">
+    <div data-options="iconCls:'icon-add'">新增</div>
+    <div data-options="iconCls:'icon-cross'">删除</div>
+    <div data-options="iconCls:'icon-arrow_refresh'">刷新</div>
+</div>
+<div id="master" class="container_12" data-bind="inputwidth:0.9">
+    <div class="grid_1 lbl">编号</div>
+   <div class="grid_3 val"><input type="text" data-bind="value:'form.Code', readOnly:true" class="z-txt readonly" /></div>
+    <div class="grid_1 lbl">仓库名称</div>
+   <div class="grid_3 val"><input type="text" data-bind="value:'form.Name'" class="z-txt" /></div>
+    <div class="grid_1 lbl">LevelCode</div>
+   <div class="grid_3 val"><input type="text" data-bind="value:'form.LevelCode'" class="z-txt" /></div>
+
+    <div class="clear"></div>
+
+    <div class="grid_1 lbl">Level</div>
+   <div class="grid_3 val"><input type="text" data-bind="value:'form.Level',datasource:'dataSource.Level'" class="z-txt easyui-numberbox" /></div>
+    <div class="grid_1 lbl">所属组织</div>
+   <div class="grid_3 val"><input type="text" data-bind="value:'form.DepartCode'" class="z-txt" /></div>
+    <div class="grid_1 lbl">父仓库</div>
+   <div class="grid_3 val"><input type="text" data-bind="value:'form.ParentCode'" class="z-txt" /></div>
+
+    <div class="clear"></div>
+
+    <div class="grid_1 lbl">电话</div>
+   <div class="grid_3 val"><input type="text" data-bind="value:'form.Telephone'" class="z-txt" /></div>
+    <div class="grid_1 lbl">地址</div>
+   <div class="grid_3 val"><input type="text" data-bind="value:'form.Address'" class="z-txt" /></div>
+    <div class="grid_1 lbl">手机</div>
+   <div class="grid_3 val"><input type="text" data-bind="value:'form.Mobilephone'" class="z-txt" /></div>
+
+    <div class="clear"></div>
+
+    <div class="grid_1 lbl">备注</div>
+   <div class="grid_11 val"><textarea data-bind="value:'form.Remark'" class="easyui-validatebox" data-options="required:false"></textarea></div>
+
+    <div class="clear"></div>
+
+    <div class="grid_1 lbl">排序</div>
+   <div class="grid_3 val"><input type="text" data-bind="value:'form.Srot',datasource:'dataSource.Srot'" class="z-txt easyui-numberbox" /></div>
+    <div class="grid_1 lbl">停用</div>
+   <div class="grid_3 val"><input type="hidden" data-bind="value:'form.IfStop', set:false" value="0" /><input type="checkbox" data-bind="value:'form.IfStop'" value="1" /></div>
+    <div class="grid_1 lbl">专卖店</div>
+   <div class="grid_3 val"><input type="hidden" data-bind="value:'form.IfStores', set:false" value="0" /><input type="checkbox" data-bind="value:'form.IfStores'" value="1" /></div>
+
+    <div class="clear"></div>
+
+
+    <div class="clear"></div>
+
+</div>

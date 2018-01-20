@@ -1,0 +1,54 @@
+﻿@section scripts {
+    <script type="text/javascript">
+        var Formatter_name = function(value, row, index){
+            return '<a href="#" onclick="Formatter_name_click(this)">' + value + '</a>'
+        };
+        var Formatter_name_click = function(a){
+            var jq = $(a).closest('.datagrid-view').find('[data-bind="datagrid"]');
+            var rowIndex = $(a).closest('[datagrid-row-index]').attr('datagrid-row-index');
+            var row = jq.datagrid('getRows')[parseInt(rowIndex)];
+            fruit.report.showDrillReport('name', '上班', row, jq);
+        };
+        var Formatter_KType = function(value, row, index){
+            return '<a href="#" onclick="Formatter_KType_click(this)">' + value + '</a>'
+        };
+        var Formatter_KType_click = function(a){
+            var jq = $(a).closest('.datagrid-view').find('[data-bind="datagrid"]');
+            var rowIndex = $(a).closest('[datagrid-row-index]').attr('datagrid-row-index');
+            var row = jq.datagrid('getRows')[parseInt(rowIndex)];
+            fruit.report.showDrillReport('KType', '下班', row, jq);
+        };
+        $(function(){
+            var db = fruit.databind.root;
+            $.extend(db.options, {
+                searchClick: function(){
+                    var form = db.getData('serach');
+                    db.invoke('setLoadParams', form);
+                },
+                clearClick: function(){
+                    db.clearData('serach');
+                    db.invoke('setLoadParams', {});
+                }
+                , onInit: function(){
+                }
+            });
+        });
+
+    </script>
+}
+
+<div class="z-toolbar">
+
+    <a class="easyui-linkbutton" iconcls="icon-arrow_refresh" plain="true" data-bind="click:'refresh'">刷新</a>
+    <a class="easyui-splitbutton" plain="true" data-options="iconCls:'icon-download'" suffix="xls" data-bind="click:'download'">导出</a>
+</div>
+<table id="grid" data-bind="datagrid" data-options="fixSize:{w:4, h:40}, rownumbers:true, method:'get', url:'/api/mms/report', pagination:true, pageSize:20, holdTotal:true">
+<thead>
+<tr>
+<th field="ID" data-options="">ID</th>
+<th field="name" data-options="formatter:Formatter_name">姓名</th>
+<th field="KType" data-options="formatter:Formatter_KType">类型</th>
+<th field="RoleCode" data-options="">角色</th>
+</tr>
+</thead>
+</table>

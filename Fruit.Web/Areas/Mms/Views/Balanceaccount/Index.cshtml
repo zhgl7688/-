@@ -1,0 +1,76 @@
+﻿@section scripts {
+    <script type="text/javascript">
+        var Formatter_ID = function(value, row, index){
+            return '<a href="#" onclick="Formatter_ID_click(this)">' + value + '</a>'
+        };
+        var Formatter_ID_click = function(a){
+            var jq = $(a).closest('.datagrid-view').find('[data-bind="datagrid"]');
+            var rowIndex = $(a).closest('[datagrid-row-index]').attr('datagrid-row-index');
+            var row = jq.datagrid('getRows')[parseInt(rowIndex)];
+            fruit.report.showDrillReport('ID', '下班', row, jq);
+        };
+        var Formatter_name = function(value, row, index){
+            return '<a href="#" onclick="Formatter_name_click(this)">' + value + '</a>'
+        };
+        var Formatter_name_click = function(a){
+            var jq = $(a).closest('.datagrid-view').find('[data-bind="datagrid"]');
+            var rowIndex = $(a).closest('[datagrid-row-index]').attr('datagrid-row-index');
+            var row = jq.datagrid('getRows')[parseInt(rowIndex)];
+            fruit.report.showDrillReport('name', '上班', row, jq);
+        };
+        $(function(){
+            var db = fruit.databind.root;
+            $.extend(db.options, {
+                searchClick: function(){
+                    var form = db.getData('serach');
+                    db.invoke('setLoadParams', form);
+                },
+                clearClick: function(){
+                    db.clearData('serach');
+                    db.invoke('setLoadParams', {});
+                }
+                , onInit: function(){
+                }
+            });
+            // 分割主从表布局
+            function master_layout(){
+                var ww = $(window).innerWidth();
+                var wh = $(window).innerHeight();
+
+                var topbarHeight = $('.z-toolbar').outerHeight() + $('.z-toolbar').offset().top + 2;
+                if($('.condition').length){
+                    topbarHeight += $('.condition').outerHeight() + $('.condition').offset().top + 2;
+                }
+
+                var iw = ww-6;
+                var ih = (wh-topbarHeight)/2;
+                db.binds.grid.jq.datagrid('resize', {width: iw, height:ih});
+
+                $('#subreports').css('marginTop', '2px').tabs('resize', {width: iw, height: ih - 4}).find('table[data-bind]').each(function(){$(this).datagrid('resize', {width:iw, height:ih - 40})});
+                $('#subreports_mask').css({position:'absolute', left: 8, top: wh-ih+6});
+            };
+              master_layout();
+        $('#grid').datagrid({onBeforeSelect: fruit.report.showDetialReports});
+            });
+    </script>
+}
+
+<div class="z-toolbar">
+
+    <a class="easyui-linkbutton" iconcls="icon-arrow_refresh" plain="true" data-bind="click:'refresh'">刷新</a>
+    <a class="easyui-splitbutton" plain="true" data-options="iconCls:'icon-download'" suffix="xls" data-bind="click:'download'">导出</a>
+</div>
+<table id="grid" data-bind="datagrid" data-options="'rownumbers':true,'method':'get','pagination':true,'pageSize':20,'holdTotal':true,'url':'/api/mms/balanceaccount','singleSelect':true">
+<thead>
+<tr>
+<th field="ID" data-options="formatter:Formatter_ID">ID</th>
+<th field="name" data-options="formatter:Formatter_name">姓名</th>
+<th field="RoleCode" data-options="">角色</th>
+</tr>
+</thead>
+</table>
+<div id="subreports" class="easyui-tabs" style="display:none;">
+<div title="上班" drill-report-uid="name"></div>
+<div title="下班" drill-report-uid="ID"></div>
+</div>
+<div id="subreports_mask"> 选中主表列后显示相关数据。 </div>

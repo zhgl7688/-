@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Form Connection="LUOLAI1401Context" Table="tbSaleOrderm" CustomSaveProducre="False">
+  <SubTables>
+    <Table Table="tbSaleOrders" Filter="" Title="订货明细" AddButtonTitle="" AddSource="">
+      <Rels>
+        <FieldRel RelField="ParentCode" MainField="Code" />
+      </Rels>
+      <Fields>
+        <Field Table="tbSaleOrders" Field="Code" DbType="uniqueidentifier" Required="True" ListVisible="True" FormVisible="True" ControlType="AutoId" FieldType="" Title="编号" ReadOnly="True" />
+        <Field Table="tbSaleOrders" Field="SourceCode" DbType="uniqueidentifier" Required="False" ListVisible="False" FormVisible="False" ControlType="TextBox" Title="原编号" FieldType="" />
+        <Field Table="tbSaleOrders" Field="ProductID" DbType="nvarchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="商品编码" FieldType="varchar" ControlValue="商品信息选择" />
+        <Field Table="tbSaleOrders" Field="EnglishName" DbType="nvarchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="商品名称" FieldType="varchar" />
+      </Fields>
+    </Table>
+  </SubTables>
+  <SaveProducre />
+  <Buttons>
+  </Buttons>
+  <GroupFilters />
+  <Fields>
+    <Field Table="tbSaleOrderm" Field="Code" DbType="uniqueidentifier" Required="True" ListVisible="False" FormVisible="False" ControlType="AutoId" FieldType="" Title="编号" />
+    <Field Table="tbSaleOrderm" Field="SheetID" DbType="nvarchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" ControlValue="销售订单号" FieldType="varchar" Title="单号" Searchable="False" />
+    <Field Table="tbSaleOrderm" Field="Mobilephone" DbType="nvarchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="手机" />
+    <Field Table="tbSaleOrderm" Field="Address" DbType="nvarchar" Required="False" ListVisible="True" FormVisible="True" ControlType="MultiTextBox" FieldType="text" Title="联系地址" />
+    <Field Table="tbSaleOrderm" Field="PayDate" DbType="datetime" Required="False" ListVisible="True" FormVisible="True" ControlType="Date" Title="付款期限" FieldType="datetime" />
+    <Field Table="tbSaleOrderm" Field="ContractSN" DbType="nvarchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" FieldType="varchar" Title="合同号" />
+    <Field Table="tbSaleOrderm" Field="SourceType" DbType="nvarchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" FieldType="varchar" Title="单据来源" />
+    <Field Table="tbSaleOrderm" Field="SourceCode" DbType="nvarchar" Required="False" ListVisible="True" FormVisible="True" ControlType="PopupSelect" FieldType="" Title="来源编号" />
+    <Field Table="tbSaleOrderm" Field="Status" DbType="int" Required="False" ListVisible="True" FormVisible="True" ControlType="NumberBox" FieldType="varchar" Title="状态" />
+    <Field Table="tbSaleOrderm" Field="Remark" DbType="nvarchar" Required="False" ListVisible="True" FormVisible="True" ControlType="MultiTextBox" FieldType="text" Title="备注" />
+    <Field Table="tbSaleOrderm" Field="FinishDate" DbType="datetime" Required="False" ListVisible="True" FormVisible="True" ControlType="Date" FieldType="datetime" Title="完成日期" />
+  </Fields>
+</Form>

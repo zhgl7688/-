@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Form Connection="LUOLAI1401Context" Table="PM_ContractFiles" IsView="False" FilterTreeBindField="FID" TreeGridIdField="FID" TreeGridNameField="FID" TreeGridParentIdField="FID">
+  <SubTables />
+  <SaveProducre />
+  <Buttons />
+  <GroupFilters />
+  <Fields>
+    <Field Table="PM_ContractFiles" Field="FID" DbType="bigint" Required="True" ListVisible="False" FormVisible="False" ControlType="TextBox" ReadOnly="True" Title="系统流水号" ControlValue="十二位编号">
+      <CascadeFilter />
+    </Field>
+    <Field Table="PM_ContractFiles" Field="PID" DbType="int" Required="True" ListVisible="True" FormVisible="True" ControlType="PopupSelect" Title="关联合同" ControlValue="合同选择">
+      <CascadeFilter />
+    </Field>
+    <Field Table="PM_ContractFiles" Field="fileCode" DbType="int" Required="True" ListVisible="True" FormVisible="True" ControlType="AutoId" Title="归档编号" ControlValue="十二位编号" ReadOnly="True">
+      <CascadeFilter />
+    </Field>
+    <Field Table="PM_ContractFiles" Field="BeginDate" DbType="datetime" Required="True" ListVisible="True" FormVisible="True" ControlType="Date" Title="合同开工日期">
+      <CascadeFilter />
+    </Field>
+    <Field Table="PM_ContractFiles" Field="EndDate" DbType="datetime" Required="True" ListVisible="True" FormVisible="True" ControlType="Date" Title="合同竣工日期">
+      <CascadeFilter />
+    </Field>
+    <Field Table="PM_ContractFiles" Field="projAddress" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="项目地址" FormWidth="3">
+      <CascadeFilter />
+    </Field>
+    <Field Table="PM_ContractFiles" Field="Remark" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="备注" FormWidth="3">
+      <CascadeFilter />
+    </Field>
+    <Field Table="PM_ContractFiles" Field="Attach" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="File" Title="合同扫描件">
+      <CascadeFilter />
+      <FileControlInfo />
+    </Field>
+    <Field Table="PM_ContractFiles" Field="CreatePerson" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="创建人" ReadOnly="True">
+      <CascadeFilter />
+    </Field>
+    <Field Table="PM_ContractFiles" Field="CreateDate" DbType="datetime" Required="True" ListVisible="True" FormVisible="True" ControlType="Date" Title="创建时间" ReadOnly="True">
+      <CascadeFilter />
+    </Field>
+    <Field Table="PM_ContractFiles" Field="UpdateDate" DbType="datetime" Required="True" ListVisible="True" FormVisible="True" ControlType="Date" Title="最近一次更新时间" ReadOnly="True">
+      <CascadeFilter />
+    </Field>
+  </Fields>
+</Form>

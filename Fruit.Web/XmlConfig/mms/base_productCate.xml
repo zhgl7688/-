@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Form Connection="LUOLAI1401Context" Table="base_productCate" Filter="a.CompCode= '{USER.CompCode}'">
+  <SubTables />
+  <Fields>
+    <Field Connection="LUOLAI1401Context" Table="base_productCate" Field="CateCode" Required="True" ListVisible="True" FormVisible="True" ControlType="AutoId" Title="分类代码" ControlValue="十二位编号" FieldType="varchar" MaxLength="20" ReadOnly="True" DbType="varchar" />
+    <Field Connection="LUOLAI1401Context" Table="base_productCate" Field="CateName" Required="True" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="分类名称" FieldType="varchar" MaxLength="20" DbType="varchar" Searchable="True" />
+    <Field Connection="LUOLAI1401Context" Table="base_productCate" Field="CompCode" Required="False" ListVisible="False" FormVisible="False" ControlType="Dropdown" Title="所属公司" FieldType="varchar" MaxLength="20" ReadOnly="True" DefaultValue="{USER.CompCode}" ControlValue="所属公司" DbType="varchar" />
+    <Field Connection="LUOLAI1401Context" Table="base_productCate" Field="DelFlag" Required="False" ListVisible="True" FormVisible="True" ControlType="CheckBox" Title="删除标记" DefaultValue="0" FieldType="varchar" MaxLength="10" DbType="char" />
+    <Field Connection="LUOLAI1401Context" Table="base_productCate" Field="CreatePerson" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="创建用户" FieldType="varchar" MaxLength="20" DefaultValue="" ReadOnly="True" DbType="varchar" />
+    <Field Connection="LUOLAI1401Context" Table="base_productCate" Field="CreateDate" Required="False" ListVisible="True" FormVisible="True" ControlType="Date" Title="创建时间" FieldType="datetime" MaxLength="20" ReadOnly="True" DbType="datetime" Searchable="True" />
+    <Field Connection="LUOLAI1401Context" Table="base_productCate" Field="UpdatePerson" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="修改用户" FieldType="varchar" MaxLength="20" ReadOnly="True" DbType="varchar" />
+    <Field Connection="LUOLAI1401Context" Table="base_productCate" Field="UpdateDate" Required="False" ListVisible="True" FormVisible="True" ControlType="Date" Title="修改时间" FieldType="datetime" MaxLength="20" ReadOnly="True" DbType="datetime" />
+  </Fields>
+  <SaveProducre />
+  <Buttons />
+  <GroupFilters />
+</Form>

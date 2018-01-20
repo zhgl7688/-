@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Form Connection="LUOLAI1401Context" Table="base_customField">
+  <SubTables />
+  <SaveProducre />
+  <Buttons />
+  <GroupFilters />
+  <Fields>
+    <Field Table="base_customField" Field="id" DbType="nvarchar" Required="True" ListVisible="True" FormVisible="True" ControlType="AutoId" Searchable="False" Title="ID" ReadOnly="True" ControlValue="序号" FieldType="int" />
+    <Field Table="base_customField" Field="CompCode" DbType="varchar" Required="False" ListVisible="False" FormVisible="False" ControlType="Dropdown" Title="所属公司" DefaultValue="{USER.CompCode}" ControlValue="所属公司" />
+    <Field Table="base_customField" Field="TypeCode" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="Dropdown" Title="拜访目的" ControlValue="寻访报告客户类型" />
+    <Field Table="base_customField" Field="TypeName" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="拜访内容" />
+  </Fields>
+</Form>

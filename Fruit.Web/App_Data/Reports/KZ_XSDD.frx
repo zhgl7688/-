@@ -1,0 +1,109 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report ScriptLanguage="CSharp" ReportInfo.Created="08/10/2014 10:41:17" ReportInfo.Modified="12/26/2015 23:38:19" ReportInfo.CreatorVersion="1.9.16.0">
+  <Dictionary>
+    <MsSqlDataConnection Name="Connection" ConnectionString="Server=127.0.0.1;Database=Bcp.Sys;User Id=sa;Password=sa123456;">
+      <TableDataSource Name="Table" DataType="System.Int32" Enabled="true" SelectCommand="SELECT hd.OrderCode,UserName,CONVERT(VARCHAR(10),PrmDate,120) PrmDate,PopName,hd.Remark FROM dbo.wq_order_hd hd&#13;&#10;INNER JOIN dbo.sys_user ON sys_user.UserCode=hd.UserCode&#13;&#10;INNER JOIN wq_termPop ON DealerCode=PopCode&#13;&#10;where HD.OrderCode='[ID]'">
+        <Column Name="Remark" DataType="System.String"/>
+        <Column Name="OrderCode" DataType="System.String"/>
+        <Column Name="UserName" DataType="System.String"/>
+        <Column Name="PrmDate" DataType="System.String"/>
+        <Column Name="PopName" DataType="System.String"/>
+      </TableDataSource>
+      <TableDataSource Name="Table1" DataType="System.Int32" Enabled="true" SelectCommand="SELECT OrderCode,ROW_NUMBER() OVER(ORDER BY OrderCode) series,PdtCode,PdtName,OrdQty,OrdPrice,OrdAmt FROM dbo.wq_order_bd">
+        <Column Name="PdtName" DataType="System.String"/>
+        <Column Name="OrderCode" DataType="System.String"/>
+        <Column Name="series" DataType="System.Int64"/>
+        <Column Name="PdtCode" DataType="System.String"/>
+        <Column Name="OrdQty" DataType="System.Int32"/>
+        <Column Name="OrdPrice" DataType="System.Decimal"/>
+        <Column Name="OrdAmt" DataType="System.Decimal"/>
+      </TableDataSource>
+      <TableDataSource Name="Table2" DataType="System.Int32" Enabled="true" SelectCommand="SELECT OrderCode,SUM(OrdQty) OrdQty,SUM(OrdAmt) OrdAmt FROM dbo.wq_order_bd GROUP BY OrderCode">
+        <Column Name="OrderCode" DataType="System.String"/>
+        <Column Name="OrdQty" DataType="System.Int32"/>
+        <Column Name="OrdAmt" DataType="System.Decimal"/>
+      </TableDataSource>
+    </MsSqlDataConnection>
+    <Relation Name="Table_Table2" ParentDataSource="Table" ChildDataSource="null" ParentColumns="SOFormID&#13;&#10;CustCode&#13;&#10;CustBizCode&#13;&#10;PdtCode" ChildColumns="SOFormID&#13;&#10;CustCode&#13;&#10;CustBizCode&#13;&#10;PdtCode" Enabled="true"/>
+    <Relation Name="Table_Table11" ParentDataSource="Table" ChildDataSource="Table1" ParentColumns="OrderCode" ChildColumns="OrderCode" Enabled="true"/>
+    <Relation Name="Table_Table22" ParentDataSource="Table" ChildDataSource="Table2" ParentColumns="OrderCode" ChildColumns="OrderCode" Enabled="true"/>
+  </Dictionary>
+  <ReportPage Name="Page1" PaperWidth="241" PaperHeight="93" TopMargin="5">
+    <DataBand Name="Data1" Width="835.38" Height="111.18" DataSource="Table" RowCount="3">
+      <TextObject Name="Text33" Top="79.05" Width="387.45" Height="22.68" Text="客户名称:[Table.PopName]" VertAlign="Center" Font="宋体, 14pt"/>
+      <TextObject Name="Text27" Left="461.05" Top="79.05" Width="255.15" Height="22.68" Text="业务员:[Table.UserName]" HorzAlign="Right" VertAlign="Center" Font="宋体, 14pt"/>
+      <TextObject Name="Text34" Top="47.25" Width="387.45" Height="22.68" Text="订单编号:[Table.OrderCode]" VertAlign="Center" Font="宋体, 14pt"/>
+      <TextObject Name="Text35" Left="489.4" Top="47.25" Width="226.8" Height="22.68" Text="订单日期:[Table.PrmDate]" HorzAlign="Right" VertAlign="Center" Font="宋体, 14pt"/>
+      <TextObject Name="Text30" Left="141.75" Top="9.45" Width="463.05" Height="28.35" Text="销 售 订 单" HorzAlign="Center" VertAlign="Center" Font="宋体, 18pt, style=Bold"/>
+      <DataBand Name="Data2" Top="145.64" Width="835.38" Height="26.46" DataSource="Table1">
+        <TableObject Name="Table3" Width="708.8" Height="26.46">
+          <TableColumn Name="Column47"/>
+          <TableColumn Name="Column48" Width="151.18"/>
+          <TableColumn Name="Column49" Width="245.68"/>
+          <TableColumn Name="Column50" Width="94.53"/>
+          <TableColumn Name="Column51" Width="75.63"/>
+          <TableColumn Name="Column52" Width="75.63"/>
+          <TableRow Name="Row20" Height="26.46">
+            <TableCell Name="Cell105" Border.Lines="All" Text="[Table1.series]" HorzAlign="Center" VertAlign="Center" Font="宋体, 13pt"/>
+            <TableCell Name="Cell106" Border.Lines="All" Text="[Table1.PdtCode]" HorzAlign="Center" VertAlign="Center" Font="宋体, 13pt"/>
+            <TableCell Name="Cell107" Border.Lines="All" Text="[Table1.PdtName]" HorzAlign="Center" VertAlign="Center" Font="宋体, 13pt"/>
+            <TableCell Name="Cell108" Border.Lines="All" Text="[Table1.OrdPrice]" HorzAlign="Center" VertAlign="Center" Font="宋体, 13pt"/>
+            <TableCell Name="Cell109" Border.Lines="All" Text="[Table1.OrdQty]" HorzAlign="Center" VertAlign="Center" Font="宋体, 13pt"/>
+            <TableCell Name="Cell110" Border.Lines="All" Text="[Table1.OrdAmt]" HorzAlign="Center" VertAlign="Center" Font="宋体, 13pt"/>
+          </TableRow>
+        </TableObject>
+        <DataHeaderBand Name="DataHeader2" Top="115.18" Width="835.38" Height="26.46">
+          <TableObject Name="Table3" Width="708.8" Height="26.46">
+            <TableColumn Name="Column30"/>
+            <TableColumn Name="Column31" Width="151.18"/>
+            <TableColumn Name="Column32" Width="245.68"/>
+            <TableColumn Name="Column35" Width="94.53"/>
+            <TableColumn Name="Column40" Width="75.63"/>
+            <TableColumn Name="Column46" Width="75.63"/>
+            <TableRow Name="Row5" Height="26.46">
+              <TableCell Name="Cell46" Border.Lines="All" Text="序号" HorzAlign="Center" VertAlign="Center" Font="宋体, 13pt"/>
+              <TableCell Name="Cell30" Border.Lines="All" Text="产品编码" HorzAlign="Center" VertAlign="Center" Font="宋体, 13pt"/>
+              <TableCell Name="Cell31" Border.Lines="All" Text="产品名称" HorzAlign="Center" VertAlign="Center" Font="宋体, 13pt"/>
+              <TableCell Name="Cell36" Border.Lines="All" Text="单价" HorzAlign="Center" VertAlign="Center" Font="宋体, 13pt"/>
+              <TableCell Name="Cell90" Border.Lines="All" Text="数量" HorzAlign="Center" VertAlign="Center" Font="宋体, 13pt"/>
+              <TableCell Name="Cell104" Border.Lines="All" Text="金额" HorzAlign="Center" VertAlign="Center" Font="宋体, 13pt"/>
+            </TableRow>
+          </TableObject>
+        </DataHeaderBand>
+      </DataBand>
+      <DataBand Name="Data3" Top="176.1" Width="835.38" Height="28.35" DataSource="Table2">
+        <TableObject Name="Table3" Left="-0.11" Width="708.73" Height="28.35">
+          <TableColumn Name="Column9" Width="292.95"/>
+          <TableColumn Name="Column10" Width="181.43"/>
+          <TableColumn Name="Column11" Width="181.43"/>
+          <TableColumn Name="Column12" Width="52.92"/>
+          <TableRow Name="Row9" Height="28.35">
+            <TableCell Name="Cell53" Border.Lines="All" Text="合     计" HorzAlign="Center" VertAlign="Center" Font="宋体, 13pt"/>
+            <TableCell Name="Cell54" Border.Lines="All" Text="总数量 [Table2.OrdQty] 共 [Table2.OrdAmt] 元" VertAlign="Center" Font="宋体, 13pt" ColSpan="3"/>
+            <TableCell Name="Cell55" Border.Lines="All" HorzAlign="Center" VertAlign="Center" Font="宋体, 13pt"/>
+            <TableCell Name="Cell56" Border.Lines="All" HorzAlign="Center" VertAlign="Center" Font="宋体, 13pt"/>
+          </TableRow>
+          <TableRow Name="Row8" Height="0">
+            <TableCell Name="Cell49" Border.Lines="All" Font="宋体, 14pt"/>
+            <TableCell Name="Cell50" Border.Lines="All" Font="宋体, 14pt"/>
+            <TableCell Name="Cell51" Border.Lines="All" Font="宋体, 14pt"/>
+            <TableCell Name="Cell52" Border.Lines="All" Font="宋体, 14pt"/>
+          </TableRow>
+        </TableObject>
+        <TableObject Name="Table3" Top="28.35" Width="718.18">
+          <TableColumn Name="Column42" Width="302.4"/>
+          <TableColumn Name="Column43" Width="181.43"/>
+          <TableColumn Name="Column44" Width="181.43"/>
+          <TableColumn Name="Column45" Width="52.92"/>
+          <TableRow Name="Row19" Height="0">
+            <TableCell Name="Cell100" Border.Lines="All" Font="宋体, 14pt"/>
+            <TableCell Name="Cell101" Border.Lines="All" Font="宋体, 14pt"/>
+            <TableCell Name="Cell102" Border.Lines="All" Font="宋体, 14pt"/>
+            <TableCell Name="Cell103" Border.Lines="All" Font="宋体, 14pt"/>
+          </TableRow>
+        </TableObject>
+      </DataBand>
+      <DataFooterBand Name="DataFooter1" Top="208.45" Width="835.38" Height="40.7"/>
+    </DataBand>
+  </ReportPage>
+</Report>

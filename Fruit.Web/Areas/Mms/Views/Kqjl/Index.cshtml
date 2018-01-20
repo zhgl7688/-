@@ -1,0 +1,84 @@
+﻿@section scripts {
+    <script type="text/javascript">
+        $(function(){
+            var db = fruit.databind.root;
+            $.extend(db.options, {
+                searchClick: function(){
+                    var form = db.getData('serach');
+                    db.invoke('setLoadParams', form);
+                },
+                clearClick: function(){
+                    db.clearData('serach');
+                    db.invoke('setLoadParams', {});
+                }
+                , onInit: function(){
+                }
+            });
+        });
+
+    </script>
+}
+
+<div class="z-toolbar">
+
+    <a class="easyui-linkbutton" iconcls="icon-arrow_refresh" plain="true" data-bind="click:'refresh'">刷新</a>
+    <a class="easyui-splitbutton" plain="true" data-options="iconCls:'icon-download'" suffix="xls" data-bind="click:'download'">导出</a>
+    <div class="condition_buttons">
+        <a class="easyui-linkbutton" data-bind="click:'searchClick'" data-options="iconCls:'icon-search', plain:true" href="#">搜索</a>
+        <a class="easyui-linkbutton" data-bind="click:'clearClick'" data-options="iconCls:'icon-clear', plain:true" href="#">清空</a>
+    </div>
+</div>
+<div id="condition" class="container_12" style="position:relative;height:60px">
+    <div class="grid_1 lbl">月份</div>
+    <div class="grid_2 val"><input data-bind="value:'serach.月份'" type="text" class="z-txt" /></div>
+    <div class="grid_1 lbl">部门</div>
+    <div class="grid_2 val"><input data-bind="value:'serach.OrganizeName'" type="text" class="z-txt" /></div>
+    <div class="grid_1 lbl">用户编号</div>
+    <div class="grid_2 val"><input data-bind="value:'serach.用户编号'" type="text" class="z-txt" /></div>
+    <div class="clear"></div>
+    <div class="grid_1 lbl">用户名</div>
+    <div class="grid_2 val"><input data-bind="value:'serach.用户名'" type="text" class="z-txt" /></div>
+    <div class="clear"></div>
+</div>
+<table id="grid" data-bind="datagrid" data-options="fixSize:{w:4, h:100}, rownumbers:true, method:'get', url:'/api/mms/kqjl', pagination:true, pageSize:20, holdTotal:true">
+<thead>
+<tr>
+<th field="月份" data-options="">月份</th>
+<th field="OrganizeName" data-options="">部门</th>
+<th field="用户编号" data-options="">用户编号</th>
+<th field="用户名" data-options="">用户名</th>
+<th field="Ktype" data-options="">上下班</th>
+<th field="一号" data-options="">1</th>
+<th field="二号" data-options="">2</th>
+<th field="三号" data-options="">3</th>
+<th field="四号" data-options="">4</th>
+<th field="五号" data-options="">5</th>
+<th field="六号" data-options="">6</th>
+<th field="七号" data-options="">7</th>
+<th field="八号" data-options="">8</th>
+<th field="九号" data-options="">9</th>
+<th field="十号" data-options="">10</th>
+<th field="十一号" data-options="">11</th>
+<th field="十二号" data-options="">12</th>
+<th field="十三号" data-options="">13</th>
+<th field="十四号" data-options="">14</th>
+<th field="十五号" data-options="">15</th>
+<th field="十六号" data-options="">16</th>
+<th field="十七号" data-options="">17</th>
+<th field="十八号" data-options="">18</th>
+<th field="十九号" data-options="">19</th>
+<th field="二十号" data-options="">20</th>
+<th field="二十一号" data-options="">21</th>
+<th field="二十二号" data-options="">22</th>
+<th field="二十三号" data-options="">23</th>
+<th field="二十四号" data-options="">24</th>
+<th field="二十五号" data-options="">25</th>
+<th field="二十六号" data-options="">26</th>
+<th field="二十七号" data-options="">27</th>
+<th field="二十八号" data-options="">28</th>
+<th field="二十九号" data-options="">29</th>
+<th field="三十号" data-options="">30</th>
+<th field="三十一号" data-options="">31</th>
+</tr>
+</thead>
+</table>

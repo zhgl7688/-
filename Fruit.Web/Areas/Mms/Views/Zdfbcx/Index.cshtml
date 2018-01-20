@@ -1,0 +1,57 @@
+﻿@section scripts {
+    <script type="text/javascript">
+        $(function(){
+            var db = fruit.databind.root;
+                    var data = @MvcHtmlString.Create(JsonExtension.ToJson(Model));
+                    db.loadData(data);
+            $.extend(db.options, {
+                searchClick: function(){
+                    var form = db.getData('serach');
+                    db.invoke('setLoadParams', form);
+                },
+                clearClick: function(){
+                    db.clearData('serach');
+                    db.invoke('setLoadParams', {});
+                }
+                , onInit: function(){
+                    db.loadData(data);
+                }
+            });
+        });
+
+    </script>
+}
+
+<div class="z-toolbar">
+
+    <a class="easyui-linkbutton" iconcls="icon-arrow_refresh" plain="true" data-bind="click:'refresh'">刷新</a>
+    <a class="easyui-splitbutton" plain="true" data-options="iconCls:'icon-download'" suffix="xls" data-bind="click:'download'">导出</a>
+    <div class="condition_buttons">
+        <a class="easyui-linkbutton" data-bind="click:'searchClick'" data-options="iconCls:'icon-search', plain:true" href="#">搜索</a>
+        <a class="easyui-linkbutton" data-bind="click:'clearClick'" data-options="iconCls:'icon-clear', plain:true" href="#">清空</a>
+    </div>
+</div>
+<div id="condition" class="container_12" style="position:relative;height:35px">
+    <div class="grid_1 lbl">省份</div>
+    <div class="grid_2 val"><input data-bind="value:'serach.省份'" type="text" class="z-txt" /></div>
+    <div class="grid_1 lbl">城市</div>
+    <div class="grid_2 val"><input data-bind="value:'serach.城市'" type="text" class="z-txt" /></div>
+    <div class="grid_1 lbl">客户类型</div>
+    <div class="grid_2 val"><input data-bind="value:'serach.客户类型', datasource:'dataSource.客户类型'" type="text" class="z-txt easyui-combobox" /></div>
+    <div class="clear"></div>
+    <div class="clear"></div>
+</div>
+<table id="grid" data-bind="datagrid" data-options="fixSize:{w:4, h:75}, rownumbers:true, method:'get', url:'/api/mms/zdfbcx', pagination:true, pageSize:20, holdTotal:true">
+<thead>
+<tr>
+<th field="省份" data-options="width:100">省份</th>
+<th field="城市" data-options="width:100">城市</th>
+<th field="客户类型" data-options="width:100">客户类型</th>
+<th field="终端数量" data-options="width:150">终端数量</th>
+<th field="新开" data-options="">新开</th>
+<th field="健康" data-options="">健康</th>
+<th field="睡眠" data-options="">睡眠</th>
+<th field="流失" data-options="">流失</th>
+</tr>
+</thead>
+</table>

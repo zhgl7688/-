@@ -1,0 +1,242 @@
+﻿@section scripts {
+    <script type="text/javascript">
+    var data = @MvcHtmlString.Create(JsonExtension.ToJson(Model));
+    $(function(){
+        var db = fruit.databind.root;
+        data.form._row_state = @ViewBag.RowState;
+        db.loadData(data);
+        function loadDetial(){
+        }
+        loadDetial();
+        $.extend(db, {
+            refreshClick:function(){
+                location.assign(top.$(window.frameElement).data('src'));
+            },
+            rejectClick:function(){
+                location.assign(top.$(window.frameElement).data('src'));
+            },
+            newClick:function(){
+                fruit.ajax({
+                        url:'/api/Project/Projectinfo/NewCode',
+                        success:function(data) {
+                            parent.changeDocTab(window.frameElement, '/Project/Projectinfo/edit/' + data);
+                        }
+                    })
+            },
+            deleteClick:function(){
+                $.messager.confirm('确认', '您确认要删除当前记录吗？', function(r){
+                    if(r){
+                        fruit.ajax({
+                            method:'DELETE',
+                            url: '/api/Project/Projectinfo/'+db.getData('form').Code,
+                            success: function(data) {
+                                fruit.message('success', '删除成功');
+                                top.closeDocTab(window.frameElement);
+                            }
+                        });
+                    }
+                });
+            },
+            saveClick:function(){
+                if(!db.validate()){fruit.message('error', '请更正验证错误！'); return;}
+                var data = db.getData();
+                fruit.ajax({
+                    url: '/api/Project/Projectinfo/',
+                    data: JSON.stringify(data),
+                    success:function(result){
+                        if(result && result.success){
+                            fruit.message('success', '保存成功');
+                            if(result.form){
+                                db.loadData(result);
+                                loadDetial();
+                            }
+                        }
+                    }
+                });
+            }
+        });
+    });
+    </script>
+}
+
+
+<div class="z-toolbar">
+    <a id="a_save" href="#" plain="true" class="easyui-linkbutton" icon="icon-save" data-bind="click:'saveClick',disable:'readonly'" title="保存">保存</a>
+    <a id="a_undo" href="#" plain="true" class="easyui-linkbutton" icon="icon-undo" data-bind="click:'rejectClick',disable:'readonly'" title="撤消">撤消</a>
+    <div class="datagrid-btn-separator"></div>
+    <a id="a_other" href="#" class="easyui-splitbutton" data-options="menu:'#divother',iconCls:'icon-application_go'" title="其他">其他</a>
+</div>
+
+<div id="divother" style="width:100px; display:none;">
+    <div data-options="iconCls:'icon-add'" data-bind="click:'newClick'">新增</div>
+    <div data-options="iconCls:'icon-cross'" data-bind="click:'deleteClick'">删除</div>
+    <div data-options="iconCls:'icon-arrow_refresh'" data-bind="click:'refreshClick'">刷新</div>
+</div>
+
+<div id="divrelations" style="width:100px; display:none;"></div>
+<div id="master" class="container_12" data-bind="inputwidth:0.9">
+    <input type="hidden" data-bind="value:'form._row_state'" />
+    <div class="grid-group-1">
+        <div class="lbl">报建编号</div>
+        <div class="val">
+            <input type="text" data-bind="value:'form.appNumber'" class="easyui-validatebox z-txt" data-options="required:false" />
+        </div>
+    </div>
+    <div class="grid-group-1">
+        <div class="lbl">项目编号</div>
+        <div class="val">
+            <input type="text" data-bind="value:'form.Code'" class="easyui-validatebox z-txt" />
+        </div>
+    </div>
+    <div class="grid-group-1">
+        <div class="lbl">项目名称</div>
+        <div class="val">
+            <input type="text" data-bind="value:'form.ProjName'" class="easyui-validatebox z-txt" data-options="required:true" />
+        </div>
+    </div>
+    <div class="grid-group-1">
+        <div class="lbl">分部负责人</div>
+        <div class="val">
+            <input type="text" data-bind="value:'form.CustID', text:'form.CustID_RefText'" class="z-txt easyui-popup" data-options="rule:'合作单位选择',textField:'CustID_RefText',required:true, onSelect:fruit.popupSelected, displayFields:'FID,Contact,Address|FID||Contact', multipleChoice:false, maxChoiceItems:0" />
+        </div>
+    </div>
+    <div class="grid-group-1">
+        <div class="lbl">甲方单位</div>
+        <div class="val">
+            <input type="text" data-bind="value:'form.Owner'" class="easyui-validatebox z-txt" data-options="required:true" />
+        </div>
+    </div>
+    <div class="grid-group-1">
+        <div class="lbl">开工日期</div>
+        <div class="val">
+            <input type="text" data-bind="value:'form.BeginDate', readOnly:false" class="z-txt easyui-datebox" data-options="required:true" />
+        </div>
+    </div>
+    <div class="grid-group-1">
+        <div class="lbl">竣工日期</div>
+        <div class="val">
+            <input type="text" id="EndDate" data-bind="value:'form.EndDate', readOnly:false" class="z-txt easyui-datebox" data-options="required:true" />
+        </div>
+    </div>
+
+    <div class="grid-group-1">
+        <div class="lbl">备案日期</div>
+        <div class="val">
+            <input type="text" data-bind="value:'form.BaDate',readOnly:false" class="z-txt easyui-datebox" />
+        </div>
+    </div>
+    <div class="grid-group-1">
+        <div class="lbl">核销</div>
+        <div class="val">
+            <input type="text" data-bind="value:'form.bClose',datasource:'dataSource.bClose'" class="z-txt easyui-combobox" data-options="required:true, readonly:false" />
+        </div>
+    </div>
+    <div class="grid-group-3">
+        <div class="lbl">项目地址</div>
+        <div class="val">
+            <input type="text" data-bind="value:'form.projAddress'" class="easyui-validatebox z-txt" data-options="required:false" />
+        </div>
+    </div>
+    <div class="grid-group-1">
+        <div class="lbl">超期天数</div>
+        <div class="val">
+            <input type="text" id="exDays" data-bind="value:'form.exDays', readOnly:true" class="z-txt readonly" />
+        </div>
+    </div>
+    <div class="grid-group-3">
+        <div class="lbl">备注</div>
+        <div class="val">
+            <input type="text" data-bind="value:'form.Remark'" class="easyui-validatebox z-txt" data-options="required:false" />
+        </div>
+    </div>
+    <div class="grid-group-1">
+        <div class="lbl">项目金额</div>
+        <div class="val">
+            <input type="text" data-bind="value:'form.proje'" class="z-txt easyui-numberbox" data-options="required:false" />
+        </div>
+    </div>
+    <div class="grid-group-1">
+        <div class="lbl">安全员</div>
+        <div class="val">
+            <input type="text" data-bind="value:'form.safetyPerson',datasource:'dataSource.safetyPerson'" class="z-txt easyui-combobox" data-options="required:false, readonly:false" />
+        </div>
+    </div>
+    <div class="grid-group-1">
+        <div class="lbl">质量员</div>
+        <div class="val">
+            <input type="text" data-bind="value:'form.qualityPerson',datasource:'dataSource.qualityPerson'" class="z-txt easyui-combobox" data-options="required:false, readonly:false" />
+        </div>
+    </div>
+    <div class="grid-group-1">
+        <div class="lbl">施工员</div>
+        <div class="val">
+            <input type="text" data-bind="value:'form.buildPerson',datasource:'dataSource.buildPerson'" class="z-txt easyui-combobox" data-options="required:false, readonly:false" />
+        </div>
+    </div>
+    <div class="grid-group-1">
+        <div class="lbl">资料员</div>
+        <div class="val">
+            <input type="text" data-bind="value:'form.dataPerson',datasource:'dataSource.dataPerson'" class="z-txt easyui-combobox" data-options="required:false, readonly:false" />
+        </div>
+    </div>
+    <div class="grid-group-1">
+        <div class="lbl">材料员</div>
+        <div class="val">
+            <input type="text" data-bind="value:'form.materialPerson',datasource:'dataSource.materialPerson'" class="z-txt easyui-combobox" data-options="required:false, readonly:false" />
+        </div>
+    </div>
+    <div class="grid-group-1">
+        <div class="lbl">取样员</div>
+        <div class="val">
+            <input type="text" data-bind="value:'form.samplePerson',datasource:'dataSource.samplePerson'" class="z-txt easyui-combobox" data-options="required:false, readonly:false" />
+        </div>
+    </div>
+    <div class="grid-group-1">
+        <div class="lbl">项目经理</div>
+        <div class="val">
+            <input type="text" data-bind="value:'form.projl',datasource:'dataSource.projl'" class="z-txt easyui-combobox" data-options="required:false, readonly:false" />
+        </div>
+    </div>
+</div>
+<div id="tt" class="easyui-tabs">
+    <div title="表单信息" style="padding-top:2px;">
+        <div class="container_12" id="BillDetail" data-bind="inputwidth:0.9,autoheight:181">
+            <div class="grid-group-1">
+                <div class="lbl">创建人</div>
+                <div class="val">
+                    <input type="text" data-bind="value:'form.CreatePerson', readOnly:true" class="z-txt readonly" />
+                </div>
+            </div>
+            <div class="grid-group-1">
+                <div class="lbl">创建时间</div>
+                <div class="val">
+                    <input type="text" data-bind="value:'form.CreateDate', readOnly:true" class="z-txt easyui-datebox" data-options="required:true" />
+                </div>
+            </div>
+            <div class="grid-group-1">
+                <div class="lbl">更新时间</div>
+                <div class="val">
+                    <input type="text" data-bind="value:'form.UpdateDate', readOnly:true" class="z-txt easyui-datebox" data-options="required:true" />
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="~/Content/jquery-notify/jquery-1.8.3.js"></script>
+<script src="~/Content/easyui/jquery.min.js"></script>
+<script>
+    function diy_time(time1,time2){
+        time1 = new Date(time1);
+        time2 = new Date(time2);
+        timeRes = parseInt((time1-time2) / 1000 / 3600 / 24)
+        return time3 = timeRes >=0? timeRes  :0;
+    }
+    $(function () {
+        $('#EndDate').datebox({
+            onChange: function () {
+                $("#exDays").val(diy_time( new Date(),$("#EndDate").datebox('getValue')));
+            }
+        })
+
+    })
+</script>

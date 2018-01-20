@@ -1,0 +1,67 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.40629.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fruit.Web.Mvc", "Fruit.Web.Mvc\Fruit.Web.Mvc.csproj", "{CDD48C95-3D58-40C9-86DE-09E9EC173ACC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fruit.Data", "Fruit.Data\Fruit.Data.csproj", "{5D21DDF2-EE07-4527-8D92-9F811BC8482F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fruit.Web", "Fruit.Web\Fruit.Web.csproj", "{BB2E57AC-FA02-4A87-8534-C774918A4DD3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fruit.Models", "Fruit.Models\Fruit.Models.csproj", "{67D0B9F5-52C6-44FE-A74F-E81B84A53E29}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Framework", "Framework", "{56C916F5-0DF8-4F6C-B65E-40F664BEA670}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fruit.Core", "Fruit.Core\Fruit.Core.csproj", "{C4836E30-FE3F-4B0C-8C6C-203702166CF0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fruit.Utils", "Fruit.Utils\Fruit.Utils.csproj", "{42418612-CF28-4C02-B8F2-344EFD500EE1}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{07F34938-0935-467D-98D2-B38065F9CB72}"
+	ProjectSection(SolutionItems) = preProject
+		.gitignore = .gitignore
+		Fruit 版本更新说明.txt = Fruit 版本更新说明.txt
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{CDD48C95-3D58-40C9-86DE-09E9EC173ACC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CDD48C95-3D58-40C9-86DE-09E9EC173ACC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CDD48C95-3D58-40C9-86DE-09E9EC173ACC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CDD48C95-3D58-40C9-86DE-09E9EC173ACC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5D21DDF2-EE07-4527-8D92-9F811BC8482F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5D21DDF2-EE07-4527-8D92-9F811BC8482F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5D21DDF2-EE07-4527-8D92-9F811BC8482F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5D21DDF2-EE07-4527-8D92-9F811BC8482F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BB2E57AC-FA02-4A87-8534-C774918A4DD3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BB2E57AC-FA02-4A87-8534-C774918A4DD3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BB2E57AC-FA02-4A87-8534-C774918A4DD3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BB2E57AC-FA02-4A87-8534-C774918A4DD3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{67D0B9F5-52C6-44FE-A74F-E81B84A53E29}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{67D0B9F5-52C6-44FE-A74F-E81B84A53E29}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{67D0B9F5-52C6-44FE-A74F-E81B84A53E29}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{67D0B9F5-52C6-44FE-A74F-E81B84A53E29}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C4836E30-FE3F-4B0C-8C6C-203702166CF0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C4836E30-FE3F-4B0C-8C6C-203702166CF0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C4836E30-FE3F-4B0C-8C6C-203702166CF0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C4836E30-FE3F-4B0C-8C6C-203702166CF0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{42418612-CF28-4C02-B8F2-344EFD500EE1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{42418612-CF28-4C02-B8F2-344EFD500EE1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{42418612-CF28-4C02-B8F2-344EFD500EE1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{42418612-CF28-4C02-B8F2-344EFD500EE1}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{CDD48C95-3D58-40C9-86DE-09E9EC173ACC} = {56C916F5-0DF8-4F6C-B65E-40F664BEA670}
+		{5D21DDF2-EE07-4527-8D92-9F811BC8482F} = {56C916F5-0DF8-4F6C-B65E-40F664BEA670}
+		{67D0B9F5-52C6-44FE-A74F-E81B84A53E29} = {56C916F5-0DF8-4F6C-B65E-40F664BEA670}
+		{C4836E30-FE3F-4B0C-8C6C-203702166CF0} = {56C916F5-0DF8-4F6C-B65E-40F664BEA670}
+		{42418612-CF28-4C02-B8F2-344EFD500EE1} = {56C916F5-0DF8-4F6C-B65E-40F664BEA670}
+	EndGlobalSection
+EndGlobal

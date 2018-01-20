@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Form Connection="LUOLAI1401Context" Table="wq_patrolPlan" Filter="a.CompCode= '{USER.CompCode}'">
+  <SubTables />
+  <Fields>
+    <Field Connection="LUOLAI1401Context" Table="wq_patrolPlan" Field="DealerCode" Required="False" ListVisible="True" FormVisible="True" ControlType="PopupSelect" Title="客户编号" DbType="varchar" ControlValue="选择客户" Searchable="True" />
+    <Field Connection="LUOLAI1401Context" Table="wq_patrolPlan" Field="PlanDate" Required="False" ListVisible="True" FormVisible="True" ControlType="Date" Title="计划巡店日期" DbType="datetime" Searchable="True" />
+    <Field Connection="LUOLAI1401Context" Table="wq_patrolPlan" Field="UserCode" Required="False" ListVisible="True" FormVisible="True" ControlType="PopupSelect" Title="业务员" ControlValue="用户选择" DbType="varchar" Searchable="True" />
+    <Field Connection="LUOLAI1401Context" Table="wq_patrolPlan" Field="Purpose" Required="False" ListVisible="True" FormVisible="True" ControlType="MultiTextBox" Title="拜访目的" DbType="varchar" />
+    <Field Connection="LUOLAI1401Context" Table="wq_patrolPlan" Field="CompCode" Required="False" ListVisible="False" FormVisible="False" ControlType="Dropdown" Title="所属公司" ControlValue="所属公司" DefaultValue="{USER.CompCode}" DbType="varchar" />
+    <Field Connection="LUOLAI1401Context" Table="wq_patrolPlan" Field="CreatePerson" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="创建人" DbType="varchar" />
+    <Field Connection="LUOLAI1401Context" Table="wq_patrolPlan" Field="CreateDate" Required="False" ListVisible="True" FormVisible="True" ControlType="Date" Title="创建时间" DbType="datetime" ReadOnly="True" Searchable="True" />
+    <Field Connection="LUOLAI1401Context" Table="wq_patrolPlan" Field="UpdatePerson" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="最后修改人" DbType="varchar" />
+    <Field Connection="LUOLAI1401Context" Table="wq_patrolPlan" ControlType="AutoId" ControlValue="序号" Title="id" Field="id" DbType="varchar" />
+    <Field Connection="LUOLAI1401Context" Table="wq_patrolPlan" Field="UpdateDate" Required="False" ListVisible="True" FormVisible="True" ControlType="Date" Title="最后修改时间" DbType="datetime" />
+  </Fields>
+  <SaveProducre />
+  <Buttons />
+  <GroupFilters />
+</Form>

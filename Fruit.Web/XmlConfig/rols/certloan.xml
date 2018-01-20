@@ -1,0 +1,56 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Form Connection="LUOLAI1401Context" Table="HR_CertLoans" IsView="False" FilterTreeBindField="FID" TreeGridIdField="FID" TreeGridNameField="FID" TreeGridParentIdField="FID">
+  <SubTables />
+  <SaveProducre />
+  <Buttons />
+  <GroupFilters />
+  <Fields>
+    <Field Table="HR_CertLoans" Field="FID" DbType="bigint" Required="True" ListVisible="False" FormVisible="False" ControlType="AutoId" ReadOnly="True" Title="流水号" ControlValue="序号">
+      <CascadeFilter />
+    </Field>
+    <Field Table="HR_CertLoans" Field="CID" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="编号" ControlValue="证书选择" Searchable="True">
+      <CascadeFilter />
+      <PopupOption />
+    </Field>
+    <Field Connection="LUOLAI1401Context" Table="HR_CertLoans" ControlType="TextBox" FormWidth="1" Title="归属部门" Field="Department" FormVisible="True" ListVisible="True" DbType="varchar" Searchable="True">
+      <CascadeFilter />
+    </Field>
+    <Field Connection="LUOLAI1401Context" Table="HR_CertLoans" ControlType="TextBox" FormWidth="2" Title="工程地点" Field="GAddress" FormVisible="True" ListVisible="True" DbType="varchar">
+      <CascadeFilter />
+    </Field>
+    <Field Connection="LUOLAI1401Context" Table="HR_CertLoans" ControlType="TextBox" FormWidth="2" Title="项目名称" Field="ProjName" FormVisible="True" ListVisible="True" DbType="varchar" Searchable="False">
+      <CascadeFilter />
+    </Field>
+    <Field Connection="LUOLAI1401Context" Table="HR_CertLoans" Title="外销证金额" Field="Amt" ControlType="TextBox" FormVisible="True" ListVisible="True" DbType="numeric">
+      <CascadeFilter />
+    </Field>
+    <Field Table="HR_CertLoans" Field="loanDate" DbType="datetime" Required="True" ListVisible="True" FormVisible="True" ControlType="Date" Title="开具时间">
+      <CascadeFilter />
+    </Field>
+    <Field Connection="LUOLAI1401Context" Table="HR_CertLoans" ControlType="Date" Title="到期时间" Field="EndTime" FormVisible="True" ListVisible="True" DbType="datetime">
+      <CascadeFilter />
+    </Field>
+    <Field Connection="LUOLAI1401Context" Table="HR_CertLoans" ControlType="TextBox" Title="开票情况" Field="KAmt" FormVisible="True" ListVisible="True" DbType="numeric">
+      <CascadeFilter />
+    </Field>
+    <Field Connection="LUOLAI1401Context" Table="HR_CertLoans" ControlType="Dropdown" Title="退回情况" Field="TRemark" FormVisible="True" ListVisible="True" DbType="varchar" Searchable="True" ControlValue="是否退回">
+      <CascadeFilter />
+    </Field>
+    <Field Connection="LUOLAI1401Context" Table="HR_CertLoans" Title="到期情况" Field="DRemark" ControlType="Dropdown" FormVisible="True" ListVisible="True" DbType="varchar" Searchable="True" ControlValue="是否">
+      <CascadeFilter />
+    </Field>
+    <Field Table="HR_CertLoans" Field="Scan" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="File" Title="上传附件" FormInfoArea="">
+      <CascadeFilter />
+      <FileControlInfo />
+    </Field>
+    <Field Table="HR_CertLoans" Field="CreatePerson" DbType="varchar" Required="False" ListVisible="False" FormVisible="True" ControlType="TextBox" ReadOnly="True" Title="创建人" FormInfoArea="表单信息">
+      <CascadeFilter />
+    </Field>
+    <Field Table="HR_CertLoans" Field="CreateDate" DbType="datetime" Required="True" ListVisible="False" FormVisible="True" ControlType="Date" ReadOnly="True" Title="创建日期" FormInfoArea="表单信息">
+      <CascadeFilter />
+    </Field>
+    <Field Table="HR_CertLoans" Field="UpdateDate" DbType="datetime" Required="True" ListVisible="False" FormVisible="True" ControlType="Date" ReadOnly="True" Title="更改日期" FormInfoArea="表单信息">
+      <CascadeFilter />
+    </Field>
+  </Fields>
+</Form>

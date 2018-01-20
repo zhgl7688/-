@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Form Connection="LUOLAI1401Context" Table="log">
+  <SubTables />
+  <SaveProducre />
+  <Buttons />
+  <GroupFilters />
+  <Fields>
+    <Field Table="log" Field="id" DbType="int" Required="True" ListVisible="True" FormVisible="True" ControlType="AutoId" Title="编号" />
+    <Field Table="log" Field="title" DbType="nvarchar" Required="True" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="标题" />
+    <Field Table="log" Field="description" DbType="nvarchar" Required="False" ListVisible="True" FormVisible="True" ControlType="MultiTextBox" Title="说明" />
+    <Field Table="log" Field="content" DbType="ntext" Required="False" ListVisible="False" FormVisible="True" ControlType="RichTextBox" Title="正文">
+      <RichTextControlInfo />
+    </Field>
+  </Fields>
+</Form>

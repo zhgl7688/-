@@ -1,0 +1,35 @@
+﻿@section scripts {
+    <script type="text/javascript">
+        $(function(){
+            var db = fruit.databind.root;
+            $.extend(db.options, {
+                searchClick: function(){
+                    var form = db.getData('form');
+                    db.invoke('setLoadParams', form);
+                },
+                clearClick: function(){
+                    db.clearData('form');
+                    db.invoke('setLoadParams', {});
+                }
+                , onInit: function(){
+                }
+            });
+        });
+
+    </script>
+}
+
+<div class="z-toolbar">
+
+    <a class="easyui-linkbutton" iconcls="icon-arrow_refresh" plain="true" data-bind="click:'refresh'">刷新</a>
+    <a class="easyui-splitbutton" plain="true" data-options="iconCls:'icon-download'" suffix="xls" data-bind="click:'download'">导出</a>
+    <a href="#" plain="true" class="easyui-linkbutton" icon="icon-printer" report="rp.frx" report_params="#grid" data-bind="click:'printClick'" title="打印">打印</a>
+</div>
+<table id="grid" data-bind="datagrid" data-options="fixSize:{w:4, h:40}, rownumbers:true, method:'get', url:'/api/mms/testreport', pagination:true, pageSize:20, holdTotal:true">
+<thead>
+<tr>
+<th field="DailyPlan" data-options="width:150">明日工作计划</th>
+<th field="DailyExper" data-options="width:150">今日心得体会</th>
+</tr>
+</thead>
+</table>

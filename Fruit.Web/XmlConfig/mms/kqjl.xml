@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report CommonReport="True" From="kz_kqjl" OrderField="用户名,Ktype" AddCondition="(用户名  IN (SELECT UserCode FROM dbo.sys_user WHERE OrganizeName LIKE '{SESSION.OrganizeName}%') or '{USER.UserCode}'='super')">
+  <Fields>
+    <Field Table="kz_kqjl" Field="月份" Alias="月份" Title="月份" ControlType="TextBox" />
+    <Field Table="kz_kqjl" Field="OrganizeName" Alias="OrganizeName" Title="部门" ControlType="TextBox" />
+    <Field Table="kz_kqjl" Field="用户编号" Alias="用户编号" Title="用户编号" ControlType="TextBox" />
+    <Field Table="kz_kqjl" Field="用户名" Alias="用户名" Title="用户名" ControlType="TextBox" />
+    <Field Table="kz_kqjl" Field="Ktype" Alias="Ktype" Title="上下班" />
+    <Field Table="kz_kqjl" Field="一号" Alias="一号" Title="1" />
+    <Field Table="kz_kqjl" Field="二号" Alias="二号" Title="2" />
+    <Field Table="kz_kqjl" Field="三号" Alias="三号" Title="3" />
+    <Field Table="kz_kqjl" Field="四号" Alias="四号" Title="4" />
+    <Field Table="kz_kqjl" Field="五号" Alias="五号" Title="5" />
+    <Field Table="kz_kqjl" Field="六号" Alias="六号" Title="6" />
+    <Field Table="kz_kqjl" Field="七号" Alias="七号" Title="7" />
+    <Field Table="kz_kqjl" Field="八号" Alias="八号" Title="8" />
+    <Field Table="kz_kqjl" Field="九号" Alias="九号" Title="9" />
+    <Field Table="kz_kqjl" Field="十号" Alias="十号" Title="10" />
+    <Field Table="kz_kqjl" Field="十一号" Alias="十一号" Title="11" />
+    <Field Table="kz_kqjl" Field="十二号" Alias="十二号" Title="12" />
+    <Field Table="kz_kqjl" Field="十三号" Alias="十三号" Title="13" />
+    <Field Table="kz_kqjl" Field="十四号" Alias="十四号" Title="14" />
+    <Field Table="kz_kqjl" Field="十五号" Alias="十五号" Title="15" />
+    <Field Table="kz_kqjl" Field="十六号" Alias="十六号" Title="16" />
+    <Field Table="kz_kqjl" Field="十七号" Alias="十七号" Title="17" />
+    <Field Table="kz_kqjl" Field="十八号" Alias="十八号" Title="18" />
+    <Field Table="kz_kqjl" Field="十九号" Alias="十九号" Title="19" />
+    <Field Table="kz_kqjl" Field="二十号" Alias="二十号" Title="20" />
+    <Field Table="kz_kqjl" Field="二十一号" Alias="二十一号" Title="21" />
+    <Field Table="kz_kqjl" Field="二十二号" Alias="二十二号" Title="22" />
+    <Field Table="kz_kqjl" Field="二十三号" Alias="二十三号" Title="23" />
+    <Field Table="kz_kqjl" Field="二十四号" Alias="二十四号" Title="24" />
+    <Field Table="kz_kqjl" Field="二十五号" Alias="二十五号" Title="25" />
+    <Field Table="kz_kqjl" Field="二十六号" Alias="二十六号" Title="26" />
+    <Field Table="kz_kqjl" Field="二十七号" Alias="二十七号" Title="27" />
+    <Field Table="kz_kqjl" Field="二十八号" Alias="二十八号" Title="28" />
+    <Field Table="kz_kqjl" Field="二十九号" Alias="二十九号" Title="29" />
+    <Field Table="kz_kqjl" Field="三十号" Alias="三十号" Title="30" />
+    <Field Table="kz_kqjl" Field="三十一号" Alias="三十一号" Title="31" />
+  </Fields>
+  <DrillReports />
+  <Charts>
+    <XAxis />
+    <YAxis />
+    <Series />
+  </Charts>
+</Report>

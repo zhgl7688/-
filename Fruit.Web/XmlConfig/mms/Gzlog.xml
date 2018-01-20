@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report CommonReport="True" From="Gz_Log" OrderField="PatlDate" UseCharts="True">
+  <DrillReports />
+  <Fields>
+    <Field Table="Gz_Log" Field="PatlDate" Alias="PatlDate" Title="日期" />
+    <Field Table="Gz_Log" Field="Qty" Alias="Qty" Title="日志数" />
+  </Fields>
+  <Charts Title="工作日志" SubTitle="工作日志">
+    <XAxis FieldUid="PatlDate" DataSourceType="Field" />
+    <YAxis FieldUid="PatlDate" />
+    <Series>
+      <Item FieldUid="Qty" Type="line" Legend="日志数" />
+    </Series>
+  </Charts>
+</Report>

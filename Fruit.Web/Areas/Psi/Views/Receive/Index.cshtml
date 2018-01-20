@@ -1,0 +1,36 @@
+﻿<div class="z-toolbar">
+
+    <a class="easyui-linkbutton" iconcls="icon-arrow_refresh" plain="true" data-bind="click:'refresh'">刷新</a>
+    <a class="easyui-linkbutton" iconcls="icon-add" plain="true" data-bind="click:'add'">新增</a>
+    <a class="easyui-linkbutton" iconcls="icon-edit" plain="true" data-bind="click:'edit'">编辑</a>
+    <a class="easyui-linkbutton" iconcls="icon-cross" plain="true" data-bind="click:'delete'">删除</a>    <a class="easyui-linkbutton" iconcls="icon-user-accept" plain="true" data-bind="click:'check'">审核</a>
+    <a class="easyui-splitbutton" plain="true" data-options="iconCls:'icon-download'" suffix="xls" data-bind="click:'download'">导出</a>
+</div>
+<table id="grid" data-bind="datagrid" data-options="fixSize:{w:4, h:40}, rownumbers:true, method:'get', url:'/api/psi/receive', pagination:true, pageSize:20">
+<thead>
+<tr>
+    <th field="MerchantsCode" data-options="editor:{type:'validatebox',options:{required:true}}">MerchantsCode    </th>
+    <th field="MerchantsTypeCode">MerchantsTypeCode    </th>
+    <th field="MerchantsTypeName">MerchantsTypeName    </th>
+    <th field="ChargePerson">ChargePerson    </th>
+    <th field="ChargeTel">ChargeTel    </th>
+    <th field="RegisterFund">RegisterFund    </th>
+    <th field="BuildDate" data-options="editor:{type:'datebox',options:{required:false}}">BuildDate    </th>
+    <th field="BusinessScope">BusinessScope    </th>
+    <th field="BusinessType">BusinessType    </th>
+    <th field="QualificationLevel">QualificationLevel    </th>
+    <th field="Bank">Bank    </th>
+    <th field="BankNo">BankNo    </th>
+    <th field="ContactPerson">ContactPerson    </th>
+    <th field="ContactTel">ContactTel    </th>
+    <th field="ContactPosition">ContactPosition    </th>
+    <th field="ContactAddr">ContactAddr    </th>
+    <th field="ContactPostCode">ContactPostCode    </th>
+    <th field="ContactFax">ContactFax    </th>
+    <th field="Website">Website    </th>
+    <th field="EMail">EMail    </th>
+    <th field="MajorSupplier">MajorSupplier    </th>
+    <th field="Remark">Remark    </th>
+</tr>
+</thead>
+</table>

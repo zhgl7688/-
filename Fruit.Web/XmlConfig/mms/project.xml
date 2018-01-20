@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Form Connection="MmsContext" Table="mms_direct" Filter="塔顶f">
+  <Fields>
+    <Field Connection="MmsContext" Table="mms_direct" />
+    <Field Connection="MmsContext" Table="mms_direct" />
+  </Fields>
+</Form>

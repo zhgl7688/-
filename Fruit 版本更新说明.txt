@@ -1,0 +1,695 @@
+﻿Fruit 版本更新说明
+
+2017/11/15
+【运行平台&配置工具】修正搜索日期范围组件造成其它组件不能正常显示问题
+
+注意，此问题需要一些手工修改，需要如下方法修改所有现有的
+Fruit.Web/Areas/*/Views/Shared/_Layout.cshtml
+* 将来由配置工具生成的新文件不需要进行此修改
+1、在 <link href="~/Content/icon/icon.css" rel="stylesheet" /> 之后加入两行：
+    <link href="~/Content/js/jquery-plugin/jquery-ui/css/jquery-ui.css" rel="stylesheet" />
+    <link href="~/Content/js/jquery-plugin/daterange/jquery.daterange.css" rel="stylesheet" />
+2、在 <script src="~/Content/easyui/locale/easyui-lang-zh_CN.js"></script> 之后加入两行:
+    <script src="~/Content/js/jquery-plugin/jquery-ui/js/jquery-ui-datepick.min.js"></script>
+    <script src="~/Content/js/jquery-plugin/daterange/jquery.daterange.js"></script>
+
+2017/11/13
+【运行平台&配置工具】修正弹出框组件无法搜索/无法在列表页正常显示问题
+
+2017/11/6
+【运行平台&配置工具】现在弹出框组件支持多选
+注意：此新功能暂时只在表单 Edit 状态时支持，网格编辑与子表暂时不支持
+
+配置方式：
+1、在配置工具点击弹出框组件的列
+2、在右侧的属性面板勾选启用多选
+3、选择一个字段做为多选项目连接文本保存的字段
+
+2017/9/28
+1、【配置工具】修正列表页中关联自动完成的过滤条件中不能使用变量表达式问题。
+
+2017/9/22
+1、【配置工具】修正列表页面 表体页面 关联表 没有带入 自动完成资源 过滤条件问题。
+2、【运行平台】修正表体中点击新增后如不需要不能直接删除问题。
+
+2016/11/11
+1、【配置工具】现在支持 MSSQL 中对用户自定义数据类型列的生成处理支持。
+
+2016/9/27
+1、【配置工具】报表列配置加入“可见”属性，用于支持搜索控件不显示列。
+
+2016/9/25
+1、【运行平台】去掉 jquery-easyui.min.js 中的行高计算处理以提高页面执行速度。
+
+2016/9/5
+1、【运行平台】现在实验性提供“搜索方案”功能，此功能需要以下新表，无需其它配置，自动应用。
+/*-------- 建立全局搜索方案 -------*/
+	1）建立一个普通搜索方案；
+	2）在数据库中找到对应的 sys_searchScheme 表数据；
+	3）将 CompCode, UserCode 设置为 NULL；
+	4）如需要特定应用于 CompCode ，可以设置 UserCode 为 NULL；
+/*-------- 建表语句 --------*/
+USE [Bcp.Sys]
+GO
+
+/****** Object:  Table [dbo].[sys_searchScheme]    Script Date: 2016/9/5 9:23:51 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+SET ANSI_PADDING ON
+GO
+
+CREATE TABLE [dbo].[sys_searchScheme](
+	[Id] [int] NOT NULL,
+	[PageCode] [varchar](200) NOT NULL,
+	[Title] [nvarchar](50) NOT NULL,
+	[CompCode] [varchar](20) NULL,
+	[UserCode] [varchar](100) NULL,
+	[Data] [ntext] NULL,
+ CONSTRAINT [PK_sys_searchScheme] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+
+GO
+
+SET ANSI_PADDING OFF
+GO
+
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'配置编号' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'sys_searchScheme', @level2type=N'COLUMN',@level2name=N'Id'
+GO
+
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'所在页面' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'sys_searchScheme', @level2type=N'COLUMN',@level2name=N'PageCode'
+GO
+
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'标题' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'sys_searchScheme', @level2type=N'COLUMN',@level2name=N'Title'
+GO
+
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'公司代码' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'sys_searchScheme', @level2type=N'COLUMN',@level2name=N'CompCode'
+GO
+
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'用户代码' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'sys_searchScheme', @level2type=N'COLUMN',@level2name=N'UserCode'
+GO
+
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'预设数据(JSON格式)' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'sys_searchScheme', @level2type=N'COLUMN',@level2name=N'Data'
+GO
+
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'搜索方案记录表' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'sys_searchScheme'
+GO
+
+
+
+
+2016/8/26
+1、【运行平台】修正弹出选择的下拉框会被富文本框控件档住的问题。
+
+2016/8/10
+1、【配置工具】+【运行平台】修正“更多条件”对话框中条件组件样式错误问题。
+2、【配置工具】+【运行平台】现在**实验性**提供表头中下拉框的级联过滤功能。
+	级联过滤功能说明：
+		1、级联过滤只能用两个下拉框之间
+		2、级联过滤是基于客户端的二次数据过滤处理，不会重复请求服务器
+		3、级联过滤关联的父级下拉框必须是表单可见的
+	级联过滤配置步骤：
+		1、分别配置好两个一般下拉框
+		2、选中被过滤的下拉框
+		3、属性面板中进行设置
+			a) 勾选“启用”
+			b) 选择“上级字段”，它是父级下拉框，其中的 Value 将用于当然下拉框的过滤值
+			c) 条件字段中输入一个字段名，它是当前下拉框列表数据源（自动完成）中对应父级值的字段名
+		4、保存+生成，并测试页面结果。
+
+2016/8/8
+1、【配置工具】+【运行平台】现在报表支持“禁用读取”选项，可以在报表页面打开时不自动加载数据。
+
+2016/7/22
+1、【运行平台】现在富文本框已支持适应布局。
+
+2016/7/22
+1、【配置工具】表选择器、列选择器、关联选择器等内部处理现在支持视图与视图字段。
+	**注意**，视图的代码生成目前与表的代码生成没有差别，需要手工改动不可编辑的视图与字段代码。
+2、【配置工具】+【运行平台】 现在弹出框自带下拉搜索功能，并支持键盘操作。
+
+2016/7/21
+1、【配置工具】+【运行平台】修正表体宽度不够不出横向滚动条与大小自适应问题。
+2、【配置工具】+【运行平台】现在全局调整了表单控件与搜索控件的布局方式，使用列宽属性，可用值 1 到 8 ,自适应布局换行效果。
+
+2016/7/20
+1、【平台】修正表体自动计算出错问题。
+
+2016/7/6
+1、【配置工具】修正当表单过滤组设置了默认项之后，无法应用“全部”过滤问题。
+
+2016/7/5
+1、【配置工具】现在表单过滤组添加默认项属性，用于支持默认打开页面时使用的分组过滤选中项，与默认列表查询过滤。
+
+2016/6/21
+1、【配置工具】现在表单配置中，原“表单信息”复选框变更为“分组”文本框。
+	** 注意 ** 需要批量将原来的配置文件中的 FormInfoArea="True" 替换为 FormInfoArea="表单信息" ； FormInfoArea="False" 替换为 FormInfoArea=""
+	** 特殊字符 ** 如果使用一个半角感叹号开头，表示此分组选项卡显示在子表选项卡之前（可选），还可以使用“~” 字符来分隔权重标识（可选）。
+	** 示例 ** FormInfoArea="!1~前置分组一"
+               FormInfoArea="!2~前置分组二"
+			   FormInfoArea="1~后置分组一"
+			   FormInfoArea="2~后置分组二"
+
+2016/5/7
+1、【运行平台】修正“导出”时条件未过滤问题。
+
+2016/4/x
+1、【配置工具】+【运行平台】提供树形用户选择过滤器支持。
+
+2016/3/16
+1、【配置工具】+【运行平台】现在提供三层子表的功能**测试**。
+
+2016/3/11
+1、【配置工具】修正报表搜索组件在部分情况下搜索条件未绑定问题。
+
+2016/3/9
+1、【配置工具】+【运行平台】现在报表提供主从表支持。
+
+2016/3/5
+1、【运行平台】现在报表中的附件为图片时将显示为小图，可以使用样式 img.file-icon {max-width/max-height} 来重写显示大小。
+
+2016/3/4
+1、【配置工具】修正启用网格编辑时错误的调用了 FixTree
+
+2016/3/3
+1、【配置工具】现在为表单/报表提供自定义 .css 与 .js 文件加载功能以实现从样式到行为的更多自定义。
+
+2016/3/1
+1、【配置工具】现在为子表提供链接配置功能。
+
+2016/2/29
+1、【配置工具】现在提供一个新的“删除前运行SQL”配置框，用于在删除数据之前执行一条 SQL 语句，其中使用 {ID} 表示当前数据的主键，如果在执行这个语句时发生错误，如使用 RAISERROR '此表单已存档，不能删除' ，将取消删除操作。
+		注意，此配置不适用于启用了“自定义保存存储过程”的表单。
+
+2016/2/28
+1、【配置工具】修正列表查询生成时，排序子句中的字段未加别名问题。
+2、【配置工具】修正报表中弹出框生成问题。
+
+2016/2/22
+1、【配置工具】修正当使用弹出框控件时，列表查询中关联当前显示值的语句没有附加过滤条件问题。
+	注意：你需要在过滤条件中使用 /*TABLEALIAS*/ 来表示当前表的别名前缀（已包括前导点号）
+
+2016/2/21
+1、【配置工具】+【运行平台】现在支持基础网格编辑与树网格同时启用。
+
+2016/2/19
+1、【配置工具】修正启用网格编辑时自动编号列值为设置问题。
+
+2016/2/18
+1、【配置工具】修正弹出框类型字段用于搜索时不能正常过滤问题。
+2、【配置工具】现在过滤树语句中可以使用表达式。
+3、【配置工具】一个新的表达式类型 REFERRER ,简写为 RR 可用于在 ajax 请求中得到当前页面 url 上的参数或打开此页面的所在页面 url 参数。它是通过分析请求头中的 UrlReferrer 来实现的。
+
+2016/2/17
+1、【配置工具】修正当同时启用树过滤与网格编辑时，新增数据未设置当前选中树节点关联值问题。
+
+2016/2/15
+1、【配置工具】+【运行平台】现在提供网格编辑开关，启用后直接在列表页面编辑数据。
+	注意：
+	一旦开启网格编辑，将不支持子表。
+	网格编辑现在为DEBUG状态，部分控件与校验功能未完成，只用于测试，不要发布到最终客户。
+
+2016/2/6
+1、【配置工具】现在分组过滤中支持使用表达式
+2、【配置工具】现在条件面板中支持弹出框控件
+
+2016/2/2
+1、【配置工具】+【运行平台】修正使用自定义保存存储过程时部分数据类型到表列时类型转换可能错误的问题。
+2、【配置工具】自定义保存存储过程现在支持使用 @CompCode 可选参数。
+3、【配置工具】修正自定义保存存储过程部分表类型的关联列的忽略问题。
+
+2016/1/30
+1、【配置工具】实现保存后行为功能。
+		注意：保存后行为忽略任何返回值。在自定义保存存储过程启用时忽略保存后行为配置。
+
+2016/1/29
+1、【配置工具】实现子表多关联时 ApiController.Post 方法处理新子项时初始化关联值缺失问题。
+2、【运行平台】对 ApiController.Post 方法中的 Json 反序列化加入对 int 属性忽略处理空值。
+3、【配置工具】实现子表多关联时 ApiController.GetDetial 方法子表查询的处理。
+4、【配置工具】对子表多关联，使用自定义存储过程时的 ApiController.Post 方法中提交值表参数处理器现在支持多值处理。
+5、【配置工具】对树网格表单父级字段树加入“根”节点
+6、【配置工具】对树网格表单保存时加入父级字段不等于当前节点值字段的校验
+7、【运行平台】实现树网格双击编辑动作处理
+
+2016/1/28
+1、【配置工具】实现树网格的配置。
+2、【配置工具】实现表单明细页面中的父级树选择控件。
+3、【配置工具】+【运行平台】实现表单列表变表单树列表。
+4、【运行平台】修正表单明细页数字输入框未正确值绑定。
+
+2016/1/27
+1、【配置工具】表单中的过滤树现在支持选择一个绑定字段，绑定后新增时自动使用过滤树当前值设置此字段值。
+
+2016/1/26
+1、【配置工具】实现动态只读配置生成客户端脚本
+
+2016/1/25
+1、【配置工具】实现动态只读配置界面
+	注意：动态只读功能中的比较值必须为常量，不支持表达式，如需要，请另行提出需求。
+2、【配置工具】实现动态只读对自定义按钮影响的输出（表单）
+3、【配置工具】实现动态只读对自定义按钮影响的输出（列表）待定
+
+2016/1/23
+1、【其它】为新功能制作视频。
+	Fruit Builder 配置关系菜单.mp4
+
+2016/1/22
+1、【配置工具】+【运行平台】实现了表单中的“关联”菜单
+
+2016/1/20
+1、【运行平台】修正组织结构界面多次打开对话框未释放问题。
+2、【配置工具】修正当自动编号字段 int 类型时新建错误问题。
+
+2016/1/19
+1、【配置工具】自定义按钮脚本现在可以配置多行文本。
+2、配置并编写“FruitBuilder 自定义按钮弹出页面配置手册.pdf”
+3、【配置工具】现在表单字段也和报表字段一样支持链接了
+	注意：在表单的字段链接设置中，操作类型“钻取子报表”是无效的。
+4、【配置工具】现在自定义保存存储过程支持一个新的自动化参数 @CompCode
+
+2016/1/18
+1、【配置工具】删除自定义按钮未选择图标时的左侧空白。
+2、【配置工具】自定义按钮提供新的分组属性。
+3、【配置工具】自定义按钮现在可有分隔栏。
+	自定义按钮新功能请观看 FruitBuilder CustomButton 2.mp4
+
+2016/1/14
+1、【运行平台】修正表体自动计算引用值错误问题。
+
+2016/1/10
+1、【运行平台】修正 datagrid 启用多选后，行编辑模式下保存空值问题。
+2、【运行平台】修正在字典管理页面中不应该直接按新增保存问题。
+3、【运行平台】修正底顶树数据源构建器可能生成一个 undefined 节点错误。
+4、【运行平台】修正 datagrid 启用多选后，弹出子表选择对话框无法双击选择或删除问题。
+	// OVER PLAN TIME: 4 HOURS
+
+2016/1/8
+1、【运行平台】修正表单启用双击后，双击行无法进入编辑界面问题。
+
+2016/1/7
+1、【配置工具】修正报表中下拉框搜索控件过滤条件的代码生成错误。
+
+2016/1/6
+1、【配置工具】现在表单字段支持一个新的“唯一”选项，可在保存时自动测试是否唯一并提供可读的错误信息。
+
+2016/1/5
+1、【配置工具】现在为表单搜索（搜索控件大于二行时）生成搜索对话框。
+2、【运行平台】修正控件异步初始化和数据绑定初始化中的 BUG。
+3、【配置工具】修正报表中下拉框搜索控件过滤条件中不支持表达式问题。
+**注意** 
+	因为你们定制了搜索面板 UI，此搜索对话框内没有设置初始样式，请自行设置，搜索对话框中的根样式类名为 container_8 而不是面板上的 container_12，搜索对话框中设计为每行布局两个搜索控件。
+
+2016/1/4
+1、【配置工具】操作优化，现在导航菜单中的菜单会按 MenuSeq,MenuName 排序以方便更好的识别明细菜单项。
+2、【配置工具】操作优化，现在明细菜单节点也可以当做其列表菜单节点双击打开，等效。
+3、【配置工具】+【运行平台】新功能，现在你可以为表单自定义一个 css 样式类名称，这样你可以在自定义 css 文件中对特定的页面的控件重写不同的样式效果。
+	为实现此效果，您需要对现有的所有 Fruit.Web/Areas/*/Views/Shared/_Layout.cshtml 做如下更改：
+		将第二行的 <html> 替换为 <html class="@ViewBag.PageClass">
+4、【配置工具】现在表单新增了虚拟选项卡功能，做为一种自定义链接，可链接不同的功能页面。
+
+2016/1/3
+1、【配置工具】表单列表界面生成支持多选的代码；
+2、【运行平台】datagrid 控件加入多选支持代码；
+3、【配置工具】表单（标准）删除操作支持批处理；
+4、【配置工具】表单（自定义保存存储过程）删除支持批处理；
+5、【配置工具】表单自定义按钮现在支持批处理（通过一个虚拟的 IDS 字段名来获取由“,”分隔的选中条目主键值）；
+		注意，为了兼容性处理，如果您尝试访问其它字段，它仍然表示第一个选中记录中的字段。
+6、【配置工具】+【运行平台】表单表体计算表达式现在支持只读状态下正常计算；
+7、【配置工具】修正子表模型化处理时未允许空数据造成的读取时错误；
+8、【运行平台】修正子表编辑多行，保存时部分更改行数据未提交错误；
+
+2015/12/31
+1、【配置工具】修正下拉框组件在搜索面板与表单详细页面中未进行表达式替换问题。
+2、【运行平台】修正日期时间框在表单中可能发生的空值 js 处理错误。
+	祝各位新年快乐!!
+
+2015/12/30 升级说明
+更新功能参考 2015/12/25, 2015/12/26, 2012/12/28 的详细说明。
+本次更新对 Fruit.Web 项目影响较大，先做好备份
+本次更新包括一个对 Content/js/index.js 的修正，如有定制首页代码，请重新设置。
+需要在 Fruit.Web 项目中引用 Libs/FastReports 目录中的 FastReport.dll 与 FastReport.Web.dll
+	（这里的 FastReport.Web.dll 是定制过的，不要使用原来的版本，不能正常在 asp.net mvc 环境下工作）
+	在属性面板上把引用的两项的”复制本地“属性设置为 True。
+在 App_Data 目录中创建/引用 Reports 目录，（只要有空目录就行了）。
+将 Content/js/ueditor，Localization，UEditor 和项目根目录下的三个 Report.aspx 文件包含到项目中。
+参考 20151230.png 修改 Web.config
+
+2015/12/29
+1、【其它】版本升级工具开发中（40%）{为将来复杂度较高的配置结构与项目结构升级做准备}。
+
+2015/12/28
+1、【配置工具】+【运行平台】现在表单支持引用一个报表文件提供详细页面的打印功能。
+2、【配置工具】+【运行平台】现在报表支持引用一个报表文件提供打印功能。
+	注意，请配置好表单/报表后，再点击报表上的新建按钮，虽然配置工具不会做出整个报表，但会辅助设置好数据源，输入参数，查询语句等，
+	如果你的 FastReport 是正常安装的，还会在新建完成或双击报表框时打开设计器。
+
+2015/12/26
+1、【配置工具】现在表体“数据输入框”能按数据库中的数据精度自动确定输入时的小数位数（float 与 single 将使用 2 位小数）。
+2、【配置工具】+【运行平台】初步完成富文本框控件的加入。
+
+2015/12/25
+1、【配置工具】+【运行平台】现在表体配置中新增“合计”复选框，用于配置是否显示一个合计值。
+2、【配置工具】+【运行平台】现在表头可以配置一个过滤树，它将显示在整个列表的左边。
+	注意：配置 sql 中的 parent,id,text 字段名必须存在并为小写。
+	配置示例：
+	1）打开现有 tbBdProduct 为主表（或新建）的表单，勾选“过滤树”；
+	2）在后面的 sql 语句中输入“select code as id, Name as text,  parent = null from tbBdProductCategory”；
+	3）在最后的附加过滤中输入“a.Categroy = '{TreeFilter}'”；
+	4）点击生成查看配置效果。
+3、【运行平台】修正当表单字段过多时，底部选项卡显示不全问题。
+	注意：fruit.css 中一个新的 #master 样式处理此问题，您可以按实施情况在您的自定义样式文件中覆盖此样式。
+4、【配置工具】现在可以为自动编号列设置搜索，当列类型为 int 与 uniqueidentifier 类型时为等于比较，其它为 like 比较。
+5、【配置工具】修正因为改为后台线程生成后出现的自动生成明细菜单项时错误 BUG。
+
+2015/12/24
+1、【运行平台】修正 Excel 导出时关联内容未导出关联标题。
+2、【配置工具】修正拖动列功能造成滚动条操作出错 BUG。
+3、【运行平台】时间过滤控件去掉 00:00:00 尾用于支持字符串类型日期中的搜索
+4、【配置工具】+【运行平台】修正表体滚动条超出可视区域问题
+5、【配置工具】表单配置中新增“表单信息”复选框，用于配置是否在详情页面将此字段显示到表单信息区域
+
+2015/12/22
+1、【运行平台】去掉无权限时的 401 错误代码设置已防止 IIS 错误页设置覆盖了自动跳转脚本。
+
+2015/12/21
+1、【运行平台】修正查询过程中可能出现的参数重用问题。
+2、【运行平台】修正人员分布前台页面 js 错误。
+3、【配置工具】+【运行平台】现在表单支持新的‘日期时间框’控件，对应 datetime 类型（.NET DateTime 类型）。
+3、【配置工具】+【运行平台】现在表单支持新的‘时间框’控件，对应 time 类型（.NET TimeSpan 类型）。
+
+2015/12/17
+1、【配置工具】表单、子表、报表中的配置列现在支持直接拖动重新排序。方式是选中所有你需要一起移动的列（可以多选），在选中最后一个列时不要放开左键鼠标，保持 0.5 秒，然后移动鼠标可发现鼠标变成了拖动状态，移动到一个新位置后放开鼠标左键。
+
+2015/12/16（2）
+5、【配置工具】修正报表中部分搜索下拉框数据不显示问题。
+
+2015/12/16
+1、【配置工具】现在自动完成规则用于弹出框后过滤条件生效！
+2、【运行平台】对一般的文本框搜索字段，现在支持使用 GUID 类型。
+3、【配置工具】现在表单过滤条件生效！
+	新增文件：(请自行将文件加入到对应项目中)
+		Fruit.Web.Mvc/JsonNetResult.cs
+	更新文件：
+		Fruit.Web.Mvc/SerachCondition.cs
+		Fruit.Web/Controllers/PluginsController.cs
+4、【运行平台】用户管理 是否启用 勾选中与没勾选一样，没有标识
+    *** 更新因为可能你们已经修改过相关文件，所以这里给出的是修改方式 **
+	1) 确保 sys_user 表的 IsEnable 字段已经设置为非空，默认值为 1
+	2) Fruit.Models/Models/sys_user.cs 文件中，更改 IsEnable 属性类型由 Nullable<bool> 改为 bool
+	3) Fruit.Models/sys_user.cs 文件 
+		sys_user(SerializationInfo info, StreamingContext context) 内的 try 块中加入 
+		IsEnable = info.GetBoolean("IsEnable");
+		GetObjectData(SerializationInfo info, StreamingContext context) 内加入
+		info.AddValue("IsEnable", IsEnable);
+	4) Fruit.Models/SysUserService.cs
+		原 77 行，内容为 else if (u.IsEnable.HasValue && !u.IsEnable.Value) 改为
+		else if (!u.IsEnable)
+
+2015/12/15
+1、【配置工具】现在默认值支持目标字段类型为 GUID。
+
+2015/12/14
+1、【运行平台】在 Fruit.Web/Controllers/AccountController.cs 中新增 UserInfo 方法，用于其它站点内页面直接通过 <script> 标签引用当前登录用户信息。
+
+2015/12/13
+1、【配置工具】+【运行平台】修正钻取式报表BUG
+2、【其它】编写《Fruit Builder 报表高级功能演练.pdf》文档
+
+注意：今日更新中 Fruit.Web 项目中包括一个新文件 App_Start/MenuRoleAuthorizeAttribute.cs 需要加入到项目中！
+
+2015/12/12
+1、【配置工具】完成钻取式报表支持。
+
+2015/12/11
+1、【配置工具】报表现在提供了 ECharts 整合，提供了很高的自由度实现。
+
+2015/12/10
+1、【配置工具】报表现在提供了链接支持，可以设置脚本、新窗口打开链接或新选项卡上打开链接。
+2、【配置工具】+【运行平台】钻取式报表支持（未完成）（60%）
+
+2015/12/9
+1、【配置工具】现在报表支持数字输入框搜索控件。
+2、【配置工具】现在报表支持下拉选择控件（选择单选框将与下拉选择控件同效果）。
+3、【配置工具】现在报表支持高级日期搜索控件。
+4、【配置工具】+【运行平台】将列表与报表中的搜索按钮移动到工具栏上。（需要重新生成代码）
+	文件更新：
+		Fruit.Web\Content\fruit.css
+			** 此文件加入了 .condition_buttons{float:right;} 来让搜索按钮在工具栏中右对齐，您可以
+			在您的自定义 css 文件中重写此样式改变对齐方式或加入其它效果。
+
+
+2015/12/8
+1、【运行平台】修正无法导出问题。
+	文件更新：
+		Fruit.Web.Mvc\PageRequest.cs
+		Fruit.Web.Mvc\Exporter\Exporter.cs
+2、【配置工具】现在表单明细页的刷新与撤消功能可用。（需要重新生成代码）
+3、【配置工具】现在表单明细页的删除功能可用。（需要重新生成代码）
+	文件更新：
+		Fruit.Web\Content\js\fruit*
+		Fruit.Web\Content\js\index.js
+4、【配置工具】+【运行平台】现在表单明细页的新增功能可用。（需要重新生成代码）
+5、【运行平台】+【运行平台】现在报表支持导出。（需要重新生成代码）
+	文件更新：
+		Fruit.Web.Mvc\Exporter\Exporter.cs
+		Fruit.Web.Mvc\Exporter\ExcelExporter.cs
+
+2015/12/5
+1、【配置工具】+【运行平台】现在表单搜索支持日期范围控件。
+
+2015/12/4
+1、【配置工具】完成菜单删除时对应配置和生成的删除清理工具。
+	**注意** 因为生成情况的复杂性，不保证删除100%合理，请正确设计系统结构再进行菜单的创建。
+
+2015/12/3
+1、【运行平台】完成登录日志记录
+2、【运行平台】完成字典管理下的操作日志记录，其它系统设置下记录操作日志的方法请参考此代码 Area/Sys/Controllers/CodeController.cs 中 db.SaveChanges() 之前新出现的代码段（有注释）。
+3、【运行平台】修正表单中二次打开有必填设置的输入框时检验状态不正常。
+4、【运行平台】修正数据字典无法为当前选择分类添加数据。
+
+2015/12/2
+1、【运行平台】完成人员轨迹模块开发，/mms/attendtrack 请自行添加菜单项与权限，手工在 Fruit.Web 项目中添加 Areas/Controllers/AttendTrackController.cs , Areas/Views/AttendTrack/Index.cshtml , Models/AttendTrack.cs 文件。
+2、【配置工具】现在支持子表使用 uniqueidentifier 类型自动编号。
+3、【运行平台】完成人员分布模块开发, /mms/distribution 请自行添加菜单项与权限，手工在 Fruit.Web 项目中添加 Areas/Controllers/DistributionController.cs , Areas/Views/Distribution/Index.cshtml 文件。
+
+2015/12/1
+1、【运行平台】报表附件中的图片现在点击后将打开图片墙（无需重新生成）。
+2、【运行平台】修正数据字典中管理类别无法新增问题。
+3、【运行平台】修正数据字典中管理类别对话框二次打开后无法编辑问题。
+
+2015/11/29
+1、【配置工具】表单现在支持分组过滤器，配置方式和效果请查看“配置分组过滤器.png”
+2、【配置工具】修正下拉列表不能只读问题(需要重新生成页面)。
+
+2015/11/28
+1、【运行平台】修正首次启动时 …未包含“SYS——NAME”的定义 错误。
+2、【配置工具】表单现在支持搜索，现提供文本框与下拉列表搜索控件。
+
+2015/11/27
+1、【配置工具】修正验证必填项 文本框没有验证。
+2、【运行平台】修正验证错误时部分输入控件没有红框显示
+3、【运行平台】修正[数据字典]编辑是否启用是否默认后保存报错
+4、【运行平台】修正[管理类别]无法编辑、删除等操作
+5、【配置工具】修正未使用自定义保存功能时生成时出错问题。
+6、【配置工具】现在支持 real 字段类型
+7、【运行平台】修正[用户管理]中新建用户时保存出错问题。
+
+2015/11/26
+1、【配置工具】实现自定义保存功能。详细请查看“自定义保存配置手册.pdf”
+2、【运行平台】修正自动生成为 GUID 时删除操作不正常。
+3、【运行平台】修正“用户管理”页面关闭对话框后双击列报告“未找到可用的 edit 方法绑定”错误。
+
+2015/11/25
+1、【配置工具】实现自定义保存功能。【60%】
+
+2015/11/24
+1、【运行平台】修正“用户管理”无法编辑保存。
+2、【运行平台】实现“用户管理”重置密码功能。
+3、【运行平台】实现“用户管理”设置机构功能。
+4、【运行平台】实现“用户管理”设置角色功能。
+5、【配置工具】修正 bit 字段在列表中显示时出错。
+6、【运行平台】修正 bit 字段在表单的 checkbox 上回显状态错误
+
+2015/11/23
+1、【运行平台】修正“系统设置”-“组织结构”无法删除问题。
+2、【运行平台】实现“系统设置”-“角色管理”后台功能。
+3、【运行平台】实现“系统设置”-“数据字典”中的字典类别弹窗保存功能。
+4、【运行平台】实现“系统设置”-“系统参数”后台功能。
+5、【运行平台】修正列表直接编辑保存时已删除的列还显示问题（原数据已删除）。
+
+2015/11/22
+1、【运行平台】优化权限测试代码，减少 20ms 处理时间
+	目前无法重现非 Session 过期的“无权使用此功能”错误，可能不存在此问题，请多多测试，如还有问题，请提供可重现操作步骤。
+2、【配置工具&运行平台】优化弹出控件的弹出框显示大小
+3、【运行平台】子表自定义添加弹出框优化了显示大小，并增加了多选支持
+
+运行速度简单测试：
+[服务端]新页面权限测试 35ms
+[服务端]老页面权限测试 5ms
+[服务端]页面首次打开 180ms - 250ms
+[服务端]页面第二次打开 10ms - 20ms
+[服务端]API 回调 5ms - 60ms
+[客户端]EasyUI 初始化页面时间 220ms - 450ms
+
+2015/11/21
+1、【配置工具】实现了自定义保存存储过程的配置功能（因为BUG优先级原因，未能实现此代码生成）
+2、【配置工具】修正日期控件只读属性无效问题。
+3、【配置工具】修正日期控件在列表显示时格式不友好问题。
+4、【配置工具】自动编号控件现在可以不显示。
+5、【运行平台】修正菜单多次点击后标签重复打开
+6、【运行平台】添加标签打开过多需提示
+7、【运行平台】增加我的桌面标签，系统默认，不可关闭
+	打开页面的地址请修改 index.js 开头（有注释）
+8、【运行平台】列表页支持双击打开
+9、【运行平台】弹出窗口支持双击选择
+
+2015/11/20
+1、【配置工具】实现了自定义按钮的配置与代码生成。
+	配置方法请参考“FruitBuilder 自定义按钮配置手册.pdf”
+
+2015/11/19
+1、【配置工具】数据验证功能已实现，只用于“单行文本框”注意，验证条件中的描述需要是合法的变量命名，并最好不要包括中文字符。
+	对验证的更改需要你手动更改所有已经由配置工具生成的 Areas/*/Views/Shared/_Layout.cshtml 文件，在底部 @RenderSection("scripts" 的前面插入一行如下：
+    <script src="~/Content/js/validate.js"></script>
+2015/11/18
+1、【运行平台】修正自动建立复数表名BUG
+2、【配置工具】修正 GUID 类型自动编号列表查询失败BUG
+
+2015/11/17
+1、【配置工具】修正子表自动编号字段为 int 类型时模型类型错误
+2、【配置工具】添加 float,single 等更多基础 sql 字段类型支持
+3、【配置工具】自动完成规则现在添加“列表标题”字段，用于自定义在弹出选项框中列的中文标题名称
+4、【配置工具&运行平台】弹出选项框现在自动选择列表字段中的前两列做为可搜索字段（只支持文本类型）
+
+2015/11/16
+1、【配置工具】修正二次创建数据时，如果表字段已修改，无法更新列表模型问题
+2、【配置工具】模型生成器已支持 uniqueidentifier 类型列
+3、【配置工具】自动编号控件现在可识别 uniqueidentifier （GUID）类型列，无需任何特殊设置
+4、【运行平台】优化首页文档选项卡处理，可支持刷新后恢复与多实例打开
+
+2015/11/15
+1、【运行平台】实现附件类型（多个文件）的支持
+	注意，附件上传的大小限制与站点 Web.config 中 configuration/system.web/httpRuntime 节相关，请为此节加入  maxRequestLength="409600" executionTimeout="3600" 两个属性（最大请求 400M，执行超时时间 1 小时）
+
+2015/11/14
+1、【配置工具】表头现在可以配置“附件”控件类型
+	注意，附件类型在列表上显示是没有意义的，请取消列表显示开关
+2、【运行平台】实现附件类型（单个文件）的支持。
+	注意，Fruit.Web 项目中多了一个 /Controllers/FileController.cs 文件，请手工加入到项目中；
+	sys 库中需要新增 sys_file 附件表，SQL如下：
+CREATE TABLE [dbo].[sys_file](
+	[FileId] [int] NOT NULL,
+	[Serial] [int] NOT NULL,
+	[FileName] [nvarchar](200) NULL,
+	[Path] [nvarchar](2000) NULL,
+	[CreatePerson] [varchar](50) NULL,
+	[CreateDate] [datetime] NULL CONSTRAINT [DF_sys_file_CreateDate]  DEFAULT (getdate()),
+ CONSTRAINT [PK_sys_file] PRIMARY KEY CLUSTERED 
+(
+	[FileId] ASC,
+	[Serial] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+
+SET ANSI_PADDING OFF
+GO
+
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'文件所有者唯一ID，在附加字段中引用此值' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'sys_file', @level2type=N'COLUMN',@level2name=N'FileId'
+GO
+
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'同个附加组中多个附加的识别ID' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'sys_file', @level2type=N'COLUMN',@level2name=N'Serial'
+GO
+
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'原始文件名' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'sys_file', @level2type=N'COLUMN',@level2name=N'FileName'
+GO
+
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'保存路径，相关站点根路径' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'sys_file', @level2type=N'COLUMN',@level2name=N'Path'
+GO
+
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'创建用户(UserCode)' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'sys_file', @level2type=N'COLUMN',@level2name=N'CreatePerson'
+GO
+
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'创建时间' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'sys_file', @level2type=N'COLUMN',@level2name=N'CreateDate'
+GO
+
+2015/11/13
+1、【配置工具】表头提供新的“布局宽”属性，用于定义表头控件的布局宽度
+2、【配置工具】表头控件现在支持默认值设置，相关默认值表达式可替换参数如下
+	参数格式		描述
+	{年份}			4位年
+	{年}			等同于{年份}
+	{月份}			2位月
+	{月}			等同于{月份}
+	{日期}			2位日
+	{日}			等同于{日期}
+	{月度}			4位年+2位月
+	{用户名}		当前登录用户的 UserCode
+	{用户编码}		等同于{用户名}
+	{用户}			当前登录用户的 UserName
+	{SESSION.name}	当前会话 Session 的 name 的值
+	{S.name}		等同于 {SESSION.name}
+	{USER.name}		当前登录用户 sys_user 的 name 字段值（基于安全原因，部分字段将始终为空）
+	{U.name}		等同于 {USER.name}
+	{今天}			只用于日期控件，表示当天日期类型值(不包括时间)
+	{现在}			只用于日期控件，表示当时日期类型值(包括时间)
+
+2015/11/12
+1、【配置工具】修正视图菜单下的编辑器无法多次打开问题
+2、【配置工具】修正新打开的编辑器没有自动激活问题
+3、【配置工具】在数据源面板中选中一个数据源右键“新建查询窗口”后，可以在打开的查询编辑器窗口自动选中连接源
+4、【配置工具】修正当“表/连接”内容较长时右边的字段与按钮不显示问题
+5、【配置工具】现在表达式中支持使用 Session 值，用法为 {SESSION.name} 或 {S.name}
+6、【配置工具】现在表达式中支持使用 User 值，表示当前登录用户 sys_user 的部分属性，用法为 {USER.UserName} 或 {U.UserName}
+7、【运行平台】在 sys 库中新增了 sys_session 表以实现 Session 值的初始化，请使用以下 SQL 建表：
+CREATE TABLE [dbo].[sys_session](
+	[SessionName] [nvarchar](50) NOT NULL,
+	[Condition] [nvarchar](2000) NULL,
+	[DefaultValue] [nvarchar](100) NULL,
+	[Connection] [nvarchar](200) NULL,
+	[T_SQL] [nvarchar](200) NULL,
+	[Sort] [int] NOT NULL CONSTRAINT [DF_sys_session_Sort]  DEFAULT ((0)),
+ CONSTRAINT [PK_sys_session] PRIMARY KEY CLUSTERED 
+(
+	[SessionName] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'SESSION 名称' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'sys_session', @level2type=N'COLUMN',@level2name=N'SessionName'
+GO
+
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'条件测试，需要返回 bit 类型' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'sys_session', @level2type=N'COLUMN',@level2name=N'Condition'
+GO
+
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'当 T_SQL 返回为空时使用的默认值' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'sys_session', @level2type=N'COLUMN',@level2name=N'DefaultValue'
+GO
+
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'要执行查询的连接名称' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'sys_session', @level2type=N'COLUMN',@level2name=N'Connection'
+GO
+
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'获取值使用的 T-SQL 语句' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'sys_session', @level2type=N'COLUMN',@level2name=N'T_SQL'
+GO
+
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'处理顺序' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'sys_session', @level2type=N'COLUMN',@level2name=N'Sort'
+GO
+
+2015/11/11
+1、【运行平台】多行文本框
+	在列表状态上还是一般文件框
+2、【运行平台】下拉选择框
+	现在可以将子表字段配置为下拉列表
+3、【运行平台】单选框
+	单选框在表单上显示为单选框组，在列表中显示为下拉选择框
+4、【运行平台】复选框
+	只做为开关使用，选中值为 1 ，未选中值为 0，可对应数据库中的 bit 类型字段
+5、【运行平台】弹出选择
+	现在支持返回附加值到其它字段（表单和列表上都可用），返回对应方式为 取值字段 到 返回字段。例如：取值字段为“UserCode,RoleName”，返回字段为“,value”表示选中记录后，将其 RoleName 字段返回给当前控件所在记录行的 value 字段。

@@ -1,0 +1,92 @@
+﻿@section scripts {
+<script type="text/javascript">
+    var data = @MvcHtmlString.Create(JsonExtension.ToJson(Model));
+    $(function(){
+        var db = fruit.databind.root;
+        $.extend(db.options, {
+            removeRow0Click: function(){
+                db.binds.list0.delete();
+            }
+        });
+        $.extend(db.options, {
+            addRow0Click: function(){
+                db.binds.list0.add();
+            }
+        });
+        db.loadData(data);
+        function loadDetial(){
+            fruit.ajax({method:'get', url:'/api/Mms/Bstype/getdetial/'+data.form["DataTypeID"],success:function(data){for(var key in data){$('[data-subtable=' + key + ']').datagrid('loadData', data[key]);}}});
+        }
+        loadDetial();
+        $.extend(db, {
+            saveClick:function(){
+                if(!db.validate()){fruit.message('error', '请更正验证错误！'); return;}
+                var data = db.getData();
+                data.SYS_BSDATA = $('[data-subtable="SYS_BSDATA"]').datagrid('getChangeRows');
+                fruit.ajax({
+                    url: '/api/Mms/Bstype/',
+                    data: JSON.stringify(data),
+                    success:function(result){
+                        if(result && result.success){
+                            fruit.message('success', '保存成功');
+                            if(result.form){
+                                db.loadData(result);
+                                loadDetial();
+                            }
+                        }
+                    }
+                });
+            }
+        });
+    });
+</script>
+}
+
+
+<div class="z-toolbar">
+    <a id="a_save" href="#" plain="true" class="easyui-linkbutton" icon="icon-save" data-bind="click:'saveClick',disable:'readonly'" title="保存">保存</a>
+    <a id="a_undo" href="#" plain="true" class="easyui-linkbutton" icon="icon-undo" data-bind="click:'rejectClick',disable:'readonly'" title="撤消">撤消</a>
+    <div class="datagrid-btn-separator"></div>
+    <a id="a_other" href="#" class="easyui-splitbutton" data-options="menu:'#divother',iconCls:'icon-application_go'" title="其他">其他</a>
+</div>
+
+<div id="divother" style="width:100px; display:none;">
+    <div data-options="iconCls:'icon-add'">新增</div>
+    <div data-options="iconCls:'icon-cross'">删除</div>
+    <div data-options="iconCls:'icon-arrow_refresh'">刷新</div>
+</div>
+<div id="master" class="container_12" data-bind="inputwidth:0.9">
+    <div class="grid_1 lbl">类型编号</div>
+   <div class="grid_3 val"><input type="text" data-bind="value:'form.DataTypeID', readOnly:true" class="z-txt readonly" /></div>
+    <div class="grid_1 lbl">类型名称</div>
+   <div class="grid_3 val"><input type="text" data-bind="value:'form.DataTypeName'" class="z-txt" /></div>
+
+    <div class="clear"></div>
+
+    <div class="grid_1 lbl">备注</div>
+   <div class="grid_11 val"><textarea data-bind="value:'form.Remark'" class="easyui-validatebox" data-options="required:false"></textarea></div>
+
+    <div class="clear"></div>
+
+
+    <div class="clear"></div>
+
+</div>
+<div id="tt" class="easyui-tabs">
+    <div title="SYS_BSDATA">
+        <table id="list0" data-subtable="SYS_BSDATA" data-bind="datagrid:'grid'" data-options="fixSize:{w:6,h:177}, toolbar:'#gridtb0', border:false, editMode:'select'">
+            <thead>
+                <tr>
+    <th field="DataID" data-options="editor:{type:'validatebox',options:{required:true}}">数据编号    </th>
+    <th field="DataName" data-options="editor:{type:'validatebox',options:{required:true}}">数据名称    </th>
+    <th field="Remark" data-options="editor:{type:'validatebox',options:{required:false}}">备注    </th>
+                </tr>
+            </thead>
+        </table>
+
+        <div id="gridtb0">
+            <a href="#" class="easyui-linkbutton" data-options="iconCls:'icon-search',plain:true" data-bind="click:'addRow0Click',disable:'readonly'">增加</a>
+            <a href="#" class="easyui-linkbutton" data-options="iconCls:'icon-remove',plain:true" data-bind="click:'removeRow0Click',disable:'readonly'">删除</a>
+        </div>
+    </div>
+</div>

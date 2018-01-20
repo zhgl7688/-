@@ -1,0 +1,84 @@
+﻿@section scripts {
+    <script type="text/javascript" src="/Content/js/echarts/echarts-all.js"></script>
+    <script type="text/javascript">
+        $(function(){
+            var db = fruit.databind.root;
+            // 分割列表与图表布局
+            function layout(){
+                var ww = $(window).innerWidth();
+                var wh = $(window).innerHeight();
+
+                var iw = (ww-6) / 2;
+                var ih = wh - 40;
+                db.binds.grid.jq.datagrid('resize', {width: iw, height:ih});
+                $('#charts').css({
+                    left: iw+4,
+                    width: iw,
+                    height: ih,
+                });
+            };
+            // 图表处理
+            db.onLoadSuccess = function(data) {
+                layout();
+                var rows = data.rows
+                var options = {
+  "title": {
+    "text": "客户订单",
+    "subtext": "客户订单"
+  },
+  "xAxis": [
+    {
+      "type": "category",
+      "data": []/*引用 PatlDate 字段数据*/
+    }
+  ],
+  "yAxis": [
+    {
+      "type": "value"
+    }
+  ],
+  "series": [
+    {
+      "type": "line",
+      "name": "订单数",
+      "data": []/*引用 Qty 字段数据*/
+    }
+  ]
+};
+                $.each(rows, function(){
+                    options.xAxis[0].data.push(this['PatlDate']);
+                    options.series[0].data.push(this['Qty']);
+                });
+                echarts.init(document.getElementById('charts')).setOption(options);
+            }
+            $.extend(db.options, {
+                searchClick: function(){
+                    var form = db.getData('form');
+                    db.invoke('setLoadParams', form);
+                },
+                clearClick: function(){
+                    db.clearData('form');
+                    db.invoke('setLoadParams', {});
+                }
+                , onInit: function(){
+                }
+            });
+        });
+
+    </script>
+}
+
+<div class="z-toolbar">
+    <a class="easyui-linkbutton" iconcls="icon-house_in" href="../Home/About">返回主页</a>
+    <a class="easyui-linkbutton" iconcls="icon-arrow_refresh" plain="true" data-bind="click:'refresh'">刷新</a>
+    <a class="easyui-splitbutton" plain="true" data-options="iconCls:'icon-download'" suffix="xls" data-bind="click:'download'">导出</a>
+</div>
+<table id="grid" data-bind="datagrid" data-options=" rownumbers:true, method:'get', url:'/api/mms/orderq', pagination:true, pageSize:20, holdTotal:true">
+<thead>
+<tr>
+<th field="PatlDate" data-options="">日期</th>
+<th field="Qty" data-options="">订单数</th>
+</tr>
+</thead>
+</table>
+<div id="charts" style="position: absolute;top:40px;"></div>

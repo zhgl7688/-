@@ -1,0 +1,1286 @@
+﻿// Fruit Js 框架
+
+// Fix JQuery
+var $ = $ || parent.$;
+
+// data state : 0-unchange; 1-new; 2-changed; 3-deleted
+var ROWSTATE = { UNCHANGE: 0, NEW: 1, CHANGED: 2, DELETED: 3 };
+
+$(function () {
+
+    $.fn.serializeObject = function () {
+        var array = this.serializeArray();
+        var obj = {};
+        $.each(array, function () {
+            obj[this.name] = this.value;
+        });
+        return obj;
+    }
+
+    function applyData(owner, data) {
+        function applyItem(item) {
+            var jq = $(item);
+            var bindArgs = fruit.expArgs(jq.data('bind'));
+            if (bindArgs['text']) {
+                jq.text(data[bindArgs['text']]);
+            }
+            if (bindArgs['css']) {
+                jq.addClass(data[bindArgs['css']]);
+            }
+            if (bindArgs['click']) {
+                jq.click(new Function(bindArgs['click']));
+            }
+        }
+        if ($(owner).is('[data-bind]')) {
+            applyItem(owner);
+        }
+        $(owner).find('[data-bind]').each(function () {
+            applyItem(this);
+        });
+    }
+
+    $.fn.applyData = function (data) {
+        return this.each(function () {
+            applyData(this, data);
+        });
+    };
+
+
+    var iconSelectorDialog = null;
+    var iconSelectorCallback = function () { };
+
+    // datagrid 编辑器扩展
+    $.extend($.fn.datagrid.defaults.editors, {
+        'icons': {
+            init: function (container, options) {
+                var input = $('<input type="text" class="datagrid-editable-input" />').appendTo(container);
+                var btn = $('<input type="button" value=".." class="datagrid-editable-morebutton" />').appendTo(container).click(function () {
+
+                    if (iconSelectorDialog == null) {
+                        var jq = $('link[href$="icon.css"]');
+                        if (jq.length == 0) {
+                            alert('使用 icons 类型编辑器需要在当前页面引用 icon.css 样式表文件!');
+                            return;
+                        }
+                        var rules = jq[0].sheet.cssRules;
+                        iconSelectorDialog = $('<div></div>');
+                        for (var i = 0; i < rules.length; i++) {
+                            if (rules[i].selectorText.indexOf('.icon-') == 0 && rules[i].selectorText.indexOf('32') == -1) {
+                                $('<span class="icon-selector ' + rules[i].selectorText.substr(1) + '">&nbsp;</span>').appendTo(iconSelectorDialog).click(function () {
+                                    var val = $(this).attr('class').split(' ')[1];
+                                    iconSelectorDialog.dialog('close');
+                                    iconSelectorCallback(val);
+                                });
+                            }
+                        }
+                        iconSelectorDialog.dialog({ title: '选择图标', modal: true, closed: false, width: 400, height: 280 });
+                    } else {
+                        iconSelectorDialog.dialog('open');
+                    }
+                    iconSelectorCallback = function (val) {
+                        input.val(val);
+                    }
+                });
+                return input;
+            },
+            destroy: function (target) {
+            },
+            getValue: function (target) {
+                return $(target).val();
+            },
+            setValue: function (target, value) {
+                $(target).val(value);
+            },
+            resize: function (target, width) {
+                $(target)._outerWidth(width - 18);
+            },
+        }
+    });
+
+    // panel 扩展与重写
+    //var oldResize = $.fn.panel.methods.resize;
+    //$.extend($.fn.panel.methods, {
+    //    resize: function (jq, options) {
+    //        console.log(options);
+    //        options.height -= 40;
+    //        options.width -= 4;
+    //        //if (size) {
+    //        //    options.width -= size.w;
+    //        //    options.height -= size.h;
+    //        //    oldResize(jq, options);
+    //        //}
+    //        oldResize(jq, options);
+    //    }
+    //});
+
+    // treegrid 扩展方法
+    var oldMethod = $.fn.treegrid.methods;
+    var oldAcceptChanges = $.fn.treegrid.methods.acceptChanges || $.fn.datagrid.methods.acceptChanges;
+    $.extend($.fn.treegrid.methods, {
+        acceptChanges: function(jq) {
+            oldAcceptChanges(jq);
+            jq.parent().find('[node-id]').each(function () {
+                jq.treegrid('setRowState', { id: $.attr(this, 'node-id'), state: 0 });
+            });
+        },
+        getRowState: function (jq, id) {
+            var data = oldMethod.find(jq, id);
+            return data && data._row_state || 0;
+        },
+        setRowState: function (jq, param) {
+            var data = oldMethod.find(jq, param.id);
+            if (data) {
+                //var row = jq.parent().find('.datagrid-row[node-id=' + data.id + ']');
+                var row = $('.datagrid-row[node-id=' + data._id + ']');
+                if (row.length == 0) {
+                    console.warn('row loss where ' + data._id);
+                    return;
+                }
+                //console.log('setRowState' ,jq.treegrid());
+                row.removeClass('datagrid-row-new').removeClass('datagrid-row-change').removeClass('datagrid-row-delete')
+                switch (param.rowstate) {
+                    case 1:
+                        row.addClass('datagrid-row-new');
+                        break;
+                    case 2:
+                        row.addClass('datagrid-row-change');
+                        break;
+                    case 3:
+                        row.addClass('datagrid-row-delete');
+                        break;
+                }
+                data._row_state = param.rowstate;
+            }
+        },
+        getChangeRows: function (jq) {
+            var data = oldMethod.getData(jq);
+            var rows = [];
+
+            function treeToRows(rows, data) {
+                for (var i = 0; i < data.length; i++) {
+                    if (data[i]._row_state) {
+                        var row = $.extend({}, data[i]);
+                        row.children = undefined;
+                        rows.push(row);
+                    }
+                    if (data[i].children && data[i].children.length) {
+                        treeToRows(rows, data[i].children);
+                    }
+                }
+            }
+
+            treeToRows(rows, data);
+
+            return rows;
+        }
+    });
+
+    // datagrid 扩展方法
+    $.extend($.fn.datagrid.methods, {
+        getRowState: function (jq, index) {
+            var data = $.fn.datagrid.methods.getRows(jq);
+            return data[index]._row_state || 0;
+        },
+        setRowState: function (jq, param) {
+            var data = $.fn.datagrid.methods.getRows(jq)[param.index];
+            if (data) {
+                var row = $('.datagrid-row[datagrid-row-index=' + param.index + ']');
+                if (row.length == 0) {
+                    console.warn('row loss where ' + param.index);
+                    return;
+                }
+                row.removeClass('datagrid-row-new').removeClass('datagrid-row-change').removeClass('datagrid-row-delete')
+                switch (param.rowstate) {
+                    case 1:
+                        row.addClass('datagrid-row-new');
+                        break;
+                    case 2:
+                        row.addClass('datagrid-row-change');
+                        break;
+                    case 3:
+                        row.addClass('datagrid-row-delete');
+                        break;
+                }
+                data._row_state = param.rowstate;
+            }
+        },
+        getChangeRows: function (jq) {
+            var data = $.fn.datagrid.methods.getRows(jq);
+            var rows = [];
+
+            for (var i = 0; i < data.length; i++) {
+                if (data[i]._row_state) {
+                    rows.push(data[i]);
+                }
+            }
+
+            return rows;
+        }
+    });
+
+    // 自动绑定根文档
+    fruit.databind.root = new fruit.databind(document);
+})
+
+Array.prototype.find = function (pn, val) {
+    var found = null;
+    $.each(this, function () {
+        if (typeof(pn)=='function' ? pn(this) : this[pn] == val) {
+            found = this;
+            return false;
+        }
+    });
+    return found;
+};
+
+Array.prototype.indexOf = function (item) {
+    for (var i = 0; i < this.length; i++) {
+        if (this[i] === item)
+            return i;
+    }
+    return -1;
+}
+
+Array.prototype.remove = function (item) {
+    var pos = this.indexOf(item);
+    if (pos > -1) {
+        this.splice(pos, 1);
+        return true;
+    }
+    return false;
+}
+
+// 创建当前数组的深度副本（副本中的每一项单独复制）
+Array.prototype.copy = function () {
+    var array = [];
+    for (var i = 0; i < array.length; i++) {
+        array.push($.extend({}, array[i]));
+    }
+    return array;
+}
+
+var fruit = {};
+
+fruit.expArgs = function (argString) {
+    var argSplit = argString.split(',');
+    var args = {};
+    for (var i = 0; i < argSplit.length; i++) {
+        var arg = argSplit[i];
+        var nameLen = arg.indexOf(':');
+        if (nameLen == -1) {
+            args[arg] = true;
+        } else {
+            args[arg.substr(0, nameLen)] = arg.substr(nameLen + 1);
+        }
+    }
+    return args;
+};
+
+fruit.copyAttrs = function (target, element, attrs) {
+    for (var i = 2; i < arguments.length; i++) {
+        var attr = arguments[i];
+        if (target[attr] == undefined && $(element).attr(attr) != undefined) {
+            target[attr] = $(element).attr(attr);
+        }
+    }
+};
+
+// 处理参数，整合对象，对应指定字符串名称参数
+fruit.parseOptions = function () {
+    var propStartIndex = -1;
+    for (var i = 0; i < arguments.length; i++) {
+        if (typeof arguments[i] == 'string') {
+            propStartIndex = i;
+            break;
+        }
+    }
+    var options = {};
+    for (var i = propStartIndex; i < arguments.length; i++) {
+        var name = arguments[i];
+        for (var p = 0; p < propStartIndex; p++) {
+            var obj = arguments[p];
+            if (typeof obj[name] != 'undefined') {
+                options[name] = obj[name];
+                break;
+            }
+        }
+    }
+    return options;
+}
+
+// 绑定处理类
+fruit.databind = function (element, options) {
+    var self = this;
+    if (element != document) {
+        $.parser.parse(element);
+    }
+    self.options = $.extend({onInit:$.noop,onSave:$.noop}, options);
+    this.jq = $(element);
+    this.data = function () {
+        if (arguments.length > 0) {
+            if (typeof arguments[0] == 'string') {
+                if (arguments.length == 1) {
+                    return self.options.data[arguments[0]];
+                }
+                else {
+                    self.options.data[arguments[0]] = options.data[arguments[1]];
+                }
+            } else {
+                self.options.data = arguments[0];
+                //self.call('dataLoaded', self.options.data);
+                for (var i = 0; i < self.binds.length; i++) {
+                    var func = self.binds[i].dataLoaded;
+                    if (typeof func == 'function') {
+                        func.call(self.binds[i], self.options.data);
+                    }
+                }
+            }
+        }
+        return self.options.data;
+    };
+    this.init = function () {
+        self.binds = [];
+        self.jq.find("[data-bind]").each(function () {
+            var bind = $(this).data('bind');
+            var bindArgs = fruit.expArgs(bind);
+            for (var name in self.bindHelpers) {
+                if (bindArgs[name]) {
+                    var inst = new self.bindHelpers[name](this, bindArgs);
+                    self.binds.push(inst);
+                    if ($(this).attr('id')) {
+                        self.binds[$(this).attr('id')] = inst;
+                    }
+                }
+            }
+        });
+        self.options.onInit.call(self);
+    };
+    this.showLoading = function (text) {
+        $('<div class="loading-mask"></div>').appendTo(self.jq);
+        $('<div class="loading-mask-msg"></div>').text(text).appendTo(self.jq);
+    };
+    this.hideLoading = function () {
+        self.jq.find('>.loading-mask, >.loading-mask-msg').remove();
+    };
+    this.load = function (url) {
+        var opt = {};
+        if (typeof (url) == 'string') {
+            opt.url = url;
+        } else {
+            opt = url;
+        }
+        $.extend(opt, {
+            success: function (data) {
+                self.hideLoading();
+                self.data.call(self, data);
+            }
+        });
+        this.showLoading('请稍候，正在加载数据…');
+        fruit.ajax(opt);
+    };
+    this.call = function (method, e) {
+        if (typeof window[method] == 'function') {
+            return window[method](e);
+        } else if(typeof(self.options[method]) == 'function') {
+            return self.options[method].call(self, e);
+        } else {
+            var handled = false;
+            for (var i = 0; i < self.binds.length; i++) {
+                if (typeof self.binds[i][method] == 'function') {
+                    handled = true;
+                    var result = self.binds[i][method](e);
+                    if (result === false)
+                        continue;
+                    return result;
+                }
+            }
+            if (!handled) {
+                alert("绑定错误，没有找到 " + method + " 的可用绑定方法！");
+            }
+        }
+    };
+    this.bindHelpers = {
+        'click': function (element) {
+            this.element = $(element);
+            if (this.element.data('bind').indexOf('click:') == 0) {
+                var method = this.element.data('bind').substr(6);
+                this.element.on('click', function (e) {
+                    self.call(method, e);
+                });
+            }
+        },
+        'field': function (element, options) {
+            this.element = $(element);
+            this.options = $.extend({}, options);
+            this.dataLoaded = function (data) {
+                if (typeof data[options.field] != 'undefined') {
+                    this.setValue(data[options.field]);
+                }
+                return false;
+            };
+            this.setValue = function (value) {
+                var eleData = this.element.data();
+                if (eleData.combotree) {
+                    this.element.combotree('setValue', value);
+                } else {
+                    this.element.val(value);
+                }
+            };
+        },
+        'text': function (element, options) {
+            var text = this;
+            this.element = $(element);
+            this.options = $.extend({}, options);
+            this.dataLoaded = function (data) {
+                if (typeof data[options.text] != 'undefined') {
+                    text.setValue(data[options.value]);
+                }
+                return false;
+            };
+            this.setValue = function (value) {
+                this.element.text(value);
+            };
+        },
+        'value': function (element, options) {
+            var ele = this;
+            this.element = $(element);
+            this.options = $.extend({}, options);
+            this.dataLoaded = function (data) {
+                if (typeof data[options.value] != 'undefined') {
+                    ele.setValue(data[options.value]);
+                }
+                return false;
+            };
+            this.setValue = function (value) {
+                var eleData = this.element.data();
+                if (eleData.combotree) {
+                    this.element.combotree('setValue', value);
+                } else {
+                    this.element.val(value);
+                }
+            };
+        },
+        'checked': function (element, options) {
+            var check = this;
+            this.checkbox = $(element);
+            if (!this.checkbox.is(':checkbox')) {
+                if (console) {
+                    console.warn('checked 绑定类型只适用于 checkbox !');
+                }
+                return;
+            }
+            this.checkbox.click(function (e) {
+                self.call(options.checked, check.checkbox.prop('checked'));
+            });
+        },
+        'form': function (element, options) {
+            var form = self.form = this;
+            this.options = options;
+            this.element = $(element).form(options);
+            this.dataLoaded = function (data) {
+                this.setValue(data);
+                return false;
+            };
+            this.setValue = function (value) {
+                this.element.form('load', value);
+            };
+            this.validate = function () {
+                return this.element.form('validate');
+            };
+            this.save = function () {
+                $.messager.progress({ title: '保存中', text: '正在提交数据…' });
+                var data = JSON.stringify(this.element.serializeObject());
+                fruit.ajax({
+                    url: this.options.saveUrl,
+                    data: data,
+                    success: function (data) {
+                        if (data) {
+                            $.messager.progress('close');
+                            self.options.onSave.call(self, form);
+                        }
+                    }
+                })
+            }
+        },
+        'orgtree': function (element, options) {
+            self.tree = this;
+            fruit.copyAttrs(options, element, 'url', 'idfield', 'parentfield', 'treefield', 'nodedblclick');
+            if (typeof options.nodedblclick == 'string') {
+                var method = options.nodedblclick;
+                options.nodedblclick = function () {
+                    self.call(method);
+                }
+            }
+            var tree = this;
+            this.element = $(element);
+            this.element.addClass('fruit-orgtree');
+            this.element.data('orgtree', { options: options });
+            
+            this.dataLoaded = function (data) {
+                options.selectedNode = null;
+                options.data = data;
+                
+                function buildTreeNode(data, level, parentElement, parentNodeId) {
+                    var rootTbl, rootTrs;
+                    var showCount = 0;
+                    var startTrIdx = level > 0 ? 2 : 0;
+                    for (var i = 0; i < data.length; i++) {
+                        var row = data[i];
+                        if (row[options.parentfield] == parentNodeId) {
+                            showCount++;
+
+                            rootTbl = $('<table cellspacing=0 cellpadding=0 align="center"><tr></tr><tr></tr><tr></tr></table>');
+
+                            if (level > 0) {
+                                $('<tr>').appendTo(rootTbl);
+                                $('<tr>').appendTo(rootTbl);
+                            }
+
+                            rootTrs = rootTbl.find('tr');
+
+                            if (level > 0) {
+                                if (showCount == 1) {
+                                    $('<td><table cellspacing=0 cellpadding=0 align="center" width="100%"><tr><td style="height:3px"></td><td style="height:3px;background-color:#000;"></td></tr></table></td>').appendTo(rootTrs[0]);
+                                } else {
+                                    $('<td style="height:3px;background-color:#000;"></td>').appendTo(rootTrs[0]);
+                                }
+                                $('<td class="orgtree-vline"></td>').appendTo(rootTrs[1]);
+                            }
+
+                            var nodeEle = $('<table class="orgtree-node" cellspacing="0" cellpadding="0" align="center"><tr><td align="center">' + row[options.treefield] + '</td></tr></table>').attr('node-id', row[options.idfield]);
+                            var nodeCell = $('<td valign="top" align="center"></td>');
+                            nodeCell.append(nodeEle).appendTo(rootTrs[startTrIdx]);
+                            $('<td class="orgtree-vline"></td>').appendTo(rootTrs[startTrIdx+1]);
+                            var childTbl = $('<td valign="top"><table cellspacing=0 cellpadding=0 align="center"><tr></tr></table></td>').appendTo(rootTrs[startTrIdx+2]);
+
+                            if (level == 0) {
+                                rootTbl.appendTo(parentElement);
+                            } else {
+                                $('<td valign="top"></td>').appendTo(parentElement).append(rootTbl);
+                            }
+
+                            var childCount = buildTreeNode(data, level + 1, childTbl.find('tr')[0], row[options.idfield]);
+                            if (level > 0) {
+                                if (childCount == 0) {
+                                    var ec = rootTrs.length;
+                                    $(rootTrs[ec - 1]).remove();
+                                    $(rootTrs[ec - 2]).remove();
+                                } else if (childCount == 1) {
+                                    //$(rootTrs[0]).find('td:last').css('backgroundColor', 'red');
+                                }
+                            }
+                        }
+                    }
+
+                    if (level > 0) {
+                        if (showCount == 1) {
+                            $(rootTrs[1]).remove();
+                            $(rootTrs[0]).remove();
+                        } else if (showCount > 1) {
+                            $(rootTrs[0]).html('<td><table cellspacing=0 cellpadding=0 align="center" width="100%"><tr><td style="height:3px;background-color:#000;"></td><td style="height:3px;"></td></tr></table></td>');
+                            //$(rootTrs[0]).find('td').css('backgroundColor', 'red');
+                        }
+                    }
+                    //for (var i = 0; i < data.length; i++) {
+                    //    var row = data[i];
+                    //    if (row[options.parentfield] == parentNodeId) {
+                    //        showCount++;
+                    //        var nodeEle = $('<table class="orgtree-node" cellspacing="0" cellpadding="0" align="center"><tr><td align="center">' + row[options.treefield] + '</td></tr></table>').attr('node-id', row[options.idfield]);
+                    //        var nodeCell = $('<td valign="top" align="center"></td>')
+
+                    //        if (level > 0) {
+                    //            var lineTable = $('<table class="orgtree-hline" cellspacing="0" cellpadding="0" style="width:100%;"><tr><td style="height:3px;background:black;"></td></tr></table>').appendTo(nodeCell);
+                    //            if (showCount == 1) {
+                    //                lineTable.html('<tr><td style="50%"></td><td style="height:3px;background:black;"></td></tr>');
+                    //            }
+                    //            $('<table style="width:100%"><tr><td></td></tr></table>').addClass('orgtree-vline').appendTo(nodeCell);
+                    //        }
+                    //        nodeCell.append(nodeEle).appendTo(trs[0]);
+
+                    //        var vline = $('<td></td>').addClass('orgtree-vline').appendTo(trs[1]);
+                    //        var newParentElement = $('<td valign="top"></td>').appendTo(trs[2]);
+
+                    //        var childCount = buildTreeNode(data, level + 1, newParentElement, row[options.idfield]);
+                    //        if (childCount == 0) {
+                    //            vline.removeClass('orgtree-vline');
+                    //        }
+                    //    }
+                    //}
+                    //if (showCount > 1) {
+                    //    $(trs[0]).find('.orgtree-hline:last').html('<tr><td style="width:50%;height:3px;background:black;"></td><td></td></tr>');
+                    //} else if (showCount == 1) {
+                    //    $(trs[0]).find('.orgtree-hline:last').html('<tr><td class="orgtree-vline" style="height:3px"></td></tr>');
+                    //} 
+                    //nodeTable.appendTo(parentElement);
+                    return showCount;
+                }
+
+                this.element.empty();
+                buildTreeNode(data, 0, this.element, '0');
+
+                var nodes = this.element.find('.orgtree-node').click(function () {
+                    tree.nodeClick(this);
+                });
+                if (typeof options.nodedblclick == 'function') {
+                    nodes.on('dblclick', function () {
+                        options.nodedblclick.call(tree);
+                    });
+                }
+            };
+
+            this.getSelected = function () {
+                return options.selectedNode;
+            }
+
+            this.refresh = function () {
+                fruit.ajax({
+                    method: 'get',
+                    url: options.url,
+                    success: function (data) {
+                        tree.dataLoaded(data);
+                    }
+                })
+            };
+
+            this.clearSelection = function () {
+                options.selectedNode = null;
+                this.element.find('.orgtree-node').removeClass('orgtree-node-selected');
+            };
+
+            this.getData = function () {
+                return options.data;
+            }
+
+            this.getTreeData = function (rowHandler) {
+                var rows = options.data;
+                var filter = (typeof rowHandler == 'function') ? fruit.tree.createLoadFilter(options.idfield, options.parentfield, '0', rowHandler) : fruit.tree.createLoadFilter(options.idfield, options.parentfield, '0');
+                return filter(rows);
+            }
+
+            this.select = function (id) {
+                this.element.find('.orgtree-node').removeClass('orgtree-node-selected');
+                options.selectedNode = options.data.find(options.idfield, id);
+                this.element.find('.orgtree-node[node-id="' + id + '"]').addClass('orgtree-node-selected');
+            };
+
+            this.delete = function () {
+                if (options.selectedNode) {
+                    options.data.remove(options.selectedNode);
+                    options.selectedNode = null;
+
+                    this.dataLoaded(options.data);
+                }
+            }
+
+            this.nodeClick = function (nodeElement) {
+                var jq = $(nodeElement);
+                this.select(jq.attr('node-id'));
+            }
+
+            if (options.url) {
+                this.refresh();
+            }
+
+        },
+        'checklist': function (element, options) {
+            var list = this;
+            this.element = $(element);
+            this.element.addClass('fruit-checklist');
+            this.options = fruit.parseOptions(options, self.options, { idField: 'Value' }, 'checklist', 'idField', 'url', 'urlArgs', 'saveUrl');
+            this.itemTemplate = this.element.html();
+            this.element.html('');
+            list.element.html('');
+            this.dataLoaded = function (data) {
+                if (!$.isArray(data)) {
+                    if (typeof (list.options.checklist) == 'string') {
+                        this.dataLoaded(data[list.options.checklist]);
+                    }
+                    return;
+                }
+                list.options.data = data;
+                for (var i = 0; i < data.length; i++) {
+                    $listitem = $(list.itemTemplate).applyData(data[i]).attr('item-id', data[i][list.options.idField]).appendTo(list.element).click(function () {
+                        list.itemClick.call(list, this);
+                    });
+                    if (data[i].Selected) {
+                        $listitem.addClass('selected');
+                    }
+                }
+                return false;
+            };
+            this.itemClick = function (item) {
+                var itemData = list.options.data.find(list.options.idField, $(item).attr('item-id'));
+                if ($(item).is('.selected')) {
+                    $(item).removeClass('selected');
+                    if (itemData) {
+                        itemData.Selected = false;
+                        itemData._row_state = ROWSTATE.CHANGED;
+                    }
+                } else {
+                    $(item).addClass('selected');
+                    if (itemData) {
+                        itemData.Selected = true;
+                        itemData._row_state = ROWSTATE.CHANGED;
+                    }
+                }
+            };
+            this.refresh = function () {
+                if (list.options.url) {
+                    fruit.ajax({
+                        url: url,
+                        success: function (data) {
+                            list.dataLoaded(data);
+                        }
+                    });
+                }
+            };
+
+            this.checkAll = function (checked) {
+                if (checked == undefined) {
+                    checked = true;
+                }
+                $.each(list.options.data, function () {
+                    this.Selected = checked;
+                    this._row_state = ROWSTATE.CHANGED;
+                    var jqNode = list.element.find('[item-id="' + this[list.options.idField] + '"]');
+                    if (checked) {
+                        jqNode.addClass('selected');
+                    } else {
+                        jqNode.removeClass('selected');
+                    }
+                });
+            };
+
+            this.check = function (id, checked) {
+                var node = list.options.data.find(list.options.idField, id);
+                if (node) {
+                    node.Selected = checked;
+                    node._row_state = ROWSTATE.CHANGED;
+                    var jqNode = list.element.find('[item-id="' + node[list.options.idField] + '"]');
+                    if (checked) {
+                        jqNode.addClass('selected');
+                    } else {
+                        jqNode.removeClass('selected');
+                    }
+                }
+            };
+
+            this.getChangeRows = function () {
+                var rows = [];
+                $.each(list.options.data, function () {
+                    if (this._row_state) {
+                        rows.push(this);
+                    }
+                });
+                return rows;
+            };
+
+            this.save = function (callback) {
+                var saveUrl = list.options.saveUrl;
+                if (list.options.urlArgs) {
+                    saveUrl += list.options.urlArgs;
+                }
+                var data = this.getChangeRows();
+                fruit.ajax({
+                    url: saveUrl,
+                    data: JSON.stringify(data),
+                    success: function (data) {
+                        if (typeof callback == 'function') {
+                            callback(data);
+                        }
+                    }
+                });
+            }
+
+            this.refresh();
+        },
+        'datagrid': function (element, options) {
+            var grid = this;
+            this.element = $(element);
+            $(window).resize(function () {
+                grid.fixSize();
+            });
+            if (self.options.toolbar) {
+                options.toolbar = self.options.toolbar;
+            }
+            options.singleSelect = true;
+
+            $.extend(options, {
+                onClickRow: function (row) {
+                    if ($.isNumeric(grid.edit_id) && grid.edit_id > -1) {
+                        grid.element.datagrid('endEdit', grid.edit_id);
+                    }
+                },
+                onAfterEdit: function (row, changes) {
+                    var rowstate = row && row._row_state || 0;
+                    if (rowstate != ROWSTATE.NEW) {
+                        grid.element.datagrid('setRowState', { id: row._id, rowstate: ROWSTATE.CHANGED });
+                    }
+                }
+            });
+
+            this.element.datagrid(options);
+
+            this.fixSize = function () {
+                var size = { w: $(window).innerWidth(), h: $(window).innerHeight() };
+                this.element.datagrid('resize', { width: size.w - 4, height: size.h - 40 });
+            };
+
+
+            this.showLoading = function (text) {
+                var panel = this.element.data().datagrid.panel;
+                $('<div class="datagrid-mask" style="display:block"></div>').appendTo(panel);
+                $('<div class="datagrid-mask-msg" style="display:block;left:50%;"></div>').text(text).appendTo(panel);
+            };
+            this.hideLoading = function () {
+                var panel = this.element.data().datagrid.panel;
+                panel.find('div.datagrid-mask,div.datagrid-mask-msg').remove();
+            }
+            this.refresh = function () {
+                this.element.datagrid('reload');
+            };
+
+            this.getRows = function () {
+                return this.element.datagrid('getRows');
+            }
+
+            this.add = function (row) {
+                if (row == undefined) {
+                    row = {};
+                    row[self.options.idField] = fruit.uuid();
+                }
+                var rowIndex = this.element.datagrid('getRows').length;
+                this.element.datagrid('appendRow', row);
+                this.element.datagrid('selectRow', rowIndex);
+                this.element.datagrid('setRowState', { index: rowIndex, rowstate: ROWSTATE.NEW });
+                this.edit();
+            };
+
+            this.edit = function () {
+                var row = this.element.datagrid('getSelected');
+                var rowIndex = this.element.datagrid('getRows').indexOf(row);
+                if (rowIndex > -1) {
+                    this.element.datagrid('beginEdit', rowIndex);
+                    grid.edit_id = rowIndex;
+                }
+            };
+
+            this.delete = function () {
+                var row = this.element.datagrid('getSelected');
+                var rowIndex = this.element.datagrid('getRows').indexOf(row);
+                if (rowIndex > -1) {
+                    this.element.datagrid('setRowState', { index: rowIndex, rowstate: ROWSTATE.DELETED });
+                }
+            };
+
+            this.save = function (callback) {
+                var rows = this.element.datagrid('getChangeRows');
+
+                if (rows.length == 0) {
+                    fruit.message('success', '没有任何修改，无需保存！');
+                    return;
+                }
+                this.showLoading('正在保存数据...');
+                var saveUrl = grid.element.datagrid('options').saveUrl;
+                if (typeof saveUrl != 'string' && typeof grid.element.treegrid('options').url == 'string') {
+                    var urls = grid.element.datagrid('options').url.split('/');
+                    urls[urls.length - 1] = 'save';
+                    saveUrl = urls.join('/');
+                }
+                fruit.ajax({
+                    url: saveUrl,
+                    data: JSON.stringify(rows),
+                    success: function (data) {
+                        grid.hideLoading();
+                        grid.element.treegrid('acceptChanges');
+                        if (typeof data == 'object') {
+                            grid.element.treegrid('loadData', data);
+                        }
+                        if (typeof callback == 'function') {
+                            callback.call(self);
+                        }
+                    }
+                });
+            }
+
+            this.fixSize();
+        },
+        'treegrid': function (element, options) {
+            var grid = this;
+            this.options = fruit.parseOptions(options, self.options, 'url', 'saveUrl', 'idField', 'treeField', 'parentField');
+            this.element = $(element);
+            $(window).resize(function () {
+                grid.fixSize();
+            });
+            this.element.treegrid({
+                fit: false,
+                fitColumns: true,
+                onClickRow: function (row) {
+                    if (grid.edit_id) {
+                        grid.element.treegrid('endEdit', grid.edit_id);
+                    }
+                },
+                onAfterEdit: function (row, changes) {
+                    var rowstate = row && row._row_state || 0;
+                    if (rowstate != ROWSTATE.NEW) {
+                        grid.element.treegrid('setRowState', { id: row._id, rowstate: ROWSTATE.CHANGED });
+                    }
+                }
+            });
+
+            this.fixSize = function () {
+                if (self.jq[0] != document) {
+                    return;
+                }
+                var size = { w: $(window).innerWidth(), h: $(window).innerHeight() };
+                this.element.treegrid('resize', { width: size.w - 4, height: size.h - 40 });
+            };
+            this.showLoading = function (text) {
+                var panel = this.element.data().datagrid.panel;
+                $('<div class="datagrid-mask" style="display:block"></div>').appendTo(panel);
+                $('<div class="datagrid-mask-msg" style="display:block;left:50%;"></div>').text(text).appendTo(panel);
+            };
+            this.hideLoading = function () {
+                var panel = this.element.data().datagrid.panel;
+                panel.find('div.datagrid-mask,div.datagrid-mask-msg').remove();
+            }
+
+            this.dataLoaded = function (data) {
+                if (!$.isArray(data)) {
+                    if (typeof (grid.options.treegrid) == 'string') {
+                        this.dataLoaded(data[grid.options.treegrid]);
+                    }
+                    return;
+                }
+                grid.element.treegrid('loadData', data);
+                return false;
+            };
+
+            this.getData = function () { return grid.element.treegrid('getData'); };
+
+            this.select = function (id) {
+                grid.element.treegrid('select', id);
+            };
+
+            this.refresh = function () {
+                this.element.treegrid('reload');
+            };
+            this.add = function () {
+                var selectRow = this.element.treegrid('getSelected');
+                var newid = fruit.uuid();
+                var options = this.element.data().treegrid.options;
+                var rows = this.element.data().treegrid.data;
+                var row = { _id: newid, _row_state: ROWSTATE.NEW };
+                if (options.idField) {
+                    row[options.idField] = newid;
+                }
+                if (options.treeField) {
+                    row[options.treeField] = '';
+                }
+                if (options.parentField) {
+                    row[options.parentField] = '';
+                }
+                var parentId = selectRow ? selectRow._parentId : rows[0][options.idField];
+                this.element.treegrid('append', { parent: parentId, data: [row] });
+                this.element.treegrid('select', newid);
+                this.element.treegrid('setRowState', { id: newid, rowstate: ROWSTATE.NEW });
+                this.edit();
+                //this.element.data("datagrid").insertedRows.push(row);
+                //this.edit();
+            };
+            this.delete = function () {
+                var node = grid.element.treegrid('getSelected');
+                if (node) {
+                    var rowState = this.element.treegrid('getRowState', node.id);
+                    if (rowState == ROWSTATE.NEW) {
+                        this.element.treegrid('remove', node.id);
+                        return;
+                    }
+                    this.element.treegrid('setRowState', { id: node._id, rowstate: ROWSTATE.DELETED });
+                }
+            };
+            this.edit = function () {
+                var row = grid.element.treegrid('getSelected');
+                if (row) {
+                    // 处理父级选择树
+
+                    var opt = grid.element.data('treegrid').options;
+                    var pcols = $.grep(opt.columns[0], function (c) { return c.field == opt.parentField && c.editor && (c.editor == 'combotree' || c.editor.type == 'combotree'); });
+                    if (pcols.length > 0) {
+                        var treeData = JSON.parse(JSON.stringify(grid.element.treegrid('getData')).replace(/_id/g, "id").replace(new RegExp(opt.treeField, "g"), "text"));
+                        treeData.unshift({ "id": 0, "text": "" });
+                        pcols[0].editor = {
+                            type: 'combotree', options: {
+                                data: treeData, onChange: function (newValue, oldValue) {
+                                    //console.log('onChange', newValue);
+                                    var parentNode = fruit.tree.findNodeData(treeData, newValue);
+                                    if (parentNode && opt.parentNameField) {
+                                        row[opt.parentNameField] = parentNode.text;
+                                    }
+                                }
+                            }
+                        };
+                    }
+
+                    this.element.treegrid('beginEdit', row._id);
+                    grid.edit_id = row._id;
+                }
+            };
+            this.save = function () {
+                var rows = this.element.treegrid('getChangeRows');
+                if (rows.length == 0) {
+                    fruit.message('success', '没有任何修改，无需保存！');
+                    return;
+                }
+                this.showLoading('正在保存数据...');
+                var saveUrl = grid.element.treegrid('options').saveUrl;
+                if (typeof saveUrl != 'string' && typeof grid.element.treegrid('options').url == 'string') {
+                    var urls = grid.element.treegrid('options').url.split('/');
+                    urls[urls.length-1] = 'save';
+                    saveUrl = urls.join('/');
+                }
+                fruit.ajax({
+                    url: saveUrl,
+                    data: JSON.stringify(rows),
+                    success: function (data) {
+                        grid.hideLoading();
+                        grid.element.treegrid('acceptChanges');
+                        if (typeof data == 'object') {
+                            grid.element.treegrid('loadData', data);
+                        }
+                    }
+                });
+            }
+
+            this.fixSize()
+        }
+    }
+
+    this.init();
+}
+
+// 生成一个零时唯一 ID
+fruit.uuid = function () {
+    return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
+        var r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
+        return v.toString(16);
+    });
+}
+
+// 加载样式表
+fruit.loadStylesheet = function (url, doc, reload) {
+    if (typeof doc == 'undefined') {
+        doc = document;
+    }
+    var links = doc.getElementsByTagName("link");
+    for (var i = 0; i < links.length; i++)
+        if (links[i].href.indexOf(url) > -1) {
+            if (reload)
+                links[i].parentNode.removeChild(links[i])
+            else
+                return;
+        }
+    var container = doc.getElementsByTagName("head")[0];
+    var css = doc.createElement("link");
+    css.rel = "stylesheet";
+    css.type = "text/css";
+    css.media = "screen";
+    css.href = url;
+    container.appendChild(css);
+}
+
+// 显示信息
+fruit.message = function (type, message, callback) {
+    switch (type) {
+        case "success":
+            if (parent == window) return alert(message);
+            parent.$.notify.create(message, {
+                type: 'success',
+                sticky: false,
+                style:'bar',
+                appendTo: '#notification'
+            });
+            break;
+        case "error":
+            if (parent == window) return alert(message);
+            parent.$.messager.alert('错误', message);
+            break;
+        case "warning":
+            if (parent == window) return alert(message);
+            parent.$.notify.create(message, {
+                type: 'warning',
+                sticky: false,
+                style: 'bar',
+                appendTo: '#notification'
+            });
+            break;
+        case "information":
+            parent.$.messager.show({
+                title: '消息',
+                msg: message
+                //,showType: 'show'
+            });
+            break;
+        case "confirm":
+            return parent.$.messager.confirm('确认', message, callback);
+    }
+
+    if (callback) callback();
+    return null;
+};
+
+// 发送 ajax 请求
+fruit.ajax = function (options) {
+    options = $.extend({
+        showLoading: true
+    }, options);
+
+    var ajaxDefaults = {
+        type: 'POST',
+        dataType: 'json',
+        contentType: 'application/json',
+        error: function (e) {
+            var msg = e.responseText;
+            var ret = msg.match(/^{\"Message\":\"(.*)\",\"ExceptionMessage\":\"(.*)\",\"ExceptionType\":.*/);
+            if (ret != null) {
+                msg = (ret[1] + ret[2]).replace(/\\"/g, '"').replace(/\\r\\n/g, '<br/>').replace(/dbo\./g, '');
+            }
+            else {
+                try { msg = $(msg).text() || msg; }
+                catch (ex) { }
+            }
+
+            fruit.message('error', msg);
+        }
+    };
+
+    if (options.showLoading) {
+        ajaxDefaults.beforeSend = $.showLoading;
+        ajaxDefaults.complete = $.hideLoading;
+    }
+
+    $.ajax($.extend(ajaxDefaults, options));
+}
+
+// 显示一个对话框
+fruit.dialog = function (options) {
+    var fnClose = opts.onClose;
+    opts = $.extend({
+        title: '未命名对话框',
+        width: 400,
+        height: 220,
+        closed: false,
+        cache: false,
+        modal: true,
+        html: '',
+        url: '',
+        viewModel: $.noop
+    }, opts);
+
+    opts.onClose = function () {
+        if ($.isFunction(fnClose)) fnClose();
+        $(this).dialog('destroy');
+    };
+
+    if ($.isFunction(opts.html))
+        opts.html = utils.functionComment(opts.html);
+    else if (/^\#.*\-template$/.test(opts.html))
+        opts.html = $(opts.html).html();
+
+    var win = $('<div></div>').appendTo('body').html(opts.html);
+    if (opts.url)
+        $.ajax({ async: false, url: opts.url, success: function (d) { win.empty().html(d); } });
+
+    win.dialog(opts);
+    $.parser.onComplete = function () {
+        if ("undefined" === typeof ko)
+            opts.viewModel(win);
+        else
+            ko.applyBindings(new opts.viewModel(win), win[0]);
+
+        $.parser.onComplete = $.noop;
+    };
+    $.parser.parse(win);
+    return win;
+}
+
+// 选项列表辅助功能集
+fruit.select = {};
+
+// 填充数据
+fruit.select.fillData = function (select, rows) {
+    $(select).empty();
+    $.each(rows, function () {
+        var $option = $('<option></option>').text(this.Text).attr('value', this.Value).appendTo(select);
+        if (this.Selected) {
+            $option.attr('selected', 'selected');
+        }
+    });
+};
+
+// 树结构相关辅助功能集
+fruit.tree = {};
+
+// 在树中查询指定 id 的节点数据
+fruit.tree.findNodeData = function(data, id) {
+    for (var i = 0; i < data.length; i++) {
+        if (data[i].id == id || data[i]._id == id) {
+            return data[i];
+        }
+        if (data[i].children) {
+            var node = fruit.tree.findNodeData(data[i].children, id);
+            if (node != null) {
+                return node;
+            }
+        }
+    }
+    return null;
+}
+
+// 创建用于 Tree 结构的平面数据过滤器函数，它处理自关联树数据源
+fruit.tree.createLoadFilter = function (idField, parentIdField, rootParentIdValue)
+{
+    var rootValue = [];
+    var rowHandle = $.noop;
+    for (var i = 2; i < arguments.length; i++) {
+        if (typeof arguments[i] == 'function') {
+            rowHandle = arguments[i];
+        } else {
+            rootValue.push(arguments[i]);
+        }
+    }
+
+    function buildChild(data, parentNode) {
+        for (var i = 0; i < data.length; i++) {
+            if (data[i][parentIdField] == parentNode[idField]) {
+                if (parentNode.children) {
+                    parentNode.children.push(data[i]);
+                } else {
+                    parentNode.children = [data[i]];
+                }
+                rowHandle(data[i], parentNode);
+
+                buildChild(data, data[i]);
+            }
+        }
+    }
+
+    return function (rows) {
+        var newRows = [];
+        for (var i = 0; i < rows.length; i++) {
+            var found = false;
+            for (var n = 0; n < rootValue.length; n++) {
+                if (rows[i][parentIdField] == rootValue[n]) {
+                    found = true;
+                    break;
+                }
+            }
+            if (found) {
+                newRows.push(rows[i]);
+                rowHandle(rows[i]);
+                buildChild(rows, rows[i]);
+            }
+        }
+        return newRows;
+    };
+}

@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report CommonReport="True" From="zhuomian" OrderField="总数量">
+  <DrillReports />
+  <Fields>
+    <Field Table="zhuomian" Field="摘要" Alias="摘要" Title="摘要" />
+    <Field Table="zhuomian" Field="总数量" Alias="总数量" Title="总数量" />
+  </Fields>
+  <Charts Title="1" SubTitle="2">
+    <XAxis FieldUid="摘要" DataSourceType="Field" />
+    <YAxis FieldUid="总数量" DataSourceType="Field" />
+    <Series>
+      <Item FieldUid="总数量" Type="line" Legend="测试" />
+    </Series>
+  </Charts>
+</Report>

@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Form Connection="MmsContext" Table="mms_check">
+  <Fields>
+    <Field Connection="MmsContext" Table="mms_check" Field="BillNo" Required="True" ListVisible="True" FormVisible="True" ControlType="AutoId" ControlValue="YMD4" />
+    <Field Connection="MmsContext" Table="mms_check" Field="BillDate" Required="False" ListVisible="True" FormVisible="True" ControlType="Date" />
+    <Field Connection="MmsContext" Table="mms_check" Field="DoPerson" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" />
+    <Field Connection="MmsContext" Table="mms_warehouse" Field="WarehouseName" Required="False" ListVisible="True" FormVisible="True" ControlType="Dropdown" />
+    <Field Connection="MmsContext" Table="mms_check" Field="Years" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" />
+    <Field Connection="MmsContext" Table="mms_check" Field="Months" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" />
+    <Field Connection="MmsContext" Table="mms_check" Field="MaterialType" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" />
+    <Field Connection="MmsContext" Table="mms_check" Field="BookMoney" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" />
+    <Field Connection="MmsContext" Table="mms_check" Field="OperateMoney" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" />
+    <Field Connection="MmsContext" Table="mms_check" Field="Remark" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" />
+  </Fields>
+  <SubTables>
+    <Table Table="mms_checkDetail" Filter="">
+      <Rels>
+        <FieldRel RelField="BillNo" MainField="BillNo" />
+      </Rels>
+      <Fields>
+        <Field Table="mms_checkDetail" Field="RowId" Required="True" ListVisible="True" FormVisible="True" ControlType="AutoId" />
+        <Field Table="mms_checkDetail" Field="MaterialCode" Required="True" ListVisible="True" FormVisible="True" ControlType="TextBox" />
+        <Field Table="mms_checkDetail" Field="Unit" Required="True" ListVisible="True" FormVisible="True" ControlType="TextBox" />
+        <Field Table="mms_checkDetail" Field="BookNum" Required="True" ListVisible="True" FormVisible="True" ControlType="TextBox" FieldType="int" />
+        <Field Table="mms_checkDetail" Field="BookUnitPrice" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" FieldType="money" />
+        <Field Table="mms_checkDetail" Field="BookMoney" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" FieldType="money" />
+        <Field Table="mms_checkDetail" Field="ActualNum" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" FieldType="int" />
+        <Field Table="mms_checkDetail" Field="ActualUnitPrice" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" FieldType="money" />
+        <Field Table="mms_checkDetail" Field="ActualMoney" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" />
+        <Field Table="mms_checkDetail" Field="OperateNum" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" />
+        <Field Table="mms_checkDetail" Field="OperateMoney" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" />
+        <Field Table="mms_checkDetail" Field="Remark" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="备注" />
+      </Fields>
+    </Table>
+  </SubTables>
+</Form>

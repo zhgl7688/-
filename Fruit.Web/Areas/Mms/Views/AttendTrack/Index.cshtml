@@ -1,0 +1,124 @@
+﻿@section scripts {
+    <!--Baidu Map Api-->
+    <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=6ubq1f7cG0reVK4pFYdG5Vem"></script>
+    <script type="text/javascript">
+    function AddrFormatter(value, row){
+        return value + ' 经纬度：' + row.TckLat + "," + row.TckLong;
+    }
+    $(function(){
+        var points = [];
+            
+        var db = fruit.databind.root;
+        var map = new BMap.Map("allmap");
+            
+        // 分割列表与地图布局
+        function layout(){
+            var ww = $(window).innerWidth();
+            var wh = $(window).innerHeight();
+
+            var iw = (ww-6) / 2;
+            var ih = wh - 90;
+            db.binds.grid.jq.datagrid('resize', {width: iw, height:ih});
+            $('#allmap').css({
+                left: iw+4,
+                width: iw,
+                height: ih,
+            });
+            //if(points.length){
+            //    setTimeout(function(){
+            //        var viewport = map.getViewport(points);
+            //        map.centerAndZoom(viewport.center, viewport.zoom);
+            //    }, 2000);
+            //}
+        };
+
+        // 在数据加载完成之后，进行地图点的处理
+        db.onLoadSuccess = function(data) {
+            points = [];
+            var rows = data.rows;
+            map.clearOverlays();
+            // 将不同的 UserName 数据分组以形成路径线
+            var groups = {};
+            $.each(rows, function(){
+                var group = groups[this.UserCode];
+                if(!group){
+                    group = groups[this.UserCode] = [];
+                }
+                group.push(this);
+                points.push(new BMap.Point(this.TckLong, this.TckLat));
+            })
+
+            // 为地图设置合适的中心点坐标
+            var viewport = map.getViewport(points);
+            map.centerAndZoom(viewport.center, viewport.zoom);
+
+            // 生成点和路径线
+            for(var group in groups){
+                if($.isArray(groups[group])){
+                    var rows = groups[group];
+                    var points = rows.map(function(item){ 
+                        var point = new BMap.Point(item.TckLong, item.TckLat); 
+                        var marker = new BMap.Marker(point);
+                        marker.setTitle(item.UserName + '\n' + item.CreateDate.replace('T', ' ').split('.')[0] + '\n' + item.Tp + '\n' + item.Address);
+                        map.addOverlay(marker); 
+                        return point; 
+                    });
+                    var polyline = new BMap.Polyline(points, {strokeColor:'#ff0000', strokeWeight:2, strokeStyle:'dashed'});
+                    map.addOverlay(polyline);
+                }
+            }
+        }
+
+        // 处理搜索按钮功能
+        $.extend(db.options, {
+            searchClick: function(){
+                var form = db.getData('search');
+                db.invoke('setLoadParams', form);
+            },
+            clearClick: function(){
+                db.clearData('search');
+                db.invoke('setLoadParams', {});
+            },
+            onInit:function(){
+                layout();
+                $(window).resize(layout);
+            }
+        });
+    });
+    </script>
+}
+
+<div class="z-toolbar">
+
+    <a class="easyui-linkbutton" iconcls="icon-arrow_refresh" plain="true" data-bind="click:'refresh'">刷新</a>
+        <a id="a_search" href="#" class="easyui-linkbutton" iconcls="icon-magnifier" plain="true" data-bind="click:'searchClick'">查询</a>
+    <a id="a_reset" href="#" class="easyui-linkbutton" iconcls="icon-clear" plain="true" data-bind="click:'clearClick'">清空</a>
+</div>
+<div id="condition" class="container_12" style="position:relative;height:30px">
+    <div class="grid_1 lbl">员工编码</div>
+    <div class="grid_2 val"><input data-bind="value:'search.UserCode'" type="text" class="z-txt" /></div>
+    <div class="grid_1 lbl">姓名</div>
+    <div class="grid_2 val"><input data-bind="value:'search.UserName'" type="text" class="z-txt" /></div>
+    <div class="grid_1 lbl">日期</div>
+    <div class="grid_2 val"><input data-bind="value:'search.Time'" type="text" class="z-txt easyui-daterange" /></div>
+    <div class="clear"></div>
+<!--
+    <div class="prefix_9" style="position:absolute;top:5px;height:0;">
+        <a id="a_search" href="#" class="buttonHuge button-blue" data-bind="click:'searchClick'" style="margin:0 15px;">查询</a>
+        <a id="a_reset" href="#" class="buttonHuge button-blue" data-bind="click:'clearClick'">清空</a>
+    </div>-->
+</div>
+<table id="grid" data-bind="datagrid" data-options="rownumbers:true, method:'get', url:'/api/mms/attendtrack', pagination:true, pageSize:20, holdTotal:true, pageList:[10,20,30,40,50,100]">
+    <thead>
+        <tr>
+            <th field="OrganizeName" width="80">部门</th>
+            <th field="UserCode" width="80">员工编码</th>
+            <th field="UserName" width="80">姓名</th>
+            <th field="Mobile" width="120">手机号码</th>
+            <th field="CreateDate" formatter="fruit.formatter.Time" width="150">上报时间</th>
+            <th field="Tp" width="120">上报类型</th>
+            <th field="Address" formatter="AddrFormatter" width="300" >位置</th>
+        </tr>
+    </thead>
+</table>
+<div id="allmap" style="position: absolute; top: 70px;border: solid 1px #95B8E7;"></div>

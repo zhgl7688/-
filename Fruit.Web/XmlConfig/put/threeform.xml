@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Form Connection="LUOLAI1401Context" Table="three1" FilterTreeBindField="id" TreeGridIdField="id" TreeGridNameField="id" TreeGridParentIdField="id">
+  <SubTables>
+    <Table Table="three2" Filter="" UseChildrenTable="True">
+      <Rels>
+        <FieldRel RelField="pid" MainField="id" />
+      </Rels>
+      <Fields>
+        <Field Table="three2" Field="id" DbType="int" Required="True" ListVisible="True" FormVisible="True" ControlType="AutoId" ReadOnly="True" />
+        <Field Table="three2" Field="name" DbType="nvarchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" />
+      </Fields>
+      <ChildrenTable Table="three3" Filter="">
+        <Rels>
+          <FieldRel RelField="gid" MainField="pid" />
+          <FieldRel RelField="pid" MainField="id" />
+        </Rels>
+        <Fields>
+          <Field Table="three3" Field="id" DbType="int" Required="False" ListVisible="True" FormVisible="True" ControlType="AutoId" ReadOnly="True" />
+          <Field Table="three3" Field="name" DbType="nvarchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" />
+        </Fields>
+      </ChildrenTable>
+    </Table>
+  </SubTables>
+  <SaveProducre />
+  <Buttons />
+  <GroupFilters />
+  <Fields>
+    <Field Table="three1" Field="id" DbType="int" Required="True" ListVisible="True" FormVisible="True" ControlType="AutoId" />
+    <Field Table="three1" Field="name" DbType="nvarchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" />
+  </Fields>
+</Form>

@@ -1,0 +1,102 @@
+﻿@section scripts {
+    <script type="text/javascript">
+        $(function () {
+            var db = fruit.databind.root;
+            $.extend(db.options, {
+                searchClick: function () {
+                    var formData = db.getData('serach');
+                    var data = [];
+                    for (var name in formData) {
+
+                        data.push(name + '=' + encodeURIComponent(formData[name]));
+                    }
+                    console.log(data.length);
+
+                    console.log('/Report.aspx?ReportFile=Kehuoduizhang.frx&' + data.join('&'));
+
+                    $('#print1').attr("src", '/Report.aspx?ReportFile=Kehuoduizhang.frx&' + data.join('&'));
+
+                },
+                clearClick: function () {
+                    db.clearData('serach');
+                    db.invoke('setLoadParams', {});
+                }
+                , onInit: function () {
+                },
+                printClick1: function (e) {
+                    var report = $(event.target).closest('[report]').attr('report');
+                    alert(report);
+                    var report_params = $(event.target).closest('[report]').attr('report_params').split(',');
+                    if (report_params.length == 1 && report_params[0].indexOf('#') == 0) {
+
+                        var grid = fruit.databind.root.binds[report_params[0].substr(1)];
+                        if (!grid) {
+                            return;
+                        }
+
+                        var apiUrl = grid.options.url;
+                        var apiArgs = grid.jq.datagrid('options').queryParams;
+                        var data = $.extend({}, apiArgs, { _report_: 1 });
+                        fruit.ajax({
+                            url: apiUrl,
+                            method: 'GET',
+                            data: data,
+                            success: function (data) {
+                                parent.showDocTab('icon-printer', '打印', '/Report.aspx?ReportFile=' + report + '&condition=' + encodeURIComponent(data));
+                            }
+                        });
+
+                        return;
+                    }
+                    var formData = d.getData('form');
+                    var data = [];
+                    for (var i = 0; i < report_params.length; i++) {
+                        var name = report_params[i];
+                        data.push(name + '=' + encodeURIComponent(formData[name]));
+                    }
+
+                    parent.showDocTab('icon-printer', '打印', '/Report.aspx?ReportFile=' + report + '&' + data.join('&'));
+                }
+            });
+        });
+
+    </script>
+}
+
+<div class="z-toolbar">
+
+    <a class="easyui-linkbutton" iconcls="icon-arrow_refresh" plain="true" data-bind="click:'refresh'">刷新</a>
+    <a class="easyui-splitbutton" plain="true" data-options="iconCls:'icon-download'" suffix="xls" data-bind="click:'download'">导出</a>
+    @*<a href="#" plain="true" class="easyui-linkbutton" icon="icon-printer" report="Kehuoduizhang.frx" report_params="#grid" data-bind="click:'printClick1'" title="打印">打印</a>*@
+    <div class="condition_buttons">
+        <a class="easyui-linkbutton" data-bind="click:'searchClick'" data-options="iconCls:'icon-search', plain:true" href="#">搜索</a>
+        <a class="easyui-linkbutton" data-bind="click:'clearClick'" data-options="iconCls:'icon-clear', plain:true" href="#">清空</a>
+    </div>
+</div>
+<div id="condition" class="container_12" style="position:relative;max-height:90px">
+    @*<div class="grid-group-1">
+            <div class="lbl">客户编号</div>
+            <div class="val"><input data-bind="value:'serach.FID'" type="text" class="z-txt" /></div>
+        </div>*@
+    @*<div class="grid-group-1">
+            <div class="lbl">对账单编号</div>
+            <div class="val"><input data-bind="value:'serach.FCode'" type="text" class="z-txt" /></div>
+        </div>*@
+
+
+    <div id="condition" class="container_12" style="position:relative;max-height:35px">
+        <div id="condition" class="container_12" style="position:relative;max-height:35px">
+            <div class="grid-group-1">
+                <div class="lbl">分部负责人</div>
+                <div class="val"><input type="text" data-bind="value:'serach.CustID', text:'serach.负责人编号_RefText'" class="z-txt easyui-popup" data-options="rule:'合作单位选择',textField:'负责人编号_RefText', onSelect:fruit.popupSelected, displayFields:'FID,Contact,Address|FID||Contact'" /></div>
+            </div>
+            <div class="grid-group-1">
+                <div class="lbl">年</div>
+                <div class="val"><input data-bind="value:'serach.Dates'" type="text" class="z-txt" /></div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<iframe id="print1" src="/Report.aspx?ReportFile=Kehuoduizhang.frx" frameborder="0" scrolling="auto" height="500" width="100%"></iframe>

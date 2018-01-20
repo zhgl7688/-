@@ -1,0 +1,54 @@
+﻿@section scripts {
+<script type="text/javascript">
+    var data = @MvcHtmlString.Create(JsonExtension.ToJson(Model));
+    $(function(){
+        var db = fruit.databind.root;
+        db.loadData(data);
+    });
+</script>
+}
+
+
+<div class="z-toolbar">
+    <a id="a_save" href="#" plain="true" class="easyui-linkbutton" icon="icon-save" data-bind="click:'saveClick',disable:'readonly'" title="保存">保存</a>
+    <a id="a_undo" href="#" plain="true" class="easyui-linkbutton" icon="icon-undo" data-bind="click:'rejectClick',disable:'readonly'" title="撤消">撤消</a>
+    <div class="datagrid-btn-separator"></div>
+    <a id="a_other" href="#" class="easyui-splitbutton" data-options="menu:'#divother',iconCls:'icon-application_go'" title="其他">其他</a>
+</div>
+
+<div id="divother" style="width:100px; display:none;">
+    <div data-options="iconCls:'icon-add'">新增</div>
+    <div data-options="iconCls:'icon-cross'">删除</div>
+    <div data-options="iconCls:'icon-arrow_refresh'">刷新</div>
+</div>
+<div id="master" class="container_12" data-bind="inputwidth:0.9">
+    <div class="grid_1 lbl">BillNo</div>
+   <div class="grid_3 val"><input type="text" data-bind="value:'form.BillNo', readOnly:true" class="z-txt readonly" /></div>
+    <div class="grid_1 lbl">BillDate</div>
+   <div class="grid_3 val"><input type="text" data-bind="value:'form.BillDate'" class="z-txt" /></div>
+    <div class="grid_1 lbl">DoPerson</div>
+   <div class="grid_3 val"><input type="text" data-bind="value:'form.DoPerson'" class="z-txt" /></div>
+
+    <div class="clear"></div>
+
+    <div class="grid_1 lbl">WarehouseName</div>
+   <div class="grid_3 val"><input type="text" data-bind="value:'form.WarehouseName',datasource:'dataSource.WarehouseName'" class="z-txt easyui-combobox" /></div>
+    <div class="grid_1 lbl">Years</div>
+   <div class="grid_3 val"><input type="text" data-bind="value:'form.Years'" class="z-txt" /></div>
+    <div class="grid_1 lbl">Months</div>
+   <div class="grid_3 val"><input type="text" data-bind="value:'form.Months'" class="z-txt" /></div>
+
+    <div class="clear"></div>
+
+    <div class="grid_1 lbl">MaterialType</div>
+   <div class="grid_3 val"><input type="text" data-bind="value:'form.MaterialType'" class="z-txt" /></div>
+    <div class="grid_1 lbl">BookMoney</div>
+   <div class="grid_3 val"><input type="text" data-bind="value:'form.BookMoney'" class="z-txt" /></div>
+    <div class="grid_1 lbl">OperateMoney</div>
+   <div class="grid_3 val"><input type="text" data-bind="value:'form.OperateMoney'" class="z-txt" /></div>
+
+    <div class="clear"></div>
+
+    <div class="grid_1 lbl">Remark</div>
+   <div class="grid_3 val"><input type="text" data-bind="value:'form.Remark'" class="z-txt" /></div>
+</div>

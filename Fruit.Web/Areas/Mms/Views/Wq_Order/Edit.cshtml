@@ -1,0 +1,165 @@
+﻿@section scripts {
+<script type="text/javascript">
+    var data = @MvcHtmlString.Create(JsonExtension.ToJson(Model));
+    $(function(){
+        var db = fruit.databind.root;
+        $.extend(db, {
+        buttonButton1 : function() {
+            var row = db.getData('form');
+            function ScriptAfter(data) {
+            }
+            fruit.ajax({url:'/api/Mms/Wq_Order/doButton1', method:'post', data: JSON.stringify(row), success:ScriptAfter});
+        }
+        });
+        $.extend(db.options, {
+            removeRow0Click: function(){
+                db.binds.list0.delete();
+            }
+        });
+        $.extend(db.options, {
+            addRow0Click: function(){
+                fruit.plugin.showPopupSelect({title:'搜索产品', width: 550, height: 500, rule: '选择产品', onSelect: function(row, vfs, rfs){
+                      var newRow = {};
+                      for(var i=0;i<rfs.length;i++){
+                          if(i<vfs.length){ newRow[rfs[i]] = row[vfs[i]]; }
+                      }
+                      db.binds.list0.add(newRow);
+                  } });
+            }
+        });
+        data.form._row_state = @ViewBag.RowState;
+        db.loadData(data);
+        function loadDetial(){
+            fruit.ajax({method:'get', url:'/api/Mms/Wq_Order/getdetial/'+data.form["OrderCode"],success:function(data){for(var key in data){$('[data-subtable=' + key + ']').datagrid('loadData', data[key]);}}});
+        }
+        loadDetial();
+        $.extend(db, {
+            refreshClick:function(){
+                location.assign(top.$(window.frameElement).data('src'));
+            },
+            rejectClick:function(){
+                location.assign(top.$(window.frameElement).data('src'));
+            },
+            newClick:function(){
+                fruit.ajax({
+                        url:'/api/Mms/Wq_Order/NewOrderCode',
+                        success:function(data) {
+                            parent.changeDocTab(window.frameElement, '/Mms/Wq_Order/edit/' + data);
+                        }
+                    })
+            },
+            deleteClick:function(){
+                $.messager.confirm('确认', '您确认要删除当前记录吗？', function(r){
+                    if(r){
+                        fruit.ajax({
+                            method:'DELETE',
+                            url: '/api/Mms/Wq_Order/'+db.getData('form').OrderCode,
+                            success: function(data) {
+                                fruit.message('success', '删除成功');
+                                top.closeDocTab(window.frameElement);
+                            }
+                        });
+                    }
+                });
+            },
+            saveClick:function(){
+                if(!db.validate()){fruit.message('error', '请更正验证错误！'); return;}
+                var data = db.getData();
+                data.wq_order_bd = $('[data-subtable="wq_order_bd"]').datagrid('getChangeRows');
+                fruit.ajax({
+                    url: '/api/Mms/Wq_Order/',
+                    data: JSON.stringify(data),
+                    success:function(result){
+                        if(result && result.success){
+                            fruit.message('success', '保存成功');
+                            if(result.form){
+                                db.loadData(result);
+                                loadDetial();
+                            }
+                        }
+                    }
+                });
+            }
+        });
+    });
+</script>
+}
+
+
+<div class="z-toolbar">
+    <a id="a_save" href="#" plain="true" class="easyui-linkbutton" icon="icon-save" data-bind="click:'saveClick',disable:'readonly'" title="保存">保存</a>
+    <a id="a_undo" href="#" plain="true" class="easyui-linkbutton" icon="icon-undo" data-bind="click:'rejectClick',disable:'readonly'" title="撤消">撤消</a>
+    <a class="easyui-linkbutton" plain="true" data-bind="click:'buttonButton1'" DynamicReadOnly="Disable">审核</a>
+    <div class="datagrid-btn-separator"></div>
+    <a id="a_other" href="#" class="easyui-splitbutton" data-options="menu:'#divother',iconCls:'icon-application_go'" title="其他">其他</a>
+</div>
+
+<div id="divother" style="width:100px; display:none;">
+    <div data-options="iconCls:'icon-add'" data-bind="click:'newClick'">新增</div>
+    <div data-options="iconCls:'icon-cross'" data-bind="click:'deleteClick'">删除</div>
+    <div data-options="iconCls:'icon-arrow_refresh'" data-bind="click:'refreshClick'">刷新</div>
+</div>
+
+<div id="divrelations" style="width:100px; display:none;"></div>
+<div id="master" class="container_12" data-bind="inputwidth:0.9">
+<input type="hidden" data-bind="value:'form._row_state'" />
+    <div class="grid_1 lbl">订单编号</div>
+   <div class="grid_3 val"><input type="text" data-bind="value:'form.OrderCode', readOnly:true" class="z-txt readonly" /></div>
+    <div class="grid_1 lbl">客户编号</div>
+   <div class="grid_3 val"><input type="text" data-bind="value:'form.DealerCode', text:'form.DealerCode_RefText'" class="z-txt easyui-popup" data-options="rule:'选择客户',textField:'DealerCode_RefText',required:false, onSelect:fruit.popupSelected" /></div>
+    <div class="grid_1 lbl">业务员</div>
+   <div class="grid_3 val"><input type="text" data-bind="value:'form.UserCode', text:'form.UserCode_RefText'" class="z-txt easyui-popup" data-options="rule:'用户选择',textField:'UserCode_RefText',required:false, onSelect:fruit.popupSelected" /></div>
+
+    <div class="clear"></div>
+
+    <div class="grid_1 lbl">订单日期</div>
+   <div class="grid_3 val"><input type="text" data-bind="value:'form.PrmDate', readOnly:false" class="z-txt easyui-datebox" data-options="required:true" /></div>
+
+    <div class="clear"></div>
+
+    <div class="grid_1 lbl">备注</div>
+   <div class="grid_11 val"><textarea data-bind="value:'form.Remark'" class="easyui-validatebox" data-options="required:false"></textarea></div>
+
+    <div class="clear"></div>
+
+
+    <div class="clear"></div>
+
+</div>
+<div id="tt" class="easyui-tabs">
+    <div title="产品列表">
+        <table id="list0" data-subtable="wq_order_bd" data-bind="datagrid:'grid'" data-options="fixSize:{w:6,h:'auto'}, toolbar:'#gridtb0', showFooter: false, border:false, editMode:'select',singleSelect:true">
+            <thead>
+                <tr>
+    <th field="Series" width="50">序号    </th>
+    <th field="PdtCode" width="150">产品编号    </th>
+    <th field="PdtName" width="150">产品名称    </th>
+    <th field="OrdQty" data-options="editor:{type:'numberbox',options:{required:true}}" width="60">数量    </th>
+    <th field="OrdPrice" width="60">单价    </th>
+    <th field="OrdAmt" data-expression="{OrdQty}*{OrdPrice}" width="120">金额    </th>
+                </tr>
+            </thead>
+        </table>
+
+        <div id="gridtb0">
+            <a href="#" class="easyui-linkbutton" data-options="iconCls:'icon-search',plain:true" data-bind="click:'addRow0Click',disable:'readonly'">搜索产品</a>
+            <a href="#" class="easyui-linkbutton" data-options="iconCls:'icon-remove',plain:true" data-bind="click:'removeRow0Click',disable:'readonly'">删除</a>
+        </div>
+    </div>
+    <div title="表单信息" style="padding-top:2px;">
+        <div class="container_12" id="BillDetail" data-bind="inputwidth:0.9,autoheight:181">
+            <div class="clear"></div>
+    <div class="grid_1 lbl">创建人</div>
+   <div class="grid_3 val"><input type="text" data-bind="value:'form.CreatePerson', readOnly:true" class="z-txt readonly" /></div>
+    <div class="grid_1 lbl">创建时间</div>
+   <div class="grid_3 val"><input type="text" data-bind="value:'form.CreateDate',readOnly:true" class="z-txt easyui-datebox" /></div>
+    <div class="grid_1 lbl">最后修改人</div>
+   <div class="grid_3 val"><input type="text" data-bind="value:'form.UpdatePerson', readOnly:true" class="z-txt readonly" /></div>
+
+            <div class="clear"></div>
+
+    <div class="grid_1 lbl">最后修改时间</div>
+   <div class="grid_3 val"><input type="text" data-bind="value:'form.UpdateDate',readOnly:true" class="z-txt easyui-datebox" /></div>
+        </div>
+    </div>
+</div>

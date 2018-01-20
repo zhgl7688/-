@@ -1,0 +1,54 @@
+﻿@section scripts {
+    <script type="text/javascript">
+        $(function(){
+            var db = fruit.databind.root;
+                    var data = @MvcHtmlString.Create(JsonExtension.ToJson(Model));
+                    db.loadData(data);
+            $.extend(db.options, {
+                searchClick: function(){
+                    var form = db.getData('serach');
+                    db.invoke('setLoadParams', form);
+                },
+                clearClick: function(){
+                    db.clearData('serach');
+                    db.invoke('setLoadParams', {});
+                }
+                , onInit: function(){
+                    db.loadData(data);
+                }
+            });
+        });
+
+    </script>
+}
+
+<div class="z-toolbar">
+
+    <a class="easyui-linkbutton" iconcls="icon-arrow_refresh" plain="true" data-bind="click:'refresh'">刷新</a>
+    <a class="easyui-splitbutton" plain="true" data-options="iconCls:'icon-download'" suffix="xls" data-bind="click:'download'">导出</a>
+    <div class="condition_buttons">
+        <a class="easyui-linkbutton" data-bind="click:'searchClick'" data-options="iconCls:'icon-search', plain:true" href="#">搜索</a>
+        <a class="easyui-linkbutton" data-bind="click:'clearClick'" data-options="iconCls:'icon-clear', plain:true" href="#">清空</a>
+    </div>
+</div>
+<div id="condition" class="container_12" style="position:relative;max-height:60px">
+  
+
+    <div class="grid-group-1"><div class="lbl">保证金状态</div>
+    <div class="val"><input data-bind="value:'serach.depAmtStatus', datasource:'dataSource.depAmtStatus'" type="text" class="z-txt easyui-combobox" /></div></div>
+    <div class="grid-group-1"><div class="lbl">保证金</div>
+    <div class="val"><input data-bind="value:'serach.depAmt'" type="text" class="z-txt" /></div></div>
+    <div class="grid-group-1"><div class="lbl">创建时间</div>
+    <div class="val"><input data-bind="value:'serach.CreatedTime'" type="text" class="z-txt easyui-daterange" /></div></div>
+</div>
+<table id="grid" data-bind="datagrid" data-options="'rownumbers':true,'method':'get','pagination':true,'pageSize':20,'holdTotal':true,'fixSize':{'w':4,'h':'auto'},'fitColumns':false,'url':'/api/project/fa_deposit'">
+<thead>
+<tr>
+<th field="PID" data-options="">项目编号</th>
+<th field="depAmtStatus" data-options="">保证金状态</th>
+<th field="depAmt" data-options="">保证金</th>
+<th field="CreatorID" data-options="">创建人</th>
+<th field="CreatedTime" data-options="">创建时间</th>
+</tr>
+</thead>
+</table>

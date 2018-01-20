@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Form Connection="LUOLAI1401Context" Table="wq_income" Filter="a.CompCode= '{USER.CompCode}'">
+  <SubTables />
+  <SaveProducre />
+  <Buttons />
+  <Fields>
+    <Field Table="wq_income" Field="UserCode" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="PopupSelect" Title="业务员" FieldType="varchar" ControlValue="用户选择" ColumnWidth="80" Searchable="True" />
+    <Field Table="wq_income" Field="Month" DbType="char" Required="False" ListVisible="True" FormVisible="True" ControlType="Dropdown" Title="月份" FieldType="varchar" ControlValue="月份" ColumnWidth="80" Searchable="True" />
+    <Field Table="wq_income" Field="IncomeAmt" DbType="numeric" Required="False" ListVisible="True" FormVisible="True" ControlType="NumberBox" Title="收款金额" FieldType="varchar" ColumnWidth="100" />
+    <Field Table="wq_income" Field="CompCode" DbType="varchar" Required="False" ListVisible="False" FormVisible="False" ControlType="Dropdown" Title="所属公司" FieldType="varchar" ControlValue="所属公司" DefaultValue="{USER.CompCode}" ReadOnly="True" ColumnWidth="200" />
+    <Field Table="wq_income" Field="Remark" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="MultiTextBox" Title="备注" FieldType="text" ColumnWidth="200" />
+    <Field Table="wq_income" Field="CreatePerson" DbType="varchar" Required="False" ListVisible="False" FormVisible="True" ControlType="TextBox" ReadOnly="True" Title="创建人" FieldType="varchar" DefaultValue="{USER.UserName}" />
+    <Field Table="wq_income" Field="CreateDate" DbType="datetime" Required="False" ListVisible="False" FormVisible="True" ControlType="Date" ReadOnly="True" Title="创建日期" FieldType="datetime" Searchable="True" />
+    <Field Table="wq_income" Field="UpdatePerson" DbType="varchar" Required="False" ListVisible="False" FormVisible="True" ControlType="TextBox" ReadOnly="True" Title="更改人" FieldType="varchar" />
+    <Field Table="wq_income" Field="UpdateDate" DbType="datetime" Required="False" ListVisible="False" FormVisible="True" ControlType="Date" ReadOnly="True" Title="更改日期" FieldType="datetime" />
+    <Field Connection="LUOLAI1401Context" Table="wq_income" ControlType="AutoId" ControlValue="十二位编号" FieldType="varchar" Title="ID" Field="id" DbType="varchar" />
+  </Fields>
+  <GroupFilters />
+</Form>

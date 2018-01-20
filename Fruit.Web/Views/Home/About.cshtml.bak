@@ -1,0 +1,811 @@
+﻿<!doctype html>
+<html>
+	<head>
+    	<meta charset="utf-8" />
+        <style>
+			*{margin:0;padding:0;font-family:'Microsoft YaHei',Arial, Helvetica, sans-serif;}
+			body{background:white;min-width:700px;}
+			a{text-decoration:none;}
+			header{width:80%;margin:1% auto;min-width:510px;}
+			form{width:330px;display:inline-block;}
+			form select,form input{width:120px;height:29px;}
+			nav{text-align:right;width:160px;float:right;}
+			nav a{display:inline-block; border:1px solid #ccc;padding:5px 12px;cursor:pointer;}
+			nav a:hover{border-color:#F40;text-decoration:none;}
+			.shel{border-color:#F40;color:#F40;}
+			#content{width:80%;margin:0 auto;overflow:hidden;min-width:510px;}
+			#content .item{box-sizing:border-box;width:25%;height:200px;border:1px solid #ccc;float:left;cursor: pointer;}
+			#content .item:hover{background-color: #FFFAFA;}
+			#content .item h6{font-size:19px;text-align:center;padding-top:10px; letter-spacing:2px;font-family:'Arial';font-weight:400; }
+			#content .item i{display:inline-block;width:100%;font-size:1em;text-align:center;padding-top:10px;font-size:1.5em;color:#F40;}
+        		#content .item p{padding-left:15px;font-size:15px;}
+			#content #sj p{padding-top:15px;}
+			#content #sj i{font-size:1em;display:inline;padding-left:10%;}
+			.t1,.t2{margin-top:10px; border-radius:15px;height:5px;}
+			#content .case{margin-left:22%;width:75%;}
+			#content .t1{width:2%;background:#ccc; transition:width 0.6s;}
+			#content .t2{width:2%;background:#f40; transition:width 0.6s;}
+			#content .dec{text-align:right;height:10px;border:2px solid red;}
+			#content .percent{font-size:13px;margin-top:5%;margin-left:22%;}
+			#content a {text-decoration: none;}
+			footer{width:80%;margin:0 auto;text-align:right;font-size:13px;color:red;}
+
+            //刘赟
+            body{position: absolute;}
+            #view{position: absolute;z-index: 10;left:0;top:0; display: none;border: 2px solid #ededed;box-shadow: 1px 1px 2px  #828282;}
+            #close{position: absolute;z-index: 12;right: 0;bottom: 0;width: 50px;height: 30px;border: none;color: red;font-weight: bold;background-color:rgba(153,255,255,0.95);cursor: pointer;}
+            #close:hover{background-color:#8B6914;color:white;}
+            
+		</style>
+        @section scripts{
+        <script src="~/Content/jsm/jquery-1.7.2.js" type="text/javascript" charset="utf-8"></script>
+        <script src="~/Content/jsm/md5.js"></script>
+        <script src="~/Content/jsm/jquery.bcp.mobile.js" type="text/javascript"></script>
+        <script src="~/Content/jsm/Bcp/Config.js" type="text/javascript"></script>
+        }
+        <script src="/Account/UserInfo"></script>
+		
+        <script type="text/javascript">
+	    var timer = "today";
+            function get_statistics(cityStr) {
+		var c = '';
+		if(cityStr == null || cityStr == undefined || cityStr == ""){
+			c = '0,0';
+		}else{
+			c = cityStr;
+		}
+		alert(c);
+		$.api.auth({
+                    method: 'Drivingposition',
+                    execute: 'SELECT',
+                    compcode: userInfo.CompCode,//所属公司
+                    usercode: userInfo.UserCode,//人员编号
+                    search: c,
+                    type: 'before' //Before and after
+                }, function (data) {
+		alert("data");
+                    var v_day_bf_y //客户拜访数昨天
+                    var v_day_bf //客户拜访数今天
+                    var v_day_new_kh_y //新开客户数昨天
+                    var v_day_new_kh //新开客户数今天
+                    var v_day_y_dd //客户订单数昨天
+                    var v_day_dd //客户订单数今天
+                    var v_day_y_rz//工作日志昨天
+                    var v_day_rz//工作日志今天
+                    var v_day_kz_y //客户总数昨天
+                    var v_day_kz //客户总数今天
+                    var v_day_xl_y//销量昨天
+                    var v_day_xl//销量今天
+                    var day_bf_xl_y//拜访完成率昨天
+                    var day_bf_xl//拜访完成率今天
+
+                    //客户拜访数量
+                    if (data.items_w_y_day.length == "0") {
+                        day_q.innerHTML = "0";
+                        v_day_bf_y = "1";
+                    } else {
+                        day_q.innerHTML = data.items_w_y_day[0].qty;
+                        v_day_bf_y = data.items_w_y_day[0].qty;
+                    }
+                    
+                    if (data.items_w_day.length == "0") {
+                        day_i.innerHTML = "0";
+                        v_day_bf = "0"
+                    } else {
+                        day_i.innerHTML = data.items_w_day[0].qty;
+                        v_day_bf = data.items_w_day[0].qty;
+                    }
+                    day_l.innerHTML = ((parseFloat(v_day_bf) / parseFloat(v_day_bf_y) - 1) * 100).toFixed(2) + "%";
+                    //新开客户数
+                    if (data.items_kh_y_day.length == "0") {
+                        day_y_kh.innerHTML = "0";
+                        v_day_new_kh_y = "1";
+                    } else {
+                        day_y_kh.innerHTML = data.items_kh_y_day[0].Qty;
+                        v_day_new_kh_y = data.items_kh_y_day[0].Qty;
+                    }
+
+                    if (data.items_kh_day.length == "0") {
+                        day_kh.innerHTML = "0";
+                        v_day_new_kh = "0"
+                    } else {
+                        day_kh.innerHTML = data.items_kh_day[0].Qty;
+                        v_day_new_kh = data.items_kh_day[0].Qty;
+                    }
+
+                    day_kh_l.innerHTML = ((parseFloat(v_day_new_kh) / parseFloat(v_day_new_kh_y) - 1) * 100).toFixed(2) + "%";
+                    //客户订单数
+                    if (data.items_dd_y_day.length == "0") {
+                        day_y_dd.innerHTML = "0";
+                        v_day_y_dd = "1";
+                    } else {
+                        day_y_dd.innerHTML = data.items_dd_y_day[0].Qty;
+                        v_day_y_dd = data.items_dd_y_day[0].Qty;;
+                    }
+                    if (data.items_dd_day.length == "0") {
+                        day_dd.innerHTML = "0";
+                        v_day_dd = "0"
+                    } else {
+                        day_dd.innerHTML = data.items_dd_day[0].Qty;
+                        v_day_dd = data.items_dd_day[0].Qty;
+                    }
+
+                    day_dd_l.innerHTML = ((parseFloat(v_day_dd) / parseFloat(v_day_y_dd) - 1) * 100).toFixed(2) + "%";
+                    //工作日志
+                    if (data.items_rz_y_day.length == "0") {
+                        rz_y_day.innerHTML = "0";
+                        v_day_y_rz = "1";
+                    } else {
+                        rz_y_day.innerHTML = data.items_rz_y_day[0].Qty;
+                        v_day_y_rz = data.items_rz_y_day[0].Qty;
+                    }
+                    if (data.items_rz_day.length == "0") {
+                        rz_day.innerHTML = "0";
+                        v_day_rz="0"
+                    } else {
+                        rz_day.innerHTML = data.items_rz_day[0].Qty;
+                        v_day_rz = data.items_rz_day[0].Qty
+                    }
+                    rz_day_l.innerHTML = ((parseFloat(v_day_rz) / parseFloat(v_day_y_rz) - 1) * 100).toFixed(2) + "%";
+                    //客户总数
+                    if (data.items_kz_y_day.length == "0") {
+                        rz_y_day.innerHTML = "0";
+                        v_day_kz_y = "1";
+                    } else {
+                        kz_y_day.innerHTML = data.items_kz_y_day[0].Qty;
+                        v_day_kz_y = data.items_kz_y_day[0].Qty;
+                    }
+                    if (data.items_kz_day.length == "0") {
+                        kz_day.innerHTML = "0";
+                        v_day_kz = "0";
+                    } else {
+                        kz_day.innerHTML = data.items_kz_day[0].Qty;
+                        v_day_kz = data.items_kz_day[0].Qty;
+                    }
+                    kz_day_l.innerHTML = ((parseFloat(v_day_kz) / parseFloat(v_day_kz_y) - 1) * 100).toFixed(2) + "%";
+                    //销量
+                    if (data.items_xl_y_day.length == "0") {
+                        day_xl_y.innerHTML = "0";
+                        v_day_xl_y = "1";
+                    } else {
+                        day_xl_y.innerHTML = data.items_xl_y_day[0].Qty;
+                        v_day_xl_y = data.items_xl_y_day[0].Qty;
+                    }
+                    if (data.items_xl_day.length == "0") {
+                        day_xl.innerHTML = "0";
+                        v_day_xl = "0";
+                    } else {
+                        day_xl.innerHTML = data.items_xl_day[0].Qty;
+                        v_day_xl = data.items_xl_day[0].Qty;
+                    }
+  
+                    day_xl_l.innerHTML = ((parseFloat(v_day_xl) / parseFloat(v_day_xl_y) - 1) * 100).toFixed(2) + "%";
+                    //考勤
+                    if (data.items_kq_day.length == "0") {
+                        kq_kg.innerHTML = "0";
+                        kq_cd.innerHTML = "0";
+                        kq_zt.innerHTML = "0";
+                    } else {
+                        kq_kg.innerHTML = data.items_kq_day[0].kgqty;
+                        kq_cd.innerHTML = data.items_kq_day[0].cdqty;
+                        kq_zt.innerHTML = data.items_kq_day[0].ztqty;
+                    }
+                    
+                    //拜访完成率
+                    if (data.items_wc_y_day.length == "0") {
+                        day_bf_y.innerHTML = "0";
+                        day_bf_xl_y = "1";
+                    } else {
+                        day_bf_y.innerHTML = data.items_wc_y_day[0].Qty;
+                        day_bf_xl_y = data.items_wc_y_day[0].Qty;
+                    }
+                    if (data.items_wc_day.length == "0") {
+                        day_bf.innerHTML = "0";
+                        day_bf_xl = "0";
+                    } else {
+                        day_bf.innerHTML = data.items_wc_day[0].Qty;
+                        day_bf_xl = data.items_wc_day[0].Qty;
+                    }
+                    day_bf_l.innerHTML = (parseFloat(day_bf_xl) - parseFloat(day_bf_xl_y)).toFixed(2) + "%";
+                });
+            }
+	   
+            function get_statistics_w(cityStr) {
+		var c = '';
+		if(cityStr == null || cityStr == undefined || cityStr == ""){
+			c = '0,0';
+		}else{
+			c = cityStr;
+		}
+                $.api.auth({
+                    method: 'Drivingposition',
+                    execute: 'SELECTw',
+                    compcode: userInfo.CompCode,//所属公司
+                    usercode: userInfo.UserCode,//人员编号
+                    search: c,
+                    type: 'before' //Before and after
+                }, function (data) {
+                    var v_day_bf_y //客户拜访数昨天
+                    var v_day_bf //客户拜访数今天
+                    var v_day_new_kh_y //新开客户数昨天
+                    var v_day_new_kh //新开客户数今天
+                    var v_day_y_dd //客户订单数昨天
+                    var v_day_dd //客户订单数今天
+                    var v_day_y_rz//工作日志昨天
+                    var v_day_rz//工作日志今天
+                    var v_day_kz_y //客户总数昨天
+                    var v_day_kz //客户总数今天
+                    var v_day_xl_y//销量昨天
+                    var v_day_xl//销量今天
+                    var day_bf_xl_y//拜访完成率昨天
+                    var day_bf_xl//拜访完成率今天
+
+                    //客户拜访数量
+                    if (data.items_w_y_day.length == "0") {
+                        day_q.innerHTML = "0";
+                        v_day_bf_y = "1";
+                    } else {
+                        day_q.innerHTML = data.items_w_y_day[0].qty;
+                        v_day_bf_y = data.items_w_y_day[0].qty;
+                    }
+
+                    if (data.items_w_day.length == "0") {
+                        day_i.innerHTML = "0";
+                        v_day_bf = "0"
+                    } else {
+                        day_i.innerHTML = data.items_w_day[0].qty;
+                        v_day_bf = data.items_w_day[0].qty;
+                    }
+                    day_l.innerHTML = ((parseFloat(v_day_bf) / parseFloat(v_day_bf_y) - 1) * 100).toFixed(2) + "%";
+                    //新开客户数
+                    if (data.items_kh_y_day.length == "0") {
+                        day_y_kh.innerHTML = "0";
+                        v_day_new_kh_y = "1";
+                    } else {
+                        day_y_kh.innerHTML = data.items_kh_y_day[0].Qty;
+                        v_day_new_kh_y = data.items_kh_y_day[0].Qty;
+                    }
+
+                    if (data.items_kh_day.length == "0") {
+                        day_kh.innerHTML = "0";
+                        v_day_new_kh = "0"
+                    } else {
+                        day_kh.innerHTML = data.items_kh_day[0].Qty;
+                        v_day_new_kh = data.items_kh_day[0].Qty;
+                    }
+
+                    day_kh_l.innerHTML = ((parseFloat(v_day_new_kh) / parseFloat(v_day_new_kh_y) - 1) * 100).toFixed(2) + "%";
+                    //客户订单数
+                    if (data.items_dd_y_day.length == "0") {
+                        day_y_dd.innerHTML = "0";
+                        v_day_y_dd = "1";
+                    } else {
+                        day_y_dd.innerHTML = data.items_dd_y_day[0].Qty;
+                        v_day_y_dd = data.items_dd_y_day[0].Qty;;
+                    }
+                    if (data.items_dd_day.length == "0") {
+                        day_dd.innerHTML = "0";
+                        v_day_dd = "0"
+                    } else {
+                        day_dd.innerHTML = data.items_dd_day[0].Qty;
+                        v_day_dd = data.items_dd_day[0].Qty;
+                    }
+
+                    day_dd_l.innerHTML = ((parseFloat(v_day_dd) / parseFloat(v_day_y_dd) - 1) * 100).toFixed(2) + "%";
+                    //工作日志
+                    if (data.items_rz_y_day.length == "0") {
+                        rz_y_day.innerHTML = "0";
+                        v_day_y_rz = "1";
+                    } else {
+                        rz_y_day.innerHTML = data.items_rz_y_day[0].Qty;
+                        v_day_y_rz = data.items_rz_y_day[0].Qty;
+                    }
+                    if (data.items_rz_day.length == "0") {
+                        rz_day.innerHTML = "0";
+                        v_day_rz = "0"
+                    } else {
+                        rz_day.innerHTML = data.items_rz_day[0].Qty;
+                        v_day_rz = data.items_rz_day[0].Qty
+                    }
+                    rz_day_l.innerHTML = ((parseFloat(v_day_rz) / parseFloat(v_day_y_rz) - 1) * 100).toFixed(2) + "%";
+                    //客户总数
+                    if (data.items_kz_y_day.length == "0") {
+                        rz_y_day.innerHTML = "0";
+                        v_day_kz_y = "1";
+                    } else {
+                        kz_y_day.innerHTML = data.items_kz_y_day[0].Qty;
+                        v_day_kz_y = data.items_kz_y_day[0].Qty;
+                    }
+                    if (data.items_kz_day.length == "0") {
+                        kz_day.innerHTML = "0";
+                        v_day_kz = "0";
+                    } else {
+                        kz_day.innerHTML = data.items_kz_day[0].Qty;
+                        v_day_kz = data.items_kz_day[0].Qty;
+                    }
+                    kz_day_l.innerHTML = ((parseFloat(v_day_kz) / parseFloat(v_day_kz_y) - 1) * 100).toFixed(2) + "%";
+                    //销量
+                    if (data.items_xl_y_day.length == "0") {
+                        day_xl_y.innerHTML = "0";
+                        v_day_xl_y = "1";
+                    } else {
+                        day_xl_y.innerHTML = data.items_xl_y_day[0].Qty;
+                        v_day_xl_y = data.items_xl_y_day[0].Qty;
+                    }
+                    if (data.items_xl_day.length == "0") {
+                        day_xl.innerHTML = "0";
+                        v_day_xl = "0";
+                    } else {
+                        day_xl.innerHTML = data.items_xl_day[0].Qty;
+                        v_day_xl = data.items_xl_day[0].Qty;
+                    }
+
+                    day_xl_l.innerHTML = ((parseFloat(v_day_xl) / parseFloat(v_day_xl_y) - 1) * 100).toFixed(2) + "%";
+                    //考勤
+                    if (data.items_kq_day.length == "0") {
+                        kq_kg.innerHTML = "0";
+                        kq_cd.innerHTML = "0";
+                        kq_zt.innerHTML = "0";
+                    } else {
+                        kq_kg.innerHTML = data.items_kq_day[0].kgqty;
+                        kq_cd.innerHTML = data.items_kq_day[0].cdqty;
+                        kq_zt.innerHTML = data.items_kq_day[0].ztqty;
+                    }
+
+                    //拜访完成率
+                    if (data.items_wc_y_day.length == "0") {
+                        day_bf_y.innerHTML = "0";
+                        day_bf_xl_y = "1";
+                    } else {
+                        day_bf_y.innerHTML = data.items_wc_y_day[0].Qty;
+                        day_bf_xl_y = data.items_wc_y_day[0].Qty;
+                    }
+                    if (data.items_wc_day.length == "0") {
+                        day_bf.innerHTML = "0";
+                        day_bf_xl = "0";
+                    } else {
+                        day_bf.innerHTML = data.items_wc_day[0].Qty;
+                        day_bf_xl = data.items_wc_day[0].Qty;
+                    }
+                    day_bf_l.innerHTML = (parseFloat(day_bf_xl) - parseFloat(day_bf_xl_y)).toFixed(2) + "%";
+                });
+            }
+
+            function get_statistics_m(cityStr) {
+		var c = '';
+		if(cityStr == null || cityStr == undefined || cityStr == ""){
+			c = '0,0';
+		}else{
+			c = cityStr;
+		}
+                $.api.auth({
+                    method: 'Drivingposition',
+                    execute: 'SELECTm',
+                    compcode: userInfo.CompCode,//所属公司
+                    usercode: userInfo.UserCode,//人员编号
+                    search: c,
+                    type: 'before' //Before and after
+                }, function (data) {
+                    var v_day_bf_y //客户拜访数昨天
+                    var v_day_bf //客户拜访数今天
+                    var v_day_new_kh_y //新开客户数昨天
+                    var v_day_new_kh //新开客户数今天
+                    var v_day_y_dd //客户订单数昨天
+                    var v_day_dd //客户订单数今天
+                    var v_day_y_rz//工作日志昨天
+                    var v_day_rz//工作日志今天
+                    var v_day_kz_y //客户总数昨天
+                    var v_day_kz //客户总数今天
+                    var v_day_xl_y//销量昨天
+                    var v_day_xl//销量今天
+                    var day_bf_xl_y//拜访完成率昨天
+                    var day_bf_xl//拜访完成率今天
+
+                    //客户拜访数量
+                    if (data.items_w_y_day.length == "0") {
+                        day_q.innerHTML = "0";
+                        v_day_bf_y = "1";
+                    } else {
+                        day_q.innerHTML = data.items_w_y_day[0].qty;
+                        v_day_bf_y = data.items_w_y_day[0].qty;
+                    }
+
+                    if (data.items_w_day.length == "0") {
+                        day_i.innerHTML = "0";
+                        v_day_bf = "0"
+                    } else {
+                        day_i.innerHTML = data.items_w_day[0].qty;
+                        v_day_bf = data.items_w_day[0].qty;
+                    }
+                    day_l.innerHTML = ((parseFloat(v_day_bf) / parseFloat(v_day_bf_y) - 1) * 100).toFixed(2) + "%";
+                    //新开客户数
+                    if (data.items_kh_y_day.length == "0") {
+                        day_y_kh.innerHTML = "0";
+                        v_day_new_kh_y = "1";
+                    } else {
+                        day_y_kh.innerHTML = data.items_kh_y_day[0].Qty;
+                        v_day_new_kh_y = data.items_kh_y_day[0].Qty;
+                    }
+
+                    if (data.items_kh_day.length == "0") {
+                        day_kh.innerHTML = "0";
+                        v_day_new_kh = "0"
+                    } else {
+                        day_kh.innerHTML = data.items_kh_day[0].Qty;
+                        v_day_new_kh = data.items_kh_day[0].Qty;
+                    }
+
+                    day_kh_l.innerHTML = ((parseFloat(v_day_new_kh) / parseFloat(v_day_new_kh_y) - 1) * 100).toFixed(2) + "%";
+                    //客户订单数
+                    if (data.items_dd_y_day.length == "0") {
+                        day_y_dd.innerHTML = "0";
+                        v_day_y_dd = "1";
+                    } else {
+                        day_y_dd.innerHTML = data.items_dd_y_day[0].Qty;
+                        v_day_y_dd = data.items_dd_y_day[0].Qty;;
+                    }
+                    if (data.items_dd_day.length == "0") {
+                        day_dd.innerHTML = "0";
+                        v_day_dd = "0"
+                    } else {
+                        day_dd.innerHTML = data.items_dd_day[0].Qty;
+                        v_day_dd = data.items_dd_day[0].Qty;
+                    }
+
+                    day_dd_l.innerHTML = ((parseFloat(v_day_dd) / parseFloat(v_day_y_dd) - 1) * 100).toFixed(2) + "%";
+                    //工作日志
+                    if (data.items_rz_y_day.length == "0") {
+                        rz_y_day.innerHTML = "0";
+                        v_day_y_rz = "1";
+                    } else {
+                        rz_y_day.innerHTML = data.items_rz_y_day[0].Qty;
+                        v_day_y_rz = data.items_rz_y_day[0].Qty;
+                    }
+                    if (data.items_rz_day.length == "0") {
+                        rz_day.innerHTML = "0";
+                        v_day_rz = "0"
+                    } else {
+                        rz_day.innerHTML = data.items_rz_day[0].Qty;
+                        v_day_rz = data.items_rz_day[0].Qty
+                    }
+                    rz_day_l.innerHTML = ((parseFloat(v_day_rz) / parseFloat(v_day_y_rz) - 1) * 100).toFixed(2) + "%";
+                    //客户总数
+                    if (data.items_kz_y_day.length == "0") {
+                        rz_y_day.innerHTML = "0";
+                        v_day_kz_y = "1";
+                    } else {
+                        kz_y_day.innerHTML = data.items_kz_y_day[0].Qty;
+                        v_day_kz_y = data.items_kz_y_day[0].Qty;
+                    }
+                    if (data.items_kz_day.length == "0") {
+                        kz_day.innerHTML = "0";
+                        v_day_kz = "0";
+                    } else {
+                        kz_day.innerHTML = data.items_kz_day[0].Qty;
+                        v_day_kz = data.items_kz_day[0].Qty;
+                    }
+                    kz_day_l.innerHTML = ((parseFloat(v_day_kz) / parseFloat(v_day_kz_y) - 1) * 100).toFixed(2) + "%";
+                    //销量
+                    if (data.items_xl_y_day.length == "0") {
+                        day_xl_y.innerHTML = "0";
+                        v_day_xl_y = "1";
+                    } else {
+                        day_xl_y.innerHTML = data.items_xl_y_day[0].Qty;
+                        v_day_xl_y = data.items_xl_y_day[0].Qty;
+                    }
+                    if (data.items_xl_day.length == "0") {
+                        day_xl.innerHTML = "0";
+                        v_day_xl = "0";
+                    } else {
+                        day_xl.innerHTML = data.items_xl_day[0].Qty;
+                        v_day_xl = data.items_xl_day[0].Qty;
+                    }
+
+                    day_xl_l.innerHTML = ((parseFloat(v_day_xl) / parseFloat(v_day_xl_y) - 1) * 100).toFixed(2) + "%";
+                    //考勤
+                    if (data.items_kq_day.length == "0") {
+                        kq_kg.innerHTML = "0";
+                        kq_cd.innerHTML = "0";
+                        kq_zt.innerHTML = "0";
+                    } else {
+                        kq_kg.innerHTML = data.items_kq_day[0].kgqty;
+                        kq_cd.innerHTML = data.items_kq_day[0].cdqty;
+                        kq_zt.innerHTML = data.items_kq_day[0].ztqty;
+                    }
+
+                    //拜访完成率
+                    if (data.items_wc_y_day.length == "0") {
+                        day_bf_y.innerHTML = "0";
+                        day_bf_xl_y = "1";
+                    } else {
+                        day_bf_y.innerHTML = data.items_wc_y_day[0].Qty;
+                        day_bf_xl_y = data.items_wc_y_day[0].Qty;
+                    }
+                    if (data.items_wc_day.length == "0") {
+                        day_bf.innerHTML = "0";
+                        day_bf_xl = "0";
+                    } else {
+                        day_bf.innerHTML = data.items_wc_day[0].Qty;
+                        day_bf_xl = data.items_wc_day[0].Qty;
+                    }
+                    day_bf_l.innerHTML = (parseFloat(day_bf_xl) - parseFloat(day_bf_xl_y)).toFixed(2) + "%";
+                });
+            }
+            //测算两个比例长度
+            //x 昨日
+            //y 今日
+           function calclen(x,y,obj){
+		if(x!=0||y!=0){
+			for(var i= 0;x>100||y>100;){
+				x=x/1.1;
+				y=y/1.1;
+			}	
+			for(var i= 0;x<60&&y<60;){
+				x=x*1.1;
+				y=y*1.1;
+			}
+		 }
+		xw = x;
+		yw = y;
+		if(x<1&&!x<=0){
+			xw = 1;
+		}
+		if(y<1&&!y<=0){
+			yw = 1;
+		}								
+		obj.getElementsByClassName("t1").item(0).style.width = xw+"%"; 
+		obj.getElementsByClassName("t2").item(0).style.width = yw+"%";
+	    }
+	    window.onload = function () {
+                calclen(9, 12, document.getElementsByClassName("case").item(0));
+                calclen(12, 9, document.getElementsByClassName("case").item(1));
+                calclen(100, 100, document.getElementsByClassName("case").item(2));
+                calclen(200, 400, document.getElementsByClassName("case").item(3));
+                calclen(400, 200, document.getElementsByClassName("case").item(4));
+                calclen(61, 62, document.getElementsByClassName("case").item(5));
+                calclen(1, 2000, document.getElementsByClassName("case").item(6));
+		get_statistics();
+				$("nav a").click(function(){
+					timer = $(this).attr("id");
+					$("nav a").removeClass("shel");
+					$(this).addClass("shel");
+					switch(timer){
+						case 'today':
+						    $(".yesterday label").text("昨天：");
+						    get_statistics();
+							break;
+						case 'weeken':
+						    $(".yesterday label").text("上周：");
+						    get_statistics_w();
+							break;
+						case 'month':
+						    $(".yesterday label").text("上月：");
+						    get_statistics_m();
+							break;
+					}
+				});
+				getCityAndProv(0,new Object());
+				document.getElementById("prov").onchange=function(){
+					getCityAndProv(this.value);
+				}
+				document.getElementById("getByCity").onclick = function(){
+					var cityId = document.getElementById("city").value;
+					var provId = document.getElementById("prov").value;
+					switch(timer){
+						case 'today':
+						   $(".yesterday label").text("昨天：");
+						    get_statistics(provId+','+cityId);
+							break;
+						case 'weeken':
+						    $(".yesterday label").text("上周：");
+						    get_statistics_w(provId+','+cityId);
+							break;
+						case 'month':
+						    $(".yesterday label").text("上月：");
+						    get_statistics_m(provId+','+cityId);
+							break;
+					}
+					
+					/**$.api.auth({
+						method: 'Drivingposition',
+						execute: 'SELECT',
+						compcode: userInfo.CompCode,//所属公司
+						usercode: userInfo.UserCode,//人员编号
+						search: provId+','+cityId,
+						type: 'before'
+					},function(data){
+						alert();
+					});**/
+				}
+				
+			}
+
+             //城市
+	     function getCityAndProv(provNumber,load){
+		$.api.auth({
+		        method: 'getCityAndProv',
+			compcode: userInfo.CompCode,//所属公司
+                        usercode: userInfo.UserCode,//人员编号
+			prov:provNumber,
+			type: 'before' //Before and after
+		  },function(data){
+			//clean
+			document.getElementById("city").innerHTML = "";
+			//document.getElementById("city").innerHTML = "<option value='0' >请选城市</option>";
+			if(load!=null){
+				for(var i = 0 ; i <data.items.length ;i++){
+				    var provSel = document.getElementById("prov");
+				    provSel.options.add(new Option(data.items[i].OrganizeName,data.items[i].OrganizeCode));
+				}
+			}
+			for(var i = 0 ; i<data.items_city.length ;i++){
+			    var citySel = document.getElementById("city");
+			    
+			    citySel.options.add(new Option(data.items_city[i].OrganizeName,data.items_city[i].OrganizeCode));
+			}
+		});
+	    }
+
+        </script>
+    </head>
+    <body>
+    	<div id="container" >
+			<header>
+				<form>
+						<select id="prov" >
+							<option value="0" >请选择省</option>
+						</select>
+						<select id="city" >
+							
+						</select>
+						<input type="button"  id="getByCity" value="提交查询" style="color:white;width:80px;background:#7B8C9E;color:white;border:none;cursor:pointer;" />
+				</form>
+			 	<nav>
+                    <a id="today" class="shel" >今日</a>
+                	<a id="weeken" >本周</a>
+                    <a id="month" >本月</a>                 
+                </nav>
+            </header>
+            <div id="content" >
+            	<!--客户拜访数-->
+                <a class="item" id=""  href="../mms/zhuomian">
+                    <h6>客户拜访数</h6>
+                    <i><span id="day_i"></span></i>
+                    <p class="yesterday">
+						<label>昨天：</label>
+						<span id="day_q"></span>
+					</p>
+                    <p>
+                        <div class="case">
+                            <div class="t1"></div>
+                            <div class="t2"></div>
+                        </div>
+                        <div class="percent">
+                            变化：<span id="day_l"></span>
+                        </div>
+                    </p>
+                </a>
+                <a class="item" id="" href="../mms/newkh">
+                    <h6>新开客户</h6>
+                    <i><span id="day_kh"></span></i>
+                    <p class="yesterday">
+						<label>昨天：</label>
+						<span id="day_y_kh"></span>
+					</p>
+                    <p>
+                        <div class="case">
+                            <div class="t1"></div>
+                            <div class="t2"></div>
+                        </div>
+                        <div class="percent">
+                            变化：<span id="day_kh_l"></span>
+                        </div>
+                    </p>
+                </a>
+                <a class="item" id="" href="../mms/orderq">
+                    <h6>客户订单</h6>
+                    <i><span id="day_dd"></span></i>
+                    <p class="yesterday">
+						<label>昨天：</label>
+						<span id="day_y_dd"></span>
+					</p>
+                    <p>
+                        <div class="case">
+                            <div class="t1"></div>
+                            <div class="t2"></div>
+                        </div>
+                        <div class="percent">
+                            变化：<span id="day_dd_l"></span>
+                        </div>
+                    </p>
+                </a>
+                <a class="item" id="" href="../mms/gzlog">
+                    <h6>工作日志</h6>
+                    <i><span id="rz_day"></span></i>
+                    <p class="yesterday">
+						<label>昨天：</label>
+						<span id="rz_y_day"></span>
+					</p>
+                    <p>
+                        <div class="case">
+                            <div class="t1"></div>
+                            <div class="t2"></div>
+                        </div>
+                        <div class="percent">
+                            变化：<span id="rz_day_l"></span>
+                        </div>
+                    </p>
+                </a>
+                
+                <div class="item" id="" >
+                	<h6>客户拜访完成率</h6>
+                    <i><span id="day_bf"></span>%</i>
+                    <p class="yesterday" >
+						<label>昨天：</label>
+						<span id="day_bf_y"></span>%
+					</p>
+                    <p>
+                        <div class="case" >
+                        	<div class="t1" ></div>
+                        	<div class="t2" ></div>
+                        </div>
+                        <div class="percent" >
+                        	变化：<span id="day_bf_l"></span>
+                        </div>
+                    </p>
+                </div>
+                <a class="item" id="" href="../mms/newkh">
+                    <h6>客户总数</h6>
+                    <i><span id="kz_day"></span></i>
+                    <p class="yesterday">
+						<label>昨天：</label>
+						<span id="kz_y_day"></span>
+					</p>
+                    <p>
+                        <div class="case">
+                            <div class="t1"></div>
+                            <div class="t2"></div>
+                        </div>
+                        <div class="percent">
+                            变化：<span id="kz_day_l"></span>
+                        </div>
+                    </p>
+                </a>
+                <a class="item" id="" href="../mms/ordersale">
+                    <h6>销量</h6>
+                    <i><span id="day_xl"></span></i>
+                    <p class="yesterday">
+						<label>昨天：</label>
+						<span id="day_xl_y"></span>
+					</p>
+                    <p>
+                        <div class="case">
+                            <div class="t1"></div>
+                            <div class="t2"></div>
+                        </div>
+                        <div class="percent">
+                            变化：<span id="day_xl_l"></span>
+                        </div>
+                    </p>
+                </a>
+                <div class="item" id="sj" >
+                	<h6>考勤人数</h6>
+                    <p>旷工：<i><span id="kq_kg"></span></i></p>
+                    <p>迟到：<i><span id="kq_cd"></span></i></p>
+                    <p>早退： <i><span id="kq_zt"></span></i></p>
+                </div>
+                
+            </div>
+     
+            <footer>
+            	*灰色为以前数据，橙色为当前数据
+            </footer>
+            
+        </div>
+        <div id="view">
+            <div id="main" style="width:600px;height:300px;"></div>
+            <button id="close">关闭</button>
+        </div>
+    </body>
+
+</html>

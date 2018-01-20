@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Form Connection="LUOLAI1401Context" Table="HR_CertLoans" IsView="False" FilterTreeBindField="FID" TreeGridIdField="FID" TreeGridNameField="FID" TreeGridParentIdField="FID">
+  <SubTables />
+  <SaveProducre />
+  <Buttons />
+  <GroupFilters />
+  <Fields>
+    <Field Table="HR_CertLoans" Field="FID" DbType="bigint" Required="True" ListVisible="True" FormVisible="True" ControlType="AutoId" ReadOnly="True" Title="流水号">
+      <CascadeFilter />
+    </Field>
+    <Field Table="HR_CertLoans" Field="CID" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="证书流水号">
+      <CascadeFilter />
+    </Field>
+    <Field Table="HR_CertLoans" Field="CustID" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="借用人（单位）">
+      <CascadeFilter />
+    </Field>
+    <Field Table="HR_CertLoans" Field="loanDate" DbType="datetime" Required="True" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="借出时间">
+      <CascadeFilter />
+    </Field>
+    <Field Table="HR_CertLoans" Field="UpdateDate" DbType="datetime" Required="True" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="最近一次更新时间">
+      <CascadeFilter />
+    </Field>
+    <Field Table="HR_CertLoans" Field="CreateDate" DbType="datetime" Required="True" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="创建时间">
+      <CascadeFilter />
+    </Field>
+    <Field Table="HR_CertLoans" Field="CreatePerson" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="创建人">
+      <CascadeFilter />
+    </Field>
+    <Field Table="HR_CertLoans" Field="Scan" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="附件">
+      <CascadeFilter />
+    </Field>
+    <Field Table="HR_CertLoans" Field="Remark" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="备注">
+      <CascadeFilter />
+    </Field>
+    <Field Table="HR_CertLoans" Field="Receiver" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="签收人">
+      <CascadeFilter />
+    </Field>
+    <Field Table="HR_CertLoans" Field="returnDate" DbType="datetime" Required="True" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="归还时间">
+      <CascadeFilter />
+    </Field>
+  </Fields>
+</Form>

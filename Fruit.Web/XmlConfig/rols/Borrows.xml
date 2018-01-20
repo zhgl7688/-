@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Form Connection="LUOLAI1401Context" Table="HR_Borrows" IsView="False" FilterTreeBindField="FID" TreeGridIdField="FID" TreeGridNameField="FID" TreeGridParentIdField="FID">
+  <SubTables />
+  <SaveProducre />
+  <Buttons />
+  <GroupFilters />
+  <Fields>
+    <Field Table="HR_Borrows" Field="FID" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="AutoId" ReadOnly="True" ControlValue="序号" Title="流水号">
+      <CascadeFilter />
+    </Field>
+    <Field Table="HR_Borrows" Field="BorrowDate" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="Date" Title="日期" Searchable="True">
+      <CascadeFilter />
+    </Field>
+    <Field Table="HR_Borrows" Field="CustID" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="Dropdown" ControlValue="社保类别" Title="单位" Searchable="True">
+      <CascadeFilter />
+    </Field>
+    <Field Table="HR_Borrows" Field="BorrowName" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="Dropdown" Title="证书名称" Searchable="True" ControlValue="人员企业证书">
+      <CascadeFilter />
+    </Field>
+    <Field Table="HR_Borrows" Field="Used" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="用途">
+      <CascadeFilter />
+    </Field>
+    <Field Table="HR_Borrows" Field="BorrowPerson" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="借用人签名">
+      <CascadeFilter />
+    </Field>
+    <Field Table="HR_Borrows" Field="BorrowPhone" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="联系方式">
+      <CascadeFilter />
+    </Field>
+    <Field Table="HR_Borrows" Field="ReturePerson" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="Date" Title="归还日期">
+      <CascadeFilter />
+    </Field>
+    <Field Table="HR_Borrows" Field="CreateDate" DbType="datetime" Required="False" ListVisible="False" FormVisible="True" ControlType="Date" ReadOnly="True" Title="创建日期">
+      <CascadeFilter />
+    </Field>
+    <Field Table="HR_Borrows" Field="CreatePerson" DbType="varchar" Required="False" ListVisible="False" FormVisible="True" ControlType="TextBox" ReadOnly="True" Title="创建人">
+      <CascadeFilter />
+    </Field>
+    <Field Table="HR_Borrows" Field="UpdateDate" DbType="datetime" Required="False" ListVisible="False" FormVisible="True" ControlType="Date" ReadOnly="True" Title="更改日期">
+      <CascadeFilter />
+    </Field>
+  </Fields>
+</Form>

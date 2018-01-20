@@ -1,0 +1,148 @@
+﻿@section scripts {
+<script src="~/Content/easyui/datagrid-detailview.js"></script>
+<script type="text/javascript">
+   var detailOnExpandRowthree2 = function(index,row){ fruit.ExpandChildrenTable(this, '/api/Put/Threeform/Loadthree3', 'childTable_three3', 'three2', index, row, {pid:'gid',id:'pid'}); };
+    detailOnExpandRowthree2.options = {};
+    var data = @MvcHtmlString.Create(JsonExtension.ToJson(Model));
+    $(function(){
+        var db = fruit.databind.root;
+        $.extend(db.options, {
+            removeRowthree2Click: function(){
+                db.binds.listthree2.delete();
+            }
+        });
+        $.extend(db.options, {
+            addRowthree2Click: function(){
+                db.binds.listthree2.add();
+            }
+        });
+        $.extend(detailOnExpandRowthree2.options, {
+            removeRowthree3Click: function(){
+                this.invoke('delete');
+            }
+        });
+        $.extend(detailOnExpandRowthree2.options, {
+            addRowthree3Click: function(){
+                this.invoke('add');
+            }
+        });
+        data.form._row_state = @ViewBag.RowState;
+        db.loadData(data);
+        function loadDetial(){
+            fruit.ajax({method:'get', url:'/api/Put/Threeform/getdetial/'+data.form["id"],success:function(data){for(var key in data){$('[data-subtable=' + key + ']').datagrid('loadData', data[key]);}}});
+        }
+        loadDetial();
+        $.extend(db, {
+            refreshClick:function(){
+                location.assign(top.$(window.frameElement).data('src'));
+            },
+            rejectClick:function(){
+                location.assign(top.$(window.frameElement).data('src'));
+            },
+            newClick:function(){
+                fruit.ajax({
+                        url:'/api/Put/Threeform/Newid',
+                        success:function(data) {
+                            parent.changeDocTab(window.frameElement, '/Put/Threeform/edit/' + data);
+                        }
+                    })
+            },
+            deleteClick:function(){
+                $.messager.confirm('确认', '您确认要删除当前记录吗？', function(r){
+                    if(r){
+                        fruit.ajax({
+                            method:'DELETE',
+                            url: '/api/Put/Threeform/'+db.getData('form').id,
+                            success: function(data) {
+                                fruit.message('success', '删除成功');
+                                top.closeDocTab(window.frameElement);
+                            }
+                        });
+                    }
+                });
+            },
+            saveClick:function(){
+                if(!db.validate()){fruit.message('error', '请更正验证错误！'); return;}
+                var data = db.getData();
+                data.three2 = $('[data-subtable="three2"]').datagrid('getChangeRows');
+                data.three3 = [];
+                $('[data-subtable="three3"]').each(function(){
+                    fruit.databind.get(this).validate();
+                    data.three3 = data.three3.concat($(this).datagrid('getChangeRows'));
+                });
+                fruit.ajax({
+                    url: '/api/Put/Threeform/',
+                    data: JSON.stringify(data),
+                    success:function(result){
+                        if(result && result.success){
+                            fruit.message('success', '保存成功');
+                            if(result.form){
+                                db.loadData(result);
+                                loadDetial();
+                            }
+                        }
+                    }
+                });
+            }
+        });
+    });
+</script>
+}
+
+
+<div class="z-toolbar">
+    <a id="a_save" href="#" plain="true" class="easyui-linkbutton" icon="icon-save" data-bind="click:'saveClick',disable:'readonly'" title="保存">保存</a>
+    <a id="a_undo" href="#" plain="true" class="easyui-linkbutton" icon="icon-undo" data-bind="click:'rejectClick',disable:'readonly'" title="撤消">撤消</a>
+    <div class="datagrid-btn-separator"></div>
+    <a id="a_other" href="#" class="easyui-splitbutton" data-options="menu:'#divother',iconCls:'icon-application_go'" title="其他">其他</a>
+</div>
+
+<div id="divother" style="width:100px; display:none;">
+    <div data-options="iconCls:'icon-add'" data-bind="click:'newClick'">新增</div>
+    <div data-options="iconCls:'icon-cross'" data-bind="click:'deleteClick'">删除</div>
+    <div data-options="iconCls:'icon-arrow_refresh'" data-bind="click:'refreshClick'">刷新</div>
+</div>
+
+<div id="divrelations" style="width:100px; display:none;"></div>
+<div id="master" class="container_12" data-bind="inputwidth:0.9">
+<input type="hidden" data-bind="value:'form._row_state'" />
+    <div class="grid_1 lbl">id</div>
+   <div class="grid_3 val"><input type="text" data-bind="value:'form.id', readOnly:true" class="z-txt readonly" /></div>
+    <div class="grid_1 lbl">name</div>
+   <div class="grid_3 val"><input type="text" data-bind="value:'form.name'" class="easyui-validatebox z-txt" data-options="required:false" /></div>
+
+    <div class="clear"></div>
+
+</div>
+<div id="tt" class="easyui-tabs">
+    <div title="three2">
+        <table id="listthree2" data-subtable="three2" data-bind="datagrid:'grid'" data-options="'toolbar':'#gridtbthree2','showFooter':false,'border':false,'editMode':'select','singleSelect':true,'fitColumns':true,'view':detailview,'detailFormatter':function(){return '<div style=padding:2px class=children-table></div>';},'onExpandRow':detailOnExpandRowthree2">
+            <thead>
+                <tr>
+    <th field="id">id    </th>
+    <th field="name" data-options="editor:{type:'validatebox',options:{required:false}}">name    </th>
+                </tr>
+            </thead>
+        </table>
+
+        <div id="gridtbthree2">
+            <a href="#" class="easyui-linkbutton" data-options="iconCls:'icon-search',plain:true" data-bind="click:'addRowthree2Click',disable:'readonly'">增加</a>
+            <a href="#" class="easyui-linkbutton" data-options="iconCls:'icon-remove',plain:true" data-bind="click:'removeRowthree2Click',disable:'readonly'">删除</a>
+        </div>
+    </div>
+<script id="childTable_three3" type="text/template">
+        <table id="listthree3" data-subtable="three3" data-bind="datagrid:'grid'" data-options="'fixSize':{w:6,h:'auto'},'toolbar':'#gridtbthree3','showFooter':false,'border':false,'editMode':'select','singleSelect':true,'fitColumns':true">
+            <thead>
+                <tr>
+    <th field="id">id    </th>
+    <th field="name" data-options="editor:{type:'validatebox',options:{required:false}}">name    </th>
+                </tr>
+            </thead>
+        </table>
+
+        <div id="gridtbthree3">
+            <a href="#" class="easyui-linkbutton" data-options="iconCls:'icon-search',plain:true" data-bind="click:'addRowthree3Click',disable:'readonly'">增加</a>
+            <a href="#" class="easyui-linkbutton" data-options="iconCls:'icon-remove',plain:true" data-bind="click:'removeRowthree3Click',disable:'readonly'">删除</a>
+        </div>
+</script>
+</div>

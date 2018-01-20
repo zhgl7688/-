@@ -1,0 +1,165 @@
+﻿@{
+    ViewBag.Title = "Index";
+}
+
+@section scripts{
+    <script type="text/javascript">
+        window.treeLoadFilter = fruit.tree.createLoadFilter("MenuCode", "ParentCode", function (row) {
+            row._id = row.MenuCode;
+            row._parentId = row.ParentCode;
+            row.iconCls = row.IconClass;
+        }, "", "0");
+        var formatterEnable = function (value, row) { return '<img src="/Content/images/' + ((value || '').toString() == "true" ? "checkmark.gif" : "checknomark.gif") + '"/>'; };
+        var formatterParent = function (value, row) { return row.ParentName };
+        var formatterButton = function (value, row) { return (row.URL && row.URL != '#') ? '<a href="#" onclick="setButton(\'' + row.MenuCode + '\')"><span class="icon icon-set2">&nbsp;</span>[设置按钮]</a>' : ''; };
+
+        function setButton(menuCode) {
+            var dialog = $('<div></div>').html($('#button-template').html());
+            var bindContext = new fruit.databind(dialog, {
+                urlArgs:'/'+menuCode,
+                idField: 'ButtonCode',
+                confirmClick: function(){
+                    bindContext.invoke('save');
+                },
+                cancelClick: function(){
+                    dialog.dialog('close');
+                },
+                manageClick: function() {
+                    manageButton(bindContext);
+                },
+                onSave: function(){                    
+                    dialog.dialog('close');
+                }
+            });
+            dialog.dialog({ title: '页面按钮', cache: false, modal: true, width: 500, height: 400 });
+        }
+
+        function manageButton(parentBindContext) {
+            var manageDialog = $('<div></div>').html($('#manage-template').html());
+            var bindContext = new fruit.databind(manageDialog,{
+                idField: 'ButtonCode',
+                toolbar:[
+                    {text:'新增', iconCls: 'icon-add1', handler: function(){bindContext.invoke('add');}},
+                    {text:'编辑', iconCls: 'icon-edit', handler: function(){bindContext.invoke('edit');}},
+                    {text:'删除', iconCls: 'icon-cross', handler: function(){bindContext.invoke('delete');}},
+                ],
+                cancelClick: function(){
+                    manageDialog.dialog('close');
+                },
+                confirmClick: function() {
+                    bindContext.invoke('save', function(){                        
+                        manageDialog.dialog('close');
+                        parentBindContext.invoke('refresh');
+                    });
+                }
+            });
+            manageDialog.dialog({ title: '管理按钮库', cache: false, modal: true, width: 600, height: 400 });
+        }
+    </script>
+}
+
+    @Html.Toolbar(b =>
+        b.AddButton("btnRefresh", "icon-arrow_refresh", "刷新", "refresh")
+            .AddButton("btnAdd", "icon-add", "新增", "add")
+            .AddButton("btnEdit", "icon-edit", "编辑", "edit")
+            .AddButton("btnDelete", "icon-cross", "删除", "delete")
+            .AddButton("btnSave", "icon-save", "保存", "save")
+    )
+
+    @Html.TreeGrid(b =>{
+            b.Id("gridlist");
+            b.DataBind()
+            .Data("options", "loadFilter:treeLoadFilter,url:'/api/sys/menu/getall',saveUrl:'/api/sys/menu/save',idField:'MenuCode',treeField:'MenuName',parentField:'ParentCode', parentNameField:'ParentName', fixSize:{w:4, h:40}")
+            .RowNumbers(true)
+            .AddHiddenColumn("_id")
+            .AddColumn("MenuName", "菜单名称", width: 150, editor: "{type:'validatebox',options:{required: true }}")
+            .AddColumn("MenuCode", "编码", width: 80, editor: "{type:'validatebox',options:{required: true }}")
+            .AddColumn("ParentCode", "上级菜单", width: 150, editor: "combotree", formatter:"formatterParent")
+            .AddColumn("IconClass", "图标", width: 180, editor: "{type:'icons'}")
+            .AddColumn("URL", "链接地址", width: 180, editor: "text")
+            .AddColumn("IsVisible", "是否可见", align: "center", width: 60, editor: "{type: 'checkbox',options: {on: true,off: false}}", formatter: "formatterEnable")
+            .AddColumn("IsEnable", "是否启用", align: "center", width: 60, editor: "{type: 'checkbox',options: {on: true,off: false}}", formatter: "formatterEnable")
+            .AddColumn("MenuSeq", "排序", align: "right", width: 50, editor: "text")
+            .AddColumn("Button", "页面按钮", align: "center", width: 100, formatter: "formatterButton");
+        }
+    )
+
+
+
+
+<script type="text/html" id="button-template">
+    <div style="margin:5px;height:320px;overflow:auto;">
+        <style type="text/css">
+            .listview {
+                margin: 0 !important;
+            }
+
+                .listview li {
+                    width: 100px !important;
+                    background-color: #ECECFF !important;
+                    float: left;
+                    margin: 3px;
+                    overflow: hidden;
+                }
+
+                .listview span {
+                    font-size: 14px !important;
+                    height: auto !important;
+                    white-space: nowrap;
+                }
+
+                .listview .icon:before {
+                    content: "" !important;
+                }
+        </style>
+
+        <div style="border-bottom:1px solid #CCC; margin-bottom:5px;">
+            <span class="icon32 icon-settings32" style="padding-left:48px;font-weight:bold; font-size:14px;color:#666;">请选择页面按钮</span>
+        </div>
+
+        <div class="metrouicss">
+            <label class="input-control checkbox" style="margin-top:6px;margin-left:3px;">
+                <input type="checkbox" data-bind="checked:'checkAll'"><span class="helper">全选</span>
+            </label>
+            <button class="image-button standart fg-color-white" style="float:right" data-bind="click:'manageClick'">
+                <i class="icon-grid-view bg-color-green"></i>
+                管理按钮库
+            </button>
+            <ul class="listview" data-bind="checklist,url:'/api/sys/menu/getbuttons',saveUrl:'/api/sys/menu/savebuttons'" style="clear:both">
+                <li><span class="icon" data-bind="text:'ButtonName',css:'ButtonIcon'"></span></li>
+            </ul>
+        </div>
+
+    </div>
+    <div style="text-align:center;">
+        <a class="easyui-linkbutton" data-options="iconCls:'icon-ok'" data-bind="click:'confirmClick'" href="javascript:void(0)">确定</a>
+        <a class="easyui-linkbutton" data-options="iconCls:'icon-cancel'" data-bind="click:'cancelClick'" href="javascript:void(0)">取消</a>
+    </div>
+</script>
+
+<script type="text/html" id="manage-template">
+    <style type="text/css">
+        .datagrid-wrap {
+            border-width: 0 0 1px 0;
+        }
+
+        .datagrid-toolbar {
+            background-color: #E0ECFF !important;
+        }
+    </style>
+
+    <table data-bind="datagrid,url:'/api/sys/menu/buttons',saveUrl:'/api/sys/menu/saveallbuttons'" idfield="ButtonCode" rownumbers="true" style="height:325px;">
+        <thead>
+        <th field="ButtonCode" align="left" editor="{type:'validatebox',options:{required:true}}" width="80">编码   </th>
+        <th field="ButtonName" align="left" editor="{type:'validatebox',options:{required:true}}" width="70">名称   </th>
+        <th field="ButtonIcon" align="left" editor="{type:'validatebox',options:{required:true}}" width="120">图标   </th>
+        <th field="ButtonSeq" align="left" editor="text" width="50">排序   </th>
+        <th field="Description" align="left" editor="text" width="200">备注说明   </th>
+        </thead>
+    </table>
+
+    <div style="text-align:center;margin:5px;">
+        <a class="easyui-linkbutton" data-options="iconCls:'icon-ok'" data-bind="click:'confirmClick'" href="javascript:void(0)">确定</a>
+        <a class="easyui-linkbutton" data-options="iconCls:'icon-cancel'" data-bind="click:'cancelClick'" href="javascript:void(0)">取消</a>
+    </div>
+</script> 

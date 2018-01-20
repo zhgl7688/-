@@ -1,0 +1,100 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    @*<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />*@
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="renderer" content="webkit" />
+    @*<meta name="viewport" content="width=device-width, initial-scale=1.0">*@
+ 
+    <title>  @WebApp.Parameters.SYS_NAME</title>
+
+    <!--EasyUI 样式引用-->
+    <link href="~/Content/easyui/themes/default/easyui.css" rel="stylesheet" />
+    <link href="~/Content/jquery-notify/notify.min.css" rel="stylesheet" />
+    <!--引用图标集-->
+    <link href="~/Content/icon/icon.css" rel="stylesheet" />
+
+    <link href="~/Content/js/jquery-plugin/jquery-ui/css/jquery-ui.css" rel="stylesheet" />
+    <link href="~/Content/js/jquery-plugin/daterange/jquery.daterange.css" rel="stylesheet" />
+    <!--站点样式引用-->
+    <link href="~/Content/fruit.css" rel="stylesheet" />
+    @RenderSection("head", required: false)
+</head>
+<body class="easyui-layout" fit="true" scroll="no" style="overflow-x:hidden;overflow-y:auto;height:100%;position:relative;z-index:0;">
+
+    @RenderBody()
+    <div id="notification" style="z-index:1000;top:0;position:absolute;left:50%;margin:20px 0 0 -120px;width:240px;"></div>
+
+    <script src="~/Content/easyui/jquery.min.js"></script>
+    <script src="~/Content/easyui/jquery.easyui.min.js"></script>
+    <script src="~/Content/easyui/locale/easyui-lang-zh_CN.js"></script>
+
+    <script src="~/Content/js/jquery-plugin/jquery-ui/js/jquery-ui-datepick.min.js"></script>
+    <script src="~/Content/js/jquery-plugin/daterange/jquery.daterange.js"></script> 
+    <script src="~/Content/jquery-notify/jquery-notify.min.js"></script>
+    <script src="~/Content/js/main.js"></script>
+    <script src="~/Content/js/fruit.js"></script>
+     
+
+ 
+    <script type="text/javascript">
+        $('.easyui-tabs1').tabs({
+            tabHeight: 44,
+            onSelect: function (title, index) {
+                var currentTab = $('.easyui-tabs1').tabs("getSelected");
+                if (currentTab.find("iframe") && currentTab.find("iframe").size()) {
+                    currentTab.find("iframe").attr("src", currentTab.find("iframe").attr("src"));
+                }
+            }
+        })
+        $(window).resize(function () {
+            $('.tabs-panels').height($("#pf-page").height() - 46);
+            $('.panel-body').height($("#pf-page").height() - 76)
+        }).resize();
+
+        var page = 0,
+            pages = ($('.pf-nav').height() / 70) - 1;
+
+        if (pages === 0) {
+            $('.pf-nav-prev,.pf-nav-next').hide();
+        }
+        $(document).on('click', '.pf-nav-prev,.pf-nav-next', function () {
+
+
+            if ($(this).hasClass('disabled')) return;
+            if ($(this).hasClass('pf-nav-next')) {
+                page++;
+                $('.pf-nav').stop().animate({ 'margin-top': -70 * page }, 200);
+                if (page == pages) {
+                    $(this).addClass('disabled');
+                    $('.pf-nav-prev').removeClass('disabled');
+                } else {
+                    $('.pf-nav-prev').removeClass('disabled');
+                }
+
+            } else {
+                page--;
+                $('.pf-nav').stop().animate({ 'margin-top': -70 * page }, 200);
+                if (page == 0) {
+                    $(this).addClass('disabled');
+                    $('.pf-nav-next').removeClass('disabled');
+                } else {
+                    $('.pf-nav-next').removeClass('disabled');
+                }
+
+            }
+        })
+
+
+    </script>
+
+    
+
+
+
+
+    @RenderSection("scripts", required: false)
+</body>
+</html>

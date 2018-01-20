@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Form Connection="LUOLAI1401Context" Table="wq_plan" Filter="a.CompCode= '{USER.CompCode}'">
+  <SubTables />
+  <SaveProducre />
+  <Buttons />
+  <Fields>
+    <Field Table="wq_plan" Field="UserCode" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="PopupSelect" Title="业务员" FieldType="varchar" ControlValue="用户选择" ColumnWidth="80" Searchable="True" />
+    <Field Table="wq_plan" Field="Month" DbType="char" Required="False" ListVisible="True" FormVisible="True" ControlType="Dropdown" Title="月份" FieldType="varchar" ControlValue="月份" ColumnWidth="80" Searchable="True" />
+    <Field Table="wq_plan" Field="SellAmt" DbType="numeric" Required="False" ListVisible="True" FormVisible="True" ControlType="NumberBox" Title="销售计划" FieldType="varchar" ColumnWidth="100" />
+    <Field Table="wq_plan" Field="IncomeAmt" DbType="numeric" Required="False" ListVisible="True" FormVisible="True" ControlType="NumberBox" Title="回款计划" FieldType="varchar" ColumnWidth="100" />
+    <Field Table="wq_plan" Field="CompCode" DbType="varchar" Required="False" ListVisible="False" FormVisible="False" ControlType="Dropdown" Title="所属公司" FieldType="varchar" ControlValue="所属公司" DefaultValue="{USER.CompCode}" ColumnWidth="200" />
+    <Field Table="wq_plan" Field="Remark" DbType="varchar" Required="False" ListVisible="False" FormVisible="True" ControlType="MultiTextBox" Title="备注" FieldType="text" />
+    <Field Table="wq_plan" Field="CreatePerson" DbType="varchar" Required="False" ListVisible="False" FormVisible="True" ControlType="TextBox" ReadOnly="True" Title="创建人" FieldType="varchar" />
+    <Field Table="wq_plan" Field="CreateDate" DbType="datetime" Required="False" ListVisible="False" FormVisible="True" ControlType="Date" ReadOnly="True" Title="创建日期" FieldType="datetime" Searchable="True" />
+    <Field Table="wq_plan" Field="UpdatePerson" DbType="varchar" Required="False" ListVisible="False" FormVisible="True" ControlType="TextBox" ReadOnly="True" Title="更改人" FieldType="varchar" />
+    <Field Table="wq_plan" Field="UpdateDate" DbType="datetime" Required="False" ListVisible="False" FormVisible="True" ControlType="Date" ReadOnly="True" Title="更改日期" FieldType="datetime" />
+    <Field Connection="LUOLAI1401Context" Table="wq_plan" ControlType="AutoId" ControlValue="序号" FieldType="varchar" Title="ID" Field="id" DbType="varchar" />
+  </Fields>
+  <GroupFilters />
+</Form>

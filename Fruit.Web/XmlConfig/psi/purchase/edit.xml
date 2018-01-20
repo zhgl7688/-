@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Form Connection="LUOLAI1401Context" Table="wq_dealerInfo">
+  <Fields>
+    <Field Table="sys_organizeRoleMap" Field="ID" Required="True" ListVisible="True" FormVisible="True" ControlType="AutoId" Title="红参" />
+    <Field Table="sys_organizeRoleMap" Field="OrganizeCode" Required="True" ListVisible="True" FormVisible="True" ControlType="TextBox" />
+    <Field Table="sys_organizeRoleMap" Field="RoleCode" Required="True" ListVisible="True" FormVisible="True" ControlType="TextBox" />
+    <Field Connection="LUOLAI1401Context" Table="wq_dealerInfo" Field="CompCode" Required="False" ListVisible="True" FormVisible="True" ControlType="AutoId" Title="所属公司" />
+    <Field Connection="LUOLAI1401Context" Table="wq_dealerInfo" Field="DealerCode" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="客户编号" />
+    <Field Connection="LUOLAI1401Context" Table="wq_dealerInfo" Field="DealerName" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="客户名称" />
+    <Field Connection="LUOLAI1401Context" Table="wq_dealerInfo" Field="Address" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="地址" />
+    <Field Connection="LUOLAI1401Context" Table="wq_dealerInfo" Field="Contact1" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="联系人1" ControlValue="at001" />
+    <Field Connection="LUOLAI1401Context" Table="wq_dealerInfo" Field="Tel1" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="联系电话1" />
+    <Field Connection="LUOLAI1401Context" Table="wq_dealerInfo" Field="Mobile1" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="手机1" />
+    <Field Connection="LUOLAI1401Context" Table="wq_dealerInfo" Field="Contact2" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="联系人2" />
+    <Field Connection="LUOLAI1401Context" Table="wq_dealerInfo" Field="Tel2" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="联系电话2" />
+    <Field Connection="LUOLAI1401Context" Table="wq_dealerInfo" Field="Mobile2" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="手机2" />
+    <Field Connection="LUOLAI1401Context" Table="wq_dealerInfo" Field="Long" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="位置（经度）" />
+    <Field Connection="LUOLAI1401Context" Table="wq_dealerInfo" Field="Lat" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="位置（纬度）" />
+    <Field Connection="LUOLAI1401Context" Table="wq_dealerInfo" Field="DealerType" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="客户类型" />
+    <Field Connection="LUOLAI1401Context" Table="wq_dealerInfo" Field="DealerStatus" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="客户状态" />
+    <Field Connection="LUOLAI1401Context" Table="wq_dealerInfo" Field="UserCode" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="所属业务员" />
+    <Field Connection="LUOLAI1401Context" Table="wq_dealerInfo" Field="Remark" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="备注" />
+    <Field Connection="LUOLAI1401Context" Table="wq_dealerInfo" Field="CreatePerson" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="创建人" />
+    <Field Connection="LUOLAI1401Context" Table="wq_dealerInfo" Field="CreateDate" Required="False" ListVisible="True" FormVisible="True" ControlType="Date" Title="创建时间" />
+    <Field Connection="LUOLAI1401Context" Table="wq_dealerInfo" Field="UpdatePerson" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="最后修改人" />
+    <Field Connection="LUOLAI1401Context" Table="wq_dealerInfo" Field="UpdateDate" Required="False" ListVisible="True" FormVisible="True" ControlType="Date" Title="最后修改时间" />
+  </Fields>
+  <SubTables />
+</Form>

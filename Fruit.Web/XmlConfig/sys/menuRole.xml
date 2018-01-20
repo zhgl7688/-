@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Form Connection="LUOLAI1401Context" Table="sys_roleMenuMap_app">
+  <SubTables>
+    <Table Table="sys_menu_app" Filter="">
+      <Rels>
+        <FieldRel RelField="MenuCode" MainField="MenuCode" />
+      </Rels>
+      <Fields>
+        <Field Table="sys_menu_app" Field="MenuName" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="模块名称" />
+        <Field Table="sys_menu_app" Field="MenuSeq" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="模块序列" />
+        <Field Table="sys_menu_app" Field="MenuUrl" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="模块链接" />
+        <Field Table="sys_menu_app" Field="Icons" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="图标" />
+        <Field Table="sys_menu_app" Field="Description" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="部门" />
+        <Field Table="sys_menu_app" Field="IsVisible" DbType="bit" Required="False" ListVisible="True" FormVisible="True" ControlType="CheckBox" Title="是否隐藏" />
+        <Field Table="sys_menu_app" Field="IsEnable" DbType="bit" Required="False" ListVisible="True" FormVisible="True" ControlType="CheckBox" Title="是否启用" />
+        <Field Table="sys_menu_app" Field="CreatePerson" DbType="varchar" Required="False" ListVisible="False" FormVisible="True" ControlType="TextBox" ReadOnly="True" Title="创建人" />
+        <Field Table="sys_menu_app" Field="CreateDate" DbType="datetime" Required="False" ListVisible="False" FormVisible="True" ControlType="Date" ReadOnly="True" Title="创建日期" />
+        <Field Table="sys_menu_app" Field="UpdatePerson" DbType="varchar" Required="False" ListVisible="False" FormVisible="True" ControlType="TextBox" ReadOnly="True" Title="更改人" />
+        <Field Table="sys_menu_app" Field="UpdateDate" DbType="datetime" Required="False" ListVisible="False" FormVisible="True" ControlType="Date" ReadOnly="True" Title="更改日期" />
+        <Field Table="sys_menu_app" Field="id" DbType="varchar" Required="False" ListVisible="False" FormVisible="False" ControlType="AutoId" Title="ID" />
+      </Fields>
+    </Table>
+  </SubTables>
+  <SaveProducre />
+  <Buttons />
+  <GroupFilters />
+  <Fields>
+    <Field Table="sys_roleMenuMap_app" Field="RoleCode" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="角色编号" />
+    <Field Table="sys_roleMenuMap_app" Field="MenuCode" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="模块编号" />
+    <Field Table="sys_roleMenuMap_app" Field="CreatePerson" DbType="varchar" Required="False" ListVisible="False" FormVisible="True" ControlType="TextBox" ReadOnly="True" Title="创建人" />
+    <Field Table="sys_roleMenuMap_app" Field="CreateDate" DbType="datetime" Required="False" ListVisible="False" FormVisible="True" ControlType="Date" ReadOnly="True" Title="创建日期" />
+    <Field Table="sys_roleMenuMap_app" Field="UpdatePerson" DbType="varchar" Required="False" ListVisible="False" FormVisible="True" ControlType="TextBox" ReadOnly="True" Title="更改人" />
+    <Field Table="sys_roleMenuMap_app" Field="UpdateDate" DbType="datetime" Required="False" ListVisible="False" FormVisible="True" ControlType="Date" ReadOnly="True" Title="更改日期" />
+    <Field Table="sys_roleMenuMap_app" Field="id" DbType="varchar" Required="False" ListVisible="False" FormVisible="False" ControlType="AutoId" Title="ID" />
+  </Fields>
+</Form>

@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report CommonReport="True" From="FA_ProjSettle" OrderField="FID">
+  <DrillReports />
+  <Fields>
+    <Field Table="FA_ProjSettle" Field="CustID" Alias="CustID" Title="合作单位" />
+    <Field Table="FA_ProjSettle" Field="FCode" Alias="FCode" Title="业务单号" />
+    <Field Table="FA_ProjSettle" Field="Ftype" Alias="Ftype" Title="类型" />
+    <Field Table="FA_ProjSettle" Field="Date" Alias="Date" Title="日期" />
+    <Field Table="FA_ProjSettle" Field="Amt" Alias="Amt" Title="金额" />
+    <Field Table="FA_ProjSettle" Field="Remark" Alias="Remark" Title="摘要" />
+  </Fields>
+  <Charts>
+    <XAxis FieldUid="FA_ProjSettle_" />
+    <YAxis FieldUid="FA_ProjSettle_" />
+    <Series />
+  </Charts>
+</Report>

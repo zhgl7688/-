@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report CommonReport="True" From="wq_dailyLog D INNER JOIN sys_user U ON U.UserCode=D.UserCode and D.CompCode=U.CompCode " OrderField="D.CreateDate" AddCondition="((D.UserCode IN (SELECT UserCode FROM dbo.sys_user WHERE OrganizeName LIKE '{SESSION.OrganizeName}%') AND D.CompCode='{USER.CompCode}') or ('{USER.UserCode}'='super ' ))">
+  <Fields>
+    <Field Table="D" Alias="UserCode" Field="UserCode" Title="用户编码" ControlType="PopupSelect" ControlValue="用户选择" />
+    <Field Table="U" Alias="UserName" Field="UserName" Title="用户名" ControlType="TextBox" />
+    <Field Table="U" Field="OrganizeCode" Alias="OrganizeCode" ControlValue="报表所属组织" ControlType="PopupSelect" Title="部门编号" />
+    <Field Table="U" Field="bumenName" Alias="bumenName" ControlValue="客商所属组织" ControlType="" Title="部门" />
+    <Field Table="D" Alias="comments" Field="comments" Title="点评" />
+    <Field Table="D" Alias="states" Field="states" Title="状态" ControlType="Dropdown" ControlValue="工作日志状态" />
+    <Field Table="D" Alias="No" Field="No" Title="图片" ControlType="File" ColumnWidth="30" />
+    <Field Table="D" Alias="CreatePerson" Field="CreatePerson" Title="创建人" ColumnWidth="70" />
+    <Field Table="D" Field="CreateDate" Alias="" Title="创建日期" ControlType="Date" />
+    <Field Table="D" Alias="DailyExper" Field="DailyExper" Title="今日心得体会" ColumnWidth="250" />
+    <Field Table="D" Alias="DailyPlan" Field="DailyPlan" Title="明日工作计划" ColumnWidth="250" />
+    <Field Field="DailySummary" Table="D" Alias="DailySummary" Title="今日工作总结" ColumnWidth="250" />
+  </Fields>
+  <DrillReports />
+  <Charts>
+    <XAxis />
+    <YAxis />
+    <Series />
+  </Charts>
+</Report>

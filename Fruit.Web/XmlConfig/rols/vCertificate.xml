@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Form Connection="LUOLAI1401Context" Table="v_Certificate" IsView="True" FilterTreeBindField="FID" TreeGridIdField="FID" TreeGridNameField="FID" TreeGridParentIdField="FID">
+  <SubTables />
+  <SaveProducre />
+  <Buttons />
+  <GroupFilters />
+  <Fields>
+    <Field Table="v_Certificate" Field="FID" DbType="int" Required="False" ListVisible="True" FormVisible="True" ControlType="AutoId" ReadOnly="True">
+      <CascadeFilter />
+    </Field>
+    <Field Table="v_Certificate" Field="Name" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox">
+      <CascadeFilter />
+    </Field>
+    <Field Table="v_Certificate" Field="Text" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox">
+      <CascadeFilter />
+    </Field>
+  </Fields>
+</Form>

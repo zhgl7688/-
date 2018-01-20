@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Form Connection="LUOLAI1401Context" Table="wq_patrolStep" Filter="a.CompCode= '{USER.CompCode}'">
+  <SubTables />
+  <Fields>
+    <Field Connection="LUOLAI1401Context" Table="wq_patrolStep" ControlType="AutoId" FieldType="varchar" Title="ID" Field="id" ControlValue="十二位编号" ReadOnly="True" DbType="varchar" Required="True" />
+    <Field Connection="LUOLAI1401Context" Table="wq_patrolStep" Field="StepCode" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="步骤编码" FieldType="varchar" ReadOnly="False" DbType="varchar" Searchable="True" />
+    <Field Connection="LUOLAI1401Context" Table="wq_patrolStep" Field="CompCode" Required="False" ListVisible="False" FormVisible="False" ControlType="Dropdown" Title="所属公司" FieldType="varchar" DefaultValue="{USER.CompCode}" DbType="varchar" ControlValue="所属公司" ReadOnly="True" />
+    <Field Connection="LUOLAI1401Context" Table="wq_patrolStep" Field="StepStatus" Required="False" ListVisible="True" FormVisible="True" ControlType="CheckBox" Title="开启状态" FieldType="varchar" DbType="char" Searchable="True" />
+  </Fields>
+  <SaveProducre />
+  <Buttons />
+  <GroupFilters />
+</Form>

@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Form Connection="LUOLAI1401Context" Table="sys_user">
+  <SubTables />
+  <Fields>
+    <Field Connection="LUOLAI1401Context" Table="sys_user" Field="UserCode" Required="False" ListVisible="True" FormVisible="True" ControlType="AutoId" Title="用户编码" ControlValue="十二位编号" />
+    <Field Connection="LUOLAI1401Context" Table="sys_user" Field="UserSeq" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="序列号" />
+    <Field Connection="LUOLAI1401Context" Table="sys_user" Field="UserName" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="用户名" />
+    <Field Connection="LUOLAI1401Context" Table="sys_user" Field="CompCode" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="所属公司" />
+    <Field Connection="LUOLAI1401Context" Table="sys_user" Field="Description" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="描述" />
+    <Field Connection="LUOLAI1401Context" Table="sys_user" Field="Password" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="密码" />
+    <Field Connection="LUOLAI1401Context" Table="sys_user" Field="RoleName" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="角色名" />
+    <Field Connection="LUOLAI1401Context" Table="sys_user" Field="OrganizeName" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="组织名称" />
+    <Field Connection="LUOLAI1401Context" Table="sys_user" Field="ConfigJSON" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="JSON配置" />
+    <Field Connection="LUOLAI1401Context" Table="sys_user" Field="IsEnable" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="是否开启" />
+    <Field Connection="LUOLAI1401Context" Table="sys_user" Field="LoginCount" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="登陆次数" />
+    <Field Connection="LUOLAI1401Context" Table="sys_user" Field="LastLoginDate" Required="False" ListVisible="True" FormVisible="True" ControlType="Date" Title="上次登录时间" />
+    <Field Connection="LUOLAI1401Context" Table="sys_user" Field="CreatePerson" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="创建人" />
+    <Field Connection="LUOLAI1401Context" Table="sys_user" Field="CreateDate" Required="False" ListVisible="True" FormVisible="True" ControlType="Date" Title="创建日期" />
+    <Field Connection="LUOLAI1401Context" Table="sys_user" Field="UpdatePerson" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="最后更人人" />
+    <Field Connection="LUOLAI1401Context" Table="sys_user" Field="UpdateDate" Required="False" ListVisible="True" FormVisible="True" ControlType="Date" Title="最后更新时间" />
+    <Field Connection="LUOLAI1401Context" Table="sys_user" Field="PlaceName" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="职位名称" />
+    <Field Connection="LUOLAI1401Context" Table="sys_user" Field="UserCode" Required="False" ListVisible="True" FormVisible="True" ControlType="AutoId" Title="用户编码" />
+    <Field Connection="LUOLAI1401Context" Table="sys_user" Field="UserSeq" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="序列号" />
+    <Field Connection="LUOLAI1401Context" Table="sys_user" Field="UserName" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="用户名" />
+    <Field Connection="LUOLAI1401Context" Table="sys_user" Field="CompCode" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="所属公司" ControlValue="十二位编号" />
+    <Field Connection="LUOLAI1401Context" Table="sys_user" Field="Description" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="描述" />
+    <Field Connection="LUOLAI1401Context" Table="sys_user" Field="Password" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="密码" />
+    <Field Connection="LUOLAI1401Context" Table="sys_user" Field="RoleName" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="角色名称" />
+    <Field Connection="LUOLAI1401Context" Table="sys_user" Field="OrganizeName" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="组织名称" />
+    <Field Connection="LUOLAI1401Context" Table="sys_user" Field="ConfigJSON" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="josn配置" />
+    <Field Connection="LUOLAI1401Context" Table="sys_user" Field="IsEnable" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="是否开启" />
+    <Field Connection="LUOLAI1401Context" Table="sys_user" Field="LoginCount" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="登陆次数" />
+    <Field Connection="LUOLAI1401Context" Table="sys_user" Field="LastLoginDate" Required="False" ListVisible="True" FormVisible="True" ControlType="Date" Title="上次登录时间" />
+    <Field Connection="LUOLAI1401Context" Table="sys_user" Field="CreatePerson" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="创建人" />
+    <Field Connection="LUOLAI1401Context" Table="sys_user" Field="CreateDate" Required="False" ListVisible="True" FormVisible="True" ControlType="Date" Title="创建日期" />
+    <Field Connection="LUOLAI1401Context" Table="sys_user" Field="UpdatePerson" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="最后更人人" />
+    <Field Connection="LUOLAI1401Context" Table="sys_user" Field="UpdateDate" Required="False" ListVisible="True" FormVisible="True" ControlType="Date" Title="最后更新时间" />
+    <Field Connection="LUOLAI1401Context" Table="sys_user" Field="PlaceName" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="职位名称" />
+  </Fields>
+</Form>

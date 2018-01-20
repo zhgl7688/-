@@ -1,0 +1,134 @@
+﻿@section scripts {
+<script type="text/javascript">
+   var col_tblBom_ProductCode_RefText_formatter = function(v, r) {return r.ProductCode_RefText;}
+   var col_tblBom_speccode_RefText_formatter = function(v, r) {return r.speccode_RefText;}
+    $(function(){
+        if($('#searchDialogTemplate').length == 1) {
+            $('#showSearch').show();
+        }
+        var db = fruit.databind.root;
+
+            $.extend(db.options, {
+                searchClick: function(){
+                    var serach = db.getData('serach');
+                    db.invoke('setLoadParams', serach);
+                },
+                showSearchClick: function() {
+                    var serachDialog = $('<div></div>').html($('#searchDialogTemplate').html());
+                    var serachDialogDB = new fruit.databind(serachDialog[0], {
+                        onInit:function(){
+                            this.loadData(data);
+                            var serach = db.getData('serach');
+                            this.loadData({serach:serach});
+                        }
+                    });
+                    serachDialog.dialog({title:'搜索', width:600, height:500, cache:false,modal:true,buttons:[
+                        {text:'搜索',handler:function(){
+                            var serach = serachDialogDB.getData('serach');
+                            db.loadData({serach:serach});
+                            db.invoke('setLoadParams', serach);
+                            serachDialog.dialog('close');
+                        }},
+                        {text:'关闭',handler:function(){
+                            serachDialog.dialog('close');
+                        }},
+                    ], onClose:function(){
+                        serachDialog.dialog('destroy');
+                    }});
+                },
+                clearClick: function(){
+                    db.clearData('serach');
+                    db.invoke('setLoadParams', {});
+                }
+            });
+        $.extend(db.options, {
+            add: function(){
+                        var parentRow = fruit.databind.root.binds.grid.getSelected();
+                        if(parentRow)
+                            parent.newItemBinds={parentGUID :parentRow['guid'], parentGUID_RefText :parentRow['ProductCode']};
+                        else
+                            parent.newItemBinds={};
+                fruit.ajax({
+                        url:'/api/Mms/Bom/Newguid',
+                        success:function(data) {
+                            parent.showDocTab('', '物料清单明细', '/Mms/Bom/edit/' + data);
+                        }
+                    })
+            },
+            edit: function(){
+                    var grid = db.binds.grid;
+                    var row = grid.getSelected();
+                    if(row == null) {
+                        fruit.message('warning', '请先选择一个物料清单');
+                        return;
+                    }
+                    parent.showDocTab('icon-house_in', '物料清单明细', '/Mms/Bom/edit/' + row.guid);
+            },
+             'delete': function() {
+                    var grid = db.binds.grid;
+                    var rows = grid.getSelections();
+                    if(rows.length == 0) return;
+                    var ids = [];
+                    $.each(rows, function(){
+                        ids.push(this.guid);
+                    });
+                    $.messager.confirm('确认', '您确认要删除所选记录吗？', function(r){
+                        if(r){
+                            grid.jq.showLoading('正在处理…');
+                            fruit.ajax({
+                                method:'DELETE',
+                                url: '/api/Mms/Bom/'+ids.join(),
+                                success: function(data) {
+                                    grid.jq.hideLoading();
+                                    grid.refresh();
+                                }
+                            })
+                        }
+                    });
+                },
+        });
+    });
+</script>
+}
+<div class="z-toolbar">
+
+    <a class="easyui-linkbutton" iconcls="icon-arrow_refresh" plain="true" data-bind="click:'refresh'">刷新</a>
+    <a class="easyui-linkbutton" iconcls="icon-add" plain="true" data-bind="click:'add'">新增</a>
+    <a class="easyui-linkbutton" iconcls="icon-edit" plain="true" data-bind="click:'edit'">编辑</a>
+    <a class="easyui-linkbutton" iconcls="icon-cross" plain="true" data-bind="click:'delete'">删除</a>
+    <a class="easyui-splitbutton" plain="true" data-options="iconCls:'icon-download'" suffix="xls" data-bind="click:'download'">导出</a>
+</div>
+<table id="grid" data-bind="treegrid" data-options="loadFilter:fruit.tree.createLoadFilter('guid', 'parentGUID', null),fixSize:{w:4, h:40}, rownumbers:true, method:'get', url:'/api/mms/bom',idField:'guid', treeField:'ProductCode', parentField:'parentGUID', checkOnSelect:true, selectOnCheck:true, singleSelect:false">
+<thead>
+<tr>
+    <th field="SelectedRowKey" data-options="checkbox:true"></th>
+    <th field="ProductCode" data-options="editor:{type:'popup', options:{rule:'产品选择', textField:'ProductCode_RefText', onSelect:fruit.popupColumnSelected, required:true}}" formatter="col_tblBom_ProductCode_RefText_formatter">ProductCode    </th>
+    <th field="guidmain" data-options="editor:{type:'validatebox',options:{required:false}}">guidmain    </th>
+    <th field="parentGUID" data-options="editor:{type:'validatebox',options:{required:false}}">parentGUID    </th>
+    <th field="qty" data-options="editor:{type:'numberbox',options:{precision:5, required:true}}">qty    </th>
+    <th field="waste" data-options="editor:{type:'numberbox',options:{precision:5, required:false}}">waste    </th>
+    <th field="unit" data-options="editor:{type:'validatebox',options:{required:true}}">unit    </th>
+    <th field="isBOM" data-options="editor:{type:'checkbox', options:{on:1, off:0}}, formatter:fruit.formatter.Enable">isBOM    </th>
+    <th field="Status" data-options="editor:{type:'validatebox',options:{required:true}}">Status    </th>
+    <th field="Audit" data-options="editor:{type:'validatebox',options:{required:false}}">Audit    </th>
+    <th field="AuditDate" data-options="editor:{type:'datebox',options:{required:false},formatter:fruit.formatter.Date}"  formatter="formatter:fruit.formatter.Date">AuditDate    </th>
+    <th field="remark" data-options="editor:{type:'validatebox',options:{required:false}}">remark    </th>
+    <th field="productkindguid" data-options="editor:{type:'validatebox',options:{required:false}}">productkindguid    </th>
+    <th field="price" data-options="editor:{type:'numberbox',options:{precision:5, required:false}}">price    </th>
+    <th field="totalmoney" data-options="editor:{type:'numberbox',options:{precision:5, required:false}}">totalmoney    </th>
+    <th field="version" data-options="editor:{type:'validatebox',options:{required:false}}">version    </th>
+    <th field="bommodel" data-options="editor:{type:'validatebox',options:{required:false}}">bommodel    </th>
+    <th field="CT" data-options="editor:{type:'validatebox',options:{required:false}}">CT    </th>
+    <th field="position" data-options="editor:{type:'validatebox',options:{required:false}}">position    </th>
+    <th field="speccode" data-options="editor:{type:'popup', options:{rule:'终端类型', textField:'speccode_RefText', onSelect:fruit.popupColumnSelected, required:false}}" formatter="col_tblBom_speccode_RefText_formatter">speccode    </th>
+    <th field="color" data-options="editor:{type:'validatebox',options:{required:false}}">color    </th>
+    <th field="height" data-options="editor:{type:'validatebox',options:{required:false}}">height    </th>
+    <th field="lenght" data-options="editor:{type:'validatebox',options:{required:false}}">lenght    </th>
+    <th field="width" data-options="editor:{type:'validatebox',options:{required:false}}">width    </th>
+    <th field="clientguid" data-options="editor:{type:'validatebox',options:{required:false}}">clientguid    </th>
+    <th field="begindate" data-options="editor:{type:'datebox',options:{required:false},formatter:fruit.formatter.Date}"  formatter="formatter:fruit.formatter.Date">begindate    </th>
+    <th field="pirtuce" data-options="editor:{type:'validatebox',options:{required:false}}">pirtuce    </th>
+    <th field="supplierguid" data-options="editor:{type:'validatebox',options:{required:false}}">supplierguid    </th>
+</tr>
+</thead>
+</table>

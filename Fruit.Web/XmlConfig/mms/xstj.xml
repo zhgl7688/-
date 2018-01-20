@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report CommonReport="True" From="KZ_xstj" OrderField="上报日期" AddCondition="">
+  <Fields>
+    <Field Table="KZ_xstj" Field="客户编号" Title="客户编号" FieldType="varchar" Alias="客户编号" ControlType="TextBox" />
+    <Field Table="KZ_xstj" Field="客户名称" Title="客户名称" FieldType="varchar" Alias="客户名称" ControlType="TextBox" />
+    <Field Table="KZ_xstj" Field="终端类型" Title="终端类型" FieldType="varchar" Alias="终端类型" ControlType="Dropdown" ControlValue="寻访报告客户类型" />
+    <Field Table="KZ_xstj" Field="上报日期" Title="上报日期" FieldType="datetime" Alias="上报日期" ControlType="Date" />
+    <Field Table="KZ_xstj" Field="产品" Title="产品" FieldType="varchar" Alias="产品" />
+    <Field Table="KZ_xstj" Field="销量" Title="销量" FieldType="varchar" Alias="销量" />
+  </Fields>
+  <DrillReports />
+  <Charts>
+    <XAxis />
+    <YAxis />
+    <Series />
+  </Charts>
+</Report>

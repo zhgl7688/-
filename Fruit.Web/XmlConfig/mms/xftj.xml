@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report CommonReport="True" From="KZ_xftj" OrderField="巡店日期" AddCondition="(员工编号 IN (SELECT UserCode FROM dbo.sys_user WHERE OrganizeName LIKE '{SESSION.OrganizeName}%') or '{USER.UserCode}'='super')">
+  <Fields>
+    <Field Table="KZ_xftj" Field="部门" Alias="部门" FieldType="varchar" Title="部门" ControlValue="所属组织" ControlType="Dropdown" />
+    <Field Table="KZ_xftj" Field="巡店日期" Title="巡店日期" FieldType="varchar" Alias="巡店日期" ControlType="Date" />
+    <Field Table="KZ_xftj" Field="所属角色" Title="所属角色" FieldType="varchar" Alias="所属角色" ControlType="TextBox" />
+    <Field Table="KZ_xftj" Field="员工编号" Title="员工编号" FieldType="varchar" Alias="员工编号" ControlType="TextBox" />
+    <Field Table="KZ_xftj" Field="员工姓名" Alias="员工姓名" FieldType="varchar" Title="员工姓名" ControlType="TextBox" />
+    <Field Table="KZ_xftj" Field="计划数" Title="计划数" FieldType="varchar" Alias="计划数" />
+    <Field Table="KZ_xftj" Field="计划外数" Title="计划外数" FieldType="varchar" Alias="计划外数" />
+    <Field Table="KZ_xftj" Field="进店完成数" Title="进店完成数" FieldType="varchar" Alias="进店完成数" />
+    <Field Table="KZ_xftj" Field="生动化拍照" Title="生动化拍照" FieldType="varchar" Alias="生动化拍照" />
+    <Field Field="活动拍照" Title="活动拍照" Table="KZ_xftj" FieldType="varchar" Alias="活动拍照" />
+    <Field Table="KZ_xftj" Field="库存销量" Title="库存销量" FieldType="varchar" Alias="库存销量" />
+    <Field Table="KZ_xftj" Field="订单采集" Title="订单采集" FieldType="varchar" Alias="订单采集" />
+    <Field Field="竞品上报" Title="竞品上报" Table="KZ_xftj" FieldType="varchar" Alias="竞品上报" />
+    <Field Table="KZ_xftj" Field="离店完成数" Alias="离店完成数" FieldType="varchar" Title="离店完成数" />
+  </Fields>
+  <DrillReports />
+  <Charts>
+    <XAxis />
+    <YAxis />
+    <Series />
+  </Charts>
+</Report>

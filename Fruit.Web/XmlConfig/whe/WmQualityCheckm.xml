@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Form Connection="Jiajusale9Context" Table="Cg_cgddm" XtFromCode="10">
+  <SubTables />
+  <SaveProducre />
+  <Buttons />
+  <GroupFilters />
+  <Fields>
+    <Field Table="Cg_cgddm" Field="Dh" DbType="nvarchar" Required="True" ListVisible="True" FormVisible="True" ControlType="AutoId" />
+    <Field Table="Cg_cgddm" Field="Zt" DbType="int" Required="False" ListVisible="True" FormVisible="True" ControlType="NumberBox" />
+    <Field Table="Cg_cgddm" Field="Practice" DbType="int" Required="False" ListVisible="True" FormVisible="True" ControlType="NumberBox" />
+    <Field Table="Cg_cgddm" Field="Ydh" DbType="nvarchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" />
+    <Field Table="Cg_cgddm" Field="Ck" DbType="int" Required="False" ListVisible="True" FormVisible="True" ControlType="NumberBox" />
+    <Field Table="Cg_cgddm" Field="Gys" DbType="int" Required="False" ListVisible="True" FormVisible="True" ControlType="NumberBox" />
+    <Field Table="Cg_cgddm" Field="Cgy" DbType="int" Required="False" ListVisible="True" FormVisible="True" ControlType="NumberBox" />
+    <Field Table="Cg_cgddm" Field="Lxr" DbType="nvarchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" />
+    <Field Table="Cg_cgddm" Field="Lxdh" DbType="nvarchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" />
+    <Field Table="Cg_cgddm" Field="Hb" DbType="int" Required="False" ListVisible="True" FormVisible="True" ControlType="NumberBox" />
+    <Field Table="Cg_cgddm" Field="Ccrq" DbType="datetime" Required="False" ListVisible="True" FormVisible="True" ControlType="Date" />
+    <Field Table="Cg_cgddm" Field="Dhrq" DbType="datetime" Required="False" ListVisible="True" FormVisible="True" ControlType="Date" />
+    <Field Table="Cg_cgddm" Field="Jsfs" DbType="int" Required="False" ListVisible="True" FormVisible="True" ControlType="NumberBox" />
+    <Field Table="Cg_cgddm" Field="Fktj" DbType="int" Required="False" ListVisible="True" FormVisible="True" ControlType="NumberBox" />
+    <Field Table="Cg_cgddm" Field="Hl" DbType="real" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" />
+    <Field Table="Cg_cgddm" Field="Taxrate" DbType="real" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" />
+    <Field Table="Cg_cgddm" Field="Dhdz" DbType="nvarchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" />
+    <Field Table="Cg_cgddm" Field="Cgje" DbType="real" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" />
+    <Field Table="Cg_cgddm" Field="Jjje" DbType="real" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" />
+    <Field Table="Cg_cgddm" Field="Sjje" DbType="real" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" />
+    <Field Table="Cg_cgddm" Field="Yunfei" DbType="real" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" />
+    <Field Table="Cg_cgddm" Field="Yufuje" DbType="real" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" />
+    <Field Table="Cg_cgddm" Field="Yfkye" DbType="real" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" />
+    <Field Table="Cg_cgddm" Field="Yifuje" DbType="real" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" />
+    <Field Table="Cg_cgddm" Field="Bz" DbType="nvarchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" />
+    <Field Table="Cg_cgddm" Field="Zdrq" DbType="datetime" Required="False" ListVisible="True" FormVisible="True" ControlType="Date" />
+    <Field Table="Cg_cgddm" Field="Zd" DbType="int" Required="False" ListVisible="True" FormVisible="True" ControlType="NumberBox" />
+    <Field Table="Cg_cgddm" Field="Shrq" DbType="datetime" Required="False" ListVisible="True" FormVisible="True" ControlType="Date" />
+    <Field Table="Cg_cgddm" Field="Sh" DbType="int" Required="False" ListVisible="True" FormVisible="True" ControlType="NumberBox" />
+    <Field Table="Cg_cgddm" Field="Finishrq" DbType="datetime" Required="False" ListVisible="True" FormVisible="True" ControlType="Date" />
+    <Field Table="Cg_cgddm" Field="Ifjz" DbType="bit" Required="True" ListVisible="True" FormVisible="True" ControlType="CheckBox" />
+    <Field Table="Cg_cgddm" Field="workFlowId" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" />
+    <Field Table="Cg_cgddm" Field="workFlowInsId" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" />
+    <Field Table="Cg_cgddm" Field="WorktaskId" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" />
+    <Field Table="Cg_cgddm" Field="WorktaskInsId" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" />
+    <Field Table="Cg_cgddm" Field="IfSubmit" DbType="bit" Required="True" ListVisible="True" FormVisible="True" ControlType="CheckBox" />
+    <Field Table="Cg_cgddm" Field="Ystk" DbType="int" Required="False" ListVisible="True" FormVisible="True" ControlType="NumberBox" />
+    <Field Table="Cg_cgddm" Field="Gbbz" DbType="nvarchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" />
+    <Field Table="Cg_cgddm" Field="GbDate" DbType="datetime" Required="False" ListVisible="True" FormVisible="True" ControlType="Date" />
+    <Field Table="Cg_cgddm" Field="Account" DbType="int" Required="False" ListVisible="True" FormVisible="True" ControlType="NumberBox" />
+    <Field Table="Cg_cgddm" Field="Cjfh" DbType="real" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" />
+    <Field Table="Cg_cgddm" Field="Ml" DbType="real" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" />
+    <Field Table="Cg_cgddm" Field="CurrentSPList" DbType="nvarchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" />
+    <Field Table="Cg_cgddm" Field="NodeID" DbType="int" Required="False" ListVisible="True" FormVisible="True" ControlType="NumberBox" />
+  </Fields>
+</Form>

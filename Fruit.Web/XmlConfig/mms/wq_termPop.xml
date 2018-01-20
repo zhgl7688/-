@@ -1,0 +1,51 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Form Connection="LUOLAI1401Context" Table="wq_termPop" Filter="((a.CompCode='{USER.CompCode}') or ('{USER.UserCode}'='super'))">
+  <SubTables>
+    <Table IsView="False" Table="wq_Pop_Dealer" Filter="">
+      <Rels>
+        <FieldRel MainField="PopCode" RelField="PopCode" />
+      </Rels>
+      <Fields>
+        <Field Table="wq_Pop_Dealer" Field="id" DbType="int" Required="True" ListVisible="True" FormVisible="True" ControlType="AutoId" ReadOnly="True" />
+        <Field Table="wq_Pop_Dealer" Field="CompCode" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" />
+        <Field Table="wq_Pop_Dealer" Field="DealerCode" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" />
+        <Field Table="wq_Pop_Dealer" Field="CreatePerson" DbType="varchar" Required="False" ListVisible="False" FormVisible="True" ControlType="TextBox" ReadOnly="True" Title="创建人" />
+        <Field Table="wq_Pop_Dealer" Field="CreateDate" DbType="datetime" Required="False" ListVisible="False" FormVisible="True" ControlType="Date" ReadOnly="True" Title="创建日期" />
+        <Field Table="wq_Pop_Dealer" Field="UpdatePerson" DbType="varchar" Required="False" ListVisible="False" FormVisible="True" ControlType="TextBox" ReadOnly="True" Title="更改人" />
+        <Field Table="wq_Pop_Dealer" Field="UpdateDate" DbType="datetime" Required="False" ListVisible="False" FormVisible="True" ControlType="Date" ReadOnly="True" Title="更改日期" />
+      </Fields>
+    </Table>
+  </SubTables>
+  <Fields>
+    <Field Connection="LUOLAI1401Context" Table="wq_termPop" Field="PopCode" Required="False" ListVisible="True" FormVisible="True" ControlType="AutoId" Title="终端编号" DbType="varchar" FieldType="varchar" ControlValue="十二位编号" ReadOnly="True">
+      <CascadeFilter />
+    </Field>
+    <Field Connection="LUOLAI1401Context" Table="wq_termPop" Field="PopName" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="客户名称" DbType="varchar" FieldType="varchar" Searchable="True">
+      <CascadeFilter />
+    </Field>
+    <Field Connection="LUOLAI1401Context" Table="wq_termPop" Field="Address" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="客户地址" DbType="varchar" FieldType="varchar">
+      <CascadeFilter />
+    </Field>
+    <Field Connection="LUOLAI1401Context" Table="wq_termPop" Field="Contact1" Required="True" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="联系人" DbType="varchar" FieldType="varchar" Searchable="True">
+      <CascadeFilter />
+    </Field>
+    <Field Connection="LUOLAI1401Context" Table="wq_termPop" Field="Tel1" Required="True" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="联系电话" DbType="varchar" FieldType="varchar" Searchable="True">
+      <CascadeFilter />
+    </Field>
+    <Field Connection="LUOLAI1401Context" Table="wq_termPop" Field="Mobile1" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="联系人手机" DbType="varchar" FieldType="varchar">
+      <CascadeFilter />
+    </Field>
+    <Field Connection="LUOLAI1401Context" Table="wq_termPop" Field="Contact2" Required="True" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="老板名" DbType="varchar" FieldType="varchar">
+      <CascadeFilter />
+    </Field>
+    <Field Connection="LUOLAI1401Context" Table="wq_termPop" Field="Tel2" Required="True" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="老板电话" DbType="varchar" FieldType="varchar">
+      <CascadeFilter />
+    </Field>
+    <Field Connection="LUOLAI1401Context" Table="wq_termPop" Field="Mobile2" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="老板手机" DbType="varchar" FieldType="varchar">
+      <CascadeFilter />
+    </Field>
+  </Fields>
+  <SaveProducre />
+  <Buttons />
+  <GroupFilters />
+</Form>

@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Form Connection="LUOLAI1401Context" Table="timingSet" Filter="a.CompCode= '{USER.CompCode}'">
+  <SubTables />
+  <SaveProducre />
+  <Buttons />
+  <GroupFilters />
+  <Fields>
+    <Field Connection="LUOLAI1401Context" Table="timingSet" Field="CompCode" ControlType="Dropdown" ListVisible="False" FormVisible="False" Title="公司编号" FieldType="varchar" DbType="varchar" ControlValue="所属公司" DefaultValue="{USER.CompCode}" Searchable="False" />
+    <Field Table="timingSet" Field="RoleCode" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="PopupSelect" Title="角色编号" FieldType="varchar" ControlValue="所属角色" Searchable="True" />
+    <Field Table="timingSet" Field="psncode" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="PopupSelect" Title="人员编号" FieldType="varchar" ControlValue="用户选择" Searchable="True" />
+    <Field Table="timingSet" Field="timingtype" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="Dropdown" ControlValue="是否开启" Title="定时上报模式" FieldType="varchar" Searchable="True" />
+    <Field Table="timingSet" Field="interval" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="定时上报时间间隔(分钟)" FieldType="varchar" />
+    <Field Table="timingSet" Field="mobegintime" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="Time" Title="上午开始时间(分钟)" FieldType="varchar" />
+    <Field Table="timingSet" Field="moendtime" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="Time" Title="上午结束时间(分钟)" FieldType="varchar" />
+    <Field Table="timingSet" Field="afbegintime" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="Time" Title="下午开始时间(分钟)" FieldType="varchar" />
+    <Field Table="timingSet" Field="afendtime" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="Time" Title="下午结束时间(分钟)" FieldType="varchar" />
+    <Field Connection="LUOLAI1401Context" Table="timingSet" ControlType="AutoId" ControlValue="序号" Title="id" Field="id" DbType="varchar" FieldType="" />
+  </Fields>
+</Form>

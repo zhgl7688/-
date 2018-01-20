@@ -1,0 +1,110 @@
+﻿@section scripts {
+<script type="text/javascript">
+    var data = @MvcHtmlString.Create(JsonExtension.ToJson(Model));
+    $(function(){
+        var db = fruit.databind.root;
+        db.loadData(data);
+        $.extend(db, {
+            saveClick:function(){
+                var data = db.getData();
+                fruit.ajax({
+                    url: '/api/Mms/Warehouse/',
+                    data: JSON.stringify(data),
+                    success:function(result){
+                        if(result && result.success){
+                            fruit.message('success', '保存成功');
+                            if(result.form){
+                                db.loadData(result);
+                            }
+                        }
+                    }
+                });
+            }
+        });
+    });
+</script>
+}
+
+
+<div class="z-toolbar">
+    <a id="a_save" href="#" plain="true" class="easyui-linkbutton" icon="icon-save" data-bind="click:'saveClick',disable:'readonly'" title="保存">保存</a>
+    <a id="a_undo" href="#" plain="true" class="easyui-linkbutton" icon="icon-undo" data-bind="click:'rejectClick',disable:'readonly'" title="撤消">撤消</a>
+    <div class="datagrid-btn-separator"></div>
+    <a id="a_other" href="#" class="easyui-splitbutton" data-options="menu:'#divother',iconCls:'icon-application_go'" title="其他">其他</a>
+</div>
+
+<div id="divother" style="width:100px; display:none;">
+    <div data-options="iconCls:'icon-add'">新增</div>
+    <div data-options="iconCls:'icon-cross'">删除</div>
+    <div data-options="iconCls:'icon-arrow_refresh'">刷新</div>
+</div>
+<div id="master" class="container_12" data-bind="inputwidth:0.9">
+    <div class="grid_1 lbl">CompCode</div>
+   <div class="grid_3 val"><input type="text" data-bind="value:'form.CompCode', readOnly:true" class="z-txt readonly" /></div>
+    <div class="grid_1 lbl">PopCode</div>
+   <div class="grid_3 val"><input type="text" data-bind="value:'form.PopCode'" class="z-txt" /></div>
+    <div class="grid_1 lbl">PopName</div>
+   <div class="grid_3 val"><input type="text" data-bind="value:'form.PopName'" class="z-txt" /></div>
+
+    <div class="clear"></div>
+
+    <div class="grid_1 lbl">Address</div>
+   <div class="grid_3 val"><input type="text" data-bind="value:'form.Address'" class="z-txt" /></div>
+    <div class="grid_1 lbl">Contact1</div>
+   <div class="grid_3 val"><input type="text" data-bind="value:'form.Contact1'" class="z-txt" /></div>
+    <div class="grid_1 lbl">Tel1</div>
+   <div class="grid_3 val"><input type="text" data-bind="value:'form.Tel1'" class="z-txt" /></div>
+
+    <div class="clear"></div>
+
+    <div class="grid_1 lbl">Mobile1</div>
+   <div class="grid_3 val"><input type="text" data-bind="value:'form.Mobile1'" class="z-txt" /></div>
+    <div class="grid_1 lbl">Contact2</div>
+   <div class="grid_3 val"><input type="text" data-bind="value:'form.Contact2'" class="z-txt" /></div>
+    <div class="grid_1 lbl">Tel2</div>
+   <div class="grid_3 val"><input type="text" data-bind="value:'form.Tel2'" class="z-txt" /></div>
+
+    <div class="clear"></div>
+
+    <div class="grid_1 lbl">Mobile2</div>
+   <div class="grid_3 val"><input type="text" data-bind="value:'form.Mobile2'" class="z-txt" /></div>
+    <div class="grid_1 lbl">Long</div>
+   <div class="grid_3 val"><input type="text" data-bind="value:'form.Long'" class="z-txt" /></div>
+    <div class="grid_1 lbl">Lat</div>
+   <div class="grid_3 val"><input type="text" data-bind="value:'form.Lat'" class="z-txt" /></div>
+
+    <div class="clear"></div>
+
+    <div class="grid_1 lbl">PopType</div>
+   <div class="grid_3 val"><input type="text" data-bind="value:'form.PopType'" class="z-txt" /></div>
+    <div class="grid_1 lbl">PopStatus</div>
+   <div class="grid_3 val"><input type="text" data-bind="value:'form.PopStatus'" class="z-txt" /></div>
+    <div class="grid_1 lbl">UserCode</div>
+   <div class="grid_3 val"><input type="text" data-bind="value:'form.UserCode'" class="z-txt" /></div>
+
+    <div class="clear"></div>
+
+    <div class="grid_1 lbl">Remark</div>
+   <div class="grid_3 val"><input type="text" data-bind="value:'form.Remark'" class="z-txt" /></div>
+
+    <div class="clear"></div>
+
+</div>
+<div id="tt" class="easyui-tabs">
+    <div title="表单信息" style="padding-top:2px;">
+        <div class="container_12" id="BillDetail" data-bind="inputwidth:0.9,autoheight:181">
+            <div class="clear"></div>
+            <div class="grid_1 lbl">CreatePerson</div>
+            <div class="grid_3 val"><input type="text" data-bind="value:'form.CreatePerson'" class="z-txt" /></div>
+            <div class="grid_1 lbl">CreateDate</div>
+            <div class="grid_3 val"><input type="text" data-bind="value:'form.CreateDate'" class="z-txt" /></div>
+            <div class="grid_1 lbl">UpdatePerson</div>
+            <div class="grid_3 val"><input type="text" data-bind="value:'form.UpdatePerson'" class="z-txt" /></div>
+
+            <div class="clear"></div>
+
+            <div class="grid_1 lbl">UpdateDate</div>
+            <div class="grid_3 val"><input type="text" data-bind="value:'form.UpdateDate'" class="z-txt" /></div>
+        </div>
+    </div>
+</div>

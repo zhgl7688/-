@@ -1,0 +1,34 @@
+﻿@section scripts {
+    <script type="text/javascript">
+        $(function(){
+            var db = fruit.databind.root;
+
+            $.extend(db.options, {
+                searchClick: function(){
+                    var form = db.getData('form');
+                    db.invoke('setLoadParams', form);
+                },
+                clearClick: function(){
+                    db.clearData('form');
+                    db.invoke('setLoadParams', {});
+                }
+            });
+        });
+    </script>
+}
+
+<div class="z-toolbar">
+
+    <a class="easyui-linkbutton" iconcls="icon-arrow_refresh" plain="true" data-bind="click:'refresh'">刷新</a>
+</div>
+<table id="grid" data-bind="datagrid" data-options="fixSize:{w:4, h:40}, rownumbers:true, method:'get', url:'/api/mms/wq_patrolsignin', pagination:true, pageSize:20, holdTotal:true">
+<thead>
+<tr>
+<th field="sys_user.OrganizeName" data-options="">部门</th>
+<th field="sys_user.UserCode" data-options="">员工编码</th>
+<th field="sys_user.UserName" data-options="">姓名</th>
+<th field="sys_user.description" data-options="">职位</th>
+<th field="sys_user.IsEnable" data-options="">是否在线</th>
+</tr>
+</thead>
+</table>

@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report CommonReport="True" From="zdfbcx" OrderField="省份">
+  <Fields>
+    <Field Table="zdfbcx" Field="省份" Alias="省份" Title="省份" FieldType="varchar" ControlType="TextBox" ColumnWidth="100" />
+    <Field Table="zdfbcx" Field="城市" Alias="城市" Title="城市" FieldType="varchar" ControlType="TextBox" ColumnWidth="100" />
+    <Field Table="zdfbcx" Field="终端数量" Alias="终端数量" Title="终端数量" FieldType="varchar" ControlType="" ColumnWidth="150" />
+    <Field Table="zdfbcx" Field="新开" Alias="新开" FieldType="varchar" Title="新开" />
+    <Field Table="zdfbcx" Field="健康" Alias="健康" Title="健康" FieldType="varchar" />
+    <Field Table="zdfbcx" Field="睡眠" Alias="睡眠" Title="睡眠" FieldType="varchar" ControlType="" />
+    <Field Table="zdfbcx" Field="流失" Alias="流失" FieldType="varchar" Title="流失" />
+  </Fields>
+  <DrillReports />
+  <Charts>
+    <XAxis />
+    <YAxis />
+    <Series />
+  </Charts>
+</Report>

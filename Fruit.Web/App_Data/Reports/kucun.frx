@@ -1,0 +1,63 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report ScriptLanguage="CSharp" ReportInfo.Created="08/25/2014 21:31:05" ReportInfo.Modified="12/26/2015 23:55:20" ReportInfo.CreatorVersion="1.9.16.0">
+  <Dictionary>
+    <MsSqlDataConnection Name="Connection" ConnectionString="rijcmlqHLoIdQQagOXr8v7/noTgAPKhVZ8vr+2rPJcGNHFmlCepFIvAEGXd3wWUu2Zf7p9avQQs4cJu2C/5QBwaLXlCKMYeqExuP+x1wKqcaKKfYNjAdrsUEUArVKlrmxQifE7XsJJ7c3Nln0lMci8sbNQGO/MJTnYzJSzjPP6KPE0Bp5+scpybtjeBWvAjGZWoo9jn">
+      <TableDataSource Name="Table" DataType="System.Int32" Enabled="true" SelectCommand="SELECT * FROM KZ_kctj where 1=1 ###">
+        <Column Name="客户编码" DataType="System.String"/>
+        <Column Name="客户名称" DataType="System.String"/>
+        <Column Name="终端类型" DataType="System.String"/>
+        <Column Name="上报日期" DataType="System.DateTime"/>
+        <Column Name="产品" DataType="System.String"/>
+        <Column Name="库存量" DataType="System.Int32"/>
+        <Column Name="销量" DataType="System.Int32"/>
+      </TableDataSource>
+    </MsSqlDataConnection>
+    <Relation Name="Table_Table2" ParentDataSource="Table" ChildDataSource="null" ParentColumns="CustCode&#13;&#10;AcctCycID" ChildColumns="客户&#13;&#10;AcctCycID" Enabled="true"/>
+    <Relation Name="Table_Table41" ParentDataSource="Table" ChildDataSource="null" ParentColumns="CustCode&#13;&#10;AcctCycID" ChildColumns="客户&#13;&#10;对账单编号" Enabled="true"/>
+  </Dictionary>
+  <ReportPage Name="Page1" PaperWidth="241" PaperHeight="279" LeftMargin="2" RightMargin="2" FirstPageSource="15" OtherPagesSource="15">
+    <ReportTitleBand Name="ReportTitle1" Width="895.86" Height="47.25">
+      <TextObject Name="Text1" Left="264.6" Top="9.45" Width="340.2" Height="37.8" Text="库存销量统计" HorzAlign="Center" VertAlign="Center" Font="新宋体, 18pt, style=Bold"/>
+    </ReportTitleBand>
+    <DataBand Name="Data1" Top="83.6" Width="895.86" Height="28.35" DataSource="Table">
+      <TableObject Name="Table5" Width="850.5" Height="28.35" Border.Lines="All">
+        <TableColumn Name="Column8" Width="103.95"/>
+        <TableColumn Name="Column9" Width="170.1"/>
+        <TableColumn Name="Column10" Width="94.5"/>
+        <TableColumn Name="Column11" Width="189"/>
+        <TableColumn Name="Column12" Width="151.2"/>
+        <TableColumn Name="Column13" Width="75.6"/>
+        <TableColumn Name="Column14"/>
+        <TableRow Name="Row2" Height="28.35">
+          <TableCell Name="Cell8" Border.Lines="All" Text="[Table.客户编码]" HorzAlign="Center" VertAlign="Center" Font="宋体, 11pt"/>
+          <TableCell Name="Cell9" Border.Lines="All" Text="[Table.客户名称]" HorzAlign="Center" VertAlign="Center" Font="宋体, 11pt"/>
+          <TableCell Name="Cell10" Border.Lines="All" Text="[Table.终端类型]" HorzAlign="Center" VertAlign="Center" Font="宋体, 11pt"/>
+          <TableCell Name="Cell11" Border.Lines="All" Text="[Table.上报日期]" HorzAlign="Center" VertAlign="Center" Font="宋体, 11pt"/>
+          <TableCell Name="Cell12" Border.Lines="All" Text="[Table.产品]" HorzAlign="Center" VertAlign="Center" Font="宋体, 11pt"/>
+          <TableCell Name="Cell13" Border.Lines="All" Text="[Table.库存量]" HorzAlign="Center" VertAlign="Center" Font="宋体, 11pt"/>
+          <TableCell Name="Cell14" Border.Lines="All" Text="[Table.销量]" HorzAlign="Center" VertAlign="Center" Font="宋体, 11pt"/>
+        </TableRow>
+      </TableObject>
+      <DataHeaderBand Name="DataHeader1" Top="51.25" Width="895.86" Height="28.35">
+        <TableObject Name="Table1" Width="850.5" Height="28.35" Border.Lines="All">
+          <TableColumn Name="Column1" Width="103.95"/>
+          <TableColumn Name="Column2" Width="170.1"/>
+          <TableColumn Name="Column3" Width="94.5"/>
+          <TableColumn Name="Column4" Width="189"/>
+          <TableColumn Name="Column5" Width="151.2"/>
+          <TableColumn Name="Column6" Width="75.6"/>
+          <TableColumn Name="Column7"/>
+          <TableRow Name="Row1" Height="28.35">
+            <TableCell Name="Cell1" Border.Lines="All" Text="客户编码" HorzAlign="Center" VertAlign="Center" Font="宋体, 13pt"/>
+            <TableCell Name="Cell2" Border.Lines="All" Text="客户名称" HorzAlign="Center" VertAlign="Center" Font="宋体, 13pt"/>
+            <TableCell Name="Cell3" Border.Lines="All" Text="终端类型" HorzAlign="Center" VertAlign="Center" Font="宋体, 13pt"/>
+            <TableCell Name="Cell4" Border.Lines="All" Text="上报日期" HorzAlign="Center" VertAlign="Center" Font="宋体, 13pt"/>
+            <TableCell Name="Cell5" Border.Lines="All" Text="产品" HorzAlign="Center" VertAlign="Center" Font="宋体, 13pt"/>
+            <TableCell Name="Cell6" Border.Lines="All" Text="库存量" HorzAlign="Center" VertAlign="Center" Font="宋体, 13pt"/>
+            <TableCell Name="Cell7" Border.Lines="All" Text="销量" HorzAlign="Center" VertAlign="Center" Font="宋体, 13pt"/>
+          </TableRow>
+        </TableObject>
+      </DataHeaderBand>
+    </DataBand>
+  </ReportPage>
+</Report>

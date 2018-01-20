@@ -1,0 +1,95 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Form Connection="LUOLAI1401Context" Table="PM_ProjectInfoBids" IsView="False" FilterTreeBindField="FID" TreeGridIdField="FID" TreeGridNameField="FID" TreeGridParentIdField="FID" UseAfterSaveAction="True">
+  <SubTables />
+  <SaveProducre />
+  <Buttons>
+    <Button Id="log" Title="保证金记录" IconCls="screen_full">
+      <ServerBehavior />
+      <ScriptAfter><![CDATA[ parent.showDocTab('screen_full', '投标项目管理报表', '/project/FA_Deposit?PID=' + row.Code);]]></ScriptAfter>
+    </Button>
+  </Buttons>
+  <GroupFilters />
+  <Fields>
+    <Field Table="PM_ProjectInfoBids" Field="FID" DbType="bigint" Required="True" ListVisible="False" FormVisible="False" ControlType="TextBox" ReadOnly="True" Title="系统流水号" ControlValue="序号">
+      <CascadeFilter />
+    </Field>
+    <Field Table="PM_ProjectInfoBids" Field="Code" DbType="varchar" Required="True" ListVisible="True" FormVisible="True" ControlType="AutoId" Title="项目编号" ControlValue="十二位编号">
+      <CascadeFilter />
+    </Field>
+    <Field Table="PM_ProjectInfoBids" Field="ProjName" DbType="varchar" Required="True" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="项目名称" FormWidth="3" Searchable="False">
+      <CascadeFilter />
+    </Field>
+    <Field Table="PM_ProjectInfoBids" Field="CustID" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="PopupSelect" Title="分部负责人" ControlValue="合作单位选择">
+      <CascadeFilter />
+      <PopupOption />
+    </Field>
+    <Field Table="PM_ProjectInfoBids" Field="appNumber" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="报建编号" Searchable="True">
+      <CascadeFilter />
+    </Field>
+    <Field Table="PM_ProjectInfoBids" Field="Owner" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="业主单位">
+      <CascadeFilter />
+    </Field>
+    <Field Table="PM_ProjectInfoBids" Field="totalInvAmt" DbType="numeric" Required="True" ListVisible="True" FormVisible="True" ControlType="NumberBox" Title="工程总投资（万元）">
+      <CascadeFilter />
+    </Field>
+    <Field Table="PM_ProjectInfoBids" Field="depAmt" DbType="numeric" Required="True" ListVisible="True" FormVisible="True" ControlType="NumberBox" Title="保证金（万元）">
+      <CascadeFilter />
+    </Field>
+    <Field Table="PM_ProjectInfoBids" Field="depAmtStatus" DbType="varchar" Required="True" ListVisible="True" FormVisible="True" ControlType="Dropdown" Title="保证金状态" ControlValue="保证金状态" DefaultValue="5" ReadOnly="False" Searchable="True">
+      <CascadeFilter />
+    </Field>
+    <Field Table="PM_ProjectInfoBids" Field="advAmt" DbType="numeric" Required="True" ListVisible="True" FormVisible="True" ControlType="NumberBox" Title="垫付(万元）">
+      <CascadeFilter />
+    </Field>
+    <Field Table="PM_ProjectInfoBids" Field="bookAmt" DbType="numeric" Required="True" ListVisible="True" FormVisible="True" ControlType="NumberBox" Title="标书费（元）">
+      <CascadeFilter />
+    </Field>
+    <Field Table="PM_ProjectInfoBids" Field="bidAmt" DbType="numeric" Required="True" ListVisible="True" FormVisible="True" ControlType="NumberBox" Title="开标费（元）">
+      <CascadeFilter />
+    </Field>
+    <Field Table="PM_ProjectInfoBids" Field="agencyAmt" DbType="numeric" Required="True" ListVisible="True" FormVisible="True" ControlType="NumberBox" Title="代办费（元）">
+      <CascadeFilter />
+    </Field>
+    <Field Table="PM_ProjectInfoBids" Field="PManager" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="项目经理" Searchable="True">
+      <CascadeFilter />
+    </Field>
+    <Field Table="PM_ProjectInfoBids" Field="bidDate" DbType="varchar" Required="True" ListVisible="True" FormVisible="True" ControlType="Date" Title="开标时间">
+      <CascadeFilter />
+    </Field>
+    <Field Table="PM_ProjectInfoBids" Field="bidAddress" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="开标地点" FormWidth="3">
+      <CascadeFilter />
+    </Field>
+    <Field Table="PM_ProjectInfoBids" Field="bidPerson" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="开标人">
+      <CascadeFilter />
+    </Field>
+    <Field Table="PM_ProjectInfoBids" Field="bidAgent" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="招标代理">
+      <CascadeFilter />
+    </Field>
+    <Field Table="PM_ProjectInfoBids" Field="Attention" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="特殊要求">
+      <CascadeFilter />
+    </Field>
+    <Field Table="PM_ProjectInfoBids" Field="Winner" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="中标单位">
+      <CascadeFilter />
+    </Field>
+    <Field Table="PM_ProjectInfoBids" Field="Remark" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="备注" FormWidth="3">
+      <CascadeFilter />
+    </Field>
+    <Field Table="PM_ProjectInfoBids" Field="CreatePerson" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="创建人" ReadOnly="True">
+      <CascadeFilter />
+    </Field>
+    <Field Table="PM_ProjectInfoBids" Field="CreateDate" DbType="datetime" Required="True" ListVisible="True" FormVisible="True" ControlType="Date" Title="创建时间" ReadOnly="True">
+      <CascadeFilter />
+    </Field>
+    <Field Table="PM_ProjectInfoBids" Field="UpdateDate" DbType="datetime" Required="True" ListVisible="True" FormVisible="True" ControlType="Date" Title="最近一次更新时间" ReadOnly="True">
+      <CascadeFilter />
+    </Field>
+    <Field Connection="LUOLAI1401Context" Table="PM_ProjectInfoBids" Field="UpdatePerson" ControlType="TextBox" Title="最修改人" ReadOnly="True" FormVisible="True" ListVisible="True" DbType="varchar">
+      <CascadeFilter />
+    </Field>
+  </Fields>
+  <AfterSaveAction Connection="LUOLAI1401Context" CommandText="exec DepositLog @ID">
+    <Inputs>
+      <Input ParameterName="@ID" SourceField="Code" />
+    </Inputs>
+  </AfterSaveAction>
+</Form>

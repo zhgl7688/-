@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Form Connection="LUOLAI1401Context" Table="a">
+  <SubTables />
+  <SaveProducre />
+  <Buttons />
+  <Fields>
+    <Field Table="a" Field="id" DbType="uniqueidentifier" Required="True" ListVisible="False" FormVisible="False" ControlType="AutoId" />
+    <Field Table="a" Field="NameD" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" FieldType="varchar" />
+  </Fields>
+</Form>

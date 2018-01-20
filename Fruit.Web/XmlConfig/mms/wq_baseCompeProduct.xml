@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Form Connection="LUOLAI1401Context" Table="wq_baseCompeProduct" Filter="a.CompCode= '{USER.CompCode}'">
+  <SubTables />
+  <Fields>
+    <Field Connection="LUOLAI1401Context" Table="wq_baseCompeProduct" Field="CPdtCode" Required="True" ListVisible="True" FormVisible="True" ControlType="AutoId" Title="竞品编码" ControlValue="十二位编号" FieldType="varchar" MaxLength="10" DbType="varchar" />
+    <Field Connection="LUOLAI1401Context" Table="wq_baseCompeProduct" Field="CPdtBrand" Required="True" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="竞品品牌" FieldType="varchar" MaxLength="20" Searchable="True" DbType="varchar" />
+    <Field Connection="LUOLAI1401Context" Table="wq_baseCompeProduct" Field="CPdtName" Required="True" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="竞品名称" FieldType="varchar" MaxLength="20" Searchable="True" DbType="varchar" />
+    <Field Connection="LUOLAI1401Context" Table="wq_baseCompeProduct" Field="CompCode" Required="True" ListVisible="False" FormVisible="False" ControlType="Dropdown" Title="所属公司" FieldType="varchar" MaxLength="20" ControlValue="所属公司" DefaultValue="{USER.CompCode}" DbType="varchar" />
+    <Field Connection="LUOLAI1401Context" Table="wq_baseCompeProduct" Field="Description" Required="False" ListVisible="True" FormVisible="True" ControlType="MultiTextBox" Title="描述" FieldType="text" MaxLength="200" DbType="varchar" />
+    <Field Connection="LUOLAI1401Context" Table="wq_baseCompeProduct" Field="CreatePerson" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="创建人" DefaultValue="{USER.UserName}" ReadOnly="True" FieldType="varchar" MaxLength="20" DbType="varchar" />
+    <Field Connection="LUOLAI1401Context" Table="wq_baseCompeProduct" Field="CreateDate" Required="False" ListVisible="True" FormVisible="True" ControlType="Date" Title="创建日期" ReadOnly="True" FieldType="datetime" MaxLength="20" Searchable="True" DbType="datetime" />
+    <Field Connection="LUOLAI1401Context" Table="wq_baseCompeProduct" Field="UpdatePerson" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="更改人" ReadOnly="True" FieldType="varchar" MaxLength="20" DbType="varchar" />
+    <Field Connection="LUOLAI1401Context" Table="wq_baseCompeProduct" Field="UpdateDate" Required="False" ListVisible="True" FormVisible="True" ControlType="Date" Title="更改日期" ReadOnly="True" FieldType="datetime" MaxLength="20" DbType="datetime" />
+  </Fields>
+  <SaveProducre />
+  <Buttons />
+  <GroupFilters />
+</Form>

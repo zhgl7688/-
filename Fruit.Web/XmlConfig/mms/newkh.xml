@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report CommonReport="True" From="New_Open_kh" OrderField="CreateDate" UseCharts="True">
+  <DrillReports />
+  <Fields>
+    <Field Table="New_Open_kh" Field="CreateDate" Alias="CreateDate" Title="日期" ControlType="Date" />
+    <Field Table="New_Open_kh" Field="qty" Alias="qty" Title="新开数量" />
+  </Fields>
+  <Charts Title="新开客户数" SubTitle="新开客户数">
+    <XAxis FieldUid="CreateDate" DataSourceType="Field" />
+    <YAxis FieldUid="CreateDate" />
+    <Series>
+      <Item FieldUid="qty" Type="line" Legend="新开客户数" />
+    </Series>
+  </Charts>
+</Report>

@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report CommonReport="True" From="HR_SocialSecRecords" OrderField="FMonth,FYear desc">
+  <DrillReports />
+  <Fields>
+    <Field Table="HR_SocialSecRecords" Field="FYear" Alias="FYear" Title="年" ControlType="TextBox" />
+    <Field Table="HR_SocialSecRecords" Field="FMonth" Alias="FMonth" Title="月" ControlType="TextBox" />
+    <Field Table="HR_SocialSecRecords" Field="empCode" Alias="empCode" Title="人员" ControlValue="员工" ControlType="PopupSelect" />
+    <Field Table="HR_SocialSecRecords" Field="SSType" Alias="SSType" Title="社保关系" ControlValue="社保类别" ControlType="Dropdown" />
+    <Field Table="HR_SocialSecRecords" Field="SSAmt" Alias="SSAmt" Title="社保基数" />
+    <Field Table="HR_SocialSecRecords" Field="indvPension" Alias="indvPension" Title="个人养老金" />
+    <Field Table="HR_SocialSecRecords" Field="indvMedical" Alias="indvMedical" Title="个人医保" />
+    <Field Table="HR_SocialSecRecords" Field="indvUnemploy" Alias="indvUnemploy" Title="个人失业保险" />
+    <Field Table="HR_SocialSecRecords" Field="corpPension" Alias="corpPension" Title="公司养老金" />
+    <Field Table="HR_SocialSecRecords" Field="corpBaseMedical" Alias="corpBaseMedical" Title="公司基本医保" />
+    <Field Table="HR_SocialSecRecords" Field="corpLocalMedical" Alias="corpLocalMedical" Title="公司地方医保" />
+    <Field Table="HR_SocialSecRecords" Field="corpUnemploy" Alias="corpUnemploy" Title="公司失业保险" />
+    <Field Table="HR_SocialSecRecords" Field="corpInjury" Alias="corpInjury" Title="公司工伤保险" />
+    <Field Table="HR_SocialSecRecords" Field="corpBirth" Alias="corpBirth" Title="公司生育保险" />
+    <Field Table="HR_SocialSecRecords" Field="indvTotal" Alias="indvTotal" Title="个人合计" />
+    <Field Table="HR_SocialSecRecords" Field="corpTotal" Alias="corpTotal" Title="单位合计" />
+    <Field Table="HR_SocialSecRecords" Field="Total" Alias="Total" Title="总合计" />
+    <Field Table="HR_SocialSecRecords" Field="Remark" Alias="Remark" Title="备注" />
+  </Fields>
+  <Charts>
+    <XAxis FieldUid="FYear" />
+    <YAxis FieldUid="FYear" />
+    <Series />
+  </Charts>
+</Report>

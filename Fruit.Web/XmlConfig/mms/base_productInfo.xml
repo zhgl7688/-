@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Form Connection="LUOLAI1401Context" Table="base_productInfo" Filter="a.CompCode= '{USER.CompCode}'">
+  <SubTables />
+  <Fields>
+    <Field Connection="LUOLAI1401Context" Table="base_productInfo" Field="PdtCode" Required="True" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="商品编码" ReadOnly="True" MaxLength="15" FieldType="varchar" DbType="varchar" Searchable="True" />
+    <Field Connection="LUOLAI1401Context" Table="base_productInfo" Field="PdtName" Required="True" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="商品名称" MaxLength="30" FieldType="varchar" DbType="varchar" Searchable="True" />
+    <Field Connection="LUOLAI1401Context" Table="base_productInfo" Field="PdtCate" Required="True" ListVisible="True" FormVisible="True" ControlType="Dropdown" Title="商品分类" MaxLength="10" FieldType="varchar" ControlValue="商品分类" DbType="varchar" Searchable="True" SearchControlType="SelectUser" />
+    <Field Connection="LUOLAI1401Context" Table="base_productInfo" Field="Spec" Required="True" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="规格" MaxLength="10" FieldType="varchar" DbType="varchar" Searchable="True" />
+    <Field Connection="LUOLAI1401Context" Table="base_productInfo" Field="BaseUnits" Required="True" ListVisible="True" FormVisible="True" ControlType="Dropdown" Title="计量单位" MaxLength="10" FieldType="varchar" ControlValue="计量单位" DbType="varchar" Searchable="True" />
+    <Field Connection="LUOLAI1401Context" Table="base_productInfo" Field="RetailPrc" Required="True" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="零售价" MaxLength="10" FieldType="" Validation="" DbType="numeric" Searchable="True" />
+    <Field Connection="LUOLAI1401Context" Table="base_productInfo" Field="UnitsGroup" Required="True" ListVisible="False" FormVisible="False" ControlType="Dropdown" Title="计量单位组" FieldType="varchar" MaxLength="10" ControlValue="计量单位组" DbType="varchar" />
+    <Field Connection="LUOLAI1401Context" Table="base_productInfo" Field="TradPrc" Required="True" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="批发价" MaxLength="10" FieldType="" Validation="" DbType="numeric" />
+    <Field Connection="LUOLAI1401Context" Table="base_productInfo" Field="Pic1" Required="False" ListVisible="False" FormVisible="True" ControlType="File" Title="照片1" MaxLength="50" FieldType="varchar" DbType="varchar">
+      <FileControlInfo />
+    </Field>
+    <Field Connection="LUOLAI1401Context" Table="base_productInfo" Field="Pic2" Required="False" ListVisible="False" FormVisible="True" ControlType="File" Title="照片2" MaxLength="50" FieldType="varchar" DbType="varchar">
+      <FileControlInfo />
+    </Field>
+    <Field Connection="LUOLAI1401Context" Table="base_productInfo" Field="Pic3" Required="False" ListVisible="False" FormVisible="True" ControlType="File" Title="照片3" FieldType="varchar" MaxLength="50" DbType="varchar">
+      <FileControlInfo />
+    </Field>
+    <Field Connection="LUOLAI1401Context" Table="base_productInfo" Field="Pic4" Required="False" ListVisible="False" FormVisible="True" ControlType="File" Title="照片4" FieldType="varchar" MaxLength="50" DbType="varchar">
+      <FileControlInfo />
+    </Field>
+    <Field Connection="LUOLAI1401Context" Table="base_productInfo" Field="Pic5" Required="False" ListVisible="False" FormVisible="True" ControlType="File" Title="照片5" FieldType="varchar" MaxLength="50" DbType="varchar">
+      <FileControlInfo />
+    </Field>
+    <Field Connection="LUOLAI1401Context" Table="base_productInfo" Field="Pic6" Required="False" ListVisible="False" FormVisible="True" ControlType="File" Title="照片6" FieldType="varchar" MaxLength="50" DbType="varchar">
+      <FileControlInfo />
+    </Field>
+    <Field Connection="LUOLAI1401Context" Table="base_productInfo" Field="Pic7" Required="False" ListVisible="False" FormVisible="True" ControlType="File" Title="照片7" FieldType="varchar" MaxLength="50" DbType="varchar">
+      <FileControlInfo />
+    </Field>
+    <Field Connection="LUOLAI1401Context" Table="base_productInfo" Field="Pic8" Required="False" ListVisible="False" FormVisible="True" ControlType="File" Title="照片8" FieldType="varchar" MaxLength="50" DbType="varchar">
+      <FileControlInfo />
+    </Field>
+    <Field Connection="LUOLAI1401Context" Table="base_productInfo" Field="Description" Required="False" ListVisible="True" FormVisible="True" ControlType="MultiTextBox" Title="描述" FieldType="text" MaxLength="200" DbType="varchar" />
+    <Field Connection="LUOLAI1401Context" Table="base_productInfo" Title="所属公司" Field="CompCode" ControlType="Dropdown" Required="False" FormVisible="False" ListVisible="False" FieldType="varchar" ReadOnly="True" ControlValue="所属公司" DefaultValue="{USER.CompCode}" DbType="varchar" />
+    <Field Connection="LUOLAI1401Context" Table="base_productInfo" Field="DelFlag" Required="False" ListVisible="True" FormVisible="True" ControlType="CheckBox" Title="删除标志" FieldType="varchar" MaxLength="10" DbType="char" />
+    <Field Connection="LUOLAI1401Context" Table="base_productInfo" Field="CreatePerson" Required="False" ListVisible="False" FormVisible="True" ControlType="TextBox" Title="创建人" FieldType="varchar" MaxLength="20" ReadOnly="True" DefaultValue="" DbType="varchar" />
+    <Field Connection="LUOLAI1401Context" Table="base_productInfo" Field="CreateDate" Required="False" ListVisible="False" FormVisible="True" ControlType="Date" Title="创建日期" FieldType="datetime" MaxLength="20" ReadOnly="True" DbType="datetime" Searchable="True" />
+    <Field Connection="LUOLAI1401Context" Table="base_productInfo" Field="UpdatePerson" Required="False" ListVisible="False" FormVisible="True" ControlType="TextBox" Title="更改人" FieldType="varchar" MaxLength="20" ReadOnly="True" DbType="varchar" />
+    <Field Connection="LUOLAI1401Context" Table="base_productInfo" Field="UpdateDate" Required="False" ListVisible="False" FormVisible="True" ControlType="Date" Title="更改日期" FieldType="datetime" ReadOnly="True" MaxLength="20" DbType="datetime" />
+    <Field Connection="LUOLAI1401Context" Table="base_productInfo" Field="id" FieldType="varchar" Title="id" ControlType="AutoId" ControlValue="序号" DbType="varchar" />
+  </Fields>
+  <SaveProducre />
+  <Buttons />
+  <GroupFilters />
+</Form>

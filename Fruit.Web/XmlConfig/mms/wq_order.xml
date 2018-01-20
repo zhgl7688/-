@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Form Connection="LUOLAI1401Context" Table="wq_order_hd" Filter="a.CompCode= '{USER.CompCode}'">
+  <SubTables>
+    <Table Table="wq_order_bd" Filter="" Title="产品列表" AddButtonTitle="搜索产品" AddSource="选择产品">
+      <Rels>
+        <FieldRel RelField="OrderCode" MainField="OrderCode" />
+      </Rels>
+      <Fields>
+        <Field Table="wq_order_bd" Field="Series" DbType="int" Required="False" ListVisible="True" FormVisible="True" ControlType="AutoId" Title="序号" ColumnWidth="50" ControlValue="序号" ReadOnly="True" />
+        <Field Table="wq_order_bd" Field="PdtCode" DbType="varchar" Required="True" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="产品编号" ColumnWidth="150" ReadOnly="True" />
+        <Field Table="wq_order_bd" Field="PdtName" DbType="varchar" Required="True" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="产品名称" ColumnWidth="150" ReadOnly="True" />
+        <Field Table="wq_order_bd" Field="OrdQty" DbType="int" Required="True" ListVisible="True" FormVisible="True" ControlType="NumberBox" Title="数量" ColumnWidth="60" />
+        <Field Table="wq_order_bd" Field="OrdPrice" DbType="numeric" Required="True" ListVisible="True" FormVisible="True" ControlType="NumberBox" Title="单价" ColumnWidth="60" ReadOnly="True" />
+        <Field Table="wq_order_bd" Field="OrdAmt" DbType="numeric" Required="False" ListVisible="True" FormVisible="True" ControlType="NumberBox" Title="金额" ReadOnly="False" DefaultValue="={OrdQty}*{OrdPrice}" ColumnWidth="120" />
+      </Fields>
+    </Table>
+  </SubTables>
+  <Fields>
+    <Field Connection="LUOLAI1401Context" Table="wq_order_hd" ControlType="AutoId" ControlValue="十二位编号" Required="True" Title="订单编号" Field="OrderCode" ListVisible="True" FormVisible="True" DbType="varchar" ReadOnly="True" />
+    <Field Connection="LUOLAI1401Context" Table="wq_order_hd" Field="DealerCode" Required="False" ListVisible="True" FormVisible="True" ControlType="PopupSelect" Title="客户编号" DbType="varchar" ControlValue="选择客户" Searchable="True" />
+    <Field Connection="LUOLAI1401Context" Table="wq_order_hd" Field="UserCode" Required="False" ListVisible="True" FormVisible="True" ControlType="PopupSelect" Title="业务员" DefaultValue="" DbType="varchar" ControlValue="用户选择" Searchable="True" />
+    <Field Connection="LUOLAI1401Context" Table="wq_order_hd" Field="CompCode" Required="True" ListVisible="False" FormVisible="False" ControlType="Dropdown" Title="所属公司" ControlValue="所属公司" DefaultValue="{USER.CompCode}" DbType="varchar" />
+    <Field Connection="LUOLAI1401Context" Table="wq_order_hd" Field="PrmDate" Required="True" ListVisible="True" FormVisible="True" ControlType="Date" Title="订单日期" DefaultValue="{今天}" DbType="datetime" Searchable="True" />
+    <Field Connection="LUOLAI1401Context" Table="wq_order_hd" Field="Remark" Required="False" ListVisible="True" FormVisible="True" ControlType="MultiTextBox" Title="备注" DbType="varchar" />
+    <Field Connection="LUOLAI1401Context" Table="wq_order_hd" Field="CreatePerson" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="创建人" ReadOnly="True" DbType="varchar" />
+    <Field Connection="LUOLAI1401Context" Table="wq_order_hd" Field="CreateDate" Required="False" ListVisible="True" FormVisible="True" ControlType="Date" Title="创建时间" ReadOnly="True" DbType="datetime" Searchable="True" />
+    <Field Connection="LUOLAI1401Context" Table="wq_order_hd" Field="UpdatePerson" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="最后修改人" ReadOnly="True" DbType="varchar" />
+    <Field Connection="LUOLAI1401Context" Table="wq_order_hd" Field="UpdateDate" Required="False" ListVisible="True" FormVisible="True" ControlType="Date" Title="最后修改时间" ReadOnly="True" DbType="datetime" />
+    <Field Connection="LUOLAI1401Context" Table="wq_order_hd" Title="编号" Field="id" ControlType="AutoId" ControlValue="序号" DbType="varchar" FormVisible="True" ListVisible="True" />
+  </Fields>
+  <SaveProducre />
+  <Buttons>
+    <Button Id="Button1" Title="审核" Reload="True">
+      <ServerBehavior Connection="LUOLAI1401Context" CommandText="UPDATE wq_order_hd SET id='1' WHERE OrderCode=@Code" DataType="">
+        <Inputs>
+          <Input ParameterName="@Code" SourceField="OrderCode" />
+        </Inputs>
+      </ServerBehavior>
+    </Button>
+  </Buttons>
+  <GroupFilters />
+</Form>

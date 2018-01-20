@@ -1,0 +1,78 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report ScriptLanguage="CSharp" ReportInfo.Created="12/28/2015 11:15:50" ReportInfo.Modified="12/28/2015 11:16:16" ReportInfo.CreatorVersion="1.9.16.0">
+  <Dictionary>
+    <MsSqlDataConnection Name="SMTERPContext" ConnectionString="rijcmlqLWGnpmTT/WNJu+YZ4tQrTx23CkhTbt+aIPTWe5scDwLbuOm85WHjFRILJOW/0yXjnOyaY5s09+/u3DgerBXpKA==">
+      <TableDataSource Name="tbBdProduct" DataType="System.Int32" Enabled="true" SelectCommand="select a.Name, a.PinyinCode, a.ProductID, a.EnglishName, a.Model, a.LevelCode, a.Prodtype, a.Categroy, b.Name Categroy_RefText, a.BarCode, a.Warehouse, c.Name Warehouse_RefText, a.SourceType, a.Supplier, d.Name Supplier_RefText, a.FactoryCode, a.ReferPrice, a.Price, a.CoPrice, a.OriginPlace, a.Unit, e.Name Unit_RefText, a.Manufacturer, a.Routing, a.Litigant, f.Name Litigant_RefText, a.Tax, a.TaxType3, a.Orderquantity, a.PurchaseLeadTime, a.PurchaseCycle, a.ManufacturingLeadTime, a.OutsourcingLeadTime, a.WastRate, a.MaxStock, a.MinStock, a.CreateDate, a.CreatePerson, a.Audit, a.AuditDate, a.Descript, a.UpdateDate, a.IfStop, a.MakingCostPreType, a.TaxType, a.FDate, a.FDateTime, a.FTime from tbBdProduct as a LEFT JOIN tbBdProductCategory b ON a.Categroy = b.Code LEFT JOIN tbBdWarehouse c ON a.Warehouse = c.Code LEFT JOIN tbBdSupplier d ON a.Supplier = d.Code LEFT JOIN tbBdUnit e ON a.Unit = e.Code LEFT JOIN tbBdLitigant f ON a.Litigant = f.PeopleCode  where a.Code=@Code">
+        <Column Name="Name" DataType="System.String"/>
+        <Column Name="PinyinCode" DataType="System.String"/>
+        <Column Name="ProductID" DataType="System.String"/>
+        <Column Name="EnglishName" DataType="System.String"/>
+        <Column Name="Model" DataType="System.String"/>
+        <Column Name="LevelCode" DataType="System.String"/>
+        <Column Name="Prodtype" DataType="System.String"/>
+        <Column Name="Categroy" DataType="System.Guid"/>
+        <Column Name="Categroy_RefText" DataType="System.String"/>
+        <Column Name="BarCode" DataType="System.String"/>
+        <Column Name="Warehouse" DataType="System.Guid"/>
+        <Column Name="Warehouse_RefText" DataType="System.String"/>
+        <Column Name="SourceType" DataType="System.String"/>
+        <Column Name="Supplier" DataType="System.Guid"/>
+        <Column Name="Supplier_RefText" DataType="System.String"/>
+        <Column Name="FactoryCode" DataType="System.String"/>
+        <Column Name="ReferPrice" DataType="System.Single"/>
+        <Column Name="Price" DataType="System.Single"/>
+        <Column Name="CoPrice" DataType="System.Single"/>
+        <Column Name="OriginPlace" DataType="System.String"/>
+        <Column Name="Unit" DataType="System.Guid"/>
+        <Column Name="Unit_RefText" DataType="System.String"/>
+        <Column Name="Manufacturer" DataType="System.String"/>
+        <Column Name="Routing" DataType="System.Guid"/>
+        <Column Name="Litigant" DataType="System.Guid"/>
+        <Column Name="Litigant_RefText" DataType="System.String"/>
+        <Column Name="Tax" DataType="System.Single"/>
+        <Column Name="TaxType3" DataType="System.String"/>
+        <Column Name="Orderquantity" DataType="System.Single"/>
+        <Column Name="PurchaseLeadTime" DataType="System.Single"/>
+        <Column Name="PurchaseCycle" DataType="System.Single"/>
+        <Column Name="ManufacturingLeadTime" DataType="System.Single"/>
+        <Column Name="OutsourcingLeadTime" DataType="System.Single"/>
+        <Column Name="WastRate" DataType="System.Single"/>
+        <Column Name="MaxStock" DataType="System.Single"/>
+        <Column Name="MinStock" DataType="System.Single"/>
+        <Column Name="CreateDate" DataType="System.DateTime"/>
+        <Column Name="CreatePerson" DataType="System.String"/>
+        <Column Name="Audit" DataType="System.Guid"/>
+        <Column Name="AuditDate" DataType="System.Guid"/>
+        <Column Name="Descript" DataType="System.String"/>
+        <Column Name="UpdateDate" DataType="System.DateTime"/>
+        <Column Name="IfStop" DataType="System.Boolean"/>
+        <Column Name="MakingCostPreType" DataType="System.String"/>
+        <Column Name="TaxType" DataType="System.String"/>
+        <Column Name="FDate" DataType="System.DateTime"/>
+        <Column Name="FDateTime" DataType="System.DateTime"/>
+        <Column Name="FTime" DataType="System.TimeSpan"/>
+        <CommandParameter Name="@Code" DataType="22" Expression="[Code]"/>
+      </TableDataSource>
+      <TableDataSource Name="tbBdProductDrawing" DataType="System.Int32" Enabled="true" SelectCommand="select a.Code, a.DrawingPath, b.Name DrawingPath_RefText, a.Remark, a.Sort, a.Num from tbBdProductDrawing as a LEFT JOIN tbBdWarehouse b ON a.DrawingPath = b.Code  where a.ProductCode=@ProductCode">
+        <Column Name="Code" DataType="System.Guid"/>
+        <Column Name="DrawingPath" DataType="System.String"/>
+        <Column Name="DrawingPath_RefText" DataType="System.String"/>
+        <Column Name="Remark" DataType="System.String"/>
+        <Column Name="Sort" DataType="System.Int32"/>
+        <Column Name="Num" DataType="System.Decimal"/>
+        <CommandParameter Name="@ProductCode" DataType="22" Expression="[Code]"/>
+      </TableDataSource>
+    </MsSqlDataConnection>
+    <Parameter Name="Code" DataType="System.String"/>
+  </Dictionary>
+  <ReportPage Name="Page1">
+    <ReportTitleBand Name="ReportTitle1" Width="718.2" Height="37.8">
+      <TextObject Name="Text1" Left="274.05" Top="9.45" Width="94.5" Height="18.9" Text="[tbBdProduct.Name]" Font="宋体, 9pt"/>
+      <TextObject Name="Text2" Left="434.7" Top="9.45" Width="94.5" Height="18.9" Text="[tbBdProduct.Categroy_RefText]" Font="宋体, 9pt"/>
+      <TextObject Name="Text3" Left="604.8" Top="9.45" Width="94.5" Height="18.9" Text="[tbBdProduct.Warehouse_RefText]" Font="宋体, 9pt"/>
+    </ReportTitleBand>
+    <PageHeaderBand Name="PageHeader1" Top="41.8" Width="718.2" Height="28.35"/>
+    <DataBand Name="Data1" Top="74.15" Width="718.2" Height="75.6"/>
+    <PageFooterBand Name="PageFooter1" Top="153.75" Width="718.2" Height="18.9"/>
+  </ReportPage>
+</Report>

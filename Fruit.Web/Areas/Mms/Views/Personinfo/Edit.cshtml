@@ -1,0 +1,229 @@
+﻿@section scripts {
+<script type="text/javascript">
+   var col_wq_unittype_remark_RefText_formatter = function(v, r) {return r.remark_RefText;}
+    var data = @MvcHtmlString.Create(JsonExtension.ToJson(Model));
+    $(function(){
+        var db = fruit.databind.root;
+        $.extend(db.options, {
+            removeRow0Click: function(){
+                db.binds.list0.delete();
+            }
+        });
+        $.extend(db.options, {
+            addRow0Click: function(){
+                db.binds.list0.add();
+            }
+        });
+        data.form._row_state = @ViewBag.RowState;
+        db.loadData(data);
+        function loadDetial(){
+            fruit.ajax({method:'get', url:'/api/Mms/Personinfo/getdetial/'+data.form["ID"],success:function(data){for(var key in data){$('[data-subtable=' + key + ']').datagrid('loadData', data[key]);}}});
+        }
+        loadDetial();
+        $.extend(db, {
+            refreshClick:function(){
+                location.assign(top.$(window.frameElement).data('src'));
+            },
+            rejectClick:function(){
+                location.assign(top.$(window.frameElement).data('src'));
+            },
+            newClick:function(){
+                fruit.ajax({
+                        url:'/api/Mms/Personinfo/NewID',
+                        success:function(data) {
+                            parent.changeDocTab(window.frameElement, '/Mms/Personinfo/edit/' + data);
+                        }
+                    })
+            },
+            deleteClick:function(){
+                $.messager.confirm('确认', '您确认要删除当前记录吗？', function(r){
+                    if(r){
+                        fruit.ajax({
+                            method:'DELETE',
+                            url: '/api/Mms/Personinfo/'+db.getData('form').ID,
+                            success: function(data) {
+                                fruit.message('success', '删除成功');
+                                top.closeDocTab(window.frameElement);
+                            }
+                        });
+                    }
+                });
+            },
+            saveClick:function(){
+                if(!db.validate()){fruit.message('error', '请更正验证错误！'); return;}
+                var data = db.getData();
+                data.wq_unittype = $('[data-subtable="wq_unittype"]').datagrid('getChangeRows');
+                fruit.ajax({
+                    url: '/api/Mms/Personinfo/',
+                    data: JSON.stringify(data),
+                    success:function(result){
+                        if(result && result.success){
+                            fruit.message('success', '保存成功');
+                            if(result.form){
+                                db.loadData(result);
+                                loadDetial();
+                            }
+                        }
+                    }
+                });
+            }
+        });
+    });
+</script>
+}
+
+
+<div class="z-toolbar">
+    <a id="a_save" href="#" plain="true" class="easyui-linkbutton" icon="icon-save" data-bind="click:'saveClick',disable:'readonly'" title="保存">保存</a>
+    <a id="a_undo" href="#" plain="true" class="easyui-linkbutton" icon="icon-undo" data-bind="click:'rejectClick',disable:'readonly'" title="撤消">撤消</a>
+    <div class="datagrid-btn-separator"></div>
+    <a id="a_other" href="#" class="easyui-splitbutton" data-options="menu:'#divother',iconCls:'icon-application_go'" title="其他">其他</a>
+</div>
+
+<div id="divother" style="width:100px; display:none;">
+    <div data-options="iconCls:'icon-add'" data-bind="click:'newClick'">新增</div>
+    <div data-options="iconCls:'icon-cross'" data-bind="click:'deleteClick'">删除</div>
+    <div data-options="iconCls:'icon-arrow_refresh'" data-bind="click:'refreshClick'">刷新</div>
+</div>
+
+<div id="divrelations" style="width:100px; display:none;"></div>
+<div id="master" class="container_12" data-bind="inputwidth:0.9">
+<input type="hidden" data-bind="value:'form._row_state'" />
+<input type="hidden" data-bind="value:'form.ID'" />
+    <div class="grid_1 lbl">员工编号</div>
+   <div class="grid_3 val"><input type="text" data-bind="value:'form.psncode'" class="easyui-validatebox z-txt" data-options="required:true" /></div>
+    <div class="grid_1 lbl">姓名</div>
+   <div class="grid_3 val"><input type="text" data-bind="value:'form.name'" class="easyui-validatebox z-txt" data-options="required:true" /></div>
+    <div class="grid_1 lbl">手机号</div>
+   <div class="grid_3 val"><input type="text" data-bind="value:'form.Mobile'" class="easyui-validatebox z-txt" data-options="required:true" /></div>
+
+    <div class="clear"></div>
+
+    <div class="grid_1 lbl">性别</div>
+   <div class="grid_3 val"><input type="text" data-bind="value:'form.sex',datasource:'dataSource.sex'" class="z-txt easyui-combobox" data-options="required:false, readonly:false" /></div>
+    <div class="grid_1 lbl">证件类型</div>
+   <div class="grid_3 val"><input type="text" data-bind="value:'form.idtype',datasource:'dataSource.idtype'" class="z-txt easyui-combobox" data-options="required:true, readonly:false" /></div>
+    <div class="grid_1 lbl">证件号码</div>
+   <div class="grid_3 val"><input type="text" data-bind="value:'form.CertNumber'" class="easyui-validatebox z-txt" data-options="required:true" /></div>
+
+    <div class="clear"></div>
+
+    <div class="grid_1 lbl">民族</div>
+   <div class="grid_3 val"><input type="text" data-bind="value:'form.nationality'" class="easyui-validatebox z-txt" data-options="required:false" /></div>
+    <div class="grid_1 lbl">籍贯</div>
+   <div class="grid_3 val"><input type="text" data-bind="value:'form.nativeplace'" class="easyui-validatebox z-txt" data-options="required:false" /></div>
+    <div class="grid_1 lbl">年龄</div>
+   <div class="grid_3 val"><input type="text" data-bind="value:'form.age'" class="easyui-validatebox z-txt" data-options="required:true" /></div>
+
+    <div class="clear"></div>
+
+    <div class="grid_1 lbl">出生日期</div>
+   <div class="grid_3 val"><input type="text" data-bind="value:'form.birthdate',readOnly:false" class="z-txt easyui-datebox" /></div>
+    <div class="grid_1 lbl">出生地</div>
+   <div class="grid_7 val"><input type="text" data-bind="value:'form.BirthPlace'" class="easyui-validatebox z-txt" data-options="required:false" /></div>
+
+    <div class="clear"></div>
+
+    <div class="grid_1 lbl">档案编号</div>
+   <div class="grid_3 val"><input type="text" data-bind="value:'form.FileNumber'" class="easyui-validatebox z-txt" data-options="required:false" /></div>
+    <div class="grid_1 lbl">社保号</div>
+   <div class="grid_3 val"><input type="text" data-bind="value:'form.SocialSecurity'" class="easyui-validatebox z-txt" data-options="required:false" /></div>
+    <div class="grid_1 lbl">工资卡号</div>
+   <div class="grid_3 val"><input type="text" data-bind="value:'form.WageCard'" class="easyui-validatebox z-txt" data-options="required:false" /></div>
+
+    <div class="clear"></div>
+
+    <div class="grid_1 lbl">在职状态</div>
+   <div class="grid_3 val"><input type="text" data-bind="value:'form.EmployeeStatus',datasource:'dataSource.EmployeeStatus'" class="z-txt easyui-combobox" data-options="required:true, readonly:false" /></div>
+    <div class="grid_1 lbl">所属组织</div>
+   <div class="grid_3 val"><input type="text" data-bind="value:'form.position',datasource:'dataSource.position'" class="z-txt easyui-combobox" data-options="required:true, readonly:false" /></div>
+    <div class="grid_1 lbl">所属角色</div>
+   <div class="grid_3 val"><input type="text" data-bind="value:'form.RoleCode', text:'form.RoleCode_RefText'" class="z-txt easyui-popup" data-options="rule:'所属角色',textField:'RoleCode_RefText',required:true, onSelect:fruit.popupSelected" /></div>
+
+    <div class="clear"></div>
+
+    <div class="grid_1 lbl">合同到期时间</div>
+   <div class="grid_3 val"><input type="text" data-bind="value:'form.effectdate', readOnly:false" class="z-txt easyui-datebox" data-options="required:true" /></div>
+    <div class="grid_1 lbl">入职时间</div>
+   <div class="grid_3 val"><input type="text" data-bind="value:'form.stuffdate', readOnly:false" class="z-txt easyui-datebox" data-options="required:true" /></div>
+    <div class="grid_1 lbl">婚姻状况</div>
+   <div class="grid_3 val"><input type="text" data-bind="value:'form.marital',datasource:'dataSource.marital'" class="z-txt easyui-combobox" data-options="required:false, readonly:false" /></div>
+
+    <div class="clear"></div>
+
+    <div class="grid_1 lbl">健康状况</div>
+   <div class="grid_3 val"><input type="text" data-bind="value:'form.health'" class="easyui-validatebox z-txt" data-options="required:false" /></div>
+    <div class="grid_1 lbl">身高</div>
+   <div class="grid_3 val"><input type="text" data-bind="value:'form.Height'" class="easyui-validatebox z-txt" data-options="required:false" /></div>
+    <div class="grid_1 lbl">体重</div>
+   <div class="grid_3 val"><input type="text" data-bind="value:'form.Weight'" class="easyui-validatebox z-txt" data-options="required:false" /></div>
+
+    <div class="clear"></div>
+
+    <div class="grid_1 lbl">毕业院校</div>
+   <div class="grid_3 val"><input type="text" data-bind="value:'form.GraduationSchool'" class="easyui-validatebox z-txt" data-options="required:false" /></div>
+    <div class="grid_1 lbl">最高学历</div>
+   <div class="grid_3 val"><input type="text" data-bind="value:'form.lasteducation',datasource:'dataSource.lasteducation'" class="z-txt easyui-combobox" data-options="required:false, readonly:false" /></div>
+    <div class="grid_1 lbl">最高学位</div>
+   <div class="grid_3 val"><input type="text" data-bind="value:'form.HighestDegree',datasource:'dataSource.HighestDegree'" class="z-txt easyui-combobox" data-options="required:false, readonly:false" /></div>
+
+    <div class="clear"></div>
+
+    <div class="grid_1 lbl">参加工作日期</div>
+   <div class="grid_3 val"><input type="text" data-bind="value:'form.major',readOnly:false" class="z-txt easyui-datebox" /></div>
+    <div class="grid_1 lbl">职称</div>
+   <div class="grid_3 val"><input type="text" data-bind="value:'form.rank',datasource:'dataSource.rank'" class="z-txt easyui-combobox" data-options="required:false, readonly:false" /></div>
+    <div class="grid_1 lbl">系统登录权限</div>
+   <div class="grid_3 val"><input type="hidden" data-bind="value:'form.is_status', set:false" value="0" /><input type="checkbox" data-bind="value:'form.is_status'" value="1" /></div>
+
+    <div class="clear"></div>
+
+    <div class="grid_1 lbl">是否考勤</div>
+   <div class="grid_3 val"><input type="hidden" data-bind="value:'form.kq_status', set:false" value="0" /><input type="checkbox" data-bind="value:'form.kq_status'" value="1" /></div>
+    <div class="grid_1 lbl">工龄</div>
+   <div class="grid_3 val"><input type="text" data-bind="value:'form.glbdef1'" class="easyui-validatebox z-txt" data-options="required:false" /></div>
+    <div class="grid_1 lbl">相片</div>
+   <div class="grid_3 val"><input type="text" data-bind="value:'form.Photo'" class="easyui-file" data-options="{numberLimits:1,path:'',sizeLimits:2097152,typeLimits:'jpg,gif,png',viewMode:'Default'}" /></div>
+
+    <div class="clear"></div>
+
+
+    <div class="clear"></div>
+
+</div>
+<div id="tt" class="easyui-tabs">
+    <div title="账号绑定">
+        <table id="list0" data-subtable="wq_unittype" data-bind="datagrid:'grid'" data-options="fixSize:{w:6,h:'auto'}, toolbar:'#gridtb0', showFooter: false, border:false, editMode:'select',singleSelect:true">
+            <thead>
+                <tr>
+    <th field="id" width="100">序号    </th>
+    <th field="sbbh" width="200">设备编号    </th>
+    <th field="sbxh" width="200">设备型号    </th>
+    <th field="bbmc" width="200">系统版本    </th>
+    <th field="remark" data-options="editor:{type:'combobox', options:{required:false, data:data.dataSource.wq_unittype_remark}}" formatter="col_wq_unittype_remark_RefText_formatter" width="200">状态    </th>
+                </tr>
+            </thead>
+        </table>
+
+        <div id="gridtb0">
+            <a href="#" class="easyui-linkbutton" data-options="iconCls:'icon-search',plain:true" data-bind="click:'addRow0Click',disable:'readonly'">增加</a>
+            <a href="#" class="easyui-linkbutton" data-options="iconCls:'icon-remove',plain:true" data-bind="click:'removeRow0Click',disable:'readonly'">删除</a>
+        </div>
+    </div>
+    <div title="表单信息" style="padding-top:2px;">
+        <div class="container_12" id="BillDetail" data-bind="inputwidth:0.9,autoheight:181">
+            <div class="clear"></div>
+    <div class="grid_1 lbl">创建人</div>
+   <div class="grid_3 val"><input type="text" data-bind="value:'form.CreatePerson', readOnly:true" class="z-txt readonly" /></div>
+    <div class="grid_1 lbl">创建日期</div>
+   <div class="grid_3 val"><input type="text" data-bind="value:'form.CreateDate',readOnly:true" class="z-txt easyui-datebox" /></div>
+    <div class="grid_1 lbl">更改人</div>
+   <div class="grid_3 val"><input type="text" data-bind="value:'form.UpdatePerson', readOnly:true" class="z-txt readonly" /></div>
+
+            <div class="clear"></div>
+
+    <div class="grid_1 lbl">更改日期</div>
+   <div class="grid_3 val"><input type="text" data-bind="value:'form.UpdateDate',readOnly:true" class="z-txt easyui-datebox" /></div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Form Connection="LUOLAI1401Context" Table="wq_grouppurchase" Filter="a.CompCode= '{USER.CompCode}'">
+  <SubTables />
+  <SaveProducre />
+  <Buttons />
+  <GroupFilters />
+  <Fields>
+    <Field Table="wq_grouppurchase" Field="CompCode" DbType="varchar" Required="False" ListVisible="False" FormVisible="False" ControlType="Dropdown" Title="所属公司" ControlValue="所属公司" DefaultValue="{USER.CompCode}" />
+    <Field Table="wq_grouppurchase" Field="DealerCode" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="客户编号" Searchable="True" />
+    <Field Table="wq_grouppurchase" Field="DealerType" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="Dropdown" Title="客户类型" ControlValue="终端类型" DefaultValue="团购客户" ReadOnly="True" Searchable="False" />
+    <Field Table="wq_grouppurchase" Field="DealertypeCode" DbType="varchar" Required="False" ListVisible="False" FormVisible="False" ControlType="TextBox" Title="客户类型编码" Searchable="True" />
+    <Field Table="wq_grouppurchase" Field="Quantitygoods" DbType="int" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="团购数量" />
+    <Field Table="wq_grouppurchase" Field="unitprice" DbType="numeric" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="商品单价" />
+    <Field Table="wq_grouppurchase" Field="Commodityprice" DbType="numeric" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="团购金额" />
+    <Field Table="wq_grouppurchase" Field="tel" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="电话" />
+    <Field Table="wq_grouppurchase" Field="phone" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="手机" />
+    <Field Table="wq_grouppurchase" Field="address" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="MultiTextBox" Title="地址" />
+    <Field Table="wq_grouppurchase" Field="Remark" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="MultiTextBox" Title="备注" />
+    <Field Table="wq_grouppurchase" Field="CreatePerson" DbType="varchar" Required="False" ListVisible="False" FormVisible="True" ControlType="TextBox" ReadOnly="True" Title="创建人" />
+    <Field Table="wq_grouppurchase" Field="CreateDate" DbType="datetime" Required="False" ListVisible="False" FormVisible="True" ControlType="Date" ReadOnly="True" Title="创建日期" Searchable="True" />
+    <Field Table="wq_grouppurchase" Field="UpdatePerson" DbType="varchar" Required="False" ListVisible="False" FormVisible="True" ControlType="TextBox" ReadOnly="True" Title="更改人" />
+    <Field Table="wq_grouppurchase" Field="UpdateDate" DbType="datetime" Required="False" ListVisible="False" FormVisible="True" ControlType="Date" ReadOnly="True" Title="更改日期" />
+    <Field Table="wq_grouppurchase" Field="id" DbType="varchar" Required="False" ListVisible="False" FormVisible="False" ControlType="AutoId" Title="id" ControlValue="序号" />
+  </Fields>
+</Form>

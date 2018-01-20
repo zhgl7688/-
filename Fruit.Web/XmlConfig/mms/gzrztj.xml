@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report CommonReport="True" From="gzrztj" OrderField="月份" AddCondition="(员工编码 IN (SELECT UserCode FROM dbo.sys_user WHERE OrganizeName LIKE '{SESSION.OrganizeName}%') or '{USER.UserCode}'='super')">
+  <Fields>
+    <Field Table="gzrztj" Field="员工编码" Title="员工编码" FieldType="varchar" Alias="员工编码" ControlType="TextBox" />
+    <Field Table="gzrztj" Field="姓名" Title="姓名" FieldType="varchar" Alias="姓名" ControlType="TextBox" />
+    <Field Table="gzrztj" Field="月份" Alias="月份" Title="月份" FieldType="varchar" ControlType="" />
+    <Field Table="gzrztj" Field="应填报数量" Title="应填报数量" FieldType="varchar" Alias="应填报数量" />
+    <Field Table="gzrztj" Field="完成数量" Alias="完成数量" Title="完成数量" FieldType="varchar" />
+    <Field Table="gzrztj" Field="漏报数量" Alias="漏报数量" Title="漏报数量" FieldType="varchar" />
+  </Fields>
+  <DrillReports />
+  <Charts>
+    <XAxis />
+    <YAxis />
+    <Series />
+  </Charts>
+</Report>

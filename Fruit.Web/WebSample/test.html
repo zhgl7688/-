@@ -1,0 +1,149 @@
+<!doctype html>
+<html class="no-js" lang="">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>SH_client</title>
+
+    <link rel="apple-touch-icon" href="apple-touch-icon.png">
+    <!-- Place favicon.ico in the root directory -->
+
+    
+    <!-- bower:css -->
+
+    <!-- endbower -->
+    <!-- endbuild -->
+
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/e560.css">
+
+
+    <script src="scripts/vendor/modernizr.js"></script>
+
+</head>
+
+<body>
+    <!--[if lt IE 10]>
+      <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+    <![endif]-->
+
+    <div class="container">
+        <div class="header">
+            <h1 class="text-muted">PenPower</h1>
+            <a class="btn btn-sm btn-success home" href="index.html"><span class="glyphicon glyphicon-home"></span> Home</a>
+        </div>
+
+        <div class="row-canvas">
+            <canvas id="ppCanvas" width="600" height="375"></canvas>
+            <div class="shutdown"></div>
+        </div>
+
+
+      <div class="row">
+        <div class="col-md-12">
+
+          <!-- Table 1 -->
+          <table width="100%" class="functions">
+            <tbody>
+              <!-- Cols 1 -->
+              <tr>
+                <td width="16.65%">
+                  <button type="button" id="initBtn" class="btn btn-block btn-success btn-sm" onclick="initDevice()">Initialize Device</button>
+                </td>
+                <td width="16.65%">
+                  <button type="button" id="uninitBtn" class="btn btn-block btn-success btn-sm init" onclick="uninitDevice()">Uninitialize Device</button>
+                </td>
+                <td width="16.65%">
+                  Device Type:
+                </td>
+                <td width="16.65%">
+                  <input type="text" value="E560" readonly="readonly" class="form-control"></input>
+                </td>
+                <td width="16.65%">
+                  <button type="button" class="btn btn-block btn-success btn-sm init" onclick="clearLog()">Clear Log</button>
+                </td>
+                <td width="16.65%">
+                  <button type="button" class="btn btn-block btn-success btn-sm init" onclick="clearInk()">Clear</button>
+                </td>
+              </tr>
+
+
+              <!-- Cols 3 -->
+              <tr>
+                <td>
+                  <button type="button" class="btn btn-block btn-success btn-sm init" onclick="initNoPoll()">Initialize Without Poll</button>
+                </td>
+                <td>
+                 <button type="button" class="btn btn-block btn-success btn-sm init" onclick="getInk()">Get Ink</button>
+                  <!-- <select id="sdType" class="form-control  init">
+                    <option value="1">BMP</option>
+                    <option value="2">JPG</option>
+                    <option value="3">PNG</option>
+                    <option value="4">GIF</option>
+                    <option value="5">TIFF</option>
+                  </select> -->
+                </td>
+                <td>
+                    <button type="button" class="btn btn-block btn-success btn-sm init" onclick="getInkData()">Get Ink Data</button>
+                  <!-- <select id="sdDpi" class="form-control init">
+                    <option value="0">Dpi:150</option>
+                    <option value="1">Dpi:300</option>
+                  </select> -->
+                </td>
+                <td>
+                <button type="button" class="btn btn-block btn-success btn-sm init" onclick="getSize()">Get Size</button>
+                </td>
+                <td>
+                <button type="button" class="btn btn-block btn-success btn-sm init" onclick="getPointer()" data-toggle="modal" data-target="#myModal">ShowPointInfo</button>
+                </td>
+                <td>
+                  <button type="button" class="btn btn-block btn-success btn-sm init" onclick="getValid()">Get Valid</button>
+                </td>
+              </tr>
+
+              <tr>
+                  <td colspan="3">
+                      <h2 style="text-align:center">Get Ink</h2>
+                    <textarea class="form-control" id="logOutput" style="width:100%;height:350px;resize: none;"></textarea>
+                  </td>
+                  <td colspan="3">
+                      <h2 style="text-align:center">Get Ink Data</h2>
+                    <textarea class="form-control" id="inkData" style="width:100%;height:350px;resize: none;"></textarea>
+                  </td>
+              </tr>
+
+            </tbody>
+          </table>
+
+
+
+        </div>
+      </div>
+
+      <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+              <div class="modal-content">
+                  <div class="modal-header">
+                      <h4 class="modal-title" id="myModalLabel">PointInfo</h4> </div>
+                  <div class="modal-body" id="pointInfo"> </div>
+                  <div class="modal-footer"><button type="button" class="btn btn-default" data-dismiss="modal">Close</button></div>
+              </div>
+          </div>
+      </div>
+
+        <div class="footer">
+            <p>Powered By Penpower</p>
+        </div>
+    </div>
+
+
+    <script src="scripts/vendor.js"></script>
+
+    <script src="scripts/plugins.js"></script>
+
+    <script src="scripts/test.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Form Connection="LUOLAI1401Context" Table="wq_baseRptProduct">
+  <SubTables />
+  <Fields>
+    <Field Connection="LUOLAI1401Context" Table="wq_baseRptProduct" Field="RPdtCode" Required="True" ListVisible="True" FormVisible="True" ControlType="AutoId" Title="上报产品编码" ControlValue="十二位编号" MaxLength="20" FieldType="varchar" ReadOnly="True" Searchable="False" DbType="varchar" />
+    <Field Connection="LUOLAI1401Context" Table="wq_baseRptProduct" Field="RPdtName" Required="True" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="产品名称" MaxLength="20" FieldType="varchar" Searchable="True" DbType="varchar" />
+    <Field Connection="LUOLAI1401Context" Table="wq_baseRptProduct" Field="CompCode" Required="True" ListVisible="False" FormVisible="False" ControlType="Dropdown" Title="所属公司" MaxLength="20" FieldType="varchar" DefaultValue="{USER.CompCode}" ControlValue="所属公司" ReadOnly="True" DbType="varchar" />
+    <Field Connection="LUOLAI1401Context" Table="wq_baseRptProduct" Field="Description" Required="False" ListVisible="True" FormVisible="True" ControlType="MultiTextBox" Title="描述" MaxLength="200" FieldType="text" DbType="varchar" />
+    <Field Connection="LUOLAI1401Context" Table="wq_baseRptProduct" Field="CreatePerson" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="创建人" DefaultValue="" MaxLength="20" FieldType="varchar" ReadOnly="True" DbType="varchar" />
+    <Field Connection="LUOLAI1401Context" Table="wq_baseRptProduct" Field="CreateDate" Required="False" ListVisible="True" FormVisible="True" ControlType="Date" Title="创建日期" MaxLength="20" FieldType="datetime" ReadOnly="True" Searchable="True" DbType="datetime" />
+    <Field Connection="LUOLAI1401Context" Table="wq_baseRptProduct" Field="UpdatePerson" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="更改人" MaxLength="20" FieldType="varchar" ReadOnly="True" DbType="varchar" />
+    <Field Connection="LUOLAI1401Context" Table="wq_baseRptProduct" Field="UpdateDate" Required="False" ListVisible="True" FormVisible="True" ControlType="Date" Title="更改日期" MaxLength="20" FieldType="datetime" ReadOnly="True" DbType="datetime" />
+  </Fields>
+  <SaveProducre />
+  <Buttons />
+  <GroupFilters />
+</Form>

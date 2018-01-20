@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Form Connection="LUOLAI1401Context" Table="BD_SysParas" IsView="False" FilterTreeBindField="FID" TreeGridIdField="FID" TreeGridNameField="FID" TreeGridParentIdField="FID" UseGridEdit="False">
+  <SubTables />
+  <SaveProducre />
+  <Buttons />
+  <GroupFilters />
+  <Fields>
+    <Field Table="BD_SysParas" Field="FID" DbType="int" Required="True" ListVisible="False" FormVisible="False" ControlType="AutoId" ReadOnly="True" Title="系统流水号">
+      <CascadeFilter />
+    </Field>
+    <Field Table="BD_SysParas" Field="certEx" DbType="int" Required="True" ListVisible="True" FormVisible="True" ControlType="NumberBox" Title="证书有效期提醒（天）" ColumnWidth="150">
+      <CascadeFilter />
+    </Field>
+    <Field Table="BD_SysParas" Field="bidEx" DbType="int" Required="True" ListVisible="True" FormVisible="True" ControlType="NumberBox" Title="保证金提醒（天）" ColumnWidth="150">
+      <CascadeFilter />
+    </Field>
+    <Field Table="BD_SysParas" Field="certEx2" DbType="int" Required="True" ListVisible="True" FormVisible="True" ControlType="NumberBox" Title="安全证有效期提醒（天）" ColumnWidth="150">
+      <CascadeFilter />
+    </Field>
+  </Fields>
+</Form>

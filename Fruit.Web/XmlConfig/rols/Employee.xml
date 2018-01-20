@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Form Connection="LUOLAI1401Context" Table="HR_Employees" IsView="False" FilterTreeBindField="" TreeGridIdField="" TreeGridNameField="" TreeGridParentIdField="">
+  <SubTables>
+  </SubTables>
+  <SaveProducre />
+  <Buttons />
+  <GroupFilters />
+  <Fields>
+    <Field Table="HR_Employees" Field="FID" DbType="int" Required="True" ListVisible="False" FormVisible="False" ControlType="AutoId" ReadOnly="True" Title="系统流水号">
+      <CascadeFilter />
+    </Field>
+    <Field Table="HR_Employees" Field="Code" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="编号">
+      <CascadeFilter />
+    </Field>
+    <Field Table="HR_Employees" Field="FName" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="姓名" Searchable="True">
+      <CascadeFilter />
+    </Field>
+    <Field Table="HR_Employees" Field="Sex" DbType="varchar" Required="True" ListVisible="True" FormVisible="True" ControlType="Dropdown" Title="性别" ControlValue="性别" DefaultValue="">
+      <CascadeFilter />
+    </Field>
+    <Field Table="HR_Employees" Field="Nation" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="民族">
+      <CascadeFilter />
+    </Field>
+    <Field Table="HR_Employees" Field="Mobile" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="手机号码" Validation="" Searchable="True">
+      <CascadeFilter />
+    </Field>
+    <Field Table="HR_Employees" Field="IDCardNo" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="身份证号1" Validation="" Searchable="True">
+      <CascadeFilter />
+    </Field>
+    <Field Table="HR_Employees" Field="Department" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="Dropdown" Title="所在部门" ControlValue="部门选择">
+      <CascadeFilter />
+    </Field>
+    <Field Table="HR_Employees" Field="FStatus" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="Dropdown" Title="状态" ControlValue="在职状态">
+      <CascadeFilter />
+    </Field>
+    <Field Table="HR_Employees" Field="Type" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="Dropdown" Title="所属类别" ControlValue="人员类别">
+      <CascadeFilter />
+    </Field>
+    <Field Table="HR_Employees" Field="CustID" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="Dropdown" Title="合作单位" ControlValue="合作单位选择">
+      <CascadeFilter />
+    </Field>
+    <Field Table="HR_Employees" Field="Remark" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="备注" FormWidth="3">
+      <CascadeFilter />
+    </Field>
+    <Field Table="HR_Employees" Field="CreatePerson" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" ReadOnly="True" Title="创建人" FormInfoArea="表单信息">
+      <CascadeFilter />
+    </Field>
+    <Field Table="HR_Employees" Field="CreateDate" DbType="datetime" Required="True" ListVisible="True" FormVisible="True" ControlType="Date" ReadOnly="True" Title="创建日期" FormInfoArea="表单信息">
+      <CascadeFilter />
+    </Field>
+    <Field Table="HR_Employees" Field="UpdateDate" DbType="datetime" Required="True" ListVisible="False" FormVisible="True" ControlType="Date" ReadOnly="True" Title="更改日期" FormInfoArea="表单信息">
+      <CascadeFilter />
+    </Field>
+  </Fields>
+</Form>

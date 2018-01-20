@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report CommonReport="False" Connection="LUOLAI1401Context" StoredProcedures="PicsSerch" OrderField="t6.巡店时间">
+  <DrillReports />
+  <Fields>
+    <Field Table="t" Field="省份" Alias="省份" ControlType="TextBox" Title="省份" />
+    <Field Table="t" Field="城市" Alias="城市" ControlType="TextBox" Title="城市" />
+    <Field Table="t" Field="经销商编号" Alias="经销商编号" ControlType="TextBox" Title="经销商编号" />
+    <Field Table="t" Field="经销商名称" Alias="经销商名称" ControlType="TextBox" Title="经销商名称" />
+    <Field Table="t" Field="终端编号" Alias="终端编号" Title="终端编号" />
+    <Field Table="t" Field="终端名称" Alias="终端名称" Title="终端名称" />
+    <Field Table="t" Field="活动编号" Alias="活动编号" Title="活动编号" ControlType="TextBox" />
+    <Field Table="t" Field="活动名称" Alias="活动名称" ControlType="TextBox" Title="活动名称" />
+    <Field Table="t" Field="经销商填报人" Alias="经销商填报人" Title="经销商填报人" />
+    <Field Table="t" Field="巡店时间" Alias="巡店时间" ControlType="Date" Title="巡店时间" />
+    <Field Table="t" Field="照片类型" Alias="照片类型" ControlValue="活动拍照类型" ControlType="Dropdown" Title="照片类型" />
+    <Field Table="t" Field="照片" Alias="照片" Title="照片" ControlType="File" />
+    <Field Table="t" Field="备注" Alias="备注" Title="备注" />
+    <Field Table="t" Field="经销商审核结果" Alias="经销商审核结果" Title="经销商审核结果" ControlValue="审核结果" ControlType="Dropdown" />
+    <Field Table="t" Field="总部填报人" Alias="总部填报人" Title="总部填报人" />
+    <Field Table="t" Field="总部巡店时间" Alias="总部巡店时间" ControlType="Date" Title="总部巡店时间" />
+    <Field Table="t" Field="总部照片类型" Alias="总部照片类型" ControlType="Dropdown" Title="总部照片类型" ControlValue="活动拍照类型" />
+    <Field Table="t" Field="总部照片" Alias="总部照片" Title="总部照片" ControlType="File" />
+    <Field Table="t" Field="总部备注" Alias="总部备注" Title="总部备注" />
+    <Field Table="t" Field="审核结果" Alias="审核结果" Title="审核结果" ControlValue="审核结果" ControlType="Dropdown" />
+  </Fields>
+  <Charts>
+    <XAxis FieldUid="省份" />
+    <YAxis FieldUid="省份" />
+    <Series />
+  </Charts>
+</Report>

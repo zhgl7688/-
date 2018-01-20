@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Form Connection="LUOLAI1401Context" Table="FA_Receipts" IsView="False" FilterTreeBindField="FID" TreeGridIdField="FID" TreeGridNameField="FID" TreeGridParentIdField="FID">
+  <SubTables />
+  <SaveProducre />
+  <Buttons />
+  <GroupFilters />
+  <Fields>
+    <Field Table="FA_Receipts" Field="FID" DbType="varchar" Required="True" ListVisible="True" FormVisible="True" ControlType="AutoId" ReadOnly="True" Title="单据编号" ControlValue="十二位编号">
+      <CascadeFilter />
+    </Field>
+    <Field Connection="LUOLAI1401Context" Table="FA_Receipts" Field="Corp" ControlType="Dropdown" Searchable="True" FormVisible="True" ListVisible="True" ControlValue="单位" Required="True" Title="公司" DbType="varchar">
+      <CascadeFilter />
+    </Field>
+    <Field Connection="LUOLAI1401Context" Table="FA_Receipts" ControlType="Dropdown" Searchable="True" FormVisible="True" ListVisible="True" ControlValue="收支类型" Required="True" Title="收付款类型" Field="SZType" DbType="varchar">
+      <CascadeFilter />
+    </Field>
+    <Field Table="FA_Receipts" Field="CustID" DbType="varchar" Required="True" ListVisible="True" FormVisible="True" ControlType="PopupSelect" Title="分部负责人" ControlValue="合作单位选择" Searchable="True">
+      <CascadeFilter />
+      <PopupOption />
+    </Field>
+    <Field Table="FA_Receipts" Field="Fdate" DbType="datetime" Required="True" ListVisible="True" FormVisible="True" ControlType="Date" Title="收付款日期" Searchable="True">
+      <CascadeFilter />
+    </Field>
+    <Field Table="FA_Receipts" Field="Amt" DbType="numeric" Required="True" ListVisible="True" FormVisible="True" ControlType="NumberBox" Title="收付款金额">
+      <CascadeFilter />
+    </Field>
+    <Field Table="FA_Receipts" Field="payType" DbType="varchar" Required="True" ListVisible="True" FormVisible="True" ControlType="Dropdown" Title="收付款方式" ControlValue="支付方式" Searchable="True">
+      <CascadeFilter />
+    </Field>
+    <Field Table="FA_Receipts" Field="Remark" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="备注" FormWidth="3">
+      <CascadeFilter />
+    </Field>
+    <Field Table="FA_Receipts" Field="CreatePerson" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="创建人" ReadOnly="True">
+      <CascadeFilter />
+    </Field>
+    <Field Table="FA_Receipts" Field="CreateDate" DbType="datetime" Required="True" ListVisible="True" FormVisible="True" ControlType="Date" Title="创建时间" ReadOnly="True">
+      <CascadeFilter />
+    </Field>
+    <Field Table="FA_Receipts" Field="UpdateDate" DbType="datetime" Required="True" ListVisible="True" FormVisible="True" ControlType="Date" Title="最近一次更新时间" ReadOnly="True">
+      <CascadeFilter />
+    </Field>
+  </Fields>
+</Form>

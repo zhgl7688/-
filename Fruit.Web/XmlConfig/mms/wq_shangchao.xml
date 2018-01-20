@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Form Connection="LUOLAI1401Context" Table="wq_businesscustomers" Filter="a.CompCode= '{USER.CompCode}'">
+  <SubTables />
+  <SaveProducre />
+  <Buttons />
+  <GroupFilters />
+  <Fields>
+    <Field Table="wq_businesscustomers" Field="CompCode" DbType="varchar" Required="False" ListVisible="False" FormVisible="False" ControlType="Dropdown" Title="所属公司" ControlValue="所属公司" DefaultValue="{USER.CompCode}" />
+    <Field Table="wq_businesscustomers" Field="DealerCode" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="客户编号" Searchable="True" />
+    <Field Table="wq_businesscustomers" Field="DealerType" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="客户类型" DefaultValue="商超客户" Searchable="False" />
+    <Field Table="wq_businesscustomers" Field="DealertypeCode" DbType="varchar" Required="False" ListVisible="False" FormVisible="False" ControlType="TextBox" Title="客户类型编码" Searchable="True" />
+    <Field Table="wq_businesscustomers" Field="Businessarea" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="营业面积" />
+    <Field Table="wq_businesscustomers" Field="Procurementmode" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="采购方式" Searchable="True" />
+    <Field Table="wq_businesscustomers" Field="Remark" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="备注" />
+    <Field Table="wq_businesscustomers" Field="CreatePerson" DbType="varchar" Required="False" ListVisible="False" FormVisible="True" ControlType="TextBox" ReadOnly="True" Title="创建人" />
+    <Field Table="wq_businesscustomers" Field="CreateDate" DbType="datetime" Required="False" ListVisible="False" FormVisible="True" ControlType="Date" ReadOnly="True" Title="创建日期" Searchable="True" />
+    <Field Table="wq_businesscustomers" Field="UpdatePerson" DbType="varchar" Required="False" ListVisible="False" FormVisible="True" ControlType="TextBox" ReadOnly="True" Title="更改人" />
+    <Field Table="wq_businesscustomers" Field="UpdateDate" DbType="datetime" Required="False" ListVisible="False" FormVisible="True" ControlType="Date" ReadOnly="True" Title="更改日期" />
+    <Field Table="wq_businesscustomers" Field="id" DbType="varchar" Required="False" ListVisible="False" FormVisible="False" ControlType="AutoId" ControlValue="序号" Title="id" />
+  </Fields>
+</Form>

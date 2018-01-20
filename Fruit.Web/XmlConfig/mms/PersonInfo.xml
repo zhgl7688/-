@@ -1,0 +1,71 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Form Connection="LUOLAI1401Context" Table="PersonInfo" CustomSaveProducre="False" Filter="" BeforeDeleteSql="raiserror '不能删除人员！' + {ID}">
+  <SubTables>
+    <Table Table="wq_unittype" Filter="" Title="账号绑定">
+      <Rels>
+        <FieldRel RelField="usercode" MainField="psncode" />
+        <FieldRel RelField="compcode" MainField="CompCode" />
+      </Rels>
+      <Fields>
+        <Field Table="wq_unittype" Field="id" DbType="int" Required="True" ListVisible="True" FormVisible="True" ControlType="AutoId" ReadOnly="True" Title="序号" ColumnWidth="100" />
+        <Field Table="wq_unittype" Field="sbbh" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" ReadOnly="True" Title="设备编号" ColumnWidth="200" />
+        <Field Table="wq_unittype" Field="sbxh" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" ReadOnly="True" Title="设备型号" ColumnWidth="200" />
+        <Field Table="wq_unittype" Field="bbmc" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" ReadOnly="True" Title="系统版本" ColumnWidth="200" />
+        <Field Table="wq_unittype" Field="remark" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="Dropdown" ControlValue="生效失效" Title="状态" ColumnWidth="200" />
+      </Fields>
+    </Table>
+  </SubTables>
+  <SaveProducre Connection="LUOLAI1401Context" StoredProcedure="usp_PersonInfo" />
+  <Buttons />
+  <GroupFilters>
+  </GroupFilters>
+  <Fields>
+    <Field Table="PersonInfo" Field="ID" DbType="varchar" Required="False" ListVisible="False" FormVisible="False" ControlType="AutoId" Title="ID" ControlValue="十二位编号" />
+    <Field Table="PersonInfo" Field="psncode" DbType="varchar" Required="True" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="员工编号" Searchable="True" />
+    <Field Table="PersonInfo" Field="name" DbType="varchar" Required="True" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="姓名" Searchable="True" />
+    <Field Table="PersonInfo" Field="Mobile" DbType="varchar" Required="True" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="手机号" Searchable="True" />
+    <Field Table="PersonInfo" Field="sex" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="Dropdown" Title="性别" ControlValue="性别" />
+    <Field Table="PersonInfo" Field="idtype" DbType="varchar" Required="True" ListVisible="False" FormVisible="True" ControlType="Dropdown" Title="证件类型" ControlValue="证件类型" />
+    <Field Table="PersonInfo" Field="CertNumber" DbType="varchar" Required="True" ListVisible="False" FormVisible="True" ControlType="TextBox" Title="证件号码" />
+    <Field Table="PersonInfo" Field="nationality" DbType="varchar" Required="False" ListVisible="False" FormVisible="True" ControlType="TextBox" Title="民族" />
+    <Field Table="PersonInfo" Field="nativeplace" DbType="varchar" Required="False" ListVisible="False" FormVisible="True" ControlType="TextBox" Title="籍贯" />
+    <Field Table="PersonInfo" Field="age" DbType="int" Required="True" ListVisible="False" FormVisible="True" ControlType="TextBox" Title="年龄" />
+    <Field Table="PersonInfo" Field="birthdate" DbType="varchar" Required="False" ListVisible="False" FormVisible="True" ControlType="Date" Title="出生日期" />
+    <Field Table="PersonInfo" Field="BirthPlace" DbType="varchar" Required="False" ListVisible="False" FormVisible="True" ControlType="TextBox" Title="出生地" FormWidth="2" />
+    <Field Table="PersonInfo" Field="characterrpr" DbType="varchar" Required="False" ListVisible="False" FormVisible="False" ControlType="TextBox" Title="户口性质" />
+    <Field Table="PersonInfo" Field="permanreside" DbType="varchar" Required="False" ListVisible="False" FormVisible="False" ControlType="TextBox" Title="户口" />
+    <Field Table="PersonInfo" Field="FileNumber" DbType="varchar" Required="False" ListVisible="False" FormVisible="True" ControlType="TextBox" Title="档案编号" />
+    <Field Table="PersonInfo" Field="SocialSecurity" DbType="varchar" Required="False" ListVisible="False" FormVisible="True" ControlType="TextBox" Title="社保号" />
+    <Field Table="PersonInfo" Field="WageCard" DbType="varchar" Required="False" ListVisible="False" FormVisible="True" ControlType="TextBox" Title="工资卡号" />
+    <Field Table="PersonInfo" Field="EmployeeStatus" DbType="varchar" Required="True" ListVisible="True" FormVisible="True" ControlType="Dropdown" Title="在职状态" ControlValue="在职状态" />
+    <Field Connection="LUOLAI1401Context" Table="PersonInfo" ControlType="Dropdown" ControlValue="所属组织" Title="所属组织" Field="position" Required="True" DbType="varchar" ListVisible="True" FormVisible="True" Searchable="True" />
+    <Field Connection="LUOLAI1401Context" Table="PersonInfo" ControlType="PopupSelect" Title="所属角色" Field="RoleCode" DbType="varchar" Required="True" ControlValue="所属角色" FormVisible="True" ListVisible="True" Searchable="True" />
+    <Field Table="PersonInfo" Field="effectdate" DbType="datetime" Required="True" ListVisible="False" FormVisible="True" ControlType="Date" Title="合同到期时间" Searchable="False" />
+    <Field Table="PersonInfo" Field="stuffdate" DbType="datetime" Required="True" ListVisible="True" FormVisible="True" ControlType="Date" Title="入职时间" Searchable="False" />
+    <Field Table="PersonInfo" Field="workaddr" DbType="varchar" Required="False" ListVisible="False" FormVisible="False" ControlType="TextBox" Title="工作地" />
+    <Field Table="PersonInfo" Field="marital" DbType="varchar" Required="False" ListVisible="False" FormVisible="True" ControlType="Dropdown" Title="婚姻状况" ControlValue="婚姻状况" ReadOnly="False" />
+    <Field Table="PersonInfo" Field="country" DbType="varchar" Required="False" ListVisible="False" FormVisible="False" ControlType="TextBox" Title="国籍" />
+    <Field Table="PersonInfo" Field="polity" DbType="varchar" Required="False" ListVisible="False" FormVisible="False" ControlType="Dropdown" Title="政治面貌" ControlValue="" />
+    <Field Table="PersonInfo" Field="health" DbType="varchar" Required="False" ListVisible="False" FormVisible="True" ControlType="TextBox" Title="健康状况" />
+    <Field Table="PersonInfo" Field="Height" DbType="varchar" Required="False" ListVisible="False" FormVisible="True" ControlType="TextBox" Title="身高" />
+    <Field Table="PersonInfo" Field="Weight" DbType="varchar" Required="False" ListVisible="False" FormVisible="True" ControlType="TextBox" Title="体重" />
+    <Field Table="PersonInfo" Field="Vision" DbType="varchar" Required="False" ListVisible="False" FormVisible="False" ControlType="TextBox" Title="视力" />
+    <Field Table="PersonInfo" Field="GraduationSchool" DbType="varchar" Required="False" ListVisible="False" FormVisible="True" ControlType="TextBox" Title="毕业院校" />
+    <Field Table="PersonInfo" Field="lasteducation" DbType="varchar" Required="False" ListVisible="False" FormVisible="True" ControlType="Dropdown" Title="最高学历" ControlValue="最高学历" />
+    <Field Table="PersonInfo" Field="HighestDegree" DbType="varchar" Required="False" ListVisible="False" FormVisible="True" ControlType="Dropdown" Title="最高学位" ControlValue="最高学位" />
+    <Field Table="PersonInfo" Field="major" DbType="varchar" Required="False" ListVisible="False" FormVisible="True" ControlType="Date" Title="参加工作日期" />
+    <Field Table="PersonInfo" Field="rank" DbType="varchar" Required="False" ListVisible="False" FormVisible="True" ControlType="Dropdown" Title="职称" ControlValue="职称" />
+    <Field Table="PersonInfo" Field="joinworkdate" DbType="varchar" Required="False" ListVisible="False" FormVisible="False" ControlType="TextBox" Title="参加工作日期" />
+    <Field Table="PersonInfo" Field="FreeWorkYears" DbType="varchar" Required="False" ListVisible="False" FormVisible="False" ControlType="TextBox" Title="空闲工龄" />
+    <Field Table="PersonInfo" Field="is_status" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="CheckBox" Title="系统登录权限" />
+    <Field Table="PersonInfo" Field="kq_status" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="CheckBox" Title="是否考勤" DefaultValue="1" />
+    <Field Table="PersonInfo" Field="glbdef1" DbType="varchar" Required="False" ListVisible="False" FormVisible="True" ControlType="TextBox" Title="工龄" />
+    <Field Table="PersonInfo" Field="Photo" DbType="varchar" Required="False" ListVisible="False" FormVisible="True" ControlType="File" Title="相片">
+      <FileControlInfo />
+    </Field>
+    <Field Table="PersonInfo" Field="CreatePerson" DbType="varchar" Required="False" ListVisible="False" FormVisible="True" ControlType="TextBox" ReadOnly="True" Title="创建人" />
+    <Field Table="PersonInfo" Field="CreateDate" DbType="datetime" Required="False" ListVisible="False" FormVisible="True" ControlType="Date" ReadOnly="True" Title="创建日期" DefaultValue="{现在}" />
+    <Field Table="PersonInfo" Field="UpdatePerson" DbType="varchar" Required="False" ListVisible="False" FormVisible="True" ControlType="TextBox" ReadOnly="True" Title="更改人" />
+    <Field Table="PersonInfo" Field="UpdateDate" DbType="datetime" Required="False" ListVisible="False" FormVisible="True" ControlType="Date" ReadOnly="True" Title="更改日期" DefaultValue="{现在}" />
+  </Fields>
+</Form>

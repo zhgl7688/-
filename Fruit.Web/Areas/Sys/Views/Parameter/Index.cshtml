@@ -1,0 +1,23 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+<div class="z-toolbar">
+    <a class="easyui-linkbutton" iconcls="icon-arrow_refresh" plain="true" data-bind="click:'refresh'">刷新</a>
+    <a class="easyui-linkbutton" iconcls="icon-add" plain="true" data-bind="click:'add'">新增</a>
+    <a class="easyui-linkbutton" iconcls="icon-edit" plain="true" data-bind="click:'edit'">编辑</a>
+    <a class="easyui-linkbutton" iconcls="icon-cross" plain="true" data-bind="click:'delete'">删除</a>
+    <a class="easyui-linkbutton" iconcls="icon-save" plain="true" data-bind="click:'save'">保存</a>
+</div>
+
+<table data-bind="datagrid,url:'/api/sys/parameter',method:'get',fixSize:{w:4,h:40}">
+    <thead>
+        <tr>
+            <th field="ParamCode" data-options="editor:{type:'validatebox', options:{required:true}}">参数编码</th>
+            <th field="ParamValue" data-options="editor:{type:'validatebox'}">参数值</th>
+            <th field="Description" data-options="editor:{type:'validatebox'}">描述说明</th>
+            <th field="IsUserEditable" formatter="fruit.formatter.formatterEnable">可编辑</th>
+        </tr>
+    </thead>
+</table>

@@ -1,0 +1,81 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Form Connection="LUOLAI1401Context" Table="PersonInfo" FilterTreeBindField="ID" TreeGridIdField="ID" TreeGridNameField="ID" TreeGridParentIdField="ID">
+  <SubTables>
+    <Table Table="wq_attendTrack" Filter="">
+      <Rels>
+        <FieldRel RelField="UserCode" MainField="psncode" />
+        <FieldRel RelField="CompCode" MainField="CompCode" />
+      </Rels>
+      <Fields>
+        <Field Table="wq_attendTrack" Field="id" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="AutoId" ControlValue="序号" />
+        <Field Table="wq_attendTrack" Field="TckDateTime" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" />
+        <Field Table="wq_attendTrack" Field="TckLong" DbType="numeric" Required="False" ListVisible="True" FormVisible="True" ControlType="NumberBox" />
+        <Field Table="wq_attendTrack" Field="TckLat" DbType="numeric" Required="False" ListVisible="True" FormVisible="True" ControlType="NumberBox" />
+        <Field Table="wq_attendTrack" Field="Address" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" />
+        <Field Table="wq_attendTrack" Field="CreatePerson" DbType="varchar" Required="False" ListVisible="False" FormVisible="True" ControlType="TextBox" ReadOnly="True" Title="创建人" />
+        <Field Table="wq_attendTrack" Field="CreateDate" DbType="datetime" Required="False" ListVisible="False" FormVisible="True" ControlType="Date" ReadOnly="True" Title="创建日期" />
+        <Field Table="wq_attendTrack" Field="UpdatePerson" DbType="varchar" Required="False" ListVisible="False" FormVisible="True" ControlType="TextBox" ReadOnly="True" Title="更改人" />
+        <Field Table="wq_attendTrack" Field="UpdateDate" DbType="datetime" Required="False" ListVisible="False" FormVisible="True" ControlType="Date" ReadOnly="True" Title="更改日期" />
+      </Fields>
+    </Table>
+  </SubTables>
+  <SaveProducre />
+  <Buttons />
+  <GroupFilters />
+  <Fields>
+    <Field Table="PersonInfo" Field="ID" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="AutoId" />
+    <Field Table="PersonInfo" Field="name" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" />
+    <Field Table="PersonInfo" Field="Password" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" />
+    <Field Table="PersonInfo" Field="CertNumber" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" />
+    <Field Table="PersonInfo" Field="nativeplace" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" />
+    <Field Table="PersonInfo" Field="FileNumber" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" />
+    <Field Table="PersonInfo" Field="UserAccount" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" />
+    <Field Table="PersonInfo" Field="psncode" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" />
+    <Field Table="PersonInfo" Field="RoleCode" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" />
+    <Field Table="PersonInfo" Field="WageCard" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" />
+    <Field Table="PersonInfo" Field="SocialSecurity" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" />
+    <Field Table="PersonInfo" Field="Mobile" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" />
+    <Field Table="PersonInfo" Field="usedname" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" />
+    <Field Table="PersonInfo" Field="sex" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" />
+    <Field Table="PersonInfo" Field="birthdate" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" />
+    <Field Table="PersonInfo" Field="age" DbType="int" Required="False" ListVisible="True" FormVisible="True" ControlType="NumberBox" />
+    <Field Table="PersonInfo" Field="stuffdate" DbType="datetime" Required="False" ListVisible="True" FormVisible="True" ControlType="Date" />
+    <Field Table="PersonInfo" Field="effectdate" DbType="datetime" Required="False" ListVisible="True" FormVisible="True" ControlType="Date" />
+    <Field Table="PersonInfo" Field="workaddr" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" />
+    <Field Table="PersonInfo" Field="BirthPlace" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" />
+    <Field Table="PersonInfo" Field="nationality" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" />
+    <Field Table="PersonInfo" Field="position" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" />
+    <Field Table="PersonInfo" Field="permanreside" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" />
+    <Field Table="PersonInfo" Field="characterrpr" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" />
+    <Field Table="PersonInfo" Field="marital" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" />
+    <Field Table="PersonInfo" Field="EmployeeStatus" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" />
+    <Field Table="PersonInfo" Field="country" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" />
+    <Field Table="PersonInfo" Field="idtype" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" />
+    <Field Table="PersonInfo" Field="polity" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" />
+    <Field Table="PersonInfo" Field="health" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" />
+    <Field Table="PersonInfo" Field="Height" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" />
+    <Field Table="PersonInfo" Field="Weight" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" />
+    <Field Table="PersonInfo" Field="Vision" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" />
+    <Field Table="PersonInfo" Field="lasteducation" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" />
+    <Field Table="PersonInfo" Field="HighestDegree" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" />
+    <Field Table="PersonInfo" Field="major" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" />
+    <Field Table="PersonInfo" Field="rank" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" />
+    <Field Table="PersonInfo" Field="GraduationSchool" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" />
+    <Field Table="PersonInfo" Field="joinworkdate" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" />
+    <Field Table="PersonInfo" Field="FreeWorkYears" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" />
+    <Field Table="PersonInfo" Field="is_status" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" />
+    <Field Table="PersonInfo" Field="kq_status" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" />
+    <Field Table="PersonInfo" Field="glbdef1" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" />
+    <Field Table="PersonInfo" Field="Photo" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" />
+    <Field Table="PersonInfo" Field="CreatePerson" DbType="varchar" Required="False" ListVisible="False" FormVisible="True" ControlType="TextBox" ReadOnly="True" Title="创建人" />
+    <Field Table="PersonInfo" Field="CreateDate" DbType="datetime" Required="False" ListVisible="False" FormVisible="True" ControlType="Date" ReadOnly="True" Title="创建日期" />
+    <Field Table="PersonInfo" Field="UpdatePerson" DbType="varchar" Required="False" ListVisible="False" FormVisible="True" ControlType="TextBox" ReadOnly="True" Title="更改人" />
+    <Field Table="PersonInfo" Field="UpdateDate" DbType="datetime" Required="False" ListVisible="False" FormVisible="True" ControlType="Date" ReadOnly="True" Title="更改日期" />
+    <Field Table="PersonInfo" Field="CompCode" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" />
+    <Field Table="PersonInfo" Field="soft" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" />
+    <Field Table="PersonInfo" Field="phonetype" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" />
+    <Field Table="PersonInfo" Field="os" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" />
+    <Field Table="PersonInfo" Field="isline" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" />
+    <Field Table="PersonInfo" Field="KQ" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" />
+  </Fields>
+</Form>

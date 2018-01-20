@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Form Connection="LUOLAI1401Context" Table="HR_NewInvoices" IsView="False" FilterTreeBindField="FID" TreeGridIdField="FID" TreeGridNameField="FID" TreeGridParentIdField="FID" UseAfterSaveAction="True">
+  <SubTables />
+  <SaveProducre />
+  <Buttons />
+  <GroupFilters />
+  <Fields>
+    <Field Table="HR_NewInvoices" Field="FID" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="AutoId" ReadOnly="True" ControlValue="序号" Title="流水号">
+      <CascadeFilter />
+    </Field>
+    <Field Table="HR_NewInvoices" Field="CustID" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="Dropdown" Title="出票公司" ControlValue="社保类别">
+      <CascadeFilter />
+    </Field>
+    <Field Table="HR_NewInvoices" Field="TaxRate" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="税率">
+      <CascadeFilter />
+    </Field>
+    <Field Table="HR_NewInvoices" Field="BillType" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="Dropdown" Title="发票种类" ControlValue="发票种类">
+      <CascadeFilter />
+    </Field>
+    <Field Table="HR_NewInvoices" Field="CreateDate" DbType="datetime" Required="False" ListVisible="False" FormVisible="True" ControlType="Date" ReadOnly="True" Title="创建日期">
+      <CascadeFilter />
+    </Field>
+    <Field Table="HR_NewInvoices" Field="CreatePerson" DbType="varchar" Required="False" ListVisible="False" FormVisible="True" ControlType="TextBox" ReadOnly="True" Title="创建人">
+      <CascadeFilter />
+    </Field>
+    <Field Table="HR_NewInvoices" Field="UpdateDate" DbType="datetime" Required="False" ListVisible="False" FormVisible="True" ControlType="Date" ReadOnly="True" Title="更改日期">
+      <CascadeFilter />
+    </Field>
+  </Fields>
+  <AfterSaveAction Connection="LUOLAI1401Context" CommandText="UPDATE HR_NewInvoices SET Remarks=text FROM [Bcp.Sysy].dbo.sys_code WHERE CodeType='FType' AND CustID=Value AND FID=@FID;UPDATE HR_NewInvoices SET Remarks=Remarks+'--'+text+'--税率 '+TaxRate FROM [Bcp.Sysy].dbo.sys_code WHERE CodeType='invoiceType' AND BillType=Value AND FID=@FID">
+    <Inputs>
+      <Input SourceField="FID" ParameterName="@FID" />
+    </Inputs>
+  </AfterSaveAction>
+</Form>

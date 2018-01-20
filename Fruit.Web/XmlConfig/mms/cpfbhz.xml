@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report CommonReport="True" From="KZ_cpfbhz" OrderField="省份">
+  <Fields>
+    <Field Table="KZ_cpfbhz" Field="省份" Title="省份" FieldType="varchar" Alias="省份" ControlType="TextBox" />
+    <Field Table="KZ_cpfbhz" Field="城市" Title="城市" FieldType="varchar" Alias="城市" ControlType="TextBox" />
+    <Field Table="KZ_cpfbhz" Field="产品" Title="产品" FieldType="varchar" Alias="产品" ControlType="TextBox" />
+    <Field Table="KZ_cpfbhz" Field="终端类型" Title="终端类型" FieldType="varchar" Alias="终端类型" />
+    <Field Table="KZ_cpfbhz" Field="终端数量" Title="终端数量" FieldType="varchar" Alias="终端数量" />
+    <Field Table="KZ_cpfbhz" Field="库存量" Title="库存量" FieldType="varchar" Alias="库存量" />
+  </Fields>
+</Report>

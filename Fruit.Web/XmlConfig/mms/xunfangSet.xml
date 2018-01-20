@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Form Connection="LUOLAI1401Context" Table="wq_patrolSet" Filter="a.CompCode= '{USER.CompCode}'">
+  <SubTables />
+  <SaveProducre />
+  <Buttons />
+  <GroupFilters />
+  <Fields>
+    <Field Table="wq_patrolSet" Field="CompCode" DbType="varchar" Required="False" ListVisible="False" FormVisible="False" ControlType="Dropdown" Title="所属公司" ControlValue="所属公司" DefaultValue="{USER.CompCode}" />
+    <Field Table="wq_patrolSet" Field="RoleCode" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="PopupSelect" Title="角色编码" ControlValue="所属角色" />
+    <Field Table="wq_patrolSet" Field="SignInMode" DbType="char" Required="False" ListVisible="True" FormVisible="True" ControlType="Dropdown" Title="客户拜访签到模式" ControlValue="是否开启" />
+    <Field Table="wq_patrolSet" Field="SignOutMode" DbType="char" Required="False" ListVisible="True" FormVisible="True" ControlType="Dropdown" Title="客户拜访签退模式" ControlValue="是否开启" />
+    <Field Table="wq_patrolSet" Field="SignInRange" DbType="int" Required="False" ListVisible="True" FormVisible="True" ControlType="NumberBox" Title="签到有效范围" />
+    <Field Table="wq_patrolSet" Field="SignOutRange" DbType="int" Required="False" ListVisible="True" FormVisible="True" ControlType="NumberBox" Title="签退有效范围" />
+    <Field Table="wq_patrolSet" Field="PhotoMarkType" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="Dropdown" Title="是否水印" ControlValue="是否开启" />
+    <Field Table="wq_patrolSet" Field="PhotoRatio" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="Dropdown" Title="图片分辨率" ControlValue="照片分辨率" />
+    <Field Table="wq_patrolSet" Field="CreatePerson" DbType="varchar" Required="False" ListVisible="False" FormVisible="True" ControlType="TextBox" ReadOnly="True" Title="创建人" />
+    <Field Table="wq_patrolSet" Field="CreateDate" DbType="datetime" Required="False" ListVisible="False" FormVisible="True" ControlType="Date" ReadOnly="True" Title="创建日期" />
+    <Field Table="wq_patrolSet" Field="UpdatePerson" DbType="varchar" Required="False" ListVisible="False" FormVisible="True" ControlType="TextBox" ReadOnly="True" Title="更改人" />
+    <Field Table="wq_patrolSet" Field="UpdateDate" DbType="datetime" Required="False" ListVisible="False" FormVisible="True" ControlType="Date" ReadOnly="True" Title="更改日期" />
+    <Field Table="wq_patrolSet" Field="id" DbType="varchar" Required="False" ListVisible="False" FormVisible="False" ControlType="AutoId" Title="ID" />
+  </Fields>
+</Form>

@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report CommonReport="True" From="from sys_user">
+  <Fields>
+    <Field Table="sys_user" Field="OrganizeName" FieldType="varchar" Title="部门" />
+    <Field Table="sys_user" Field="UserCode" FieldType="varchar" Title="员工编码" />
+    <Field Table="sys_user" Field="UserName" FieldType="varchar" Title="姓名" />
+    <Field Table="sys_user" Field="description" Title="职位" FieldType="varchar" />
+    <Field Table="sys_user" Field="IsEnable" FieldType="varchar" Title="是否在线" />
+  </Fields>
+</Report>

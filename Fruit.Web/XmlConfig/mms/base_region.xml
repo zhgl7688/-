@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Form Connection="LUOLAI1401Context" Table="base_region" Filter="a.CompCode= '{USER.CompCode}'">
+  <SubTables />
+  <Fields>
+    <Field Connection="LUOLAI1401Context" Table="base_region" Field="RegCode" Required="True" ListVisible="True" FormVisible="True" ControlType="AutoId" Title="地区编码" ControlValue="地区编号" FieldType="varchar" MaxLength="10" DbType="varchar" ReadOnly="True" />
+    <Field Connection="LUOLAI1401Context" Table="base_region" Field="RegName" Required="True" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="地区名称" FieldType="varchar" MaxLength="20" DbType="varchar" Searchable="True" />
+    <Field Connection="LUOLAI1401Context" Table="base_region" Field="CompCode" Required="True" ListVisible="False" FormVisible="False" ControlType="Dropdown" Title="所属公司" ControlValue="所属公司" FieldType="varchar" ReadOnly="True" MaxLength="20" DefaultValue="{USER.CompCode}" DbType="varchar" />
+    <Field Connection="LUOLAI1401Context" Table="base_region" Field="DelFlag" Required="False" ListVisible="True" FormVisible="True" ControlType="CheckBox" Title="删除标志" FieldType="varchar" MaxLength="10" DbType="char" />
+    <Field Connection="LUOLAI1401Context" Table="base_region" Field="CreatePerson" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="创建人" FieldType="varchar" ReadOnly="True" DefaultValue="" MaxLength="20" DbType="varchar" />
+    <Field Connection="LUOLAI1401Context" Table="base_region" Field="CreateDate" Required="False" ListVisible="True" FormVisible="True" ControlType="Date" Title="创建日期" FieldType="datetime" ReadOnly="True" MaxLength="20" DbType="datetime" Searchable="True" />
+    <Field Connection="LUOLAI1401Context" Table="base_region" Field="UpdatePerson" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="更改人" FieldType="varchar" ReadOnly="True" MaxLength="20" DbType="varchar" />
+    <Field Connection="LUOLAI1401Context" Table="base_region" Field="UpdateDate" Required="False" ListVisible="True" FormVisible="True" ControlType="Date" Title="更改日期" FieldType="datetime" ReadOnly="True" MaxLength="20" DbType="datetime" />
+  </Fields>
+  <SaveProducre />
+  <Buttons />
+  <GroupFilters />
+</Form>

@@ -1,0 +1,242 @@
+﻿@section scripts {
+<script type="text/javascript">
+    var data = @MvcHtmlString.Create(JsonExtension.ToJson(Model));
+    $(function(){
+        var db = fruit.databind.root;
+        $.extend(db, {
+        buttonbtnFirst : function() {
+            var row = db.getData('form');
+            function ScriptAfter(data) {
+            }
+        },
+        buttonButton4 : function() {
+            var row = db.getData('form');
+            function ScriptAfter(data) {
+            }
+        },
+        buttonButton2 : function() {
+            var row = db.getData('form');
+            function ScriptAfter(data) {
+            }
+        },
+        buttonShowMyDateDialog : function() {
+            var row = db.getData('form');
+            function ScriptBefore(row) {
+                // 初始化对话框
+var dialog = $('<div><div style="margin:8px"><label>日期</label></div><div style="margin:8px"><input id="dd" type="text" class="easyui-datebox" required="required"></div></div>');
+// 显示对话框
+dialog.dialog({
+    title:'选择操作日期', 
+    width:240,
+    height:200,
+    modal:true,
+    buttons:[{
+        text:'确定',
+        handler: function() {
+            // 将选择的日期加入到l回调参数中
+            row.date = $('#dd').datebox('getValue');
+            // 回调代码，可直接通过查看生成的输出中复制过来
+            fruit.ajax({url:'/api/Whe/Wminwarehousem/doShowMyDateDialog', method:'post', data: JSON.stringify(row), success:ScriptAfter});
+        }
+    }]
+});
+// 初始化对话框内的 EasyUI 控件
+$.parser.parse(dialog);
+// 中断服务端行为，回调需要在按对话框按钮之后运行
+return false;
+
+            }
+
+            if(ScriptBefore(row) === false) {
+                return;
+            }
+            function ScriptAfter(data) {
+                alert(data);
+            }
+            fruit.ajax({url:'/api/Whe/Wminwarehousem/doShowMyDateDialog', method:'post', data: JSON.stringify(row), success:ScriptAfter});
+        },
+        buttonButton3 : function() {
+            var row = db.getData('form');
+            function ScriptAfter(data) {
+            }
+        }
+        });
+        data.form._row_state = @ViewBag.RowState;
+        data.form = $.extend({}, data.form, parent.newItemBinds);
+        db.loadData(data);
+        function loadDetial(){
+        }
+        loadDetial();
+        $.extend(db, {
+            refreshClick:function(){
+                location.assign(top.$(window.frameElement).data('src'));
+            },
+            rejectClick:function(){
+                location.assign(top.$(window.frameElement).data('src'));
+            },
+            newClick:function(){
+                fruit.ajax({
+                        url:'/api/Whe/Wminwarehousem/NewGuid',
+                        success:function(data) {
+                            parent.changeDocTab(window.frameElement, '/Whe/Wminwarehousem/edit/' + data);
+                        }
+                    })
+            },
+            deleteClick:function(){
+                $.messager.confirm('确认', '您确认要删除当前记录吗？', function(r){
+                    if(r){
+                        fruit.ajax({
+                            method:'DELETE',
+                            url: '/api/Whe/Wminwarehousem/'+db.getData('form').Guid,
+                            success: function(data) {
+                                fruit.message('success', '删除成功');
+                                top.closeDocTab(window.frameElement);
+                            }
+                        });
+                    }
+                });
+            },
+            saveClick:function(){
+                if(!db.validate()){fruit.message('error', '请更正验证错误！'); return;}
+                var data = db.getData();
+                if(fruit.equalIgnorecase(data.form.ParentCode, data.form.Guid)){fruit.message('error', '父节点不能为当前节点！'); return;}
+                fruit.ajax({
+                    url: '/api/Whe/Wminwarehousem/',
+                    data: JSON.stringify(data),
+                    success:function(result){
+                        if(result && result.success){
+                            fruit.message('success', '保存成功');
+                            if(result.form){
+                                db.loadData(result);
+                                loadDetial();
+                            }
+                        }
+                    }
+                });
+            }
+        });
+    });
+</script>
+}
+
+
+<div class="z-toolbar">
+    <a id="a_save" href="#" plain="true" class="easyui-linkbutton" icon="icon-save" data-bind="click:'saveClick',disable:'readonly'" title="保存">保存</a>
+    <a id="a_undo" href="#" plain="true" class="easyui-linkbutton" icon="icon-undo" data-bind="click:'rejectClick',disable:'readonly'" title="撤消">撤消</a>
+    <a class="easyui-linkbutton" plain="true" data-bind="click:'buttonbtnFirst'" DynamicReadOnly="Disable">Button1</a>
+    <div class="datagrid-btn-separator"></div>
+    <a href="#" class="easyui-splitbutton" data-options="menu:'#divMyGroup',iconCls:'icon-application_go'" title="MyGroup">MyGroup</a>
+    <div class="datagrid-btn-separator"></div>
+    <a id="a_other" href="#" class="easyui-splitbutton" data-options="menu:'#divother',iconCls:'icon-application_go'" title="其他">其他</a>
+</div>
+
+<div id="divother" style="width:100px; display:none;">
+    <div data-options="iconCls:'icon-add'" data-bind="click:'newClick'">新增</div>
+    <div data-options="iconCls:'icon-cross'" data-bind="click:'deleteClick'">删除</div>
+    <div data-options="iconCls:'icon-arrow_refresh'" data-bind="click:'refreshClick'">刷新</div>
+</div>
+
+<div id="divrelations" style="width:100px; display:none;"></div>
+<div id="divMyGroup" style="width:100px; display:none;">
+    <div data-bind="click:'buttonButton2'">Button2</div>
+    <div data-bind="click:'buttonShowMyDateDialog'">自定义按钮日期弹出</div>
+    <div data-bind="click:'buttonButton3'">Button3</div>
+</div>
+<div id="master" class="container_12" data-bind="inputwidth:0.9">
+<input type="hidden" data-bind="value:'form._row_state'" />
+    <div class="grid_1 lbl">Guid</div>
+   <div class="grid_3 val"><input type="text" data-bind="value:'form.Guid', readOnly:true" class="z-txt readonly" /></div>
+    <div class="grid_1 lbl">ParentCode</div>
+   <div class="grid_3 val"><select class="easyui-combotree" data-bind="value:'form.ParentCode', datasource:'dataSource.ParentCode'" data-options="loadFilter:fruit.tree.createLoadFilter('id', 'parent_id', null, '', {id:'', text:'根'})" style="min-width:120px;"></select></div>
+    <div class="grid_1 lbl">Customer</div>
+   <div class="grid_3 val"><input type="text" data-bind="value:'form.Customer'" class="easyui-validatebox z-txt" data-options="required:false" /></div>
+
+    <div class="clear"></div>
+
+    <div class="grid_1 lbl">Department</div>
+   <div class="grid_3 val"><input type="text" data-bind="value:'form.Department'" class="easyui-validatebox z-txt" data-options="required:false" /></div>
+    <div class="grid_1 lbl">Source</div>
+   <div class="grid_3 val"><input type="text" data-bind="value:'form.Source'" class="easyui-validatebox z-txt" data-options="required:false" /></div>
+    <div class="grid_1 lbl">SourceCode</div>
+   <div class="grid_3 val"><input type="text" data-bind="value:'form.SourceCode'" class="easyui-validatebox z-txt" data-options="required:false" /></div>
+
+    <div class="clear"></div>
+
+    <div class="grid_1 lbl">SourceSheetID</div>
+   <div class="grid_3 val"><input type="text" data-bind="value:'form.SourceSheetID'" class="easyui-validatebox z-txt" data-options="required:false" /></div>
+    <div class="grid_1 lbl">Supplier</div>
+   <div class="grid_3 val"><input type="text" data-bind="value:'form.Supplier'" class="easyui-validatebox z-txt" data-options="required:false" /></div>
+    <div class="grid_1 lbl">ProductCode</div>
+   <div class="grid_3 val"><input type="text" data-bind="value:'form.ProductCode'" class="easyui-validatebox z-txt" data-options="required:false" /></div>
+
+    <div class="clear"></div>
+
+    <div class="grid_1 lbl">EnglishName</div>
+   <div class="grid_3 val"><input type="text" data-bind="value:'form.EnglishName'" class="easyui-validatebox z-txt" data-options="required:false" /></div>
+    <div class="grid_1 lbl">ProductCategory</div>
+   <div class="grid_3 val"><input type="text" data-bind="value:'form.ProductCategory'" class="easyui-validatebox z-txt" data-options="required:false" /></div>
+    <div class="grid_1 lbl">Width</div>
+   <div class="grid_3 val"><input type="text" data-bind="value:'form.Width'" class="easyui-validatebox z-txt" data-options="required:false" /></div>
+
+    <div class="clear"></div>
+
+    <div class="grid_1 lbl">Height</div>
+   <div class="grid_3 val"><input type="text" data-bind="value:'form.Height'" class="easyui-validatebox z-txt" data-options="required:false" /></div>
+    <div class="grid_1 lbl">WareHouse</div>
+   <div class="grid_3 val"><input type="text" data-bind="value:'form.WareHouse'" class="easyui-validatebox z-txt" data-options="required:false" /></div>
+    <div class="grid_1 lbl">SaleCode</div>
+   <div class="grid_3 val"><input type="text" data-bind="value:'form.SaleCode'" class="easyui-validatebox z-txt" data-options="required:false" /></div>
+
+    <div class="clear"></div>
+
+    <div class="grid_1 lbl">SaleSheetID</div>
+   <div class="grid_3 val"><input type="text" data-bind="value:'form.SaleSheetID'" class="easyui-validatebox z-txt" data-options="required:false" /></div>
+    <div class="grid_1 lbl">Color</div>
+   <div class="grid_3 val"><input type="text" data-bind="value:'form.Color',datasource:'dataSource.Color'" class="z-txt easyui-combobox" data-options="required:false, readonly:false" /></div>
+    <div class="grid_1 lbl">LotsCode</div>
+   <div class="grid_3 val"><input type="text" data-bind="value:'form.LotsCode'" class="easyui-validatebox z-txt" data-options="required:false" /></div>
+
+    <div class="clear"></div>
+
+    <div class="grid_1 lbl">SN</div>
+   <div class="grid_3 val"><input type="text" data-bind="value:'form.SN'" class="easyui-validatebox z-txt" data-options="required:false" /></div>
+    <div class="grid_1 lbl">Unit</div>
+   <div class="grid_3 val"><input type="text" data-bind="value:'form.Unit'" class="easyui-validatebox z-txt" data-options="required:false" /></div>
+    <div class="grid_1 lbl">OutAmount</div>
+   <div class="grid_3 val"><input type="text" data-bind="value:'form.OutAmount'" class="easyui-validatebox z-txt" data-options="required:false" /></div>
+
+    <div class="clear"></div>
+
+    <div class="grid_1 lbl">Amount</div>
+   <div class="grid_3 val"><input type="text" data-bind="value:'form.Amount'" class="easyui-validatebox z-txt" data-options="required:false" /></div>
+    <div class="grid_1 lbl">WarehouseLocation</div>
+   <div class="grid_3 val"><input type="text" data-bind="value:'form.WarehouseLocation'" class="easyui-validatebox z-txt" data-options="required:false" /></div>
+    <div class="grid_1 lbl">ManufactureDate</div>
+   <div class="grid_3 val"><input type="text" data-bind="value:'form.ManufactureDate',readOnly:false" class="z-txt easyui-datebox" /></div>
+
+    <div class="clear"></div>
+
+    <div class="grid_1 lbl">Price</div>
+   <div class="grid_3 val"><input type="text" data-bind="value:'form.Price'" class="easyui-validatebox z-txt" data-options="required:false" /></div>
+    <div class="grid_1 lbl">SalePrice</div>
+   <div class="grid_3 val"><input type="text" data-bind="value:'form.SalePrice'" class="easyui-validatebox z-txt" data-options="required:false" /></div>
+    <div class="grid_1 lbl">Tax</div>
+   <div class="grid_3 val"><input type="text" data-bind="value:'form.Tax'" class="easyui-validatebox z-txt" data-options="required:false" /></div>
+
+    <div class="clear"></div>
+
+    <div class="grid_1 lbl">TotalCharge</div>
+   <div class="grid_3 val"><input type="text" data-bind="value:'form.TotalCharge'" class="easyui-validatebox z-txt" data-options="required:false" /></div>
+    <div class="grid_1 lbl">Remark</div>
+   <div class="grid_3 val"><input type="text" data-bind="value:'form.Remark'" class="easyui-validatebox z-txt" data-options="required:false" /></div>
+    <div class="grid_1 lbl">ReviceDate</div>
+   <div class="grid_3 val"><input type="text" data-bind="value:'form.ReviceDate',readOnly:false" class="z-txt easyui-datebox" /></div>
+
+    <div class="clear"></div>
+
+    <div class="grid_1 lbl">RepertoryUid</div>
+   <div class="grid_3 val"><input type="text" data-bind="value:'form.RepertoryUid'" class="easyui-validatebox z-txt" data-options="required:false" /></div>
+
+    <div class="clear"></div>
+
+</div>

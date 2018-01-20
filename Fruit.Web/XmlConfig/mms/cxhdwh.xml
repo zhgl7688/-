@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Form Connection="LUOLAI1401Context" Table="wq_patrolPrmPicsSet" Filter=" c.CodeType='zppzlx'">
+  <SubTables />
+  <SaveProducre />
+  <Buttons />
+  <GroupFilters />
+  <Fields>
+    <Field Table="wq_patrolPrmPicsSet" Field="compcode" DbType="varchar" Required="False" ListVisible="False" FormVisible="False" ControlType="Dropdown" Title="所属公司" ControlValue="所属公司" DefaultValue="{USER.CompCode}" />
+    <Field Table="wq_patrolPrmPicsSet" Field="DealerCode" DbType="varchar" Required="False" ListVisible="False" FormVisible="False" ControlType="PopupSelect" Title="客户编号" ControlValue="客户编号" />
+    <Field Connection="LUOLAI1401Context" Table="wq_patrolPrmPicsSet" ControlType="AutoId" ControlValue="十二位编号" Title="活动编号" Field="code" DbType="varchar" FormVisible="False" ListVisible="False" />
+    <Field Table="wq_patrolPrmPicsSet" Field="name" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="活动名称" />
+    <Field Connection="LUOLAI1401Context" Table="wq_patrolPrmPicsSet" ControlType="Dropdown" ControlValue="活动拍照类型" Title="活动类型" Field="PicsType" DbType="varchar" ListVisible="False" FormVisible="False" />
+    <Field Table="wq_patrolPrmPicsSet" Field="bgtime" DbType="datetime" Required="False" ListVisible="True" FormVisible="True" ControlType="Date" Title="活动开始时间" />
+    <Field Table="wq_patrolPrmPicsSet" Field="edtime" DbType="datetime" Required="False" ListVisible="True" FormVisible="True" ControlType="Date" Title="活动结束时间" />
+    <Field Table="wq_patrolPrmPicsSet" Field="CONTENT" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="RichTextBox" Title="活动内容">
+      <RichTextControlInfo />
+    </Field>
+    <Field Connection="LUOLAI1401Context" Table="wq_patrolPrmPicsSet" Title="id" Field="id" ControlType="TextBox" ControlValue="十二位编号" DbType="varchar" />
+  </Fields>
+</Form>

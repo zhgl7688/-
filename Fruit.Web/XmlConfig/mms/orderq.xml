@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report CommonReport="True" From="order_num" OrderField="PatlDate" UseCharts="True">
+  <DrillReports />
+  <Fields>
+    <Field Table="order_num" Field="PatlDate" Alias="PatlDate" Title="日期" />
+    <Field Table="order_num" Field="Qty" Alias="Qty" Title="订单数" />
+  </Fields>
+  <Charts Title="客户订单" SubTitle="客户订单">
+    <XAxis FieldUid="PatlDate" DataSourceType="Field" />
+    <YAxis FieldUid="PatlDate" />
+    <Series>
+      <Item FieldUid="Qty" Type="line" Legend="订单数" />
+    </Series>
+  </Charts>
+</Report>

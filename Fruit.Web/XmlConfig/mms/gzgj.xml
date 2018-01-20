@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report CommonReport="True" From="attendTrack_v" OrderField="UserCode">
+  <Fields>
+    <Field Table="attendTrack_v" Field="UserCode" Title="员工编码" ControlType="TextBox" Alias="UserCode" />
+    <Field Title="员工姓名" Table="attendTrack_v" Field="UserName" ControlType="TextBox" Alias="UserName" />
+    <Field Field="Mobile" Title="手机号" Table="attendTrack_v" Alias="Mobile" />
+    <Field Table="attendTrack_v" Field="OrganizeName" Title="部门" Alias="OrganizeName" />
+    <Field Table="attendTrack_v" Field="CreateDate" Title="上报时间" ControlType="Date" Alias="CreateDate" />
+    <Field Field="TckLong" Title="经度" Table="attendTrack_v" Alias="TckLong" />
+    <Field Table="attendTrack_v" Field="TckLat" Title="纬度" Alias="TckLat" />
+    <Field Table="attendTrack_v" Field="Address" Title="地址" Alias="Address" />
+    <Field Field="tp" Table="attendTrack_v" Title="上报类型" Alias="tp" />
+  </Fields>
+</Report>

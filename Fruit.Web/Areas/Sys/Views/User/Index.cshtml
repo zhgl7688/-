@@ -1,0 +1,249 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+@section scripts {
+    <script type="text/javascript">
+        $.fn.datagrid.defaults.editors.checkbox.setValue = function(ele, value){
+            var checked=false;
+            ele.data('oldSetValue', value);
+            if(value == undefined || value == null || $(ele).val()==value){
+                checked=true;
+            }
+            $(ele)._propAttr("checked",checked);
+        };
+        $.fn.datagrid.defaults.editors.checkbox.getValue = function(ele){
+            var checked=$(ele).is(':checked');
+            var oldValue = ele.data('oldSetValue');
+            if(checked){
+                if(oldValue == undefined || oldValue == null || $(ele).val()==oldValue){
+                    return oldValue;
+                }
+                return $(ele).val();
+            } else {
+                return $(ele).attr('offval');
+            }
+        };
+
+        var treeLoadFilter = fruit.tree.createLoadFilter('OrganizeCode', 'ParentCode', '0', function(row){
+            row.text = row.OrganizeName
+        });
+
+        var buttonFormatter = function(value, row) {
+            var data = JSON.stringify({'UserCode':row.UserCode, 'UserName':row.UserName}).replace(/\"/g, "'");
+            return '<div style="text-align:center;height:auto;" class="datagrid-cell datagrid-cell-c1-Permit"><a href="#" onclick="setOrganize(' + data + ')"><span class="icon icon-org">&nbsp;</span>[设置机构]</a><a href="#" onclick="setRole(' + data + ')" style="margin-left:10px"><span class="icon icon-group">&nbsp;</span>[设置角色]</a><a href="#" onclick="userSetting(' + data + ')" style="margin-left:10px"><!--<span class="icon icon-wrench_orange">&nbsp;</span>[用户设置]</a>--></div>';
+        }
+
+        function fixSize() {
+            var w = $(window).innerWidth();
+            var h = $(window).innerHeight();
+
+            $('#plLeft').panel('resize', { width: 200, height: h - 4 });
+            $('#plCenter').css({
+                left: 204,
+                top: 2,
+                width: w - 206,
+                height: h - 4
+            });
+        }
+
+        function organizeSelect(node){
+            fruit.databind.root.invoke('setLoadParams', {OrganizeCode:node.OrganizeCode});
+        }
+
+        function setRole(user) {
+            var dialog = $($('#role-template').html());
+            var dialogContext = new fruit.databind(dialog, {
+                onInit: function(){
+                    fruit.ajax({
+                        method:'get',
+                        url: '/api/sys/user/userRole?UserCode='+user.UserCode,
+                        success: function(data){
+                            dialogContext.invoke('setSelecteds', data);
+                        }
+                    })
+                }
+            });
+            dialogContext.cancelClick=function(){
+                dialog.dialog('close');
+                dialog.dialog('destroy');
+            };
+            dialogContext.confirmClick=function(){
+                dialog.showLoading();
+                fruit.ajax({
+                    method:'post',
+                    url: '/api/sys/user/userRole?UserCode='+user.UserCode,
+                    data: JSON.stringify(dialogContext.invoke('getSelecteds')),
+                    success: function(data){
+                        dialogContext.uninit();
+                        dialog.dialog('close');
+                        dialog.dialog('destroy');
+                    }
+                })
+            };
+            dialog.dialog({
+                title: '设置角色',
+                width:600,
+                height:400,
+                closed: false,
+                modal:true
+            });
+        }
+        
+        function setOrganize(user){
+            var dialog = $($('#organize-template').html());
+            var dialogContext = new fruit.databind(dialog, {
+                onInit: function(){
+                    fruit.ajax({
+                        method:'get',
+                        url: '/api/sys/user/userOrganize?UserCode='+user.UserCode,
+                        success: function(data){
+                            dialogContext.invoke('setSelecteds', data);
+                        }
+                    })
+                }
+            });
+            dialog.dialog({
+                title:'设置机构',
+                width:660,
+                height:480,
+                closed: false,
+                modal:true,
+                buttons:[
+                    {
+                        text: '确定',
+                        iconCls: 'icon-ok',
+                        handler: function(){
+                            var data = dialogContext.invoke('getSelecteds');
+                            dialog.showLoading();
+                            fruit.ajax({
+                                method:'post',
+                                url:'/api/sys/user/userOrganize?UserCode='+user.UserCode,
+                                data: JSON.stringify(data),
+                                success: function(data){
+                                    dialog.hideLoading();
+                                    dialogContext.uninit();
+                                    dialog.dialog('close');
+                                    dialog.dialog('destroy');
+                                }
+                            })
+                        }
+                    }
+                ]
+            });
+        }
+
+        $(function () {
+            $(window).resize(fixSize);
+            fixSize();            
+
+            var db = fruit.databind.root;
+            $.extend(db, {
+                'key': function(){
+                    var row = db.binds.grid.jq.datagrid('getSelected');
+                    if(row){
+                        $.messager.confirm('确定', '确定要重置“' + row.UserName + '”的密码为 1234 吗？', function(r){
+                            if(r){
+                                fruit.ajax({
+                                    method:'post',
+                                    url:'/api/sys/user/resetpassword',
+                                    data: JSON.stringify({UserCode: row.UserCode}),
+                                    success: function(data){
+                                        if(data){
+                                            fruit.message('success', '密码重置成功！');
+                                        } else {
+                                            fruit.message('error', '密码未能重置！');
+                                        }
+                                    }
+                                })
+                            }
+                        });
+                    }
+                }
+            });
+        });
+    </script>
+}
+
+<div id="plLeft" class="easyui-panel" style="position:absolute" data-options="iconCls:'icon-org', title:'组织机构', width:200, collapsible:false">
+    <div id="tree" data-bind="tree" data-options="loadFilter:treeLoadFilter, url:'/api/sys/user/organize', method:'get', treeField:'OrganizeName', onSelect:organizeSelect"></div>
+</div>
+<div id="plCenter" style="position:absolute">
+    <div class="z-toolbar">
+        <a class="easyui-linkbutton" iconcls="icon-arrow_refresh" plain="true" data-bind="click:'refresh'">刷新</a>
+        <a class="easyui-linkbutton" iconcls="icon-add" plain="true" data-bind="click:'add'">新增</a>
+        <a class="easyui-linkbutton" iconcls="icon-edit" plain="true" data-bind="click:'edit'">编辑</a>
+        <a class="easyui-linkbutton" iconcls="icon-cross" plain="true" data-bind="click:'delete'">删除</a>
+        <a class="easyui-linkbutton" iconcls="icon-save" plain="true" data-bind="click:'save'">保存</a>
+        <a class="easyui-linkbutton" iconcls="icon-key" plain="true" data-bind="click:'key'">重置密码</a>
+    </div>
+    <table id="grid" data-bind="datagrid, fixSize:{w:208,h:40}" data-options="url:'/api/sys/user', method:'get'" rownumbers="true">
+        <thead>
+            <tr>
+                <th field="UserCode" data-options="editor:{type:'textbox',options:{required:true, modifiable:false}}">用户编码</th>
+                <th field="UserName" data-options="editor:{type:'validatebox',options:{required:true}}">用户名称</th>
+                <th field="Mobile" data-options="editor:{type:'validatebox'},width:100">电话</th>
+                <th field="Description" data-options="editor:{type:'validatebox'}">描述说明</th>
+                <th field="IsEnable" data-options="editor:{type:'checkbox', options:{on:1,off:0}}" formatter="fruit.formatter.Enable">是否启用</th>
+                <th field="LoginCount">登录次数</th>
+                <th field="LastLoginDate" formatter="fruit.formatter.Time">最后登录时间</th>
+                <th field="Button" data-options="formatter:buttonFormatter"></th>
+            </tr>
+        </thead>
+    </table>
+</div>
+
+<script id="organize-template" type="text/html">
+    <div>
+        <div data-bind="orgtree" url="/api/sys/organize" idfield="OrganizeCode" parentfield="ParentCode" treefield="OrganizeName" checkbox="true"></div>
+    </div>
+</script>
+
+
+<script type="text/html" id="role-template">
+    <div>
+        <div style="margin:5px;height:320px;overflow:auto;">
+            <style type="text/css">
+                .listview {
+                    margin: 0 !important;
+                }
+
+                    .listview li {
+                        width: 100px !important;
+                        background-color: #ECECFF !important;
+                        float: left;
+                        margin: 3px;
+                        overflow: hidden;
+                    }
+
+                    .listview span {
+                        font-size: 14px !important;
+                        height: auto !important;
+                        white-space: nowrap;
+                    }
+
+                    .listview .icon:before {
+                        content: "" !important;
+                    }
+            </style>
+
+            <div style="border-bottom:1px solid #CCC; margin-bottom:5px;">
+                <span class="icon32 icon-settings32" style="padding-left:48px;font-weight:bold; font-size:14px;color:#666;">请选择角色</span>
+            </div>
+
+            <div class="metrouicss">
+                <label class="input-control checkbox" style="margin-top:6px;margin-left:3px;">
+                    <input type="checkbox" data-bind="checked:'checkAll'"><span class="helper">全选</span>
+                </label>
+                <ul class="listview" data-bind="checklist,url:'/api/sys/role',method:'get', idField:'RoleCode'" style="clear:both">
+                    <li><span class="icon" data-bind="text:'RoleName'"></span></li>
+                </ul>
+            </div>
+        </div>
+        <div style="text-align:center;">
+            <a class="easyui-linkbutton" data-options="iconCls:'icon-ok'" data-bind="click:'confirmClick'" href="javascript:void(0)">确定</a>
+            <a class="easyui-linkbutton" data-options="iconCls:'icon-cancel'" data-bind="click:'cancelClick'" href="javascript:void(0)">取消</a>
+        </div>
+    </div>
+</script>

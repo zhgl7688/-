@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Form Connection="SMTERPContext" Table="tbBdWarehouse">
+  <SubTables />
+  <Buttons />
+  <Fields>
+    <Field Table="tbBdWarehouse" Field="Code" DbType="uniqueidentifier" Required="True" ListVisible="False" FormVisible="True" ControlType="AutoId" Title="编号" />
+    <Field Table="tbBdWarehouse" Field="Name" DbType="nvarchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" FieldType="varchar" Title="仓库名称" />
+    <Field Table="tbBdWarehouse" Field="LevelCode" DbType="nvarchar" Required="False" ListVisible="False" FormVisible="True" ControlType="TextBox" FieldType="varchar" />
+    <Field Table="tbBdWarehouse" Field="Level" DbType="int" Required="False" ListVisible="False" FormVisible="True" ControlType="NumberBox" FieldType="varchar" />
+    <Field Table="tbBdWarehouse" Field="DepartCode" DbType="uniqueidentifier" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="所属组织" FieldType="varchar" />
+    <Field Table="tbBdWarehouse" Field="ParentCode" DbType="uniqueidentifier" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="父仓库" ControlValue="仓库/专卖店选择" FieldType="varchar" />
+    <Field Table="tbBdWarehouse" Field="Telephone" DbType="nvarchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="电话" FieldType="varchar" />
+    <Field Table="tbBdWarehouse" Field="Address" DbType="nvarchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="地址" FieldType="varchar" />
+    <Field Table="tbBdWarehouse" Field="Mobilephone" DbType="char" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="手机" FieldType="varchar" />
+    <Field Table="tbBdWarehouse" Field="PinyinCode" DbType="nvarchar" Required="False" ListVisible="False" FormVisible="False" ControlType="TextBox" Title="拼音码" FieldType="varchar" />
+    <Field Table="tbBdWarehouse" Field="Remark" DbType="nvarchar" Required="False" ListVisible="True" FormVisible="True" ControlType="MultiTextBox" Title="备注" FieldType="varchar" />
+    <Field Table="tbBdWarehouse" Field="Srot" DbType="int" Required="False" ListVisible="True" FormVisible="True" ControlType="NumberBox" Title="排序" FieldType="int" />
+    <Field Connection="SMTERPContext" Table="tbBdWarehouse" ControlType="CheckBox" FormVisible="True" ListVisible="True" Title="停用" Field="IfStop" DbType="bit" />
+    <Field Connection="SMTERPContext" Table="tbBdWarehouse" ControlType="CheckBox" FormVisible="True" ListVisible="True" Title="专卖店" Field="IfStores" DbType="bit" />
+  </Fields>
+  <SaveProducre />
+</Form>

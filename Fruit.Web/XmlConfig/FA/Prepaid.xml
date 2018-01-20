@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Form Connection="LUOLAI1401Context" Table="PrepaidTax" IsView="False" FilterTreeBindField="FID" TreeGridIdField="FID" TreeGridNameField="FID" TreeGridParentIdField="FID">
+  <SubTables />
+  <SaveProducre />
+  <Buttons />
+  <GroupFilters />
+  <Fields>
+    <Field Table="PrepaidTax" Field="FID" DbType="int" Required="False" ListVisible="False" FormVisible="False" ControlType="AutoId" ReadOnly="True" Title="系统号" ControlValue="序号">
+      <CascadeFilter />
+    </Field>
+    <Field Table="PrepaidTax" Field="Code" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="单据编号">
+      <CascadeFilter />
+    </Field>
+    <Field Connection="LUOLAI1401Context" Table="PrepaidTax" ControlType="Dropdown" FormVisible="True" ListVisible="True" Searchable="True" ControlValue="单位" Required="False" Title="公司" Field="Corp" DbType="varchar">
+      <CascadeFilter />
+    </Field>
+    <Field Table="PrepaidTax" Field="CustID" DbType="int" Required="False" ListVisible="True" FormVisible="True" ControlType="Dropdown" Title="分部负责人" ControlValue="合作单位" Searchable="True">
+      <CascadeFilter />
+    </Field>
+    <Field Table="PrepaidTax" Field="Invoice" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="PopupSelect" Title="关联发票号" ControlValue="发票选择" Searchable="False">
+      <CascadeFilter />
+      <PopupOption />
+    </Field>
+    <Field Table="PrepaidTax" Field="Amt" DbType="numeric" Required="False" ListVisible="True" FormVisible="True" ControlType="NumberBox" Title="开票金额">
+      <CascadeFilter />
+    </Field>
+    <Field Table="PrepaidTax" Field="DeductibleAmt" DbType="numeric" Required="False" ListVisible="True" FormVisible="True" ControlType="NumberBox" Title="抵扣金额">
+      <CascadeFilter />
+    </Field>
+    <Field Table="PrepaidTax" Field="ReceiptDate" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="Date" Title="收票日期">
+      <CascadeFilter />
+    </Field>
+    <Field Table="PrepaidTax" Field="InvoicesRise" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="发票抬头" FormWidth="2">
+      <CascadeFilter />
+    </Field>
+    <Field Table="PrepaidTax" Field="CreatePerson" DbType="varchar" Required="False" ListVisible="False" FormVisible="True" ControlType="TextBox" ReadOnly="True" Title="创建人">
+      <CascadeFilter />
+    </Field>
+    <Field Table="PrepaidTax" Field="CreateDate" DbType="datetime" Required="False" ListVisible="False" FormVisible="True" ControlType="Date" ReadOnly="True" Title="创建日期">
+      <CascadeFilter />
+    </Field>
+    <Field Table="PrepaidTax" Field="UpdatePerson" DbType="varchar" Required="False" ListVisible="False" FormVisible="True" ControlType="TextBox" ReadOnly="True" Title="更改人">
+      <CascadeFilter />
+    </Field>
+    <Field Table="PrepaidTax" Field="UpdateDate" DbType="datetime" Required="False" ListVisible="False" FormVisible="True" ControlType="Date" ReadOnly="True" Title="更改日期">
+      <CascadeFilter />
+    </Field>
+  </Fields>
+</Form>

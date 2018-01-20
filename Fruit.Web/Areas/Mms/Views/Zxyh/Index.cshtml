@@ -1,0 +1,61 @@
+﻿@section scripts {
+    <script type="text/javascript">
+        $(function(){
+            var db = fruit.databind.root;
+                    var data = @MvcHtmlString.Create(JsonExtension.ToJson(Model));
+                    db.loadData(data);
+            $.extend(db.options, {
+                searchClick: function(){
+                    var form = db.getData('serach');
+                    db.invoke('setLoadParams', form);
+                },
+                clearClick: function(){
+                    db.clearData('serach');
+                    db.invoke('setLoadParams', {});
+                }
+                , onInit: function(){
+                    db.loadData(data);
+                }
+            });
+        });
+
+    </script>
+}
+
+<div class="z-toolbar">
+
+    <a class="easyui-linkbutton" iconcls="icon-arrow_refresh" plain="true" data-bind="click:'refresh'">刷新</a>
+    <a class="easyui-splitbutton" plain="true" data-options="iconCls:'icon-download'" suffix="xls" data-bind="click:'download'">导出</a>
+    <div class="condition_buttons">
+        <a class="easyui-linkbutton" data-bind="click:'searchClick'" data-options="iconCls:'icon-search', plain:true" href="#">搜索</a>
+        <a class="easyui-linkbutton" data-bind="click:'clearClick'" data-options="iconCls:'icon-clear', plain:true" href="#">清空</a>
+    </div>
+</div>
+<div id="condition" class="container_12" style="position:relative;height:60px">
+    <div class="grid_1 lbl">部门</div>
+    <div class="grid_2 val"><input data-bind="value:'serach.bumenName', datasource:'dataSource.bumenName'" type="text" class="z-txt easyui-combobox" /></div>
+    <div class="grid_1 lbl">员工编码</div>
+    <div class="grid_2 val"><input data-bind="value:'serach.UserCode'" type="text" class="z-txt" /></div>
+    <div class="grid_1 lbl">姓名</div>
+    <div class="grid_2 val"><input data-bind="value:'serach.UserName'" type="text" class="z-txt" /></div>
+    <div class="clear"></div>
+    <div class="grid_1 lbl">手机</div>
+    <div class="grid_2 val"><input data-bind="value:'serach.mobile'" type="text" class="z-txt" /></div>
+    <div class="grid_1 lbl">是否在线</div>
+    <div class="grid_2 val"><input data-bind="value:'serach.isline', datasource:'dataSource.isline'" type="text" class="z-txt easyui-combobox" /></div>
+</div>
+<table id="grid" data-bind="datagrid" data-options="fixSize:{w:4, h:100}, rownumbers:true, method:'get', url:'/api/mms/zxyh', pagination:true, pageSize:20, holdTotal:true">
+<thead>
+<tr>
+<th field="bumenName" data-options="">部门</th>
+<th field="UserCode" data-options="">员工编码</th>
+<th field="UserName" data-options="">姓名</th>
+<th field="PlaceName" data-options="">职位</th>
+<th field="mobile" data-options="">手机</th>
+<th field="soft" data-options="">软件版本</th>
+<th field="phonetype" data-options="">机型</th>
+<th field="os" data-options="">操作系统</th>
+<th field="isline" data-options="">是否在线</th>
+</tr>
+</thead>
+</table>

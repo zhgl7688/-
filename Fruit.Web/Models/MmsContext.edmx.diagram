@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="46b05b424e9747b889fff866ac70fc56" Name="Diagram1">
+        <EntityTypeShape EntityType="Fruit.Web.Models.mms_buildPart" Width="1.5" PointX="28" PointY="15.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Fruit.Web.Models.mms_check" Width="1.5" PointX="0.75" PointY="28" IsExpanded="true" />
+        <EntityTypeShape EntityType="Fruit.Web.Models.mms_checkDetail" Width="1.5" PointX="3" PointY="28.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="Fruit.Web.Models.mms_deal" Width="1.5" PointX="27.75" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="Fruit.Web.Models.mms_dealDetail" Width="1.5" PointX="30" PointY="1.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="Fruit.Web.Models.mms_direct" Width="1.5" PointX="25.75" PointY="27.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="Fruit.Web.Models.mms_directDetail" Width="1.5" PointX="28" PointY="28.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="Fruit.Web.Models.mms_lossReport" Width="1.5" PointX="5.75" PointY="3.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="Fruit.Web.Models.mms_lossReportBatches" Width="1.5" PointX="8" PointY="1.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="Fruit.Web.Models.mms_lossReportDetail" Width="1.5" PointX="8" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Fruit.Web.Models.mms_material" Width="1.5" PointX="28" PointY="22" IsExpanded="true" />
+        <EntityTypeShape EntityType="Fruit.Web.Models.mms_materialType" Width="1.5" PointX="25.75" PointY="22.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="Fruit.Web.Models.mms_materialWarnning" Width="1.5" PointX="0.75" PointY="15.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Fruit.Web.Models.mms_merchants" Width="1.5" PointX="5.75" PointY="22.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Fruit.Web.Models.mms_merchantsType" Width="1.5" PointX="2.75" PointY="15.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Fruit.Web.Models.mms_productTest" Width="1.5" PointX="22.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Fruit.Web.Models.mms_project" Width="1.5" PointX="25.75" PointY="14.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="Fruit.Web.Models.mms_receive" Width="1.5" PointX="25.75" PointY="7.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="Fruit.Web.Models.mms_receiveDetail" Width="1.5" PointX="28" PointY="7.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Fruit.Web.Models.mms_refund" Width="1.5" PointX="22.75" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="Fruit.Web.Models.mms_refundDetail" Width="1.5" PointX="25" PointY="1.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="Fruit.Web.Models.mms_rentIn" Width="1.5" PointX="20.75" PointY="22" IsExpanded="true" />
+        <EntityTypeShape EntityType="Fruit.Web.Models.mms_rentInDetail" Width="1.5" PointX="23" PointY="22.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="Fruit.Web.Models.mms_rentOff" Width="1.5" PointX="10.75" PointY="22" IsExpanded="true" />
+        <EntityTypeShape EntityType="Fruit.Web.Models.mms_rentOffDetail" Width="1.5" PointX="13" PointY="22.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="Fruit.Web.Models.mms_rentOut" Width="1.5" PointX="0.75" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Fruit.Web.Models.mms_rentOutDetail" Width="1.5" PointX="3" PointY="1.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Fruit.Web.Models.mms_rentOutRepaire" Width="1.5" PointX="3" PointY="6" IsExpanded="true" />
+        <EntityTypeShape EntityType="Fruit.Web.Models.mms_rentOutReparation" Width="1.5" PointX="3" PointY="10.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Fruit.Web.Models.mms_repair" Width="1.5" PointX="0.75" PointY="22" IsExpanded="true" />
+        <EntityTypeShape EntityType="Fruit.Web.Models.mms_repairDetail" Width="1.5" PointX="3" PointY="22.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="Fruit.Web.Models.mms_return" Width="1.5" PointX="17.75" PointY="2.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Fruit.Web.Models.mms_returnBatches" Width="1.5" PointX="20" PointY="1.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="Fruit.Web.Models.mms_returnDetail" Width="1.5" PointX="20" PointY="5.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="Fruit.Web.Models.mms_send" Width="1.5" PointX="15.75" PointY="14.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Fruit.Web.Models.mms_sendBatches" Width="1.5" PointX="18" PointY="13.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="Fruit.Web.Models.mms_sendDetail" Width="1.5" PointX="18" PointY="17.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="Fruit.Web.Models.mms_stockAdjust" Width="1.5" PointX="20.75" PointY="16" IsExpanded="true" />
+        <EntityTypeShape EntityType="Fruit.Web.Models.mms_stockAdjustDetail" Width="1.5" PointX="23" PointY="16.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="Fruit.Web.Models.mms_transfer" Width="1.5" PointX="5.75" PointY="14.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Fruit.Web.Models.mms_transferBatches" Width="1.5" PointX="8" PointY="13.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="Fruit.Web.Models.mms_transferDetail" Width="1.5" PointX="8" PointY="17.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="Fruit.Web.Models.mms_warehouse" Width="1.5" PointX="20.75" PointY="11.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="Fruit.Web.Models.mms_warehouseStock" Width="1.5" PointX="23" PointY="11" IsExpanded="true" />
+        <EntityTypeShape EntityType="Fruit.Web.Models.REMP_Change" Width="1.5" PointX="15.25" PointY="9.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Fruit.Web.Models.REMP_Department" Width="1.5" PointX="10.75" PointY="9.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Fruit.Web.Models.REMP_Staff" Width="1.5" PointX="13" PointY="1.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Fruit.Web.Models.test_liy" Width="1.5" PointX="7.75" PointY="22.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Fruit.Web.Models.test_user" Width="1.5" PointX="15.75" PointY="22.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Fruit.Web.Models.mms_test" Width="1.5" PointX="17.75" PointY="22.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Fruit.Web.Models.mms_warehouseStockHistory" Width="1.5" PointX="7.75" PointY="27.75" IsExpanded="true" />
+        <AssociationConnector Association="Fruit.Web.Models.FK__BuildPart__Proje__690797E6" ManuallyRouted="false" />
+        <AssociationConnector Association="Fruit.Web.Models.R_7" ManuallyRouted="false" />
+        <AssociationConnector Association="Fruit.Web.Models.FK__MeterialD__BillN__7F2BE32F" ManuallyRouted="false" />
+        <AssociationConnector Association="Fruit.Web.Models.FK__MaterialD__BillN__76969D2E" ManuallyRouted="false" />
+        <AssociationConnector Association="Fruit.Web.Models.FK__MeterialL__BillN__00200768" ManuallyRouted="false" />
+        <AssociationConnector Association="Fruit.Web.Models.FK__mms_lossR__BillN__14E61A24" ManuallyRouted="false" />
+        <AssociationConnector Association="Fruit.Web.Models.FK__mms_lossR__BillN__6501FCD8" ManuallyRouted="false" />
+        <AssociationConnector Association="Fruit.Web.Models.FK__MaterialI__Mater__24927208" ManuallyRouted="false" />
+        <AssociationConnector Association="Fruit.Web.Models.FK__MaterialR__BillN__0CBAE877" ManuallyRouted="false" />
+        <AssociationConnector Association="Fruit.Web.Models.R_5" ManuallyRouted="false" />
+        <AssociationConnector Association="Fruit.Web.Models.FK__MaterialR__BillN__2A164134" ManuallyRouted="false" />
+        <AssociationConnector Association="Fruit.Web.Models.R_12" ManuallyRouted="false" />
+        <AssociationConnector Association="Fruit.Web.Models.FK__MaterialR__BillN__3587F3E0" ManuallyRouted="false" />
+        <AssociationConnector Association="Fruit.Web.Models.FK__MaterialR__BillN__367C1819" ManuallyRouted="false" />
+        <AssociationConnector Association="Fruit.Web.Models.FK__MaterialR__BillN__37703C52" ManuallyRouted="false" />
+        <AssociationConnector Association="Fruit.Web.Models.R_9" ManuallyRouted="false" />
+        <AssociationConnector Association="Fruit.Web.Models.FK__MaterialR__BillN__46B27FE2" ManuallyRouted="false" />
+        <AssociationConnector Association="Fruit.Web.Models.FK__mms_retur__BillN__67DE6983" ManuallyRouted="false" />
+        <AssociationConnector Association="Fruit.Web.Models.FK__mms_sendB__BillN__1209AD79" ManuallyRouted="false" />
+        <AssociationConnector Association="Fruit.Web.Models.R_2" ManuallyRouted="false" />
+        <AssociationConnector Association="Fruit.Web.Models.FK__mms_initS__BillN__047AA831" ManuallyRouted="false" />
+        <AssociationConnector Association="Fruit.Web.Models.FK__mms_trans__BillN__6ABAD62E" ManuallyRouted="false" />
+        <AssociationConnector Association="Fruit.Web.Models.R_6" ManuallyRouted="false" />
+        <AssociationConnector Association="Fruit.Web.Models.FK__mms_store__Store__0F2D40CE" ManuallyRouted="false" />
+        <AssociationConnector Association="Fruit.Web.Models.FK__REMP_Chan__EMPSI__4EDDB18F" ManuallyRouted="false" />
+        <AssociationConnector Association="Fruit.Web.Models.FK__REMP_Staf__DEPTI__4924D839" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

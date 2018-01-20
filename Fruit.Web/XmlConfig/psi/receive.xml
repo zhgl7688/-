@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Form Area="Mms" Connection="MmsContext" Table="mms_merchants">
+  <Fields>
+    <Field Table="mms_merchants" Field="MerchantsCode" Required="True" ListVisible="True" FormVisible="True" ControlType="AutoId" ControlValue="at001" />
+    <Field Table="mms_merchants" Field="MerchantsTypeCode" Required="False" ListVisible="True" FormVisible="True" ControlType="PopupSelect" ControlValue="R1" />
+    <Field Table="mms_merchants" Field="MerchantsTypeName" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" />
+    <Field Table="mms_merchants" Field="ChargePerson" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" />
+    <Field Table="mms_merchants" Field="ChargeTel" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" />
+    <Field Table="mms_merchants" Field="RegisterFund" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" />
+    <Field Table="mms_merchants" Field="BuildDate" Required="False" ListVisible="True" FormVisible="True" ControlType="Date" />
+    <Field Table="mms_merchants" Field="BusinessScope" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" />
+    <Field Table="mms_merchants" Field="BusinessType" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" />
+    <Field Table="mms_merchants" Field="QualificationLevel" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" />
+    <Field Table="mms_merchants" Field="Bank" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" />
+    <Field Table="mms_merchants" Field="BankNo" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" />
+    <Field Table="mms_merchants" Field="ContactPerson" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" />
+    <Field Table="mms_merchants" Field="ContactTel" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" />
+    <Field Table="mms_merchants" Field="ContactPosition" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" />
+    <Field Table="mms_merchants" Field="ContactAddr" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" />
+    <Field Table="mms_merchants" Field="ContactPostCode" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" />
+    <Field Table="mms_merchants" Field="ContactFax" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" />
+    <Field Table="mms_merchants" Field="Website" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" />
+    <Field Table="mms_merchants" Field="EMail" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" />
+    <Field Table="mms_merchants" Field="MajorSupplier" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" />
+    <Field Table="mms_merchants" Field="CreatePerson" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" />
+    <Field Table="mms_merchants" Field="CreateDate" Required="False" ListVisible="True" FormVisible="True" ControlType="Date" />
+    <Field Table="mms_merchants" Field="UpdatePerson" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" />
+    <Field Table="mms_merchants" Field="UpdateDate" Required="False" ListVisible="True" FormVisible="True" ControlType="Date" />
+    <Field Table="mms_merchants" Field="Remark" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" />
+  </Fields>
+</Form>

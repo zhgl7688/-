@@ -1,0 +1,91 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Form Connection="LUOLAI1401Context" Table="HR_PractiseCerts" IsView="False" FilterTreeBindField="" TreeGridIdField="CodeID" TreeGridNameField="CodeID" TreeGridParentIdField="CodeID">
+  <SubTables>
+  </SubTables>
+  <SaveProducre />
+  <Buttons />
+  <GroupFilters />
+  <Fields>
+    <Field Table="HR_PractiseCerts" Field="FID" DbType="int" Required="True" ListVisible="False" FormVisible="False" ControlType="AutoId" ReadOnly="True" Title="流水号" ControlValue="序号">
+      <CascadeFilter />
+    </Field>
+    <Field Connection="LUOLAI1401Context" Table="HR_PractiseCerts" FormVisible="True" ListVisible="True" Title="证书名称" Field="certName" DbType="varchar">
+      <CascadeFilter />
+    </Field>
+    <Field Connection="LUOLAI1401Context" Table="HR_PractiseCerts" Field="Corp" ControlType="Dropdown" Title="所属公司" FormVisible="True" ListVisible="True" ControlValue="单位" DbType="varchar">
+      <CascadeFilter />
+    </Field>
+    <Field Table="HR_PractiseCerts" Field="empID" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="人员名称" ControlValue="员工" Searchable="True">
+      <CascadeFilter />
+      <PopupOption />
+    </Field>
+    <Field Table="HR_PractiseCerts" Field="certType" DbType="varchar" Required="True" ListVisible="True" FormVisible="True" ControlType="Dropdown" Title="专业" ControlValue="专业" Searchable="True">
+      <CascadeFilter />
+    </Field>
+    <Field Connection="LUOLAI1401Context" Table="HR_PractiseCerts" ControlType="TextBox" FormVisible="True" ListVisible="True" Title="身份证号" Field="CodeID" DbType="varchar">
+      <CascadeFilter />
+    </Field>
+    <Field Table="HR_PractiseCerts" Field="certOrgan" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="资格证书编号" Searchable="True">
+      <CascadeFilter />
+    </Field>
+    <Field Table="HR_PractiseCerts" Field="certNo" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="证书编号" Searchable="True">
+      <CascadeFilter />
+    </Field>
+    <Field Table="HR_PractiseCerts" Field="certDate" DbType="datetime" Required="False" ListVisible="False" FormVisible="False" ControlType="Date" Title="发证日期" Searchable="False">
+      <CascadeFilter />
+    </Field>
+    <Field Table="HR_PractiseCerts" Field="regNo" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="注册编号" Searchable="True">
+      <CascadeFilter />
+    </Field>
+    <Field Table="HR_PractiseCerts" Field="expireDate" DbType="datetime" Required="True" ListVisible="True" FormVisible="True" ControlType="Date" Title="证书有效期" Searchable="True">
+      <CascadeFilter />
+    </Field>
+    <Field Table="HR_PractiseCerts" Field="onProject" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="借用情况" ControlValue="项目选择" Searchable="False" ColumnWidth="0" FormWidth="2">
+      <CascadeFilter />
+      <PopupOption MultipleChoice="True" CachedDisplayField="onProjectName" MaxChoiceItems="10" />
+    </Field>
+    <Field Connection="LUOLAI1401Context" Table="HR_PractiseCerts" Field="START_TIME" Title="聘用开始日期" ControlType="Date" FormVisible="True" ListVisible="True" DbType="varchar">
+      <CascadeFilter />
+    </Field>
+    <Field Connection="LUOLAI1401Context" Table="HR_PractiseCerts" ControlType="Date" ListVisible="True" FormVisible="True" Title="聘用到期日期" Field="END_TIME" DbType="varchar">
+      <CascadeFilter />
+    </Field>
+    <Field Connection="LUOLAI1401Context" Table="HR_PractiseCerts" ControlType="NumberBox" FormVisible="True" ListVisible="True" Title="聘用挂证费用" Field="GAmt" DbType="numeric">
+      <CascadeFilter />
+    </Field>
+    <Field Table="HR_PractiseCerts" Field="bUsed" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="Dropdown" Title="有无项目" Searchable="True" FormWidth="1" ControlValue="有无">
+      <CascadeFilter />
+    </Field>
+    <Field Table="HR_PractiseCerts" Field="trainStatus" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="继续教育情况" Searchable="False" FormWidth="4">
+      <CascadeFilter />
+    </Field>
+    <Field Table="HR_PractiseCerts" Field="CustID" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="Dropdown" Title="社保" ControlValue="有无" Searchable="True">
+      <CascadeFilter />
+    </Field>
+    <Field Table="HR_PractiseCerts" Field="Scan1" DbType="varchar" Required="False" ListVisible="False" FormVisible="True" ControlType="File" Title="扫描件1" FormInfoArea="">
+      <CascadeFilter />
+      <FileControlInfo />
+    </Field>
+    <Field Table="HR_PractiseCerts" Field="Scan2" DbType="varchar" Required="False" ListVisible="False" FormVisible="True" ControlType="File" Title="扫描件2" FormInfoArea="">
+      <CascadeFilter />
+      <FileControlInfo />
+    </Field>
+    <Field Table="HR_PractiseCerts" Field="Scan3" DbType="varchar" Required="False" ListVisible="False" FormVisible="True" ControlType="File" Title="扫描件3" FormInfoArea="">
+      <CascadeFilter />
+      <FileControlInfo />
+    </Field>
+    <Field Table="HR_PractiseCerts" Field="Scan4" DbType="varchar" Required="False" ListVisible="False" FormVisible="True" ControlType="File" Title="扫描件4" FormInfoArea="">
+      <CascadeFilter />
+      <FileControlInfo />
+    </Field>
+    <Field Table="HR_PractiseCerts" Field="CreatePerson" DbType="varchar" Required="False" ListVisible="False" FormVisible="True" ControlType="TextBox" ReadOnly="True" Title="创建人" FormInfoArea="">
+      <CascadeFilter />
+    </Field>
+    <Field Table="HR_PractiseCerts" Field="CreateDate" DbType="datetime" Required="True" ListVisible="False" FormVisible="True" ControlType="Date" ReadOnly="True" Title="创建日期" FormInfoArea="">
+      <CascadeFilter />
+    </Field>
+    <Field Table="HR_PractiseCerts" Field="UpdateDate" DbType="datetime" Required="True" ListVisible="False" FormVisible="True" ControlType="Date" ReadOnly="True" Title="更改日期" FormInfoArea="">
+      <CascadeFilter />
+    </Field>
+  </Fields>
+</Form>

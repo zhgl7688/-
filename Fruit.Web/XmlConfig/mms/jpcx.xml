@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report CommonReport="True" From="wq_goodsreport GD LEFT JOIN  wq_termPop PO ON  GD.DealerCode=PO.PopCode" OrderField="GD.PrmDate" AddCondition="(GD.UserCode  IN (SELECT UserCode FROM dbo.sys_user WHERE OrganizeName LIKE '{SESSION.OrganizeName}%') or '{USER.UserCode}'='super')">
+  <Fields>
+    <Field Table="PO" Field="PopName" Title="客户" FieldType="varchar" Alias="PopName" ControlType="TextBox" />
+    <Field Table="PO" Field="Address" Alias="Address" FieldType="varchar" Title="地址" ControlType="TextBox" />
+    <Field Table="GD" Field="RPdtCode" Title="竞品品牌" FieldType="varchar" Alias="RPdtCode" ControlType="TextBox" />
+    <Field Table="GD" Field="PrmDate" Title="上报日期" FieldType="varchar" Alias="PrmDate" ControlType="Date" />
+    <Field Table="GD" Field="Remark" Title="备注" FieldType="varchar" Alias="Remark" />
+    <Field Table="GD" Field="No" Title="照片" FieldType="varchar" Alias="No" ControlType="File" ColumnWidth="30" />
+  </Fields>
+  <DrillReports />
+  <Charts>
+    <XAxis />
+    <YAxis />
+    <Series />
+  </Charts>
+</Report>

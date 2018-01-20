@@ -1,0 +1,72 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = WebApp.Parameters.SYS_NAME;
+}
+
+@section head{
+
+    <link href="~/Content/index.css" rel="stylesheet" />
+
+}
+
+@section scripts{
+    <script src="~/Content/js/index.js"></script>
+    <script src="~/Content/js/core/common.js"></script>
+}
+
+<div region="north" class="head-north" split="true" border="false" style="height:66px;">
+    <div class="head head-right">
+        <a href="javascript:void(0)" class="easyui-menubutton" data-options="menu:'#mm_user',iconCls:'icon-user'">当前用户:@ViewBag.UserName</a>
+        <div id="mm_user" style="width:150px;">
+            <div data-options="iconCls:'icon-rainbow'" class="myconfig">个人设置</div>
+            <div data-options="iconCls:'icon-edit'" class="changepwd">修改密码</div>
+            <div class="menu-sep"></div>
+            <div data-options="iconCls:'icon-user_go'" class="loginOut">安全退出</div>
+        </div>
+    </div>
+    <span class="head-left" style="width:370px">
+       上海誉童建设集团有限公司
+    </span>
+
+</div>
+<div data-options="region:'west',title:'导航菜单',split:true" style="width:180px;">
+    <div id="navMenu" class="easyui-accordion" data-options="border:false,fit:true"></div>
+
+
+
+</div>
+<div data-options="region:'south',collapsible:false" class="head-south" style="height:23px;">
+    <div class="footer">@WebApp.Parameters.SYS_CORPYRIGHT</div>
+</div>
+<div data-options="region:'center',border:false">
+    <div id="mainTabsTools">
+        <a id="btnRefresh" href="javascript:void(0);" class="easyui-linkbutton" plain="true" iconcls="icon-arrow_refresh"></a>
+        <a id="btnFullscreen" href="javascript:void(0);" class="easyui-linkbutton" plain="true" iconcls="icon-screen_full"></a>
+        <a id="btnCloseAllWindow" href="javascript:void(0);" class="easyui-linkbutton" plain="true" iconcls="panel-tool-close"></a>
+    </div>
+    <div id="mainTabs" class="easyui-tabs" data-options="fit:true">
+    </div>
+</div>
+
+
+
+<script type="text/html" id="password-template">
+    <div class="container_12" style="width:90%;margin:5%;">
+        <div class="grid_3 lbl">登陆名：</div>
+        <div class="grid_9 val"><input type="text" class="z-txt readonly " name="UserCode" disabled="disabled" value="@ViewBag.UserName" /></div>
+        <div class="grid_3 lbl">原密码：</div>
+        <div class="grid_9 val"><input type="password" class="z-txt" /></div>
+        <div class="grid_3 lbl">新密码：</div>
+        <div class="grid_9 val"><input type="password" class="z-txt" /></div>
+        <div class="grid_3 lbl">确　认：</div>
+        <div class="grid_9 val"><input type="password" class="z-txt" /></div>
+        <div class="clear"></div>
+    </div>
+
+    <div style="text-align:center;" class="z-toolbar-dialog">
+        <a class="easyui-linkbutton" data-options="iconCls:'icon-ok'" href="javascript:void(0)" id="pwd_confirm">确定</a>
+        <a class="easyui-linkbutton" data-options="iconCls:'icon-cancel'" href="javascript:void(0)" id="pwd_close">取消</a>
+    </div>
+</script>
+
+

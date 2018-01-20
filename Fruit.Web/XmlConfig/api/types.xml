@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ApiModel Name="types" Url="wapi/types">
+  <Apis>
+    <SqlApi HttpMethod="GET" CheckOut="False" Enabled="True" EnableJSON="True" EnableXML="True" Connection="SysContext">
+      <Parameters />
+      <CommandText><![CDATA[select * from sys_codeType]]></CommandText>
+    </SqlApi>
+  </Apis>
+</ApiModel>

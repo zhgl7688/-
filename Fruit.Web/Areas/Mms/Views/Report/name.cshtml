@@ -1,0 +1,38 @@
+﻿@{
+    Layout = "~/Views/Shared/_EmptyLayout.cshtml";
+}
+@section scripts {
+    <script type="text/javascript">
+        var parentReportParams = @MvcHtmlString.Create(ViewBag.ParentReportParams);
+        function name_load(db){
+            $.extend(db.options, {
+                searchClick: function(){
+                    var form = db.getData('serach');
+                    db.invoke('setLoadParams', form);
+                },
+                clearClick: function(){
+                    db.clearData('serach');
+                    db.invoke('setLoadParams', {});
+                }
+                , onInit: function(){
+                }
+            });
+        }
+
+    </script>
+}
+
+<div class="z-toolbar">
+
+    <a class="easyui-linkbutton" iconcls="icon-arrow_refresh" plain="true" data-bind="click:'refresh'">刷新</a>
+</div>
+<table id="gridname" data-bind="datagrid" data-options="fixSize:{w:4, h:66}, rownumbers:true, method:'get', url:'/api/mms/report/getname', pagination:true, pageSize:20, holdTotal:true,preQueryParams:parentReportParams">
+<thead>
+<tr>
+<th field="AttDate" data-options="">AttDate</th>
+<th field="day20" data-options="">20</th>
+<th field="day21" data-options="">21</th>
+<th field="day22" data-options="">22</th>
+</tr>
+</thead>
+</table>

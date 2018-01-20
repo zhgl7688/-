@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Form Connection="LUOLAI1401Context" Table="HR_WageSets" IsView="False" FilterTreeBindField="FID" TreeGridIdField="FID" TreeGridNameField="FID" TreeGridParentIdField="FID">
+  <SubTables />
+  <SaveProducre />
+  <Buttons />
+  <GroupFilters />
+  <Fields>
+    <Field Table="HR_WageSets" Field="FID" DbType="varchar" Required="True" ListVisible="True" FormVisible="True" ControlType="AutoId" ReadOnly="True" Title="编号" ControlValue="十二位编号">
+      <CascadeFilter />
+    </Field>
+    <Field Table="HR_WageSets" Field="empID" DbType="int" Required="False" ListVisible="True" FormVisible="True" ControlType="PopupSelect" Title="员工" ControlValue="员工" Searchable="True">
+      <CascadeFilter />
+      <PopupOption />
+    </Field>
+    <Field Connection="LUOLAI1401Context" Table="HR_WageSets" ControlType="Dropdown" FormVisible="True" ListVisible="True" ControlValue="社保类别" Title="交费单位" Field="HFType" DbType="varchar" Searchable="True">
+      <CascadeFilter />
+    </Field>
+    <Field Table="HR_WageSets" Field="SSBaseAmt" DbType="numeric" Required="True" ListVisible="True" FormVisible="True" ControlType="NumberBox" Title="社保金额">
+      <CascadeFilter />
+    </Field>
+    <Field Connection="LUOLAI1401Context" Table="HR_WageSets" Title="公积金金额" Field="HFBaseAmt" ControlType="NumberBox" DbType="numeric" FormVisible="True" ListVisible="True" Required="True">
+      <CascadeFilter />
+    </Field>
+    <Field Connection="LUOLAI1401Context" Table="HR_WageSets" Field="CustID" FormVisible="True" ListVisible="True" Title="分部负责人" DbType="varchar" ControlType="Dropdown" ControlValue="合作单位">
+      <CascadeFilter />
+    </Field>
+    <Field Connection="LUOLAI1401Context" Table="HR_WageSets" FormVisible="True" ListVisible="True" Required="True" Title="开始时间" Field="START_TIME" DbType="varchar" ControlType="Date">
+      <CascadeFilter />
+    </Field>
+    <Field Connection="LUOLAI1401Context" Table="HR_WageSets" ControlType="Date" FormVisible="True" ListVisible="True" Required="True" Title="结束时间" Field="END_TIME" DbType="varchar">
+      <CascadeFilter />
+    </Field>
+    <Field Table="HR_WageSets" Field="Remark" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="备注" FormWidth="3">
+      <CascadeFilter />
+    </Field>
+    <Field Table="HR_WageSets" Field="CreatePerson" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="创建人" FormInfoArea="表单信息" ReadOnly="True">
+      <CascadeFilter />
+    </Field>
+    <Field Table="HR_WageSets" Field="CreateDate" DbType="datetime" Required="True" ListVisible="True" FormVisible="True" ControlType="Date" Title="创建时间" FormInfoArea="表单信息" ReadOnly="True">
+      <CascadeFilter />
+    </Field>
+    <Field Table="HR_WageSets" Field="UpdateDate" DbType="datetime" Required="True" ListVisible="True" FormVisible="True" ControlType="Date" Title="更新时间" FormInfoArea="表单信息" ReadOnly="True">
+      <CascadeFilter />
+    </Field>
+  </Fields>
+</Form>

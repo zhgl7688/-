@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Form Connection="LUOLAI1401Context" Table="EnterpriseCertificate" IsView="False" FilterTreeBindField="FID" TreeGridIdField="FID" TreeGridNameField="FID" TreeGridParentIdField="FID">
+  <SubTables />
+  <SaveProducre />
+  <Buttons />
+  <GroupFilters />
+  <Fields>
+    <Field Table="EnterpriseCertificate" Field="FID" DbType="int" Required="False" ListVisible="True" FormVisible="True" ControlType="AutoId" ReadOnly="True" ControlValue="序号" Title="序号">
+      <CascadeFilter />
+    </Field>
+    <Field Table="EnterpriseCertificate" Field="Company" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="Dropdown" Title="所属公司" ControlValue="单位">
+      <CascadeFilter />
+    </Field>
+    <Field Table="EnterpriseCertificate" Field="Name" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="名称">
+      <CascadeFilter />
+    </Field>
+    <Field Table="EnterpriseCertificate" Field="EffectiveDate" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="Date" Title="有效期">
+      <CascadeFilter />
+    </Field>
+    <Field Table="EnterpriseCertificate" Field="Qty" DbType="int" Required="False" ListVisible="True" FormVisible="True" ControlType="NumberBox" Title="数量">
+      <CascadeFilter />
+    </Field>
+    <Field Connection="LUOLAI1401Context" Table="EnterpriseCertificate" ControlType="TextBox" FormVisible="True" ListVisible="True" Title="借用情况" Field="onProject" DbType="varchar">
+      <CascadeFilter />
+    </Field>
+    <Field Table="EnterpriseCertificate" Field="CreatePerson" DbType="varchar" Required="False" ListVisible="False" FormVisible="True" ControlType="TextBox" ReadOnly="True" Title="创建人">
+      <CascadeFilter />
+    </Field>
+    <Field Table="EnterpriseCertificate" Field="CreateDate" DbType="datetime" Required="False" ListVisible="False" FormVisible="True" ControlType="Date" ReadOnly="True" Title="创建日期">
+      <CascadeFilter />
+    </Field>
+    <Field Table="EnterpriseCertificate" Field="UpdatePerson" DbType="varchar" Required="False" ListVisible="False" FormVisible="True" ControlType="TextBox" ReadOnly="True" Title="更改人">
+      <CascadeFilter />
+    </Field>
+    <Field Table="EnterpriseCertificate" Field="UpdateDate" DbType="datetime" Required="False" ListVisible="False" FormVisible="True" ControlType="Date" ReadOnly="True" Title="更改日期">
+      <CascadeFilter />
+    </Field>
+  </Fields>
+</Form>

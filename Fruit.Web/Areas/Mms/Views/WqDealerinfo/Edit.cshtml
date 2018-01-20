@@ -1,0 +1,83 @@
+﻿@section scripts {
+<script type="text/javascript">
+    var data = @MvcHtmlString.Create(JsonExtension.ToJson(Model));
+    $(function(){
+        var db = fruit.databind.root;
+        db.loadData(data);
+    });
+</script>
+}
+
+
+<div class="z-toolbar">
+    <a id="a_save" href="#" plain="true" class="easyui-linkbutton" icon="icon-save" data-bind="click:'saveClick',disable:'readonly'" title="保存">保存</a>
+    <a id="a_undo" href="#" plain="true" class="easyui-linkbutton" icon="icon-undo" data-bind="click:'rejectClick',disable:'readonly'" title="撤消">撤消</a>
+    <div class="datagrid-btn-separator"></div>
+    <a id="a_other" href="#" class="easyui-splitbutton" data-options="menu:'#divother',iconCls:'icon-application_go'" title="其他">其他</a>
+</div>
+
+<div id="divother" style="width:100px; display:none;">
+    <div data-options="iconCls:'icon-add'">新增</div>
+    <div data-options="iconCls:'icon-cross'">删除</div>
+    <div data-options="iconCls:'icon-arrow_refresh'">刷新</div>
+</div>
+<div id="master" class="container_12" data-bind="inputwidth:0.9">
+    <div class="grid_1 lbl">所属公司</div>
+   <div class="grid_3 val"><input type="text" data-bind="value:'form.CompCode', readOnly:true" class="z-txt readonly" /></div>
+    <div class="grid_1 lbl">客户编号</div>
+   <div class="grid_3 val"><input type="text" data-bind="value:'form.DealerCode'" class="z-txt" /></div>
+    <div class="grid_1 lbl">客户名称</div>
+   <div class="grid_3 val"><input type="text" data-bind="value:'form.DealerName'" class="z-txt" /></div>
+
+    <div class="clear"></div>
+
+    <div class="grid_1 lbl">地址</div>
+   <div class="grid_3 val"><input type="text" data-bind="value:'form.Address'" class="z-txt" /></div>
+    <div class="grid_1 lbl">联系人1</div>
+   <div class="grid_3 val"><input type="text" data-bind="value:'form.Contact1'" class="z-txt" /></div>
+    <div class="grid_1 lbl">联系电话1</div>
+   <div class="grid_3 val"><input type="text" data-bind="value:'form.Tel1'" class="z-txt" /></div>
+
+    <div class="clear"></div>
+
+    <div class="grid_1 lbl">手机1</div>
+   <div class="grid_3 val"><input type="text" data-bind="value:'form.Mobile1'" class="z-txt" /></div>
+    <div class="grid_1 lbl">联系人2</div>
+   <div class="grid_3 val"><input type="text" data-bind="value:'form.Contact2'" class="z-txt" /></div>
+    <div class="grid_1 lbl">联系电话2</div>
+   <div class="grid_3 val"><input type="text" data-bind="value:'form.Tel2'" class="z-txt" /></div>
+
+    <div class="clear"></div>
+
+    <div class="grid_1 lbl">手机2</div>
+   <div class="grid_3 val"><input type="text" data-bind="value:'form.Mobile2'" class="z-txt" /></div>
+    <div class="grid_1 lbl">位置（经度）</div>
+   <div class="grid_3 val"><input type="text" data-bind="value:'form.Long'" class="z-txt" /></div>
+    <div class="grid_1 lbl">位置（纬度）</div>
+   <div class="grid_3 val"><input type="text" data-bind="value:'form.Lat'" class="z-txt" /></div>
+
+    <div class="clear"></div>
+
+    <div class="grid_1 lbl">客户类型</div>
+   <div class="grid_3 val"><input type="text" data-bind="value:'form.DealerType'" class="z-txt" /></div>
+    <div class="grid_1 lbl">客户状态</div>
+   <div class="grid_3 val"><input type="text" data-bind="value:'form.DealerStatus'" class="z-txt" /></div>
+    <div class="grid_1 lbl">所属业务员</div>
+   <div class="grid_3 val"><input type="text" data-bind="value:'form.UserCode'" class="z-txt" /></div>
+
+    <div class="clear"></div>
+
+    <div class="grid_1 lbl">备注</div>
+   <div class="grid_3 val"><input type="text" data-bind="value:'form.Remark'" class="z-txt" /></div>
+    <div class="grid_1 lbl">创建人</div>
+   <div class="grid_3 val"><input type="text" data-bind="value:'form.CreatePerson'" class="z-txt" /></div>
+    <div class="grid_1 lbl">创建时间</div>
+   <div class="grid_3 val"><input type="text" data-bind="value:'form.CreateDate'" class="z-txt" /></div>
+
+    <div class="clear"></div>
+
+    <div class="grid_1 lbl">最后修改人</div>
+   <div class="grid_3 val"><input type="text" data-bind="value:'form.UpdatePerson'" class="z-txt" /></div>
+    <div class="grid_1 lbl">最后修改时间</div>
+   <div class="grid_3 val"><input type="text" data-bind="value:'form.UpdateDate'" class="z-txt" /></div>
+</div>

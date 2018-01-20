@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report CommonReport="True" From="HR_HousFundRecords" OrderField="FMonth,FYear desc">
+  <DrillReports />
+  <Fields>
+    <Field Table="HR_HousFundRecords" Field="FID" Alias="FID" Title="流水编号" ControlType="TextBox" />
+    <Field Table="HR_HousFundRecords" Field="FYear" Alias="FYear" ControlType="TextBox" Title="年" />
+    <Field Table="HR_HousFundRecords" Field="FMonth" Alias="FMonth" ControlType="TextBox" Title="月" />
+    <Field Table="HR_HousFundRecords" Field="HFCode" Alias="HFCode" ControlType="TextBox" Title="个人账号" />
+    <Field Table="HR_HousFundRecords" Field="HFType" Alias="HFType" ControlValue="社保类别" ControlType="Dropdown" Title="公积金类别" />
+    <Field Table="HR_HousFundRecords" Field="empCode" Alias="empCode" Title="人员" ControlType="PopupSelect" ControlValue="员工" />
+    <Field Table="HR_HousFundRecords" Field="corpFund" Alias="corpFund" Title="公司缴存额" />
+    <Field Table="HR_HousFundRecords" Field="indvFund" Alias="indvFund" Title="个人缴存额" />
+    <Field Table="HR_HousFundRecords" Field="HFAmt" Alias="HFAmt" Title="公积金基数" />
+    <Field Table="HR_HousFundRecords" Field="Total" Alias="Total" Title="合计缴存额" />
+    <Field Table="HR_HousFundRecords" Field="CreatePerson" Alias="CreatePerson" Title="创建人" />
+    <Field Table="HR_HousFundRecords" Field="Remark" Alias="Remark" Title="备注" />
+    <Field Table="HR_HousFundRecords" Field="CreateDate" Alias="CreateDate" Title="创建日期" ControlType="Date" />
+  </Fields>
+  <Charts>
+    <XAxis FieldUid="" />
+    <YAxis FieldUid="" />
+    <Series />
+  </Charts>
+</Report>

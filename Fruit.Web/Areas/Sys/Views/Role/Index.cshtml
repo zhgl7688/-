@@ -1,0 +1,414 @@
+﻿
+@{
+    ViewBag.Title = "角色管理";
+}
+
+@section scripts {
+    <script type="text/javascript">
+        var rightBindContext = null;
+        window.treeLoadFilter = fruit.tree.createLoadFilter("MenuCode", "ParentCode", function (row) {
+            row._id = row.MenuCode;
+            row._parentId = row.ParentCode;
+            row.iconCls = row.IconClass;
+        }, "", "0");
+
+        var formatterButton = function (value, row) {
+            return '<a href="javascript:rightSetting(\'' + row.RoleCode + '\');"><span class="icon icon-set1">&nbsp;</span>[编辑权限]</a>&nbsp;&nbsp;<a href="javascript:manageMember(\'' + row.RoleCode + '\');"><span class="icon icon-users">&nbsp;</span>[管理成员]</a>';
+        }
+
+        function treebutton_click(target) {
+            var cell = $(target).closest('[field]');
+            var row = $(target).closest('[node-id]');
+            var field = cell.attr('field');
+            var id = row.attr('node-id');
+
+            rightBindContext.binds.table_buttons.select(id);
+            var row = rightBindContext.binds.table_buttons.getSelected();
+            if(row){
+                var val = row[field] == 1 ? 2 : 1;
+                row[field] = val;
+                if(field == 'btn_all') {
+                    for(var key in row) {
+                        if(key.indexOf('btn_') == 0){
+                            row[key] = val;
+                        }
+                    }
+                }
+                rightBindContext.binds.table_buttons.jq.treegrid('refresh', id);
+            }
+        }
+
+        function buildTreeButton(cxt, menus, buttons) {
+            //console.log(buttons);
+            var formatterEnable = function (value, row) {
+                if(value == 1 || value == 2) {
+                    return '<center onclick="treebutton_click(this)"><img src="/Content/images/' + (value == 2 ? "checkmark.gif" : "checknomark.gif") + '"/></center>'; 
+                } 
+                return '';
+            };
+
+            function handleMenuButtons(nodes) {
+                $.each(nodes, function(){
+                    var menu = this;
+                    var cc = 0;
+                    $.each(buttons.menuButtons, function(){
+                        var mb = this;
+                        if(this.MenuCode == menu.MenuCode){
+                            var rb = buttons.roleMenuButtons.find(function(n){return n.MenuCode == mb.MenuCode && n.ButtonCode == mb.ButtonCode;});
+                            cc++;
+                            //console.log(rb, mb);
+                            menu['btn_'+this.ButtonCode] = rb ? 2 : 1;
+                        }
+                    });
+                    if(cc > 0){
+                        menu.btn_all = 1;
+                    }
+                    if(this.children) {
+                        handleMenuButtons(this.children);
+                    }
+                });
+            };
+
+            handleMenuButtons(menus);
+
+            var columns = [];
+            columns.push({field:'MenuCode', hidden:true});
+            columns.push({title:'菜单', field:'MenuName'});
+            columns.push({title:'全选', field:'btn_all', formatter: formatterEnable});
+            $.each(buttons.buttons, function(){
+                columns.push({
+                    title: '<span class="icon ' + this.ButtonIcon + '">' + this.ButtonName + '</span>',
+                    field: 'btn_' + this.ButtonCode,
+                    formatter: formatterEnable
+                });
+            });
+            cxt.binds.table_buttons.jq.treegrid({
+                idField:'MenuCode',
+                treeField:'MenuName',
+                parentField:'ParentCode',
+                loadFilter:window.treeLoadFilter,
+                columns:[columns]
+            });
+            cxt.binds.table_buttons.loadData(menus);
+        }
+
+        function rightSetting(roleCode) {
+            var rows = fruit.databind.root.invoke('getRows');
+            var row = rows.find('RoleCode', roleCode);
+            var dialog = $('<div>' + $('#permission-template').html() + '</div>');
+            var table_buttons = null;
+            var table_datas = null;
+            dialog.dialog({ title: '管理成员', cache: false, modal: true, width: 800, height: 600 });
+            var bindContext = rightBindContext = new fruit.databind(dialog, {
+                cancelClick: function () {
+                    dialog.dialog('close');
+                },
+                confirmClick: function () {
+                    var data = {menus : []};
+                    $.each(bindContext.binds.menulist.jq.treegrid('getChecked'), function(){
+                        data.menus.push(this.MenuCode);
+                    });
+                    if(table_buttons){
+                        data.buttons = [];
+                        fruit.tree.each(table_buttons.getData(), function(node) {
+                            var item = this;
+                            for(var key in item) {
+                                if(key.indexOf('btn_') == 0 && key != 'btn_all' && item[key] == 2) {
+                                    data.buttons.push({
+                                        ButtonCode: key.substr(4),
+                                        MenuCode: item.MenuCode
+                                    });
+                                }
+                            }
+                        });
+                    }
+                    if(table_datas){
+                        data.datas = [];
+                        $.each(table_datas.jq.treegrid('getChecked'), function(){
+                            data.datas.push(this.PermissionCode);
+                        });
+                    }
+
+                    bindContext.jq.showLoading('正在保存配置…');
+                    fruit.ajax({
+                        url: '/api/sys/role/savebuttons/'+roleCode,
+                        data: JSON.stringify(data),
+                        success: function(data) {
+                            bindContext.jq.hideLoading();
+                            dialog.dialog('close');
+                        }
+                    });
+                }
+            });
+            var tab = bindContext.jq.find('.easyui-tabs').tabs({
+                onSelect: function (title, index) {
+                    if(index == 1 && table_buttons == null) {
+                        table_buttons = bindContext.binds.table_buttons;
+                        bindContext.jq.showLoading();
+                        fruit.ajax({
+                            method:'GET', 
+                            url:'/api/sys/role/buttons/'+roleCode,
+                            success: function(data) {
+                                setTimeout(function(){
+                                    buildTreeButton(bindContext, bindContext.binds.menulist.getData().copy(), data);
+                                    bindContext.jq.hideLoading();
+                                }, 10);
+                            }
+                        });
+                    } else if(index == 2 && table_datas == null) {
+                        table_datas = bindContext.binds.table_datas;
+                        
+                        table_datas.jq.treegrid({
+                            columns:[[
+                                {field:'Selected', editor:'checkbox', checkbox:true, on:true, off:false},
+                                {field:'PermissionName', title:'授权名称', width:200},
+                                {field:'PermissionCode', title:'授权代码', width:200}
+                            ]],
+                            idField:'PermissionCode',
+                            treeField:'PermissionName',
+                            rownumbers: true,
+                            singleSelect: false,
+                            checkOnSelect: false,
+                            method:'get',
+                            url:'/api/sys/role/datas/'+roleCode,
+                            loadFilter: fruit.tree.createLoadFilter('PermissionCode', 'ParentCode', '0'),
+                            onLoadSuccess: function(row, data) {
+                                fruit.tree.each(data, function(){
+                                    if(this.Selected) {
+                                        table_datas.jq.treegrid('checkRow', this.PermissionCode);
+                                    }
+                                });
+                            }
+                        });
+
+                        //bindContext.jq.showLoading();
+                        //fruit.ajax({
+                        //    method:'GET', 
+                        //    url:'/api/sys/role/datas/'+roleCode,
+                        //    success: function(data) {
+                        //        bindContext.jq.hideLoading();
+                        //        table_datas.jq.treegrid({
+                        //            columns:[
+                        //                {field:'Selected', checkbox:true, on:true, off:false},
+                        //                {field:'PermissionName', title:'授权名称'},
+                        //                {field:'PermissionCode', title:'授权代码'}
+                        //            ],
+                        //            idField:'PermissionCode',
+                        //            treeField:'PermissionName',
+                        //            url:'/api/sys/role/datas/'+roleCode,
+                        //            loadFilter: fruit.tree.createLoadFilter('PermissionCode', 'ParentCode', '0')
+                        //        });
+                        //        table_datas.loadData(data);
+                        //    }
+                        //});
+                    }
+                }
+            });
+            bindContext.loadData(row);
+            fruit.ajax({
+                url: '/api/sys/role/menus/' + roleCode,
+                success: function (data) {
+                    bindContext.binds.menulist.loadData(data);
+                    // TODO 生成数据
+                    $.each(data, function () {
+                        if (this.Selected) {
+                            bindContext.binds.menulist.select(this.MenuCode);
+                        }
+                    });
+                }
+            });
+        }
+
+        function manageMember(roleCode) {
+            var rows = fruit.databind.root.invoke('getRows');
+            var row = rows.find('RoleCode', roleCode);
+            var dialog = $($('#members-template').html());
+            var bindContext = new fruit.databind(dialog, {
+                onInit: function () {
+                    var select = dialog.find('#user_groups');
+                    fruit.ajax({
+                        method: 'GET',
+                        url: '/api/sys/role/members/' + roleCode,
+                        success: function (data) {
+                            fruit.select.fillData(select, data);
+                        }
+                    });
+                },
+                addClick:function() {
+                    addMember(bindContext, roleCode);
+                },
+                deleteClick: function () {
+                    bindContext.jq.find('option:selected').remove();
+                },
+                confirmClick: function() {
+                    bindContext.jq.showLoading('正在保存配置…');
+                    var data = [];
+                    dialog.find('#user_groups>option').each(function () {
+                        data.push($(this).attr('value'));
+                    });
+                    fruit.ajax({
+                        url: '/api/sys/role/saveMembers/' + roleCode,
+                        data: JSON.stringify(data),
+                        success: function () {
+                            bindContext.jq.hideLoading();
+                            dialog.dialog('close');
+                        }
+                    });
+                },
+                clearClick: function () {
+                    var select = dialog.find('#user_groups');
+                    select.empty();
+                },
+                cancelClick: function () {
+                    dialog.dialog('close');
+                }
+            });
+            dialog.dialog({title:'管理成员', cache: false, modal: true, width:520, height:400});
+            bindContext.loadData(row);
+        }
+
+        function addMember(parentBindContext, roleCode) {
+            var dialog = $('<div>'+$('#choose-members-template').html()+'</div>');
+            var bindContext = new fruit.databind(dialog, {
+                checkAllOrganize: function (checked) {
+                    bindContext.call('checkAll', checked);
+                },
+                checkAllUser: function(checked) {
+                    bindContext.binds.checklist_users.checkAll(checked);
+                },
+                confirmClick: function () {
+                    var rows = bindContext.binds.checklist_organizes.getChangeRows();
+                    rows = rows.concat(bindContext.binds.checklist_users.getChangeRows());
+
+                    var select = parentBindContext.jq.find('#user_groups');
+                    $.each(rows, function () {
+                        if (select.find('option[value="' + this.Value + '"]').length == 0) {
+                            var text = this.Value.indexOf('user.') == 0 ? ('[用户] ' + this.Text + ' | ' + this.Value.split('.')[1]) : ('[机构] ' + this.Text + ' | ' + this.Value.split('.')[1]);
+                            $('<option></option>').attr('value', this.Value).text(text).appendTo(select);
+                        }
+                    });
+                    dialog.dialog('close');
+                },
+                cancelClick: function () {
+                    dialog.dialog('close');
+                }
+            });
+            dialog.dialog({ title: '添加成员', cache: false, modal: true, width: 600, height: 500 });
+            bindContext.load({ method: 'GET', url: '/api/sys/role/AllMembers/' + roleCode });
+        }
+    </script>
+}
+
+@Html.Toolbar(b =>
+        b.AddButton("btnRefresh", "icon-arrow_refresh", "刷新", "refresh")
+            .AddButton("btnAdd", "icon-add", "新增", "add")
+            .AddButton("btnEdit", "icon-edit", "编辑", "edit")
+            .AddButton("btnDelete", "icon-cross", "删除", "delete")
+            .AddButton("btnSave", "icon-save", "保存", "save")
+    )
+
+@Html.DataGrid(b =>
+{
+    b.Id("gridlist");
+    b.DataBind()
+    .Data("options", "url:'/api/sys/role',method:'GET',saveUrl:'/api/sys/role',idField:'RoleCode'")
+    .RowNumbers(true)
+    .AddHiddenColumn("_id")
+    .AddColumn("RoleName", "角色名称", width: 150, editor: "{type:'validatebox',options:{required: true }}")
+    .AddColumn("RoleCode", "角色编码", width: 150, editor: "{type:'textbox',options:{required: true, modifiable: false }}")
+    .AddColumn("RoleSeq", "排序", width: 80, editor: "textbox")
+    .AddColumn("Description", "描述", width: 180, editor: "textbox")
+    .AddColumn("Button", "页面按钮", align: "center", width: 200, formatter: "formatterButton");
+}
+    )
+
+
+
+<script type="text/html" id="members-template">
+    <div>
+        <div style="padding:5px;">
+            <div style="border-bottom:1px solid #CCC; margin-bottom:5px;">
+                <span id="role_name" class="icon32 icon-group32" style="padding-left:48px;font-weight:bold; font-size:14px;color:#666;" data-bind="text:'RoleName'">角色名称</span>
+            </div>
+            <div style="margin-bottom:10px;height:20px;">
+                <label>描述：</label><input data-bind="value:'Description'" type="text" readonly=true class="z-txt" style="width:430px;color:#666;vertical-align:middle">
+            </div>
+            <div> 成员：</div>
+            <select id="user_groups" name="user_groups" size="10" multiple="multiple" style="width:475px; line-height:30px;height:195px;padding:5px"></select>
+            <div style="margin-top:2px;">
+                <a href="#" id="group_add" class="easyui-linkbutton" plain="true" iconcls="icon-group-add" data-bind="click:'addClick'">添加</a>
+                    <a href="#" class="easyui-linkbutton" id="group_delete" plain="true" iconcls="icon-group-delete" data-bind="click:'deleteClick'">删除</a>
+                    <a href="#" class="easyui-linkbutton" id="group_clear" plain="true" iconcls="icon-clear" data-bind="click:'clearClick'">清空</a>
+            </div>
+        </div>
+        <div style="text-align:center;">
+            <a class="easyui-linkbutton" data-options="iconCls:'icon-ok'" data-bind="click:'confirmClick'" href="javascript:void(0)">确定</a>
+                <a class="easyui-linkbutton" data-options="iconCls:'icon-cancel'" data-bind="click:'cancelClick'" href="javascript:void(0)">取消</a>
+        </div>
+    </div>
+</script>
+
+<script type="text/html" id="choose-members-template">
+    <div style="margin:5px;height:425px;overflow:auto;">
+        <div style="border-bottom:1px solid #CCC; margin-bottom:5px;">
+            <span class="icon32 icon-org32" style="padding-left:48px;font-weight:bold; font-size:14px;color:#666;">
+                机构成员<input type="checkbox" style="vertical-align:middle;margin-left:5px;" data-bind="checked:'checkAllOrganize'" />全选
+            </span>
+        </div>
+
+        <ul id="checklist_organizes" style="margin:0;padding:0;clear:both" data-bind="checklist:'organizes'">
+            <li style="float:left;list-style:none;margin:3px;"><label data-bind="text:'Text'"></label></li>
+        </ul>
+
+        <div style="border-bottom:1px solid #CCC; margin-bottom:5px;clear:both">
+            <span class="icon32 icon-user32" style="padding-left:48px;font-weight:bold; font-size:14px;color:#666;">
+                用户成员<input type="checkbox" style="vertical-align:middle;margin-left:5px;" data-bind="checked:'checkAllUser'" />全选
+            </span>
+        </div>
+
+        <ul id="checklist_users" style="margin:0;padding:0;clear:both" data-bind="checklist:'users'">
+            <li style="float:left;list-style:none;margin:3px;"><label data-bind="text:'Text'"></label></li>
+        </ul>
+    </div>
+    <div style="text-align:center;clear:both">
+        <a class="easyui-linkbutton" data-options="iconCls:'icon-ok'" data-bind="click:'confirmClick'" href="javascript:void(0)">确定</a>
+        <a class="easyui-linkbutton" data-options="iconCls:'icon-cancel'" data-bind="click:'cancelClick'" href="javascript:void(0)">取消</a>
+    </div>
+</script>
+
+<script type="text/html" id="permission-template">
+    <div class="container" style="margin:5px;height:525px;">
+        <div>
+            <span class="icon32 icon-group32" style="padding-left:48px;font-weight:bold; font-size:14px;color:#666;" data-bind="text:'role.RoleName'">角色名称</span>
+            <span data-bind="text:'role.Description'" style="margin-left:10px;"></span>
+        </div>
+
+        <div class="easyui-tabs">
+            <div title="菜单权限">
+                <table id="menulist" data-bind="treegrid:'grid'"
+                       data-options="loadFilter:treeLoadFilter,idField:'MenuCode',parentField:'ParentCode',treeField:'MenuName',singleSelect:false,rownumbers:true,height:450">
+                    <thead>
+                        <tr>
+                            <th field="Selected" checkbox="true" data-options="on:true, off:false"></th>
+                            <th field="MenuName" align="left" width="150">菜单   </th>
+                            <th field="MenuCode" align="left" width="80">编码   </th>
+                            <th field="Description" align="left" width="200">备注说明   </th>
+                        </tr>
+                    </thead>
+                </table>
+            </div>
+
+            <div title="按钮权限">
+                <table id="table_buttons" data-bind="treegrid" data-options="height:450"></table>
+            </div>
+
+            @*<div title="数据权限">
+                <table id="table_datas" data-bind="treegrid" data-options="height:450"></table>
+            </div>*@
+        </div>
+    </div>
+    <div style="text-align:center;clear:both">
+        <a class="easyui-linkbutton" data-options="iconCls:'icon-ok'" data-bind="click:'confirmClick'" href="javascript:void(0)">确定</a>
+        <a class="easyui-linkbutton" data-options="iconCls:'icon-cancel'" data-bind="click:'cancelClick'" href="javascript:void(0)">取消</a>
+    </div>
+</script>

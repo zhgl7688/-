@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report CommonReport="True" From="sys_user" AddCondition="(UserCode IN (SELECT UserCode FROM dbo.sys_user WHERE OrganizeName LIKE '{SESSION.OrganizeName}%') or '{USER.UserCode}'='super')" OrderField="OrganizeName">
+  <Fields>
+    <Field Table="sys_user" Field="bumenName" Title="部门" FieldType="varchar" Alias="bumenName" ControlType="Dropdown" ControlValue="所属组织" />
+    <Field Table="sys_user" Field="UserCode" Title="员工编码" FieldType="varchar" Alias="UserCode" ControlType="TextBox" />
+    <Field Table="sys_user" Field="UserName" Title="姓名" FieldType="varchar" Alias="UserName" ControlType="TextBox" />
+    <Field Table="sys_user" Field="PlaceName" Title="职位" FieldType="varchar" Alias="PlaceName" />
+    <Field Table="sys_user" Field="mobile" Alias="mobile" Title="手机" FieldType="varchar" ControlType="TextBox" />
+    <Field Table="sys_user" Field="soft" Alias="soft" Title="软件版本" FieldType="varchar" />
+    <Field Table="sys_user" Field="phonetype" Alias="phonetype" Title="机型" FieldType="varchar" />
+    <Field Table="sys_user" Field="os" Alias="os" Title="操作系统" FieldType="varchar" />
+    <Field Table="sys_user" Field="isline" Alias="isline" Title="是否在线" FieldType="varchar" ControlValue="是否" ControlType="Dropdown" />
+  </Fields>
+  <DrillReports />
+  <Charts>
+    <XAxis />
+    <YAxis />
+    <Series />
+  </Charts>
+</Report>

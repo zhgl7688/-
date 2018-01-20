@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Form Connection="LUOLAI1401Context" Table="wq_dailyLog" Filter="a.CompCode= '{USER.CompCode}'">
+  <SubTables />
+  <Fields>
+    <Field Connection="LUOLAI1401Context" Table="wq_dailyLog" Field="UserCode" Required="True" ListVisible="True" FormVisible="True" ControlType="PopupSelect" Title="用户编码" MaxLength="10" ControlValue="用户选择" DbType="varchar" Searchable="True" />
+    <Field Connection="LUOLAI1401Context" Table="wq_dailyLog" Field="AttDateTime" Required="True" ListVisible="True" FormVisible="True" ControlType="Date" Title="日期时间" MaxLength="20" DbType="varchar" Searchable="True" />
+    <Field Connection="LUOLAI1401Context" Table="wq_dailyLog" Field="DailySummary" Required="True" ListVisible="True" FormVisible="True" ControlType="MultiTextBox" Title="今日工作总结" MaxLength="200" DbType="varchar" />
+    <Field Connection="LUOLAI1401Context" Table="wq_dailyLog" Field="DailyPlan" Required="True" ListVisible="True" FormVisible="True" ControlType="MultiTextBox" Title="明日工作计划" MaxLength="200" DbType="varchar" />
+    <Field Connection="LUOLAI1401Context" Table="wq_dailyLog" Field="DailyExper" Required="True" ListVisible="True" FormVisible="True" ControlType="MultiTextBox" Title="今日心得体会" MaxLength="200" DbType="varchar" />
+    <Field Connection="LUOLAI1401Context" Table="wq_dailyLog" Field="Pic1" Required="False" ListVisible="False" FormVisible="True" ControlType="File" Title="图片1" MaxLength="50" DbType="varchar">
+      <FileControlInfo />
+    </Field>
+    <Field Connection="LUOLAI1401Context" Table="wq_dailyLog" Field="Pic2" Required="False" ListVisible="False" FormVisible="True" ControlType="File" Title="图片2" MaxLength="50" DbType="varchar">
+      <FileControlInfo />
+    </Field>
+    <Field Connection="LUOLAI1401Context" Table="wq_dailyLog" Field="Pic3" Required="False" ListVisible="False" FormVisible="True" ControlType="File" Title="图片3" MaxLength="50" DbType="varchar">
+      <FileControlInfo />
+    </Field>
+    <Field Connection="LUOLAI1401Context" Table="wq_dailyLog" Field="Pic4" Required="False" ListVisible="False" FormVisible="True" ControlType="File" Title="图片4" MaxLength="50" DbType="varchar">
+      <FileControlInfo />
+    </Field>
+    <Field Connection="LUOLAI1401Context" Table="wq_dailyLog" Field="Pic5" Required="False" ListVisible="False" FormVisible="True" ControlType="File" Title="图片5" MaxLength="50" DbType="varchar">
+      <FileControlInfo />
+    </Field>
+    <Field Connection="LUOLAI1401Context" Table="wq_dailyLog" Field="Pic6" Required="False" ListVisible="False" FormVisible="True" ControlType="File" Title="图片6" MaxLength="50" DbType="varchar">
+      <FileControlInfo />
+    </Field>
+    <Field Connection="LUOLAI1401Context" Table="wq_dailyLog" Field="Pic7" Required="False" ListVisible="False" FormVisible="True" ControlType="File" Title="图片7" MaxLength="50" DbType="varchar">
+      <FileControlInfo />
+    </Field>
+    <Field Connection="LUOLAI1401Context" Table="wq_dailyLog" Field="UpdateDate" Required="False" ListVisible="True" FormVisible="True" ControlType="Date" Title="最后修改时间" MaxLength="20" ReadOnly="True" DbType="datetime" />
+    <Field Connection="LUOLAI1401Context" Table="wq_dailyLog" Field="UpdatePerson" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="最后修改人" MaxLength="20" ReadOnly="True" DbType="varchar" />
+    <Field Connection="LUOLAI1401Context" Table="wq_dailyLog" Field="CreateDate" Required="False" ListVisible="True" FormVisible="True" ControlType="Date" Title="创建时间" MaxLength="20" ReadOnly="True" DbType="datetime" Searchable="True" />
+    <Field Connection="LUOLAI1401Context" Table="wq_dailyLog" Field="CreatePerson" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="创建人" MaxLength="20" DefaultValue="" ReadOnly="True" DbType="varchar" />
+    <Field Connection="LUOLAI1401Context" Table="wq_dailyLog" Field="CompCode" Required="False" ListVisible="False" FormVisible="False" ControlType="Dropdown" Title="所属公司" ControlValue="所属公司" MaxLength="10" DefaultValue="{USER.CompCode}" DbType="varchar" Searchable="False" />
+    <Field Connection="LUOLAI1401Context" Table="wq_dailyLog" Field="Pic8" Required="False" ListVisible="False" FormVisible="True" ControlType="File" Title="图片8" MaxLength="50" DbType="varchar">
+      <FileControlInfo />
+    </Field>
+    <Field Connection="LUOLAI1401Context" Table="wq_dailyLog" ControlType="TextBox" Required="True" ReadOnly="True" ControlValue="性别" Title="ID" Field="id" DbType="int" />
+    <Field Connection="LUOLAI1401Context" Table="wq_dailyLog" ControlType="AutoId" ControlValue="十二位编号" Title="code" Field="code" DbType="varchar" />
+  </Fields>
+  <SaveProducre />
+  <Buttons />
+  <GroupFilters />
+</Form>

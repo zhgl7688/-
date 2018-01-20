@@ -1,0 +1,52 @@
+﻿@section scripts {
+    <script type="text/javascript">
+        $(function(){
+            var db = fruit.databind.root;
+            $.extend(db.options, {
+                searchClick: function(){
+                    var form = db.getData('serach');
+                    db.invoke('setLoadParams', form);
+                },
+                clearClick: function(){
+                    db.clearData('serach');
+                    db.invoke('setLoadParams', {});
+                }
+                , onInit: function(){
+                }
+            });
+        });
+
+    </script>
+}
+
+<div class="z-toolbar">
+
+    <a class="easyui-linkbutton" iconcls="icon-arrow_refresh" plain="true" data-bind="click:'refresh'">刷新</a>
+    <a class="easyui-splitbutton" plain="true" data-options="iconCls:'icon-download'" suffix="xls" data-bind="click:'download'">导出</a>
+    <div class="condition_buttons">
+        <a class="easyui-linkbutton" data-bind="click:'searchClick'" data-options="iconCls:'icon-search', plain:true" href="#">搜索</a>
+        <a class="easyui-linkbutton" data-bind="click:'clearClick'" data-options="iconCls:'icon-clear', plain:true" href="#">清空</a>
+    </div>
+</div>
+<div id="condition" class="container_12" style="position:relative;height:35px">
+    <div class="grid_1 lbl">员工编码</div>
+    <div class="grid_2 val"><input data-bind="value:'serach.员工编码'" type="text" class="z-txt" /></div>
+    <div class="grid_1 lbl">姓名</div>
+    <div class="grid_2 val"><input data-bind="value:'serach.姓名'" type="text" class="z-txt" /></div>
+    <div class="grid_1 lbl">月份</div>
+    <div class="grid_2 val"><input data-bind="value:'serach.月份'" type="text" class="z-txt" /></div>
+    <div class="clear"></div>
+    <div class="clear"></div>
+</div>
+<table id="grid" data-bind="datagrid" data-options="fixSize:{w:4, h:75}, rownumbers:true, method:'get', url:'/api/mms/gzrztj', pagination:true, pageSize:20, holdTotal:true">
+<thead>
+<tr>
+<th field="员工编码" data-options="width:100">员工编码</th>
+<th field="姓名" data-options="width:100">姓名</th>
+<th field="月份" data-options="width:80">月份</th>
+<th field="应填报数量" data-options="">应填报数量</th>
+<th field="完成数量" data-options="">完成数量</th>
+<th field="漏报数量" data-options="">漏报数量</th>
+</tr>
+</thead>
+</table>

@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Form Connection="LUOLAI1401Context" Table="BD_InvTypes" IsView="False" FilterTreeBindField="" TreeGridIdField="FID" TreeGridNameField="FID" TreeGridParentIdField="FID">
+  <SubTables />
+  <SaveProducre />
+  <Buttons />
+  <GroupFilters />
+  <Fields>
+    <Field Table="BD_InvTypes" Field="FID" DbType="bigint" Required="True" ListVisible="False" FormVisible="False" ControlType="AutoId" ReadOnly="True" Title="系统流水号">
+      <CascadeFilter />
+    </Field>
+    <Field Table="BD_InvTypes" Field="Name" DbType="varchar" Required="True" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="名称">
+      <CascadeFilter />
+    </Field>
+    <Field Connection="LUOLAI1401Context" Table="BD_InvTypes" ControlType="Dropdown" ControlValue="发票种类" Title="发票种类" Field="BillType" DbType="varchar" FormVisible="True" ListVisible="True">
+      <CascadeFilter />
+    </Field>
+    <Field Connection="LUOLAI1401Context" Table="BD_InvTypes" ControlType="NumberBox" Title="税率" Field="TaxRate" DbType="numeric" FormVisible="True" ListVisible="True" Required="True">
+      <CascadeFilter />
+    </Field>
+    <Field Table="BD_InvTypes" Field="Ratio" DbType="numeric" Required="True" ListVisible="True" FormVisible="True" ControlType="NumberBox" Title="抵扣税率">
+      <CascadeFilter />
+    </Field>
+    <Field Table="BD_InvTypes" Field="Remark" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="备注" FormWidth="3">
+      <CascadeFilter />
+    </Field>
+    <Field Table="BD_InvTypes" Field="CreatePerson" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" ReadOnly="True" Title="创建人" FormInfoArea="表单信息">
+      <CascadeFilter />
+    </Field>
+    <Field Table="BD_InvTypes" Field="CreateDate" DbType="datetime" Required="True" ListVisible="True" FormVisible="True" ControlType="Date" ReadOnly="True" Title="创建日期" FormInfoArea="表单信息">
+      <CascadeFilter />
+    </Field>
+    <Field Table="BD_InvTypes" Field="UpdateDate" DbType="datetime" Required="True" ListVisible="False" FormVisible="True" ControlType="Date" ReadOnly="True" Title="更改日期" FormInfoArea="表单信息">
+      <CascadeFilter />
+    </Field>
+  </Fields>
+</Form>

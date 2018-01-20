@@ -1,0 +1,82 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Form Connection="LUOLAI1401Context" Table="PM_ProjectInfos" IsView="False" FilterTreeBindField="FID" TreeGridIdField="FID" TreeGridNameField="FID" TreeGridParentIdField="FID">
+  <SubTables />
+  <SaveProducre />
+  <Buttons />
+  <GroupFilters />
+  <Fields>
+    <Field Table="PM_ProjectInfos" Field="FID" DbType="int" Required="True" ListVisible="False" FormVisible="False" ControlType="AutoId" ReadOnly="True" Title="系统流水号" ControlValue="序号">
+      <CascadeFilter />
+    </Field>
+    <Field Connection="LUOLAI1401Context" Table="PM_ProjectInfos" Field="appNumber" ControlType="TextBox" Title="报建编号" DbType="varchar" FormVisible="True" ListVisible="True">
+      <CascadeFilter />
+    </Field>
+    <Field Table="PM_ProjectInfos" Field="Code" DbType="varchar" Required="True" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="项目编号" ControlValue="十二位编号">
+      <CascadeFilter />
+    </Field>
+    <Field Table="PM_ProjectInfos" Field="ProjName" DbType="varchar" Required="True" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="项目名称">
+      <CascadeFilter />
+    </Field>
+    <Field Table="PM_ProjectInfos" Field="CustID" DbType="varchar" Required="True" ListVisible="True" FormVisible="True" ControlType="PopupSelect" Title="分部负责人" ControlValue="合作单位选择" Searchable="True">
+      <CascadeFilter />
+      <PopupOption />
+    </Field>
+    <Field Table="PM_ProjectInfos" Field="Owner" DbType="varchar" Required="True" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="甲方单位">
+      <CascadeFilter />
+    </Field>
+    <Field Table="PM_ProjectInfos" Field="BeginDate" DbType="varchar" Required="True" ListVisible="True" FormVisible="True" ControlType="Date" Title="开工日期" Searchable="True">
+      <CascadeFilter />
+    </Field>
+    <Field Table="PM_ProjectInfos" Field="EndDate" DbType="varchar" Required="True" ListVisible="True" FormVisible="True" ControlType="Date" Title="竣工日期" ReadOnly="False" Searchable="True">
+      <CascadeFilter />
+    </Field>
+    <Field Connection="LUOLAI1401Context" Table="PM_ProjectInfos" ControlType="Date" Title="备案日期" Field="BaDate" DbType="varchar" ListVisible="True" FormVisible="True">
+      <CascadeFilter />
+    </Field>
+    <Field Table="PM_ProjectInfos" Field="bClose" DbType="varchar" Required="True" ListVisible="True" FormVisible="True" ControlType="Dropdown" Title="核销" ControlValue="是否" DefaultValue="n">
+      <CascadeFilter />
+    </Field>
+    <Field Table="PM_ProjectInfos" Field="projAddress" DbType="varchar" Required="False" ListVisible="False" FormVisible="True" ControlType="TextBox" Title="项目地址" FormWidth="3">
+      <CascadeFilter />
+    </Field>
+    <Field Table="PM_ProjectInfos" Field="exDays" DbType="int" Required="True" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="超期天数" ReadOnly="True">
+      <CascadeFilter />
+    </Field>
+    <Field Table="PM_ProjectInfos" Field="Remark" DbType="varchar" Required="False" ListVisible="False" FormVisible="True" ControlType="TextBox" Title="备注" FormWidth="3">
+      <CascadeFilter />
+    </Field>
+    <Field Table="PM_ProjectInfos" Field="CreatePerson" DbType="varchar" Required="False" ListVisible="False" FormVisible="True" ControlType="TextBox" Title="创建人" ReadOnly="True">
+      <CascadeFilter />
+    </Field>
+    <Field Table="PM_ProjectInfos" Field="CreateDate" DbType="datetime" Required="True" ListVisible="False" FormVisible="True" ControlType="Date" Title="创建时间" ReadOnly="True">
+      <CascadeFilter />
+    </Field>
+    <Field Table="PM_ProjectInfos" Field="UpdateDate" DbType="datetime" Required="True" ListVisible="False" FormVisible="True" ControlType="Date" Title="更新时间" ReadOnly="True">
+      <CascadeFilter />
+    </Field>
+    <Field Connection="LUOLAI1401Context" Table="PM_ProjectInfos" FormVisible="True" Title="项目金额" Field="proje" ControlType="NumberBox" DbType="varchar" ListVisible="True">
+      <CascadeFilter />
+    </Field>
+    <Field Connection="LUOLAI1401Context" Table="PM_ProjectInfos" ControlType="Dropdown" ControlValue="员工" Title="安全员" Field="safetyPerson" DbType="int" FormVisible="True">
+      <CascadeFilter />
+    </Field>
+    <Field Connection="LUOLAI1401Context" Table="PM_ProjectInfos" ControlType="Dropdown" ControlValue="员工" Title="质量员" Field="qualityPerson" DbType="int" FormVisible="True">
+      <CascadeFilter />
+    </Field>
+    <Field Connection="LUOLAI1401Context" Table="PM_ProjectInfos" ControlType="Dropdown" ControlValue="员工" Title="施工员" Field="buildPerson" DbType="int" FormVisible="True">
+      <CascadeFilter />
+    </Field>
+    <Field Connection="LUOLAI1401Context" Table="PM_ProjectInfos" ControlType="Dropdown" Title="资料员" Field="dataPerson" ControlValue="员工" DbType="int" FormVisible="True">
+      <CascadeFilter />
+    </Field>
+    <Field Connection="LUOLAI1401Context" Table="PM_ProjectInfos" ControlType="Dropdown" ControlValue="员工" Title="材料员" Field="materialPerson" DbType="int" FormVisible="True">
+      <CascadeFilter />
+    </Field>
+    <Field Connection="LUOLAI1401Context" Table="PM_ProjectInfos" FormVisible="True" Title="项目经理" Field="projl" ControlType="Dropdown" ControlValue="员工" DbType="int" ListVisible="True" Searchable="True">
+      <CascadeFilter />
+    </Field>
+    <Field Connection="LUOLAI1401Context" Table="PM_ProjectInfos" ControlType="Dropdown" Title="取样员" Field="samplePerson" ControlValue="员工" DbType="int" FormVisible="True">
+      <CascadeFilter />
+    </Field>
+  </Fields>
+</Form>

@@ -1,0 +1,136 @@
+﻿@section scripts {
+<script type="text/javascript">
+    var data = @MvcHtmlString.Create(JsonExtension.ToJson(Model));
+    $(function(){
+        var db = fruit.databind.root;
+        $.extend(db.options, {
+            removeRowwq_Pop_DealerClick: function(){
+                db.binds.listwq_Pop_Dealer.delete();
+            }
+        });
+        $.extend(db.options, {
+            addRowwq_Pop_DealerClick: function(){
+                db.binds.listwq_Pop_Dealer.add();
+            }
+        });
+        data.form._row_state = @ViewBag.RowState;
+        db.loadData(data);
+        function loadDetial(){
+            fruit.ajax({method:'get', url:'/api/Mms/Wq_Termpop/getdetial/'+data.form["PopCode"],success:function(data){for(var key in data){$('[data-subtable=' + key + ']').datagrid('loadData', data[key]);}}});
+        }
+        loadDetial();
+        $.extend(db, {
+            refreshClick:function(){
+                location.assign(top.$(window.frameElement).data('src'));
+            },
+            rejectClick:function(){
+                location.assign(top.$(window.frameElement).data('src'));
+            },
+            newClick:function(){
+                fruit.ajax({
+                        url:'/api/Mms/Wq_Termpop/NewPopCode',
+                        success:function(data) {
+                            parent.changeDocTab(window.frameElement, '/Mms/Wq_Termpop/edit/' + data);
+                        }
+                    })
+            },
+            deleteClick:function(){
+                $.messager.confirm('确认', '您确认要删除当前记录吗？', function(r){
+                    if(r){
+                        fruit.ajax({
+                            method:'DELETE',
+                            url: '/api/Mms/Wq_Termpop/'+db.getData('form').PopCode,
+                            success: function(data) {
+                                fruit.message('success', '删除成功');
+                                top.closeDocTab(window.frameElement);
+                            }
+                        });
+                    }
+                });
+            },
+            saveClick:function(){
+                if(!db.validate()){fruit.message('error', '请更正验证错误！'); return;}
+                var data = db.getData();
+                data.wq_Pop_Dealer = $('[data-subtable="wq_Pop_Dealer"]').datagrid('getChangeRows');
+                fruit.ajax({
+                    url: '/api/Mms/Wq_Termpop/',
+                    data: JSON.stringify(data),
+                    success:function(result){
+                        if(result && result.success){
+                            fruit.message('success', '保存成功');
+                            if(result.form){
+                                db.loadData(result);
+                                loadDetial();
+                            }
+                        }
+                    }
+                });
+            }
+        });
+    });
+</script>
+}
+
+
+<div class="z-toolbar">
+    <a id="a_save" href="#" plain="true" class="easyui-linkbutton" icon="icon-save" data-bind="click:'saveClick',disable:'readonly'" title="保存">保存</a>
+    <a id="a_undo" href="#" plain="true" class="easyui-linkbutton" icon="icon-undo" data-bind="click:'rejectClick',disable:'readonly'" title="撤消">撤消</a>
+    <div class="datagrid-btn-separator"></div>
+    <a id="a_other" href="#" class="easyui-splitbutton" data-options="menu:'#divother',iconCls:'icon-application_go'" title="其他">其他</a>
+</div>
+
+<div id="divother" style="width:100px; display:none;">
+    <div data-options="iconCls:'icon-add'" data-bind="click:'newClick'">新增</div>
+    <div data-options="iconCls:'icon-cross'" data-bind="click:'deleteClick'">删除</div>
+    <div data-options="iconCls:'icon-arrow_refresh'" data-bind="click:'refreshClick'">刷新</div>
+</div>
+
+<div id="divrelations" style="width:100px; display:none;"></div>
+<div id="master" class="container_12" data-bind="inputwidth:0.9">
+<input type="hidden" data-bind="value:'form._row_state'" />
+    <div class="grid-group-1"><div class="lbl">终端编号</div>
+   <div class="val">
+<input type="text" data-bind="value:'form.PopCode', readOnly:true" class="z-txt readonly" /></div></div>
+    <div class="grid-group-1"><div class="lbl">客户名称</div>
+   <div class="val">
+<input type="text" data-bind="value:'form.PopName'" class="easyui-validatebox z-txt" data-options="required:false" /></div></div>
+    <div class="grid-group-1"><div class="lbl">客户地址</div>
+   <div class="val">
+<input type="text" data-bind="value:'form.Address'" class="easyui-validatebox z-txt" data-options="required:false" /></div></div>
+    <div class="grid-group-1"><div class="lbl">联系人</div>
+   <div class="val">
+<input type="text" data-bind="value:'form.Contact1'" class="easyui-validatebox z-txt" data-options="required:true" /></div></div>
+    <div class="grid-group-1"><div class="lbl">联系电话</div>
+   <div class="val">
+<input type="text" data-bind="value:'form.Tel1'" class="easyui-validatebox z-txt" data-options="required:true" /></div></div>
+    <div class="grid-group-1"><div class="lbl">联系人手机</div>
+   <div class="val">
+<input type="text" data-bind="value:'form.Mobile1'" class="easyui-validatebox z-txt" data-options="required:false" /></div></div>
+    <div class="grid-group-1"><div class="lbl">老板名</div>
+   <div class="val">
+<input type="text" data-bind="value:'form.Contact2'" class="easyui-validatebox z-txt" data-options="required:true" /></div></div>
+    <div class="grid-group-1"><div class="lbl">老板电话</div>
+   <div class="val">
+<input type="text" data-bind="value:'form.Tel2'" class="easyui-validatebox z-txt" data-options="required:true" /></div></div>
+    <div class="grid-group-1"><div class="lbl">老板手机</div>
+   <div class="val">
+<input type="text" data-bind="value:'form.Mobile2'" class="easyui-validatebox z-txt" data-options="required:false" /></div></div>
+</div>
+<div id="tt" class="easyui-tabs">
+    <div title="wq_Pop_Dealer">
+        <table id="listwq_Pop_Dealer" data-subtable="wq_Pop_Dealer" data-bind="datagrid:'grid'" data-options="'fixSize':{w:6,h:'auto'},'toolbar':'#gridtbwq_Pop_Dealer','showFooter':false,'border':false,'editMode':'select','singleSelect':true,'fitColumns':false,'autoRowHeight':false">
+            <thead>
+                <tr>
+    <th field="id">id    </th>
+    <th field="CompCode" data-options="editor:{type:'validatebox',options:{required:false}}">CompCode    </th>
+    <th field="DealerCode" data-options="editor:{type:'validatebox',options:{required:false}}">DealerCode    </th>
+                </tr>
+            </thead>
+        </table>
+
+        <div id="gridtbwq_Pop_Dealer">
+            <a href="#" class="easyui-linkbutton" data-options="iconCls:'icon-search',plain:true" data-bind="click:'addRowwq_Pop_DealerClick',disable:'readonly'">增加</a>
+            <a href="#" class="easyui-linkbutton" data-options="iconCls:'icon-remove',plain:true" data-bind="click:'removeRowwq_Pop_DealerClick',disable:'readonly'">删除</a>
+        </div>
+    </div>
+</div>

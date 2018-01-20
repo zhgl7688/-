@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report CommonReport="True" From="kqjl" OrderField="考勤日期" AddCondition="(员工编码 IN (SELECT UserCode FROM dbo.sys_user WHERE OrganizeName LIKE '{SESSION.OrganizeName}%') or '{USER.UserCode}'='super')">
+  <Fields>
+    <Field Table="kqjl" Field="员工编码" Title="员工编码" FieldType="varchar" Alias="员工编码" ControlType="TextBox" ColumnWidth="100" />
+    <Field Table="kqjl" Field="姓名" Title="姓名" FieldType="varchar" Alias="姓名" ControlType="TextBox" ColumnWidth="100" />
+    <Field Table="kqjl" Field="考勤日期" Title="考勤日期" FieldType="varchar" Alias="考勤日期" ControlType="Date" ColumnWidth="100" />
+    <Field Table="kqjl" Field="考勤类型" Title="考勤类型" FieldType="varchar" Alias="考勤类型" ControlType="Dropdown" ColumnWidth="60" ControlValue="考勤记录下拉" />
+    <Field Field="打卡位置" Table="kqjl" Title="打卡位置" FieldType="varchar" Alias="打卡位置" ColumnWidth="300" ControlType="TextBox" />
+    <Field Table="kqjl" Field="打卡时间" Alias="打卡时间" FieldType="varchar" Title="打卡时间" ColumnWidth="80" />
+    <Field Table="kqjl" Field="照片" Alias="照片" ControlType="File" ColumnWidth="33" Title="照片" FieldType="varchar" />
+    <Field Table="kqjl" Field="考勤结果" Alias="考勤结果" FieldType="varchar" Title="考勤结果" ControlValue="考勤结果" ControlType="Dropdown" />
+  </Fields>
+  <DrillReports />
+  <Charts>
+    <XAxis />
+    <YAxis />
+    <Series />
+  </Charts>
+</Report>

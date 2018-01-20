@@ -1,0 +1,93 @@
+﻿<body>
+    <div style="width:500px; height: 350px; border: 1px solid black; background:#C7EDCC;  float:left; ">
+
+        <video id="video" width="500" height="350"></video>
+    </div> 
+    <div id="vo" style="width:200px;height:350px;background:#C7EDCC; border: 1px solid black;float:left">
+       <div><input id="live" type="button" value="打开" /></div>
+        <div><input id="snap" type="button" value="拍照" /></div>
+    </div>
+
+    <div style="width:500px; height: 350px; background:#C7EDCC; border: 1px solid black;float:left">
+        <canvas id="canvas"></canvas>
+    </div>
+
+   
+
+</body>
+<style>
+   #vo input{
+        height:80px;
+        width:160px;
+        margin:30px 20px;
+        font-size:30px;
+        background:#0094ff;
+        color:#FFF;
+    }
+</style>
+<script>
+    var base64Data;
+
+    function UpdataFile(id) {
+
+        if (!base64Data) {
+            alert("请拍照后上传");
+            return;
+        }
+        var url = "/file/UploadBase64";
+        var data = { base64Data: base64Data, filename: filename };
+        console.log(data);
+        $.ajax({
+            url: url,
+            type: "post",
+            data: data,
+            dataType: "json",
+            success: function (data) {
+                if (data.success == true) {
+                    var obj = document.getElementById("Scan" + id);
+                    obj.value = data.filename;
+                    console.log(data.filename);
+                    console.log("上传成功");
+                } else {
+                    alert("上传失败");
+                }
+            },
+            error: function () {
+                console.log("上传失败");
+            }
+        });
+    }
+
+    var video = document.getElementById('video');
+    var canvas = document.getElementById('canvas');
+    var ctx = canvas.getContext('2d');
+    var width = video.width;
+    var height = video.height;
+    canvas.width = width;
+    canvas.height = height;
+    function liveVideo() {
+        var URL = window.URL || window.webkitURL;   // 获取到window.URL对象
+        navigator.getUserMedia({
+            video: true
+        }, function (stream) {
+            video.src = URL.createObjectURL(stream);   // 将获取到的视频流对象转换为地址
+            video.play();   // 播放
+            //点击截图
+            document.getElementById("snap").addEventListener('click', function () {
+                ctx.drawImage(video, 0, 0, width, height);
+                // var url = canvas.toDataURL('image/png');
+                var imgData = canvas.toDataURL();
+                //将图像转换为base64数据
+                 base64Data = imgData.substr(22);
+              //console.log(base64Data)
+            });
+        }, function (error) {
+            console.log(error.name || error);
+        });
+    }
+    document.getElementById("live").addEventListener('click', function () {
+        liveVideo();
+    });
+    
+
+</script>

@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report CommonReport="True" From="R_Contract" OrderField="开始日期">
+  <DrillReports />
+  <Fields>
+    <Field Table="R_Contract" Field="合同编号" Alias="合同编号" Title="合同编号" FieldType="varchar" />
+    <Field Table="R_Contract" Field="单位" Alias="单位" Title="单位" FieldType="varchar" ControlValue="报表单位" ControlType="Dropdown" />
+    <Field Table="R_Contract" Field="分部负责人" Alias="分部负责人" Title="分部负责人" FieldType="varchar" ControlValue="报表分部负责人" ControlType="Dropdown" />
+    <Field Table="R_Contract" Field="发包单位" Alias="发包单位" Title="发包单位" FieldType="varchar" />
+    <Field Table="R_Contract" Field="工程类别" Alias="工程类别" Title="工程类别" FieldType="varchar" ControlType="Dropdown" ControlValue="报表工程类别" />
+    <Field Table="R_Contract" Field="造价" Alias="造价" Title="造价" IsSumField="True" />
+    <Field Table="R_Contract" Field="印花税" Alias="印花税" Title="印花税" IsSumField="True" />
+    <Field Table="R_Contract" Field="开始日期" Alias="开始日期" Title="开始日期" FieldType="datetime" ControlType="Date" />
+  </Fields>
+  <Charts>
+    <XAxis FieldUid="合同编号" />
+    <YAxis FieldUid="合同编号" />
+    <Series />
+  </Charts>
+</Report>

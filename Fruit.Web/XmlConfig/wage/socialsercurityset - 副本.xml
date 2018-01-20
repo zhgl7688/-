@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Form Connection="LUOLAI1401Context" Table="HR_SocialSecuritySets" IsView="False" FilterTreeBindField="FID" TreeGridIdField="FID" TreeGridNameField="FID" TreeGridParentIdField="FID">
+  <SubTables />
+  <SaveProducre />
+  <Buttons>
+  </Buttons>
+  <GroupFilters />
+  <Fields>
+    <Field Table="HR_SocialSecuritySets" Field="FID" DbType="bigint" Required="True" ListVisible="True" FormVisible="True" ControlType="AutoId" ReadOnly="True" Title="流水号">
+      <CascadeFilter />
+    </Field>
+    <Field Table="HR_SocialSecuritySets" Field="FType" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="社保类别">
+      <CascadeFilter />
+    </Field>
+    <Field Table="HR_SocialSecuritySets" Field="pIndvMedical" DbType="numeric" Required="True" ListVisible="True" FormVisible="True" ControlType="NumberBox" Title="个人医保">
+      <CascadeFilter />
+    </Field>
+    <Field Table="HR_SocialSecuritySets" Field="pIndvPension" DbType="numeric" Required="True" ListVisible="True" FormVisible="True" ControlType="NumberBox" Title="个人养老金">
+      <CascadeFilter />
+    </Field>
+    <Field Table="HR_SocialSecuritySets" Field="UpdatedTime" DbType="datetime2" Required="True" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="最近一次更新时间">
+      <CascadeFilter />
+    </Field>
+    <Field Table="HR_SocialSecuritySets" Field="CreatedTime" DbType="datetime2" Required="True" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="创建时间">
+      <CascadeFilter />
+    </Field>
+    <Field Table="HR_SocialSecuritySets" Field="CreatorID" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="创建人">
+      <CascadeFilter />
+    </Field>
+    <Field Table="HR_SocialSecuritySets" Field="Remark" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="备注">
+      <CascadeFilter />
+    </Field>
+    <Field Table="HR_SocialSecuritySets" Field="pCorpBirth" DbType="numeric" Required="True" ListVisible="True" FormVisible="True" ControlType="NumberBox" Title="单位生育保险">
+      <CascadeFilter />
+    </Field>
+    <Field Table="HR_SocialSecuritySets" Field="pCorpInjury" DbType="numeric" Required="True" ListVisible="True" FormVisible="True" ControlType="NumberBox" Title="单位工伤保险">
+      <CascadeFilter />
+    </Field>
+    <Field Table="HR_SocialSecuritySets" Field="pCorpUnemploy" DbType="numeric" Required="True" ListVisible="True" FormVisible="True" ControlType="NumberBox" Title="单位失业保险">
+      <CascadeFilter />
+    </Field>
+    <Field Table="HR_SocialSecuritySets" Field="pCorpLocalMedical" DbType="numeric" Required="True" ListVisible="True" FormVisible="True" ControlType="NumberBox" Title="单位地方医保">
+      <CascadeFilter />
+    </Field>
+    <Field Table="HR_SocialSecuritySets" Field="pCorpBaseMedical" DbType="numeric" Required="True" ListVisible="True" FormVisible="True" ControlType="NumberBox" Title="单位基本医保">
+      <CascadeFilter />
+    </Field>
+    <Field Table="HR_SocialSecuritySets" Field="pCorpPension" DbType="numeric" Required="True" ListVisible="True" FormVisible="True" ControlType="NumberBox" Title="单位养老金">
+      <CascadeFilter />
+    </Field>
+    <Field Table="HR_SocialSecuritySets" Field="pIndvUnemploy" DbType="numeric" Required="True" ListVisible="True" FormVisible="True" ControlType="NumberBox" Title="个人失业保险">
+      <CascadeFilter />
+    </Field>
+  </Fields>
+</Form>

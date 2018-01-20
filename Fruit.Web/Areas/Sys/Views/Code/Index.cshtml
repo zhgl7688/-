@@ -1,0 +1,118 @@
+﻿@{
+    ViewBag.Title = "Index";
+}
+
+@section scripts {
+    <script type="text/javascript">
+
+        var typeCode = '', typeCodeName = '';
+
+        var treeLoadFilter = function(data) {
+            $.each(data, function(){
+                this.text = this.CodeTypeName,
+                this.id = this.CodeType
+            });
+            return [{text:'所有类别', id:'', children:data}];
+        }
+
+        var buttonFormatter = function(value, row) {
+            var data = JSON.stringify({'UserCode':row.UserCode, 'UserName':row.UserName}).replace(/\"/g, "'");
+            return '<div style="text-align:center;height:auto;" class="datagrid-cell datagrid-cell-c1-Permit"><a href="#" onclick="setOrganize(' + data + ')"><span class="icon icon-org">&nbsp;</span>[设置机构]</a><a href="#" onclick="setRole(' + data + ')" style="margin-left:10px"><span class="icon icon-group">&nbsp;</span>[设置角色]</a><a href="#" onclick="userSetting(' + data + ')" style="margin-left:10px"><span class="icon icon-wrench_orange">&nbsp;</span>[用户设置]</a></div>';
+        }
+
+        function typeSelect(node){
+            typeCode = node.CodeType;
+            typeCodeName = node.CodeTypeName;
+            fruit.databind.root.invoke('setLoadParams', {type:node.id});
+        }
+
+        function fixSize() {
+            var w = $(window).innerWidth();
+            var h = $(window).innerHeight();
+
+            $('#plLeft').panel('resize', { width: 200, height: h - 4 });
+            $('#plCenter').css({
+                left: 204,
+                top: 2,
+                width: w - 206,
+                height: h - 4
+            });
+        }
+
+        $(function () {
+            $(window).resize(fixSize);
+            fixSize();
+
+            fruit.databind.root.options.manageTypes = function(){
+                var dialog = $($('#edit_type_dialog').html());
+                dialog.dialog({title:'字典类别', iconCls:'icon-node_tree', cache:false, modal:true, width:600, height:400,
+                    onClose: function(){
+                        fruit.databind.root.binds[0].refresh();
+                        dialog.dialog('destroy');
+                    }
+                });
+                var bindContext = new fruit.databind(dialog, {
+                    toolbar: '#tlb'
+                });
+            }
+
+            fruit.databind.root.options.onBeforeAdd = function(row){
+                if(typeCode == ''){
+                    fruit.message('warning', '请先在左侧选择字典类别！');
+                    return false;
+                }
+                row.CodeType=typeCode;
+                row.CodeTypeName=typeCodeName;
+            };
+        });
+    </script>
+}
+
+<div id="plLeft" class="easyui-panel" style="position:absolute" data-options="iconCls:'icon-node_tree', title:'字典类别', width:200, collapsible:false">
+    <div data-bind="tree" data-options="loadFilter:treeLoadFilter, url:'/api/sys/code/types', method:'get', treeField:'CodeTypeName', onSelect:typeSelect"></div>
+</div>
+<div id="plCenter" style="position:absolute">
+    <div class="z-toolbar">
+        <a class="easyui-linkbutton" iconcls="icon-arrow_refresh" plain="true" data-bind="click:'refresh'">刷新</a>
+        <a class="easyui-linkbutton" iconcls="icon-add" plain="true" data-bind="click:'add'">新增</a>
+        <a class="easyui-linkbutton" iconcls="icon-edit" plain="true" data-bind="click:'edit'">编辑</a>
+        <a class="easyui-linkbutton" iconcls="icon-cross" plain="true" data-bind="click:'delete'">删除</a>
+        <a class="easyui-linkbutton" iconcls="icon-save" plain="true" data-bind="click:'save'">保存</a>
+        <a class="easyui-linkbutton" iconcls="icon-node_tree" plain="true" data-bind="click:'manageTypes'">管理类别</a>
+    </div>
+    <table data-bind="datagrid, fixSize:{w:208,h:40}" data-options="url:'/api/sys/code', method:'get',pagination:true,pageSize:20" rownumbers="true">
+        <thead>
+            <tr>
+                <th field="Code" data-options="editor:{type:'validatebox',options:{required:true}}">编号</th>
+                <th field="Value" data-options="editor:{type:'validatebox',options:{required:true}}">编码</th>
+                <th field="Text" data-options="editor:{type:'validatebox',options:{required:true}}">文本</th>
+                <th field="ParentCode" data-options="editor:{type:'validatebox',options:{required:false}}">上级编号</th>
+                <th field="Description" data-options="editor:'validatebox'">描述说明</th>
+                <th field="IsEnable" data-options="editor:{type:'checkbox',options:{on:1,off:0}}" formatter=" fruit.formatter.formatterEnable">是否启用</th>
+                <th field="IsDefault" data-options="editor:{type:'checkbox',options:{on:1,off:0}}" formatter=" fruit.formatter.formatterEnable">是否默认</th>
+                <th field="Seq" data-options="editor:'validatebox'">排序</th>
+            </tr>
+        </thead>
+    </table>
+</div>
+
+<script id="edit_type_dialog" type="text/html">
+    <div>
+        <table data-bind="datagrid" data-options="url:'/api/sys/code/types',method:'get',border:false,fit:true,fitColumns:true,rownumbers:true,pagination:true,pageSize:20">
+            <thead>
+                <tr>
+                    <th field="CodeType" data-options="editor:{type:'textbox',options:{required:true, modifiable: false}}">类别编码</th>
+                    <th field="CodeTypeName" data-options="editor:{type:'validatebox',options:{required:true}}">类别名称</th>
+                    <th field="Description" data-options="editor:'validatebox'">描述说明</th>
+                    <th field="Seq" data-options="editor:'validatebox'">排序</th>
+                </tr>
+            </thead>
+        </table>
+        <div id="tlb">
+            <a class="easyui-linkbutton" iconcls="icon-add" plain="true" data-bind="click:'add'">新增</a>
+            <a class="easyui-linkbutton" iconcls="icon-edit" plain="true" data-bind="click:'edit'">编辑</a>
+            <a class="easyui-linkbutton" iconcls="icon-cross" plain="true" data-bind="click:'delete'">删除</a>
+            <a class="easyui-linkbutton" iconcls="icon-save" plain="true" data-bind="click:'save'">保存</a>
+        </div>
+    </div>
+</script>

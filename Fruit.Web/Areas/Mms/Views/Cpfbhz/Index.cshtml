@@ -1,0 +1,58 @@
+﻿@section scripts {
+    <script type="text/javascript">
+        $(function(){
+            var db = fruit.databind.root;
+                    var data = @MvcHtmlString.Create(JsonExtension.ToJson(Model));
+                    db.loadData(data);
+            $.extend(db.options, {
+                searchClick: function(){
+                    var form = db.getData('serach');
+                    db.invoke('setLoadParams', form);
+                },
+                clearClick: function(){
+                    db.clearData('serach');
+                    db.invoke('setLoadParams', {});
+                }
+                , onInit: function(){
+                    db.loadData(data);
+                }
+            });
+        });
+
+    </script>
+}
+
+<div class="z-toolbar">
+
+    <a class="easyui-linkbutton" iconcls="icon-arrow_refresh" plain="true" data-bind="click:'refresh'">刷新</a>
+    <a class="easyui-splitbutton" plain="true" data-options="iconCls:'icon-download'" suffix="xls" data-bind="click:'download'">导出</a>
+    <div class="condition_buttons">
+        <a class="easyui-linkbutton" data-bind="click:'searchClick'" data-options="iconCls:'icon-search', plain:true" href="#">搜索</a>
+        <a class="easyui-linkbutton" data-bind="click:'clearClick'" data-options="iconCls:'icon-clear', plain:true" href="#">清空</a>
+    </div>
+</div>
+<div id="condition" class="container_12" style="position:relative;height:60px">
+    <div class="grid_1 lbl">省份</div>
+    <div class="grid_2 val"><input data-bind="value:'serach.省份'" type="text" class="z-txt" /></div>
+    <div class="grid_1 lbl">城市</div>
+    <div class="grid_2 val"><input data-bind="value:'serach.城市'" type="text" class="z-txt" /></div>
+    <div class="grid_1 lbl">产品</div>
+    <div class="grid_2 val"><input data-bind="value:'serach.产品'" type="text" class="z-txt" /></div>
+    <div class="clear"></div>
+    <div class="grid_1 lbl">终端类型</div>
+    <div class="grid_2 val"><input data-bind="value:'serach.终端类型', datasource:'dataSource.终端类型'" type="text" class="z-txt easyui-combobox" /></div>
+    <div class="clear"></div>
+</div>
+<table id="grid" data-bind="datagrid" data-options="fixSize:{w:4, h:100}, rownumbers:true, method:'get', url:'/api/mms/cpfbhz', pagination:true, pageSize:20, holdTotal:true">
+<thead>
+<tr>
+<th field="省份" data-options="">省份</th>
+<th field="城市" data-options="">城市</th>
+<th field="产品" data-options="">产品</th>
+<th field="规格" data-options="">规格</th>
+<th field="终端类型" data-options="">终端类型</th>
+<th field="终端数量" data-options="">终端数量</th>
+<th field="库存量" data-options="">库存量</th>
+</tr>
+</thead>
+</table>

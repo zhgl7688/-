@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Form Connection="SysContext" Table="sys_user">
+  <SubTables />
+  <Fields>
+    <Field Connection="SysContext" Table="sys_user" Field="UserCode" Required="True" ListVisible="True" FormVisible="True" ControlType="AutoId" FieldType="varchar" Title="人员编号" />
+    <Field Connection="SysContext" Table="sys_user" Field="UserName" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" FieldType="varchar" Title="人员姓名" />
+    <Field Connection="SysContext" Table="sys_user" Field="UserSeq" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" FieldType="varchar" />
+    <Field Connection="SysContext" Table="sys_user" Field="Description" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" FieldType="varchar" />
+    <Field Connection="SysContext" Table="sys_user" Field="Password" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" FieldType="varchar" Title="密码" />
+    <Field Connection="SysContext" Table="sys_user" Field="RoleName" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" FieldType="varchar" />
+    <Field Connection="SysContext" Table="sys_user" Field="OrganizeName" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" FieldType="varchar" />
+    <Field Connection="SysContext" Table="sys_user" Field="ConfigJSON" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" FieldType="text" />
+    <Field Connection="SysContext" Table="sys_user" Field="IsEnable" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" FieldType="varchar" />
+    <Field Connection="SysContext" Table="sys_user" Field="LoginCount" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" FieldType="varchar" />
+    <Field Connection="SysContext" Table="sys_user" Field="LastLoginDate" Required="False" ListVisible="True" FormVisible="True" ControlType="Date" FieldType="varchar" />
+    <Field Connection="SysContext" Table="sys_user" Field="CreatePerson" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" FieldType="varchar" />
+    <Field Connection="SysContext" Table="sys_user" Field="CreateDate" Required="False" ListVisible="True" FormVisible="True" ControlType="Date" FieldType="money" />
+    <Field Connection="SysContext" Table="sys_user" Field="UpdatePerson" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" FieldType="varchar" />
+    <Field Connection="SysContext" Table="sys_user" Field="UpdateDate" Required="False" ListVisible="True" FormVisible="True" ControlType="Date" FieldType="datetime" />
+  </Fields>
+</Form>

@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Form Connection="LUOLAI1401Context" Table="wq_attendSet" Filter="a.CompCode= '{USER.CompCode}'">
+  <SubTables />
+  <SaveProducre />
+  <Buttons />
+  <GroupFilters />
+  <Fields>
+    <Field Table="wq_attendSet" Field="CompCode" DbType="varchar" Required="False" ListVisible="False" FormVisible="False" ControlType="Dropdown" Title="所属公司" ControlValue="所属公司" DefaultValue="{USER.CompCode}" ReadOnly="False" />
+    <Field Table="wq_attendSet" Field="RoleCode" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="PopupSelect" Title="角色编码" ControlValue="所属角色" ReadOnly="False" Searchable="True" />
+    <Field Table="wq_attendSet" Field="AttRange" DbType="int" Required="False" ListVisible="False" FormVisible="False" ControlType="NumberBox" Title="考勤误差范围(m)" />
+    <Field Table="wq_attendSet" Field="AttBgnTime" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="Time" Title="上班考勤时间(分钟)" />
+    <Field Table="wq_attendSet" Field="AttEndTime" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="Time" Title="下班考勤时间(分钟)" />
+    <Field Table="wq_attendSet" Field="AttRole" DbType="char" Required="False" ListVisible="False" FormVisible="False" ControlType="Dropdown" Title="考勤模式" ControlValue="考勤模式" Searchable="True" />
+    <Field Connection="LUOLAI1401Context" Table="wq_attendSet" Field="iswatermark" Title="是否打水印" DbType="varchar" FormVisible="True" ListVisible="True" ControlValue="是否" ControlType="Dropdown" Searchable="True" />
+    <Field Connection="LUOLAI1401Context" Table="wq_attendSet" Title="照片分辨率" Field="isresolution" DbType="varchar" FormVisible="True" ListVisible="True" ControlType="Dropdown" ControlValue="照片分辨率" Searchable="True" />
+    <Field Table="wq_attendSet" Field="CreatePerson" DbType="varchar" Required="False" ListVisible="False" FormVisible="True" ControlType="TextBox" ReadOnly="True" Title="创建人" />
+    <Field Table="wq_attendSet" Field="CreateDate" DbType="datetime" Required="False" ListVisible="False" FormVisible="True" ControlType="Date" ReadOnly="True" Title="创建日期" />
+    <Field Table="wq_attendSet" Field="UpdatePerson" DbType="varchar" Required="False" ListVisible="False" FormVisible="True" ControlType="TextBox" ReadOnly="True" Title="更改人" />
+    <Field Table="wq_attendSet" Field="UpdateDate" DbType="datetime" Required="False" ListVisible="False" FormVisible="True" ControlType="Date" ReadOnly="True" Title="更改日期" />
+    <Field Table="wq_attendSet" Field="id" DbType="varchar" Required="False" ListVisible="False" FormVisible="False" ControlType="AutoId" Title="ID" ControlValue="序号" />
+    <Field Table="wq_attendSet" Field="AttPhotoFlag" DbType="char" Required="False" ListVisible="True" FormVisible="True" ControlType="Dropdown" Title="是否拍照" ControlValue="是否" />
+  </Fields>
+</Form>

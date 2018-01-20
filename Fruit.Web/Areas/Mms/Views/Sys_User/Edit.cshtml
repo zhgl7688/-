@@ -1,0 +1,99 @@
+﻿@section scripts {
+<script type="text/javascript">
+    var data = @MvcHtmlString.Create(JsonExtension.ToJson(Model));
+    $(function(){
+        var db = fruit.databind.root;
+        db.loadData(data);
+        function loadDetial(){
+        }
+        loadDetial();
+        $.extend(db, {
+            saveClick:function(){
+                if(!db.validate()){fruit.message('error', '请更正验证错误！'); return;}
+                var data = db.getData();
+                fruit.ajax({
+                    url: '/api/Mms/Sys_User/',
+                    data: JSON.stringify(data),
+                    success:function(result){
+                        if(result && result.success){
+                            fruit.message('success', '保存成功');
+                            if(result.form){
+                                db.loadData(result);
+                                loadDetial();
+                            }
+                        }
+                    }
+                });
+            }
+        });
+    });
+</script>
+}
+
+
+<div class="z-toolbar">
+    <a id="a_save" href="#" plain="true" class="easyui-linkbutton" icon="icon-save" data-bind="click:'saveClick',disable:'readonly'" title="保存">保存</a>
+    <a id="a_undo" href="#" plain="true" class="easyui-linkbutton" icon="icon-undo" data-bind="click:'rejectClick',disable:'readonly'" title="撤消">撤消</a>
+    <div class="datagrid-btn-separator"></div>
+    <a id="a_other" href="#" class="easyui-splitbutton" data-options="menu:'#divother',iconCls:'icon-application_go'" title="其他">其他</a>
+</div>
+
+<div id="divother" style="width:100px; display:none;">
+    <div data-options="iconCls:'icon-add'">新增</div>
+    <div data-options="iconCls:'icon-cross'">删除</div>
+    <div data-options="iconCls:'icon-arrow_refresh'">刷新</div>
+</div>
+<div id="master" class="container_12" data-bind="inputwidth:0.9">
+    <div class="grid_1 lbl">UserCode</div>
+   <div class="grid_3 val"><input type="text" data-bind="value:'form.UserCode', readOnly:true" class="z-txt readonly" /></div>
+    <div class="grid_1 lbl">UserSeq</div>
+   <div class="grid_3 val"><input type="text" data-bind="value:'form.UserSeq'" class="z-txt" /></div>
+    <div class="grid_1 lbl">UserName</div>
+   <div class="grid_3 val"><input type="text" data-bind="value:'form.UserName'" class="z-txt" /></div>
+
+    <div class="clear"></div>
+
+    <div class="grid_1 lbl">Description</div>
+   <div class="grid_3 val"><input type="text" data-bind="value:'form.Description'" class="z-txt" /></div>
+    <div class="grid_1 lbl">Password</div>
+   <div class="grid_3 val"><input type="text" data-bind="value:'form.Password'" class="z-txt" /></div>
+    <div class="grid_1 lbl">RoleName</div>
+   <div class="grid_3 val"><input type="text" data-bind="value:'form.RoleName'" class="z-txt" /></div>
+
+    <div class="clear"></div>
+
+    <div class="grid_1 lbl">OrganizeName</div>
+   <div class="grid_3 val"><input type="text" data-bind="value:'form.OrganizeName'" class="z-txt" /></div>
+    <div class="grid_1 lbl">ConfigJSON</div>
+   <div class="grid_3 val"><input type="text" data-bind="value:'form.ConfigJSON'" class="z-txt" /></div>
+    <div class="grid_1 lbl">IsEnable</div>
+   <div class="grid_3 val"><input type="text" data-bind="value:'form.IsEnable'" class="z-txt" /></div>
+
+    <div class="clear"></div>
+
+    <div class="grid_1 lbl">LoginCount</div>
+   <div class="grid_3 val"><input type="text" data-bind="value:'form.LoginCount'" class="z-txt" /></div>
+    <div class="grid_1 lbl">LastLoginDate</div>
+   <div class="grid_3 val"><input type="text" data-bind="value:'form.LastLoginDate',datasource:'dataSource.LastLoginDate'" class="z-txt easyui-datebox" data-options="readOnly:false" /></div>
+
+    <div class="clear"></div>
+
+</div>
+<div id="tt" class="easyui-tabs">
+    <div title="表单信息" style="padding-top:2px;">
+        <div class="container_12" id="BillDetail" data-bind="inputwidth:0.9,autoheight:181">
+            <div class="clear"></div>
+    <div class="grid_1 lbl">CreatePerson</div>
+   <div class="grid_3 val"><input type="text" data-bind="value:'form.CreatePerson'" class="z-txt" /></div>
+    <div class="grid_1 lbl">CreateDate</div>
+   <div class="grid_3 val"><input type="text" data-bind="value:'form.CreateDate',datasource:'dataSource.CreateDate'" class="z-txt easyui-datebox" data-options="readOnly:false" /></div>
+    <div class="grid_1 lbl">UpdatePerson</div>
+   <div class="grid_3 val"><input type="text" data-bind="value:'form.UpdatePerson'" class="z-txt" /></div>
+
+            <div class="clear"></div>
+
+    <div class="grid_1 lbl">UpdateDate</div>
+   <div class="grid_3 val"><input type="text" data-bind="value:'form.UpdateDate',datasource:'dataSource.UpdateDate'" class="z-txt easyui-datebox" data-options="readOnly:false" /></div>
+        </div>
+    </div>
+</div>

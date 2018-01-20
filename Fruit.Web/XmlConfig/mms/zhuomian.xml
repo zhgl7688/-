@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report CommonReport="True" From="kh_bf_w" OrderField="wkdate" UseCharts="True">
+  <DrillReports />
+  <Fields>
+    <Field Table="kh_bf_w" Field="wkdate" Alias="wkdate" Title="日期" ControlType="Date" />
+    <Field Table="kh_bf_w" Field="qty" Alias="qty" Title="拜访数" />
+  </Fields>
+  <Charts Title="客户拜访数" SubTitle="客户拜访数">
+    <XAxis FieldUid="wkdate" DataSourceType="Field" />
+    <YAxis FieldUid="" DataSourceType="" Type="value" />
+    <Series>
+      <Item FieldUid="qty" Type="line" Legend="拜访数" />
+    </Series>
+    <CustomOptions><![CDATA[]]></CustomOptions>
+    <OptionsHandler><![CDATA[console.log(options);]]></OptionsHandler>
+  </Charts>
+</Report>

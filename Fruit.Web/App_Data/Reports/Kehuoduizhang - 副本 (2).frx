@@ -1,0 +1,131 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report ScriptLanguage="CSharp" ReportInfo.Created="08/25/2014 21:31:05" ReportInfo.Modified="11/15/2017 14:52:44" ReportInfo.CreatorVersion="1.9.16.0">
+  <Dictionary>
+    <MsSqlDataConnection Name="Connection" ConnectionString="rijcmlqkuikzen38YYT0Gls+nSbaL5/eYYDqY9TpVef+CHK54nYe1D9mA7qpImWzbpNGQT0Duqf1NoCpze8C7hklIV6Zx16GvbuirBdKh1yKTxch6ZdTSDBkNdKTR9JJKV4gp2jsKhpjZj6TsK4Ex/70ar+SeFrNUxAaEp77Qg1x6OHuqj6pswpbzJo5QJs8PMxZ9p4g9ifT1ETRzBqMhnacLrlhg==">
+      <TableDataSource Name="Table" DataType="System.Int32" Enabled="true" SelectCommand=" select  H.FID,H.FDate,H.FPeriod,H.CustID,H.CustName,H.CustAcc,H.CustAddr,H.BeginAmt,H.SumAmt,H.EndAmt,H.UpdateDate,CName from FA_ProjSettlesH H inner join BD_Customers C on H.CustID=C.FID&#13;&#10; WHERE CustID like '%'+@CustID+'%'">
+        <Column Name="FID" DataType="System.Int64"/>
+        <Column Name="UpdateDate" DataType="System.DateTime"/>
+        <Column Name="FDate" DataType="System.String"/>
+        <Column Name="FPeriod" DataType="System.String"/>
+        <Column Name="CustID" DataType="System.String"/>
+        <Column Name="CustName" DataType="System.String"/>
+        <Column Name="CustAcc" DataType="System.String"/>
+        <Column Name="CustAddr" DataType="System.String"/>
+        <Column Name="BeginAmt" DataType="System.Decimal"/>
+        <Column Name="EndAmt" DataType="System.Decimal"/>
+        <Column Name="SumAmt" DataType="System.Decimal"/>
+        <Column Name="CName" DataType="System.String"/>
+        <CommandParameter Name="CustID" DataType="22" Expression="CustID"/>
+      </TableDataSource>
+      <TableDataSource Name="Table2" DataType="System.Int32" Enabled="true" SelectCommand="exec statementAccount @Dates">
+        <Column Name="Amt" DataType="System.Decimal"/>
+        <Column Name="CreateDate" DataType="System.DateTime"/>
+        <Column Name="CreatePerson" DataType="System.String"/>
+        <Column Name="CustID" DataType="System.Int64"/>
+        <Column Name="Date" DataType="System.String"/>
+        <Column Name="FCode" DataType="System.String"/>
+        <Column Name="Ftype" DataType="System.String"/>
+        <Column Name="Remark" DataType="System.String"/>
+        <Column Name="FID" DataType="System.String"/>
+        <Column Name="EndAmt" DataType="System.Decimal"/>
+        <CommandParameter Name="Dates" DataType="22" Expression="Dates"/>
+      </TableDataSource>
+    </MsSqlDataConnection>
+    <Relation Name="Table_Table4" ParentDataSource="Table" ChildDataSource="null" ParentColumns="CustCode&#13;&#10;AcctCycID" ChildColumns="客户&#13;&#10;对账单编号" Enabled="true"/>
+    <Relation Name="Table_Table2" ParentDataSource="Table" ChildDataSource="Table2" ParentColumns="FID" ChildColumns="FID" Enabled="true"/>
+    <Parameter Name="CustID" DataType="System.String"/>
+    <Parameter Name="Dates" DataType="System.String"/>
+  </Dictionary>
+  <ReportPage Name="Page1" PaperWidth="241" PaperHeight="279" LeftMargin="2" RightMargin="2" Guides="264.6,538.65,2,880.85,173.99,192.89,345.98,517.97,689.96,878.52,91.76,302.1,408.87">
+    <ReportTitleBand Name="ReportTitle1" Width="895.86" Height="37.8" Guides="0,37.8">
+      <TextObject Name="Text1" Left="302.1" Width="274.05" Height="37.8" Text="客户对账单" HorzAlign="Center" VertAlign="Center" Font="新宋体, 18pt, style=Bold"/>
+    </ReportTitleBand>
+    <DataBand Name="Data1" Top="41.8" Width="895.86" Height="199.43" Guides="0,86.05,30.24,56.7,26.46,29.35,113.4,113.4,0" DataSource="Table">
+      <TableObject Name="Table1" Left="68.49" Top="18.9" Width="754.86" Height="180.53" Border.Lines="All">
+        <TableColumn Name="Column26" Width="121.84"/>
+        <TableColumn Name="Column1" Width="147.64"/>
+        <TableColumn Name="Column2" Width="140.32"/>
+        <TableColumn Name="Column4" Width="143.96"/>
+        <TableColumn Name="Column5" Width="201.1"/>
+        <TableRow Name="Row2" Height="31.81">
+          <TableCell Name="Cell82" VertAlign="Center" Font="宋体, 9pt"/>
+          <TableCell Name="Cell62" Text="客户编号：[Table.CustID]" VertAlign="Center" Font="宋体, 11pt" ColSpan="2"/>
+          <TableCell Name="Cell7" VertAlign="Center" Font="宋体, 11pt"/>
+          <TableCell Name="Cell9" Text="客户名称：[Table.CName]" VertAlign="Center" Font="宋体, 11pt" ColSpan="2"/>
+          <TableCell Name="Cell10" VertAlign="Center" Font="宋体, 11pt"/>
+        </TableRow>
+        <TableRow Name="Row3" Height="28.04">
+          <TableCell Name="Cell83" VertAlign="Center" Font="宋体, 9pt"/>
+          <TableCell Name="Cell11" Text="客户地址：[Table.CustAddr]" VertAlign="Center" Font="宋体, 11pt" ColSpan="2"/>
+          <TableCell Name="Cell12" VertAlign="Center" Font="宋体, 11pt"/>
+          <TableCell Name="Cell14" Text="发生金额：[Table.SumAmt]" VertAlign="Center" Font="宋体, 11pt" ColSpan="2"/>
+          <TableCell Name="Cell15" VertAlign="Center" Font="宋体, 11pt"/>
+        </TableRow>
+        <TableRow Name="Row8" Height="26.77">
+          <TableCell Name="Cell84" VertAlign="Center" Font="宋体, 9pt"/>
+          <TableCell Name="Cell65" Text="起初余额：[Table.BeginAmt]" VertAlign="Center" Font="宋体, 11pt" ColSpan="2"/>
+          <TableCell Name="Cell66" VertAlign="Center" Font="宋体, 11pt"/>
+          <TableCell Name="Cell68" Text="期末余额：[Table.EndAmt]" VertAlign="Center" Font="宋体, 11pt" ColSpan="2"/>
+          <TableCell Name="Cell69" VertAlign="Center" Font="宋体, 11pt"/>
+        </TableRow>
+        <TableRow Name="Row9" Height="36.22">
+          <TableCell Name="Cell85" Text="********************************************************************************************" HorzAlign="Center" VertAlign="Bottom" Font="宋体, 11pt" ColSpan="5"/>
+          <TableCell Name="Cell70" HorzAlign="Center" VertAlign="Center" Font="宋体, 9pt"/>
+          <TableCell Name="Cell71" HorzAlign="Center" Font="宋体, 9pt"/>
+          <TableCell Name="Cell73" HorzAlign="Center" Font="宋体, 9pt"/>
+          <TableCell Name="Cell74" HorzAlign="Center" Font="宋体, 9pt"/>
+        </TableRow>
+        <TableRow Name="Row5" Height="30.92">
+          <TableCell Name="Cell86" Text="对账单期间：[Table.FPeriod]" HorzAlign="Center" VertAlign="Center" Font="宋体, 11pt" ColSpan="5"/>
+          <TableCell Name="Cell21" HorzAlign="Center" VertAlign="Center" Font="宋体, 11pt"/>
+          <TableCell Name="Cell22" HorzAlign="Center" VertAlign="Center" Font="宋体, 11pt"/>
+          <TableCell Name="Cell24" HorzAlign="Center" VertAlign="Center" Font="宋体, 11pt"/>
+          <TableCell Name="Cell25" HorzAlign="Center" VertAlign="Center" Font="宋体, 11pt"/>
+        </TableRow>
+        <TableRow Name="Row10" Height="26.77">
+          <TableCell Name="Cell87" Text="********************************************************************************************" HorzAlign="Center" Font="宋体, 11pt" ColSpan="5"/>
+          <TableCell Name="Cell75" HorzAlign="Center" VertAlign="Center" Font="宋体, 9pt"/>
+          <TableCell Name="Cell76" Font="宋体, 9pt"/>
+          <TableCell Name="Cell78" Font="宋体, 9pt"/>
+          <TableCell Name="Cell79" Font="宋体, 9pt"/>
+        </TableRow>
+      </TableObject>
+      <DataBand Name="Data2" Top="281.36" Width="895.86" Height="37.8" Guides="0,37.8" DataSource="Table2">
+        <TableObject Name="Table3" Left="68.15" Width="755.66" Height="37.8" Border.Lines="Left, Right, Bottom">
+          <TableColumn Name="Column6" Width="109.24"/>
+          <TableColumn Name="Column7" Width="116.42"/>
+          <TableColumn Name="Column23" Width="94.5"/>
+          <TableColumn Name="Column9" Width="283.86"/>
+          <TableColumn Name="Column8" Width="75.82"/>
+          <TableColumn Name="Column25" Width="75.82"/>
+          <TableRow Name="Row6" Height="37.8">
+            <TableCell Name="Cell26" Border.Lines="Left, Right, Bottom" Text="[Table2.Date]" VertAlign="Center" Font="宋体, 10pt"/>
+            <TableCell Name="Cell27" Border.Lines="Left, Right, Bottom" Text="[Table2.Ftype]" VertAlign="Center" Font="宋体, 10pt"/>
+            <TableCell Name="Cell64" Text="[Table2.FCode]" VertAlign="Center" Font="宋体, 9pt"/>
+            <TableCell Name="Cell29" Border.Lines="Left, Right, Bottom" Text="[Table2.Remark]" VertAlign="Center" Font="宋体, 10pt"/>
+            <TableCell Name="Cell28" Border.Lines="Left, Right, Bottom" Text="[Table2.Amt]" VertAlign="Center" Font="宋体, 10pt"/>
+            <TableCell Name="Cell81" Text="[Table2.EndAmt]" VertAlign="Center" Font="宋体, 10pt"/>
+          </TableRow>
+        </TableObject>
+        <DataHeaderBand Name="DataHeader2" Top="245.23" Width="895.86" Height="32.13" Guides="0,32.13">
+          <TableObject Name="Table3" Left="68.15" Width="755.7" Height="32.13" Border.Lines="Left, Right">
+            <TableColumn Name="Column18" Width="109.24"/>
+            <TableColumn Name="Column19" Width="116.68"/>
+            <TableColumn Name="Column22" Width="94.5"/>
+            <TableColumn Name="Column21" Width="283.76"/>
+            <TableColumn Name="Column20" Width="75.76"/>
+            <TableColumn Name="Column24" Width="75.76"/>
+            <TableRow Name="Row7" Height="32.13">
+              <TableCell Name="Cell58" Border.Lines="Left, Right, Bottom" Text="记账日" HorzAlign="Right" VertAlign="Center" Font="宋体, 11pt"/>
+              <TableCell Name="Cell59" Border.Lines="Left, Right, Bottom" Text="交易类型" HorzAlign="Right" VertAlign="Center" Font="宋体, 11pt"/>
+              <TableCell Name="Cell63" Border.Lines="Bottom" Text="凭证号" HorzAlign="Right" VertAlign="Center" Font="宋体, 11pt"/>
+              <TableCell Name="Cell61" Border.Lines="Left, Right, Bottom" Text="摘要" HorzAlign="Right" VertAlign="Center" Font="宋体, 11pt"/>
+              <TableCell Name="Cell60" Border.Lines="Left, Right, Bottom" Text="发生额" HorzAlign="Right" VertAlign="Center" Font="宋体, 11pt"/>
+              <TableCell Name="Cell80" Border.Lines="Bottom" Text="余额" HorzAlign="Right" VertAlign="Center" Font="宋体, 11pt"/>
+            </TableRow>
+          </TableObject>
+        </DataHeaderBand>
+      </DataBand>
+    </DataBand>
+  </ReportPage>
+</Report>

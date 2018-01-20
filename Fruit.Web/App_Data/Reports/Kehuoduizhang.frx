@@ -1,0 +1,123 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report ScriptLanguage="CSharp" ReportInfo.Created="12/29/2017 02:53:30" ReportInfo.Modified="01/07/2018 22:42:46" ReportInfo.CreatorVersion="2013.2.5.0">
+  <Dictionary>
+    <MsSqlDataConnection Name="Connection" ConnectionString="rijcmlqg2qmyZQiyXcBVnf/rdJgwSIzg/ztftK+7eP747xng5ThZ+t3N9ogYwAwR2F2e6WPlNq9zDkumOBPr0h3d+IcKD09RPNLGp8tgcvFqHkY1GH2RdQiMMs8+RDK+sHvjfPtFZFM29E7VtVhm0RitlF/DEtvxXwUDgXDgzBI1NtBHw5XeLkcG9CeaSug6lw/Hbc1Q1cGVCJvoOk0ab3RCvOQ9g==">
+      <TableDataSource Name="Table" DataType="System.Int32" Enabled="true" SelectCommand="SET FMTONLY OFF; exec usp_SettlesNew @CustID,@Dates;SELECT a.*,Contact FROM dbo.Hr_balance a&#13;&#10;INNER JOIN dbo.BD_Customers c ON a.CustID=c.FID WHERE Y=YEAR( DATEADD(M,-1,GETDATE())) and M=MONTH( DATEADD(M,-1,GETDATE())) AND CustID=@CustID;&#13;&#10;">
+        <Column Name="Y" DataType="System.String"/>
+        <Column Name="M" DataType="System.String"/>
+        <Column Name="Amt" DataType="System.Decimal"/>
+        <Column Name="CustID" DataType="System.String"/>
+        <Column Name="Contact" DataType="System.String"/>
+        <CommandParameter Name="CustID" DataType="22" Expression="[CustID]"/>
+        <CommandParameter Name="Dates" DataType="22" Expression="[Dates]"/>
+      </TableDataSource>
+      <TableDataSource Name="Table3" Alias="Table1" DataType="System.Int32" Enabled="true" SelectCommand=" SELECT * FROM dbo.Settlement_Report WHERE 年=@Dates AND 负责人编号=@CustID ORDER BY no">
+        <Column Name="no" DataType="System.Int32"/>
+        <Column Name="开票日期" DataType="System.String"/>
+        <Column Name="开票摘要" DataType="System.String"/>
+        <Column Name="号码" DataType="System.String"/>
+        <Column Name="价税合计" DataType="System.Decimal"/>
+        <Column Name="金额3" DataType="System.Decimal"/>
+        <Column Name="金额11" DataType="System.Decimal"/>
+        <Column Name="应收税管费" DataType="System.Decimal"/>
+        <Column Name="日期" DataType="System.String"/>
+        <Column Name="收付款摘要" DataType="System.String"/>
+        <Column Name="收款" DataType="System.Decimal"/>
+        <Column Name="支付" DataType="System.Decimal"/>
+        <Column Name="上期结余" DataType="System.Decimal"/>
+        <Column Name="负责人" DataType="System.String"/>
+        <Column Name="负责人编号" DataType="System.String"/>
+        <Column Name="年" DataType="System.String"/>
+        <Column Name="月" DataType="System.String"/>
+        <CommandParameter Name="CustID" DataType="22" Expression="[CustID]"/>
+        <CommandParameter Name="Dates" DataType="22" Expression="[Dates]"/>
+      </TableDataSource>
+    </MsSqlDataConnection>
+    <Parameter Name="CustID" DataType="System.String"/>
+    <Parameter Name="Dates" DataType="System.String"/>
+  </Dictionary>
+  <ReportPage Name="Page1" PaperWidth="326.9" PaperHeight="420.1">
+    <ReportTitleBand Name="ReportTitle1" Width="1160.08" Height="47.25">
+      <TextObject Name="Text1" Left="510.3" Top="18.9" Width="226.8" Height="28.35" Text="客 户 结 算 单" HorzAlign="Center" VertAlign="Center" Font="宋体, 16pt, style=Bold"/>
+    </ReportTitleBand>
+    <DataBand Name="Data1" Top="51.29" Width="1160.08" Height="28.35" DataSource="Table">
+      <TextObject Name="Text5" Left="699.3" Width="122.85" Height="28.35" Text="[Table.Y]年度" VertAlign="Bottom" Font="宋体, 12pt, style=Bold"/>
+      <TextObject Name="Text2" Left="18.9" Width="179.55" Height="28.35" Text="负责人：[Table.Contact]" HorzAlign="Center" VertAlign="Bottom" Font="宋体, 12pt, style=Bold"/>
+      <DataBand Name="Data2" Top="144.42" Width="1160.08" Height="37.8" DataSource="Table3">
+        <TableObject Name="Table2" Width="1143.45" Height="37.8">
+          <TableColumn Name="Column13" Width="75.6"/>
+          <TableColumn Name="Column14" Width="103.95"/>
+          <TableColumn Name="Column15" Width="75.6"/>
+          <TableColumn Name="Column16" Width="85.05"/>
+          <TableColumn Name="Column17" Width="94.5"/>
+          <TableColumn Name="Column18" Width="94.5"/>
+          <TableColumn Name="Column19" Width="103.95"/>
+          <TableColumn Name="Column20" Width="94.5"/>
+          <TableColumn Name="Column21" Width="113.4"/>
+          <TableColumn Name="Column22" Width="113.4"/>
+          <TableColumn Name="Column23" Width="94.5"/>
+          <TableColumn Name="Column24" Width="94.5"/>
+          <TableRow Name="Row3" Height="37.8">
+            <TableCell Name="Cell45" Border.Lines="All" Text="[Table1.开票日期]" HorzAlign="Center" VertAlign="Center" Font="宋体, 11pt"/>
+            <TableCell Name="Cell46" Border.Lines="All" Text="[Table1.开票摘要]" HorzAlign="Center" VertAlign="Center" Font="宋体, 11pt"/>
+            <TableCell Name="Cell47" Border.Lines="All" Text="[Table1.号码]" HorzAlign="Center" VertAlign="Center" Font="宋体, 11pt"/>
+            <TableCell Name="Cell48" Border.Lines="All" Text="[Table1.价税合计]" HorzAlign="Center" VertAlign="Center" Font="宋体, 11pt"/>
+            <TableCell Name="Cell49" Border.Lines="All" Text="[Table1.金额3]" HorzAlign="Center" VertAlign="Bottom" Font="宋体, 11pt"/>
+            <TableCell Name="Cell50" Border.Lines="All" Text="[Table1.金额11]" HorzAlign="Center" VertAlign="Bottom" Font="宋体, 11pt"/>
+            <TableCell Name="Cell51" Border.Lines="All" Text="[Table1.应收税管费]" HorzAlign="Center" VertAlign="Bottom" Font="宋体, 11pt"/>
+            <TableCell Name="Cell52" Border.Lines="All" Text="[Table1.日期]" HorzAlign="Center" VertAlign="Bottom" Font="宋体, 11pt"/>
+            <TableCell Name="Cell53" Border.Lines="All" Text="[Table1.收付款摘要]" HorzAlign="Center" VertAlign="Bottom" Font="宋体, 11pt"/>
+            <TableCell Name="Cell54" Border.Lines="All" Text="[Table1.收款]" HorzAlign="Center" VertAlign="Bottom" Font="宋体, 11pt"/>
+            <TableCell Name="Cell55" Border.Lines="All" Text="[Table1.支付]" HorzAlign="Center" VertAlign="Bottom" Font="宋体, 11pt"/>
+            <TableCell Name="Cell56" Border.Lines="All" Text="[Table1.上期结余]" HorzAlign="Center" VertAlign="Bottom" Font="宋体, 11pt"/>
+          </TableRow>
+        </TableObject>
+        <DataHeaderBand Name="DataHeader1" Top="83.68" Width="1160.08" Height="56.7">
+          <TableObject Name="Table1" Width="1143.45" Height="56.7">
+            <TableColumn Name="Column1" Width="75.6"/>
+            <TableColumn Name="Column2" Width="103.95"/>
+            <TableColumn Name="Column3" Width="75.6"/>
+            <TableColumn Name="Column4" Width="85.05"/>
+            <TableColumn Name="Column5" Width="94.5"/>
+            <TableColumn Name="Column6" Width="94.5"/>
+            <TableColumn Name="Column7" Width="103.95"/>
+            <TableColumn Name="Column8" Width="94.5"/>
+            <TableColumn Name="Column9" Width="113.4"/>
+            <TableColumn Name="Column10" Width="113.4"/>
+            <TableColumn Name="Column11" Width="94.5"/>
+            <TableColumn Name="Column12" Width="94.5"/>
+            <TableRow Name="Row1" Height="28.35">
+              <TableCell Name="Cell1" Border.Lines="All" Text="开票日期" HorzAlign="Center" VertAlign="Center" Font="宋体, 11pt" RowSpan="2"/>
+              <TableCell Name="Cell22" Border.Lines="All" Text="摘  要" HorzAlign="Center" VertAlign="Center" Font="宋体, 11pt" RowSpan="2"/>
+              <TableCell Name="Cell23" Border.Lines="All" Text="号码" HorzAlign="Center" VertAlign="Center" Font="宋体, 11pt" RowSpan="2"/>
+              <TableCell Name="Cell24" Border.Lines="All" Text="价税合计" HorzAlign="Center" VertAlign="Center" Font="宋体, 11pt" RowSpan="2"/>
+              <TableCell Name="Cell25" Border.Lines="All" Text="金额" HorzAlign="Center" VertAlign="Bottom" Font="宋体, 11pt" ColSpan="2"/>
+              <TableCell Name="Cell26" Border.Lines="All" HorzAlign="Center" VertAlign="Bottom" Font="宋体, 11pt"/>
+              <TableCell Name="Cell27" Border.Lines="All" Text="应收税管费" HorzAlign="Center" VertAlign="Center" Font="宋体, 11pt" RowSpan="2"/>
+              <TableCell Name="Cell28" Border.Lines="All" Text="日期" HorzAlign="Center" VertAlign="Center" Font="宋体, 11pt" RowSpan="2"/>
+              <TableCell Name="Cell29" Border.Lines="All" Text="摘  要" HorzAlign="Center" VertAlign="Center" Font="宋体, 11pt" RowSpan="2"/>
+              <TableCell Name="Cell30" Border.Lines="All" Text="收款" HorzAlign="Center" VertAlign="Center" Font="宋体, 11pt" RowSpan="2"/>
+              <TableCell Name="Cell31" Border.Lines="All" Text="支付" HorzAlign="Center" VertAlign="Center" Font="宋体, 11pt" RowSpan="2"/>
+              <TableCell Name="Cell32" Border.Lines="All" Text="上期结余" HorzAlign="Center" VertAlign="Bottom" Font="宋体, 11pt"/>
+            </TableRow>
+            <TableRow Name="Row2" Height="28.35">
+              <TableCell Name="Cell33" Border.Lines="All" HorzAlign="Center" VertAlign="Center" Font="宋体, 11pt"/>
+              <TableCell Name="Cell34" Border.Lines="All" HorzAlign="Center" VertAlign="Center" Font="宋体, 11pt"/>
+              <TableCell Name="Cell35" Border.Lines="All" HorzAlign="Center" VertAlign="Center" Font="宋体, 11pt"/>
+              <TableCell Name="Cell36" Border.Lines="All" HorzAlign="Center" VertAlign="Center" Font="宋体, 11pt"/>
+              <TableCell Name="Cell37" Border.Lines="All" Text="3%" HorzAlign="Center" VertAlign="Bottom" Font="宋体, 11pt"/>
+              <TableCell Name="Cell38" Border.Lines="All" Text="11%" HorzAlign="Center" VertAlign="Bottom" Font="宋体, 11pt"/>
+              <TableCell Name="Cell39" Border.Lines="All" HorzAlign="Center" VertAlign="Center" Font="宋体, 11pt"/>
+              <TableCell Name="Cell40" Border.Lines="All" HorzAlign="Center" VertAlign="Center" Font="宋体, 11pt"/>
+              <TableCell Name="Cell41" HorzAlign="Center" VertAlign="Center" Font="宋体, 11pt"/>
+              <TableCell Name="Cell42" HorzAlign="Center" VertAlign="Center" Font="宋体, 11pt"/>
+              <TableCell Name="Cell43" HorzAlign="Center" VertAlign="Center" Font="宋体, 11pt"/>
+              <TableCell Name="Cell44" Border.Lines="All" Text="[Table.Amt]" HorzAlign="Center" VertAlign="Bottom" Font="宋体, 11pt"/>
+            </TableRow>
+          </TableObject>
+        </DataHeaderBand>
+      </DataBand>
+    </DataBand>
+    <PageFooterBand Name="PageFooter1" Top="186.26" Width="1160.08" Height="18.9"/>
+  </ReportPage>
+</Report>

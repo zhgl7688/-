@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Form Connection="MmsContext" Table="mms_dealDetail" Area="Mms" Controller="Receive">
+  <Fields>
+    <Field />
+  </Fields>
+</Form>

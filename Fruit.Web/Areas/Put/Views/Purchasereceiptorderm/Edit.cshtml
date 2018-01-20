@@ -1,0 +1,293 @@
+﻿@section scripts {
+<script type="text/javascript">
+        var Formatter_wq_unittype_sbxh = function(value, row, index){
+            return '<a href="#" onmousedown="Formatter_wq_unittype_sbxh_click(event, ' + index + ')">' + row.sbxh_RefText + '</a>'
+        };
+        var Formatter_wq_unittype_sbxh_click = function(e, rowIndex){
+            var jq = $('#list0');
+            var row = jq.datagrid('getRows')[parseInt(rowIndex)];
+            console.log(jq, rowIndex, row);
+            var link = 'http://cn.bing.com/?s={id}';
+            link = link.replace(/\{([^\}]+)\}/g, function(m,g){return row[g] || m;});
+            window.open(link);
+            e.stopPropagation();
+            e.preventDefault();
+            return false;
+        };
+    var data = @MvcHtmlString.Create(JsonExtension.ToJson(Model));
+    $(function(){
+        var db = fruit.databind.root;
+        $.extend(db.options, {
+            removeRow0Click: function(){
+                db.binds.list0.delete();
+            }
+        });
+        $.extend(db.options, {
+            addRow0Click: function(){
+                db.binds.list0.add();
+            }
+        });
+        data.form._row_state = @ViewBag.RowState;
+        db.loadData(data);
+        function loadDetial(){
+            fruit.ajax({method:'get', url:'/api/Put/Purchasereceiptorderm/getdetial/'+data.form["ID"],success:function(data){for(var key in data){$('[data-subtable=' + key + ']').datagrid('loadData', data[key]);}}});
+        }
+        loadDetial();
+        $.extend(db, {
+            refreshClick:function(){
+                location.assign(top.$(window.frameElement).data('src'));
+            },
+            rejectClick:function(){
+                location.assign(top.$(window.frameElement).data('src'));
+            },
+            newClick:function(){
+                fruit.ajax({
+                        url:'/api/Put/Purchasereceiptorderm/NewID',
+                        success:function(data) {
+                            parent.changeDocTab(window.frameElement, '/Put/Purchasereceiptorderm/edit/' + data);
+                        }
+                    })
+            },
+            deleteClick:function(){
+                $.messager.confirm('确认', '您确认要删除当前记录吗？', function(r){
+                    if(r){
+                        fruit.ajax({
+                            method:'DELETE',
+                            url: '/api/Put/Purchasereceiptorderm/'+db.getData('form').ID,
+                            success: function(data) {
+                                fruit.message('success', '删除成功');
+                                top.closeDocTab(window.frameElement);
+                            }
+                        });
+                    }
+                });
+            },
+            saveClick:function(){
+                if(!db.validate()){fruit.message('error', '请更正验证错误！'); return;}
+                var data = db.getData();
+                data.wq_unittype = $('[data-subtable="wq_unittype"]').datagrid('getChangeRows');
+                fruit.ajax({
+                    url: '/api/Put/Purchasereceiptorderm/',
+                    data: JSON.stringify(data),
+                    success:function(result){
+                        if(result && result.success){
+                            fruit.message('success', '保存成功');
+                            if(result.form){
+                                db.loadData(result);
+                                loadDetial();
+                            }
+                        }
+                    }
+                });
+            }
+        });
+    });
+</script>
+}
+
+
+<div class="z-toolbar">
+    <a id="a_save" href="#" plain="true" class="easyui-linkbutton" icon="icon-save" data-bind="click:'saveClick',disable:'readonly'" title="保存">保存</a>
+    <a id="a_undo" href="#" plain="true" class="easyui-linkbutton" icon="icon-undo" data-bind="click:'rejectClick',disable:'readonly'" title="撤消">撤消</a>
+    <div class="datagrid-btn-separator"></div>
+    <a id="a_other" href="#" class="easyui-splitbutton" data-options="menu:'#divother',iconCls:'icon-application_go'" title="其他">其他</a>
+</div>
+
+<div id="divother" style="width:100px; display:none;">
+    <div data-options="iconCls:'icon-add'" data-bind="click:'newClick'">新增</div>
+    <div data-options="iconCls:'icon-cross'" data-bind="click:'deleteClick'">删除</div>
+    <div data-options="iconCls:'icon-arrow_refresh'" data-bind="click:'refreshClick'">刷新</div>
+</div>
+
+<div id="divrelations" style="width:100px; display:none;"></div>
+<div id="master" class="container_12" data-bind="inputwidth:0.9">
+<input type="hidden" data-bind="value:'form._row_state'" />
+    <div class="grid_1 lbl">ID</div>
+   <div class="grid_3 val"><input type="text" data-bind="value:'form.ID', readOnly:true" class="z-txt readonly" /></div>
+    <div class="grid_1 lbl">name</div>
+   <div class="grid_3 val"><input type="text" data-bind="value:'form.name'" class="easyui-validatebox z-txt" data-options="required:true" /></div>
+    <div class="grid_1 lbl">Password</div>
+   <div class="grid_3 val"><input type="text" data-bind="value:'form.Password'" class="easyui-validatebox z-txt" data-options="required:true" /></div>
+
+    <div class="clear"></div>
+
+    <div class="grid_1 lbl">CertNumber</div>
+   <div class="grid_3 val"><input type="text" data-bind="value:'form.CertNumber'" class="easyui-validatebox z-txt" data-options="required:false" /></div>
+    <div class="grid_1 lbl">nativeplace</div>
+   <div class="grid_3 val"><input type="text" data-bind="value:'form.nativeplace',datasource:'dataSource.nativeplace'" class="z-txt easyui-combobox" data-options="required:false, readonly:false" /></div>
+    <div class="grid_1 lbl">FileNumber</div>
+   <div class="grid_3 val"><input type="text" data-bind="value:'form.FileNumber'" class="easyui-validatebox z-txt" data-options="required:false" /></div>
+
+    <div class="clear"></div>
+
+    <div class="grid_1 lbl">UserAccount</div>
+   <div class="grid_3 val"><input type="text" data-bind="value:'form.UserAccount', text:'form.UserAccount_RefText'" class="z-txt easyui-popup" data-options="rule:'客户类型',textField:'UserAccount_RefText',required:false, onSelect:fruit.popupSelected" /></div>
+    <div class="grid_1 lbl">psncode</div>
+   <div class="grid_3 val"><input type="text" data-bind="value:'form.psncode'" class="easyui-validatebox z-txt" data-options="required:false" /></div>
+    <div class="grid_1 lbl">RoleCode</div>
+   <div class="grid_3 val"><input type="text" data-bind="value:'form.RoleCode'" class="easyui-validatebox z-txt" data-options="required:false" /></div>
+
+    <div class="clear"></div>
+
+    <div class="grid_1 lbl">WageCard</div>
+   <div class="grid_3 val"><input type="text" data-bind="value:'form.WageCard'" class="easyui-validatebox z-txt" data-options="required:false" /></div>
+    <div class="grid_1 lbl">SocialSecurity</div>
+   <div class="grid_3 val"><input type="text" data-bind="value:'form.SocialSecurity'" class="easyui-validatebox z-txt" data-options="required:false" /></div>
+    <div class="grid_1 lbl">Mobile</div>
+   <div class="grid_3 val"><input type="text" data-bind="value:'form.Mobile'" class="easyui-validatebox z-txt" data-options="required:false" /></div>
+
+    <div class="clear"></div>
+
+    <div class="grid_1 lbl">usedname</div>
+   <div class="grid_3 val"><input type="text" data-bind="value:'form.usedname'" class="easyui-validatebox z-txt" data-options="required:false" /></div>
+    <div class="grid_1 lbl">sex</div>
+   <div class="grid_3 val"><input type="text" data-bind="value:'form.sex'" class="easyui-validatebox z-txt" data-options="required:false" /></div>
+    <div class="grid_1 lbl">birthdate</div>
+   <div class="grid_3 val"><input type="text" data-bind="value:'form.birthdate'" class="easyui-validatebox z-txt" data-options="required:false" /></div>
+
+    <div class="clear"></div>
+
+    <div class="grid_1 lbl">age</div>
+   <div class="grid_3 val"><input type="text" data-bind="value:'form.age'" class="z-txt easyui-numberbox" data-options="required:false" /></div>
+    <div class="grid_1 lbl">stuffdate</div>
+   <div class="grid_3 val"><input type="text" data-bind="value:'form.stuffdate',readOnly:false" class="z-txt easyui-datebox" /></div>
+    <div class="grid_1 lbl">effectdate</div>
+   <div class="grid_3 val"><input type="text" data-bind="value:'form.effectdate',readOnly:false" class="z-txt easyui-datebox" /></div>
+
+    <div class="clear"></div>
+
+    <div class="grid_1 lbl">workaddr</div>
+   <div class="grid_3 val"><input type="text" data-bind="value:'form.workaddr'" class="easyui-validatebox z-txt" data-options="required:false" /></div>
+    <div class="grid_1 lbl">BirthPlace</div>
+   <div class="grid_3 val"><input type="text" data-bind="value:'form.BirthPlace'" class="easyui-validatebox z-txt" data-options="required:false" /></div>
+    <div class="grid_1 lbl">nationality</div>
+   <div class="grid_3 val"><input type="text" data-bind="value:'form.nationality'" class="easyui-validatebox z-txt" data-options="required:false" /></div>
+
+    <div class="clear"></div>
+
+    <div class="grid_1 lbl">position</div>
+   <div class="grid_3 val"><input type="text" data-bind="value:'form.position'" class="easyui-validatebox z-txt" data-options="required:false" /></div>
+    <div class="grid_1 lbl">permanreside</div>
+   <div class="grid_3 val"><input type="text" data-bind="value:'form.permanreside'" class="easyui-validatebox z-txt" data-options="required:false" /></div>
+    <div class="grid_1 lbl">characterrpr</div>
+   <div class="grid_3 val"><input type="text" data-bind="value:'form.characterrpr'" class="easyui-validatebox z-txt" data-options="required:false" /></div>
+
+    <div class="clear"></div>
+
+    <div class="grid_1 lbl">marital</div>
+   <div class="grid_3 val"><input type="text" data-bind="value:'form.marital'" class="easyui-validatebox z-txt" data-options="required:false" /></div>
+    <div class="grid_1 lbl">EmployeeStatus</div>
+   <div class="grid_3 val"><input type="text" data-bind="value:'form.EmployeeStatus'" class="easyui-validatebox z-txt" data-options="required:false" /></div>
+    <div class="grid_1 lbl">country</div>
+   <div class="grid_3 val"><input type="text" data-bind="value:'form.country'" class="easyui-validatebox z-txt" data-options="required:false" /></div>
+
+    <div class="clear"></div>
+
+    <div class="grid_1 lbl">idtype</div>
+   <div class="grid_3 val"><input type="text" data-bind="value:'form.idtype'" class="easyui-validatebox z-txt" data-options="required:false" /></div>
+    <div class="grid_1 lbl">polity</div>
+   <div class="grid_3 val"><input type="text" data-bind="value:'form.polity'" class="easyui-validatebox z-txt" data-options="required:false" /></div>
+    <div class="grid_1 lbl">health</div>
+   <div class="grid_3 val"><input type="text" data-bind="value:'form.health'" class="easyui-validatebox z-txt" data-options="required:false" /></div>
+
+    <div class="clear"></div>
+
+    <div class="grid_1 lbl">Height</div>
+   <div class="grid_3 val"><input type="text" data-bind="value:'form.Height'" class="z-txt easyui-numberbox" data-options="required:false" /></div>
+    <div class="grid_1 lbl">Weight</div>
+   <div class="grid_3 val"><input type="text" data-bind="value:'form.Weight'" class="easyui-validatebox z-txt" data-options="required:false" /></div>
+    <div class="grid_1 lbl">Vision</div>
+   <div class="grid_3 val"><input type="text" data-bind="value:'form.Vision'" class="easyui-validatebox z-txt" data-options="required:false" /></div>
+
+    <div class="clear"></div>
+
+    <div class="grid_1 lbl">lasteducation</div>
+   <div class="grid_3 val"><input type="text" data-bind="value:'form.lasteducation'" class="easyui-validatebox z-txt" data-options="required:false" /></div>
+    <div class="grid_1 lbl">HighestDegree</div>
+   <div class="grid_3 val"><input type="text" data-bind="value:'form.HighestDegree'" class="easyui-validatebox z-txt" data-options="required:false" /></div>
+    <div class="grid_1 lbl">major</div>
+   <div class="grid_3 val"><input type="text" data-bind="value:'form.major'" class="easyui-validatebox z-txt" data-options="required:false" /></div>
+
+    <div class="clear"></div>
+
+    <div class="grid_1 lbl">rank</div>
+   <div class="grid_3 val"><input type="text" data-bind="value:'form.rank'" class="easyui-validatebox z-txt" data-options="required:false" /></div>
+    <div class="grid_1 lbl">GraduationSchool</div>
+   <div class="grid_3 val"><input type="text" data-bind="value:'form.GraduationSchool'" class="easyui-validatebox z-txt" data-options="required:false" /></div>
+    <div class="grid_1 lbl">joinworkdate</div>
+   <div class="grid_3 val"><input type="text" data-bind="value:'form.joinworkdate'" class="easyui-validatebox z-txt" data-options="required:false" /></div>
+
+    <div class="clear"></div>
+
+    <div class="grid_1 lbl">FreeWorkYears</div>
+   <div class="grid_3 val"><input type="text" data-bind="value:'form.FreeWorkYears'" class="easyui-validatebox z-txt" data-options="required:false" /></div>
+    <div class="grid_1 lbl">is_status</div>
+   <div class="grid_3 val"><input type="text" data-bind="value:'form.is_status'" class="easyui-validatebox z-txt" data-options="required:false" /></div>
+    <div class="grid_1 lbl">kq_status</div>
+   <div class="grid_3 val"><input type="text" data-bind="value:'form.kq_status'" class="easyui-validatebox z-txt" data-options="required:false" /></div>
+
+    <div class="clear"></div>
+
+    <div class="grid_1 lbl">glbdef1</div>
+   <div class="grid_3 val"><input type="text" data-bind="value:'form.glbdef1'" class="easyui-validatebox z-txt" data-options="required:false" /></div>
+    <div class="grid_1 lbl">Photo</div>
+   <div class="grid_3 val"><input type="text" data-bind="value:'form.Photo'" class="easyui-validatebox z-txt" data-options="required:false" /></div>
+    <div class="grid_1 lbl">CompCode</div>
+   <div class="grid_3 val"><input type="text" data-bind="value:'form.CompCode'" class="easyui-validatebox z-txt" data-options="required:false" /></div>
+
+    <div class="clear"></div>
+
+    <div class="grid_1 lbl">soft</div>
+   <div class="grid_3 val"><input type="text" data-bind="value:'form.soft'" class="easyui-validatebox z-txt" data-options="required:false" /></div>
+    <div class="grid_1 lbl">phonetype</div>
+   <div class="grid_3 val"><input type="text" data-bind="value:'form.phonetype'" class="easyui-validatebox z-txt" data-options="required:false" /></div>
+    <div class="grid_1 lbl">os</div>
+   <div class="grid_3 val"><input type="text" data-bind="value:'form.os'" class="easyui-validatebox z-txt" data-options="required:false" /></div>
+
+    <div class="clear"></div>
+
+    <div class="grid_1 lbl">isline</div>
+   <div class="grid_3 val"><input type="hidden" data-bind="value:'form.isline', set:false" value="0" /><input type="checkbox" data-bind="value:'form.isline'" value="1" /></div>
+    <div class="grid_1 lbl">KQ</div>
+   <div class="grid_3 val"><input type="text" data-bind="value:'form.KQ'" class="easyui-validatebox z-txt" data-options="required:false" /></div>
+
+    <div class="clear"></div>
+
+</div>
+<div id="tt" class="easyui-tabs">
+    <div title="wq_unittype">
+        <table id="list0" data-subtable="wq_unittype" data-bind="datagrid:'grid'" data-options="fixSize:{w:6,h:'auto'}, toolbar:'#gridtb0', showFooter: false, border:false, editMode:'select',singleSelect:true">
+            <thead>
+                <tr>
+    <th field="id">id    </th>
+    <th field="sbbh" data-options="editor:{type:'validatebox',options:{required:false}}">sbbh    </th>
+    <th field="sbxh" formatter="Formatter_wq_unittype_sbxh" data-options="editor:{type:'combobox', options:{required:false, data:data.dataSource.wq_unittype_sbxh}}" formatter="col_wq_unittype_sbxh_RefText_formatter">sbxh    </th>
+    <th field="bbmc" data-options="editor:{type:'validatebox',options:{required:false}}">bbmc    </th>
+    <th field="username" data-options="editor:{type:'validatebox',options:{required:false}}">username    </th>
+    <th field="remark" data-options="editor:{type:'validatebox',options:{required:false}}">remark    </th>
+                </tr>
+            </thead>
+        </table>
+
+        <div id="gridtb0">
+            <a href="#" class="easyui-linkbutton" data-options="iconCls:'icon-search',plain:true" data-bind="click:'addRow0Click',disable:'readonly'">增加</a>
+            <a href="#" class="easyui-linkbutton" data-options="iconCls:'icon-remove',plain:true" data-bind="click:'removeRow0Click',disable:'readonly'">删除</a>
+        </div>
+    </div>
+    <div title="表单信息" style="padding-top:2px;">
+        <div class="container_12" id="BillDetail" data-bind="inputwidth:0.9,autoheight:181">
+            <div class="clear"></div>
+    <div class="grid_1 lbl">创建人</div>
+   <div class="grid_3 val"><input type="text" data-bind="value:'form.CreatePerson', readOnly:true" class="z-txt readonly" /></div>
+    <div class="grid_1 lbl">创建日期</div>
+   <div class="grid_3 val"><input type="text" data-bind="value:'form.CreateDate',readOnly:true" class="z-txt easyui-datebox" /></div>
+    <div class="grid_1 lbl">更改人</div>
+   <div class="grid_3 val"><input type="text" data-bind="value:'form.UpdatePerson', readOnly:true" class="z-txt readonly" /></div>
+
+            <div class="clear"></div>
+
+    <div class="grid_1 lbl">更改日期</div>
+   <div class="grid_3 val"><input type="text" data-bind="value:'form.UpdateDate',readOnly:true" class="z-txt easyui-datebox" /></div>
+        </div>
+    </div>
+</div>

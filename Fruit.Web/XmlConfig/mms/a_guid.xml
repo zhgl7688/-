@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Form Connection="LUOLAI1401Context" Table="a_guid">
+  <SubTables />
+  <SaveProducre />
+  <Buttons />
+  <GroupFilters />
+  <Fields>
+    <Field Table="a_guid" Field="id" DbType="uniqueidentifier" Required="True" ListVisible="True" FormVisible="True" ControlType="AutoId" Title="编号" />
+    <Field Table="a_guid" Field="name" DbType="nvarchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="名称" />
+  </Fields>
+</Form>

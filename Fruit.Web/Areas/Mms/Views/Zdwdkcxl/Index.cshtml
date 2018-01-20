@@ -1,0 +1,80 @@
+﻿@section scripts {
+    <script type="text/javascript">
+        $(function(){
+            var db = fruit.databind.root;
+                    var data = @MvcHtmlString.Create(JsonExtension.ToJson(Model));
+                    db.loadData(data);
+            $.extend(db.options, {
+                searchClick: function(){
+                    var form = db.getData('serach');
+                    db.invoke('setLoadParams', form);
+                },
+                clearClick: function(){
+                    db.clearData('serach');
+                    db.invoke('setLoadParams', {});
+                }
+                , onInit: function(){
+                    db.loadData(data);
+                }
+            });
+        });
+
+    </script>
+}
+
+<div class="z-toolbar">
+
+    <a class="easyui-linkbutton" iconcls="icon-arrow_refresh" plain="true" data-bind="click:'refresh'">刷新</a>
+    <a class="easyui-splitbutton" plain="true" data-options="iconCls:'icon-download'" suffix="xls" data-bind="click:'download'">导出</a>
+    <div class="condition_buttons">
+        <a class="easyui-linkbutton" data-bind="click:'searchClick'" data-options="iconCls:'icon-search', plain:true" href="#">搜索</a>
+        <a class="easyui-linkbutton" data-bind="click:'clearClick'" data-options="iconCls:'icon-clear', plain:true" href="#">清空</a>
+    </div>
+</div>
+<div id="condition" class="container_12" style="position:relative;height:60px">
+    <div class="grid_1 lbl">终端名称</div>
+    <div class="grid_2 val"><input data-bind="value:'serach.终端名称'" type="text" class="z-txt" /></div>
+    <div class="grid_1 lbl">联系人</div>
+    <div class="grid_2 val"><input data-bind="value:'serach.联系人'" type="text" class="z-txt" /></div>
+    <div class="grid_1 lbl">联系手机</div>
+    <div class="grid_2 val"><input data-bind="value:'serach.联系手机'" type="text" class="z-txt" /></div>
+    <div class="clear"></div>
+    <div class="grid_1 lbl">终端类型</div>
+    <div class="grid_2 val"><input data-bind="value:'serach.终端类型', datasource:'dataSource.终端类型'" type="text" class="z-txt easyui-combobox" /></div>
+    <div class="clear"></div>
+</div>
+<table id="grid" data-bind="datagrid" data-options="fixSize:{w:4, h:100}, rownumbers:true, method:'get', url:'/api/mms/zdwdkcxl', pagination:true, pageSize:20, holdTotal:true">
+<thead>
+<tr>
+<th field="终端编号" data-options="rowspan:2">终端编号</th>
+<th field="终端名称" data-options="rowspan:2">终端名称</th>
+<th field="联系人" data-options="rowspan:2">联系人</th>
+<th field="联系电话" data-options="rowspan:2">联系电话</th>
+<th field="联系手机" data-options="rowspan:2">联系手机</th>
+<th field="地址" data-options="rowspan:2">地址</th>
+<th field="老板名" data-options="rowspan:2">老板名</th>
+<th field="老板电话" data-options="rowspan:2">老板电话</th>
+<th field="老板手机" data-options="rowspan:2">老板手机</th>
+<th field="终端类型" data-options="rowspan:2">终端类型</th>
+<th field="结算方式" data-options="rowspan:2">结算方式</th>
+<th colspan="2">商超客户</th>
+<th colspan="4">餐饮客户</th>
+<th colspan="3">流通客户</th>
+<th colspan="1">团购客户</th>
+<th field="业务员编号" data-options="rowspan:2">业务员编号</th>
+<th field="业务员名称" data-options="rowspan:2">业务员名称</th>
+</tr>
+<tr>
+<th field="商超营业面积" data-options="">商超营业面积</th>
+<th field="采购方式" data-options="">采购方式</th>
+<th field="上座率" data-options="">上座率</th>
+<th field="平均消费" data-options="">平均消费</th>
+<th field="进店类型" data-options="">进店类型</th>
+<th field="包间数" data-options="">包间数</th>
+<th field="流通营业面积" data-options="">流通营业面积</th>
+<th field="门面数" data-options="">门面数</th>
+<th field="酒水容量" data-options="">酒水容量</th>
+<th field="团购金额" data-options="">团购金额</th>
+</tr>
+</thead>
+</table>

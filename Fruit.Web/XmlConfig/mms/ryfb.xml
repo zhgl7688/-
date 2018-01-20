@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report CommonReport="True" From="Distribution INNER JOIN attendTrack_v" OrderField="Distribution.UserCode">
+  <Fields>
+    <Field Table="Distribution" Field="UserCode" Alias="UserCode" Title="员工编号" ControlType="TextBox" />
+    <Field Table="Distribution" Alias="UserName" Title="员工姓名" Field="UserName" ControlType="TextBox" />
+    <Field Table="Distribution" Field="CreateDate" Alias="CreateDate" Title="日期" ControlType="Date" />
+    <Field Table="attendTrack_v" Field="TckLong" Alias="TckLong" Title="经度" />
+    <Field Table="attendTrack_v" Field="TckLat" Alias="TckLat" Title="纬度" />
+    <Field Table="attendTrack_v" Field="Address" Alias="Address" Title="地址" />
+  </Fields>
+</Report>

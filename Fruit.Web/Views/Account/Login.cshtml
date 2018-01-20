@@ -1,0 +1,111 @@
+﻿@model Fruit.Web.Models.LoginViewModel
+@{
+    ViewBag.Title = "登录 - " + WebApp.Parameters.SYS_NAME;
+}
+@section head{
+    <link href="~/Content/login/alogin.css" rel="stylesheet" />
+}
+
+@section scripts {
+   <script type="text/javascript">
+       $(function () {
+           $("#Username").keydown(function (e) {
+               if (e.keyCode == 13) {
+                   $('#Password').focus();
+               }
+           });
+           $("#Password").keydown(function (e) {
+               if (e.keyCode == 13) {
+                   loginClick();
+               }
+           });
+       });
+       function loginClick() {
+           var form = $('form');
+           if (form.form('validate')) {
+               $('#info').text('正在登录…').css('color', '#009900');
+               var formData = form.serializeObject();
+               $('input').attr('readonly', true).attr('disabled', 'disabled');
+               fruit.ajax({
+                   url: 'Login',
+                   data: JSON.stringify(formData),
+                   method: 'POST',
+                   success: function (data) {
+                       if (data.success) {
+                           location.href = data.url;
+                       } else {
+                           $('#info').text('登录失败，请重试').css('color', 'red');
+                           $('input').removeAttr('readonly').removeAttr('disabled');
+                       }
+                   }
+               });
+           }
+       }
+</script>
+}
+
+@using (Html.BeginForm())
+{
+    <div id="form1" runat="server">
+        <div class="Main">
+            <ul>
+                <li class="top"></li>
+                <li class="top2">
+                    <h2 style="margin: 0 auto; padding-top: 75px; padding-left: 280px; width: 285px; font-size: 25px; font-family: '微软雅黑';">登录</h2>
+                </li>
+                <li class="topA"></li>
+                <li class="topB">
+                    <span>
+                        @*<img src="~/Content/images/login/1.png" />*@
+                    </span>
+                    <span style="display: block;font-size: 50px;color: green;top: 10px;margin: 30px;">
+                        上海誉童
+                    </span>
+                </li>
+                <li class="topC"></li>
+                <li class="topD">
+
+                    <form id="loginForm">
+                        <ul class="login">
+                            
+                            <li>
+                                <div class="grid_4">
+                                    @Html.LabelFor(m => m.Username)
+                              
+                                    @Html.TextBoxFor(m => m.Username, new { @class = "easyui-validatebox txt", required = true })
+                                    @Html.ValidationMessageFor(m => m.Username)
+                                </div>
+                            </li>
+                            <li>
+                                <div class="grid_4">
+                                    @Html.LabelFor(m => m.Password) 
+                               
+                                    @Html.PasswordFor(m => m.Password, new { @class = "easyui-validatebox txt", required = true })
+                                    @Html.ValidationMessageFor(m => m.Password)
+                                </div>
+
+                            </li>
+                            <li>
+                                <span class="left">记住我：</span>
+                                @Html.CheckBoxFor(m => m.RemeberMe)
+                            </li>
+                        </ul>
+                    </form>
+                </li>
+                <li class="topE"></li>
+                <li class="middle_A"></li>
+                <li class="middle_B"></li>
+                <li class="middle_C">
+                    <span class="btn" style="margin-left:100px;">
+                        <a class="easyui-linkbutton" style="display:block;background:url(/Content/images/login/btnlogin.gif) no-repeat;width:106px;height:36px;margin:0 auto;" href="javascript:void(0);" data-options="onClick:loginClick"></a>
+                    </span>
+                    <div id="info" style="text-align:center;"></div>
+                </li>
+                <li class="middle_D"></li>
+                <li class="bottom_A"></li>
+                <li class="bottom_B"></li>
+
+            </ul>
+        </div>
+    </div>
+}

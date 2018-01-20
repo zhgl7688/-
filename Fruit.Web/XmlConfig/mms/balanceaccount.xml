@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report CommonReport="True" From="PersonInfo" OrderField="ID" UseMasterDetail="True">
+  <DrillReports>
+    <DrillReport LinkFieldUid="name" Title="上班" CommonReport="True" From="M_Record" StoredProcedures="" AddCondition="KType = '上班' and UserName = '{q.parent_name}'" OrderField="AttDate">
+      <DrillReports />
+      <Charts>
+        <XAxis />
+        <YAxis />
+        <Series />
+      </Charts>
+      <Fields>
+        <Field Field="AttDate" />
+        <Field Field="day20" Title="20" />
+        <Field Field="day21" Title="21" />
+        <Field Field="day22" Title="22" />
+      </Fields>
+    </DrillReport>
+    <DrillReport LinkFieldUid="ID" Title="下班" CommonReport="True" From="M_Record" StoredProcedures="" OrderField="AttDate" AddCondition="KType = '下班' and UserName = '{q.parent_name}'">
+      <DrillReports />
+      <Charts>
+        <XAxis />
+        <YAxis />
+        <Series />
+      </Charts>
+      <Fields>
+        <Field Field="AttDate" />
+        <Field Field="day20" Title="20" />
+        <Field Field="day21" Title="21" />
+        <Field Field="day22" Title="22" />
+      </Fields>
+    </DrillReport>
+  </DrillReports>
+  <Fields>
+    <Field Field="ID" Title="ID" UseLinks="True">
+      <Links Operator="DrillReport" />
+    </Field>
+    <Field Field="name" Title="姓名" UseLinks="True">
+      <Links Operator="DrillReport" />
+    </Field>
+    <Field Field="RoleCode" Title="角色" ControlType="" />
+  </Fields>
+  <Charts>
+    <XAxis FieldUid="" />
+    <YAxis FieldUid="" />
+    <Series />
+  </Charts>
+</Report>

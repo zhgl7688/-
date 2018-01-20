@@ -1,0 +1,67 @@
+﻿@section scripts {
+    <script type="text/javascript">
+        $(function(){
+            var db = fruit.databind.root;
+                    var data = @MvcHtmlString.Create(JsonExtension.ToJson(Model));
+                    db.loadData(data);
+            $.extend(db.options, {
+                searchClick: function(){
+                    var form = db.getData('serach');
+                    db.invoke('setLoadParams', form);
+                },
+                clearClick: function(){
+                    db.clearData('serach');
+                    db.invoke('setLoadParams', {});
+                }
+                , onInit: function(){
+                    db.loadData(data);
+                }
+            });
+        });
+
+    </script>
+}
+
+<div class="z-toolbar">
+
+    <a class="easyui-linkbutton" iconcls="icon-arrow_refresh" plain="true" data-bind="click:'refresh'">刷新</a>
+    <a class="easyui-splitbutton" plain="true" data-options="iconCls:'icon-download'" suffix="xls" data-bind="click:'download'">导出</a>
+    <div class="condition_buttons">
+        <a class="easyui-linkbutton" data-bind="click:'searchClick'" data-options="iconCls:'icon-search', plain:true" href="#">搜索</a>
+        <a class="easyui-linkbutton" data-bind="click:'clearClick'" data-options="iconCls:'icon-clear', plain:true" href="#">清空</a>
+    </div>
+</div>
+<div id="condition" class="container_12" style="position:relative;max-height:60px">
+    <div class="grid-group-1"><div class="lbl">年</div>
+    <div class="val"><input data-bind="value:'serach.FYear'" type="text" class="z-txt" /></div></div>
+    <div class="grid-group-1"><div class="lbl">月</div>
+    <div class="val"><input data-bind="value:'serach.FMonth'" type="text" class="z-txt" /></div></div>
+    <div class="grid-group-1"><div class="lbl">人员</div>
+    <div class="val"><input type="text" data-bind="value:'serach.empCode', text:'serach.empCode_RefText'" class="z-txt easyui-popup" data-options="rule:'员工',textField:'empCode_RefText', onSelect:fruit.popupSelected, displayFields:'FID,FName|FID||FName'" /></div></div>
+    <div class="grid-group-1"><div class="lbl">社保关系</div>
+    <div class="val"><input data-bind="value:'serach.SSType', datasource:'dataSource.SSType'" type="text" class="z-txt easyui-combobox" /></div></div>
+</div>
+<table id="grid" data-bind="datagrid" data-options="'rownumbers':true,'method':'get','pagination':true,'pageSize':20,'holdTotal':true,'fixSize':{'w':4,'h':'auto'},'fitColumns':false,'url':'/api/wage/hr_socialsecrecords'">
+<thead>
+<tr>
+<th field="FYear" data-options="">年</th>
+<th field="FMonth" data-options="">月</th>
+<th field="empCode" data-options="">人员</th>
+<th field="SSType" data-options="">社保关系</th>
+<th field="SSAmt" data-options="">社保基数</th>
+<th field="indvPension" data-options="">个人养老金</th>
+<th field="indvMedical" data-options="">个人医保</th>
+<th field="indvUnemploy" data-options="">个人失业保险</th>
+<th field="corpPension" data-options="">公司养老金</th>
+<th field="corpBaseMedical" data-options="">公司基本医保</th>
+<th field="corpLocalMedical" data-options="">公司地方医保</th>
+<th field="corpUnemploy" data-options="">公司失业保险</th>
+<th field="corpInjury" data-options="">公司工伤保险</th>
+<th field="corpBirth" data-options="">公司生育保险</th>
+<th field="indvTotal" data-options="">个人合计</th>
+<th field="corpTotal" data-options="">单位合计</th>
+<th field="Total" data-options="">总合计</th>
+<th field="Remark" data-options="">备注</th>
+</tr>
+</thead>
+</table>

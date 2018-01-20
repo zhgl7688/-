@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Form Connection="LUOLAI1401Context" Table="base_ProductBrandInfo">
+  <SubTables />
+  <Fields>
+    <Field Connection="LUOLAI1401Context" Table="base_ProductBrandInfo" Field="CompCode" Required="False" ListVisible="True" FormVisible="True" ControlType="AutoId" Title="所属公司" ControlValue="at001" />
+    <Field Connection="LUOLAI1401Context" Table="base_ProductBrandInfo" Field="BrandCode" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="品牌编码" />
+    <Field Connection="LUOLAI1401Context" Table="base_ProductBrandInfo" Field="BrandName" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="品牌名称" />
+    <Field Connection="LUOLAI1401Context" Table="base_ProductBrandInfo" Field="DelFlag" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="删除标志" />
+    <Field Connection="LUOLAI1401Context" Table="base_ProductBrandInfo" Field="CreatePerson" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="创建人" />
+    <Field Connection="LUOLAI1401Context" Table="base_ProductBrandInfo" Field="CreateDate" Required="False" ListVisible="True" FormVisible="True" ControlType="Date" Title="创建日期" />
+    <Field Connection="LUOLAI1401Context" Table="base_ProductBrandInfo" Field="UpdatePerson" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="更改人" />
+    <Field Connection="LUOLAI1401Context" Table="base_ProductBrandInfo" Field="UpdateDate" Required="False" ListVisible="True" FormVisible="True" ControlType="Date" Title="更改日期" />
+  </Fields>
+</Form>

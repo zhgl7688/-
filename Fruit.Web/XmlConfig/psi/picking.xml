@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Form Connection="MmsContext" Table="mms_project">
+  <Fields>
+    <Field />
+    <Field Table="mms_project" Field="ProjectCode" ControlType="AutoId" />
+    <Field Table="mms_project" Field="ParentCode" ControlType="TextBox" />
+    <Field Table="mms_project" Field="ProjectName" ControlType="TextBox" />
+    <Field Table="mms_project" Field="ShortName" ControlType="TextBox" />
+    <Field Table="mms_project" Field="OwnerUnit" ControlType="TextBox" />
+    <Field Table="mms_project" Field="ActualDuration" ControlType="TextBox" />
+    <Field Table="mms_project" Field="KeyProject" ControlType="TextBox" />
+    <Field Table="mms_project" Field="FundSource" ControlType="TextBox" />
+    <Field Table="mms_project" Field="Remark" ControlType="TextBox" />
+  </Fields>
+</Form>

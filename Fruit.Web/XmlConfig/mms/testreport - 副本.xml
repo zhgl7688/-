@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report CommonReport="True" From="tb_TestTable" OrderField="id" AddCondition="id&gt;100" Connection="LUOLAI1401Context" StoredProcedures="" UseCharts="True">
+  <Fields>
+    <Field Field="userName" ColumnWidth="200" Title="用户名" ControlType="Dropdown" ControlValue="用户选择" UseLinks="True">
+      <Links Operator="DrillReport" Url="http://hello.com/{userName}/{id}" TabTitle="您好" TabIconCls="icon-flag_blue">
+        <JavaScript><![CDATA[alert('hello '+row.userName);]]></JavaScript>
+      </Links>
+    </Field>
+    <Field Field="userPWD" ColumnWidth="100" Title="密码" ControlType="Date" ControlValue="用户选择" UseLinks="True">
+      <Links Url="http://www.baidu.com/#ie=utf-8&amp;wd={userName}" Operator="JavaScript" TabTitle="百度" TabIconCls="icon-search">
+        <JavaScript><![CDATA[alert('Hello '+row.userName);]]></JavaScript>
+      </Links>
+    </Field>
+    <Field Field="qty" ColumnAlign="right" FieldType="int" ColumnWidth="60" Title="附件" Group="计数" IsSumField="False" Alias="" ControlType="File" />
+  </Fields>
+  <DrillReports>
+    <DrillReport LinkFieldUid="userName" Title="用户名" CommonReport="True" From="Users" StoredProcedures="" OrderField="UserName" AddCondition="('{q.parent_userName}' = '' OR UserName = '{q.parent_userName}')" UseCharts="False">
+      <DrillReports />
+      <Fields>
+        <Field Field="UserName" ControlType="TextBox" Title="用户名" />
+      </Fields>
+      <Charts Title="子报表图表">
+        <XAxis FieldUid="userName" DataSourceType="FixedValue" DataValues="A,B,C,D,E,F" />
+        <YAxis FieldUid="userName" DataSourceType="" />
+        <Series>
+          <Item FieldUid="UserName" Type="line" Legend="用户名线" />
+        </Series>
+        <CustomOptions><![CDATA[]]></CustomOptions>
+        <OptionsHandler><![CDATA[options.series[0].data = [5,10,15,10,8,23,24,7];]]></OptionsHandler>
+      </Charts>
+    </DrillReport>
+  </DrillReports>
+  <Charts Title="附件图表" SubTitle="不是附件数量哦">
+    <XAxis DataSourceType="Field" DataValues="1,2,3,4,5,6,7,8,9" FieldUid="qty" />
+    <YAxis DataSourceType="" FieldUid="UserName" />
+    <Series>
+      <Item Type="bar" FieldUid="qty" Legend="附件" />
+      <Item FieldUid="qty" Type="line" Legend="附件线" />
+    </Series>
+    <CustomOptions><![CDATA[]]></CustomOptions>
+    <OptionsHandler><![CDATA[]]></OptionsHandler>
+  </Charts>
+</Report>

@@ -1,0 +1,67 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Form Connection="LUOLAI1401Context" Table="PM_Contracts" IsView="False" FilterTreeBindField="" TreeGridIdField="FDate" TreeGridNameField="FDate" TreeGridParentIdField="FDate">
+  <SubTables />
+  <SaveProducre />
+  <Buttons />
+  <GroupFilters />
+  <Fields>
+    <Field Table="PM_Contracts" Field="Code" DbType="varchar" Required="True" ListVisible="True" FormVisible="True" ControlType="AutoId" Title="合同编号" ControlValue="合同编号" ReadOnly="True">
+      <CascadeFilter />
+    </Field>
+    <Field Table="PM_Contracts" Field="Corp" DbType="varchar" Required="True" ListVisible="True" FormVisible="True" ControlType="Dropdown" Title="单位" ControlValue="单位" Searchable="True" ReadOnly="False">
+      <CascadeFilter />
+    </Field>
+    <Field Table="PM_Contracts" Field="Type" DbType="varchar" Required="True" ListVisible="True" FormVisible="True" ControlType="Dropdown" Title="合同类别" ControlValue="合同类别" DefaultValue="1" Searchable="True">
+      <CascadeFilter />
+    </Field>
+    <Field Table="PM_Contracts" Field="Amt" DbType="numeric" Required="True" ListVisible="True" FormVisible="True" ControlType="NumberBox" Title="造价（万）">
+      <CascadeFilter />
+    </Field>
+    <Field Table="PM_Contracts" Field="CustID" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="Dropdown" Title="分部负责人" ControlValue="合作单位" Searchable="True">
+      <CascadeFilter />
+    </Field>
+    <Field Table="PM_Contracts" Field="Owner" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="发包单位" Searchable="True">
+      <CascadeFilter />
+    </Field>
+    <Field Table="PM_Contracts" Field="Situation" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="MultiTextBox" Title="工程内容">
+      <CascadeFilter />
+    </Field>
+    <Field Table="PM_Contracts" Field="taxAmt" DbType="numeric" Required="True" ListVisible="True" FormVisible="True" ControlType="NumberBox" Title="印花税">
+      <CascadeFilter />
+    </Field>
+    <Field Table="PM_Contracts" Field="Region" DbType="varchar" Required="True" ListVisible="True" FormVisible="True" ControlType="Dropdown" Title="所在地" ControlValue="所在地" DefaultValue="1" Searchable="True">
+      <CascadeFilter />
+    </Field>
+    <Field Connection="LUOLAI1401Context" Table="PM_Contracts" Field="FDate" ControlType="Date" Title="合同日期" DbType="varchar" FormVisible="True" ListVisible="True" Searchable="True">
+      <CascadeFilter />
+    </Field>
+    <Field Table="PM_Contracts" Field="Remark" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="备注" FormWidth="3">
+      <CascadeFilter />
+    </Field>
+    <Field Table="PM_Contracts" Field="bCancel" DbType="varchar" Required="True" ListVisible="True" FormVisible="True" ControlType="Dropdown" Title="作废合同" ControlValue="是否" DefaultValue="n" Searchable="True">
+      <CascadeFilter />
+    </Field>
+    <Field Table="PM_Contracts" Field="CreatePerson" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="创建人" ReadOnly="True" FormInfoArea="">
+      <CascadeFilter />
+    </Field>
+    <Field Table="PM_Contracts" Field="CreateDate" DbType="datetime" Required="True" ListVisible="True" FormVisible="True" ControlType="Date" Title="创建时间" ReadOnly="True" FormInfoArea="">
+      <CascadeFilter />
+    </Field>
+    <Field Table="PM_Contracts" Field="UpdateDate" DbType="datetime" Required="True" ListVisible="True" FormVisible="True" ControlType="Date" Title="更新时间" ReadOnly="True" Searchable="False" FormInfoArea="">
+      <CascadeFilter />
+    </Field>
+    <Field Connection="LUOLAI1401Context" Table="PM_Contracts" Field="FID" ControlType="AutoId" Title="流水号" ControlValue="十二位编号" DbType="bigint" FormVisible="True">
+      <CascadeFilter />
+    </Field>
+    <Field Connection="LUOLAI1401Context" Table="PM_Contracts" ControlType="PopupSelect" ControlValue="承包合同" Title="所属合同" Field="affiliatedPM" FormVisible="True" ListVisible="True" DbType="varchar">
+      <CascadeFilter />
+      <PopupOption />
+    </Field>
+    <Field Connection="LUOLAI1401Context" Table="PM_Contracts" ControlType="TextBox" Title="签字人" Field="Receiver" FormInfoArea="扫描件" FormVisible="True" />
+    <Field Connection="LUOLAI1401Context" Table="PM_Contracts" ControlType="TextBox" Title="扫描件1" Field="Scan1" FormInfoArea="扫描件" FormVisible="True" ListVisible="False" />
+    <Field Connection="LUOLAI1401Context" Table="PM_Contracts" ControlType="TextBox" Title="扫描件2" Field="Scan2" FormInfoArea="扫描件" ListVisible="False" FormVisible="True" />
+    <Field Connection="LUOLAI1401Context" Table="PM_Contracts" ControlType="TextBox" Title="扫描件3" Field="Scan3" FormInfoArea="扫描件" ListVisible="False" FormVisible="True" />
+    <Field Connection="LUOLAI1401Context" Table="PM_Contracts" ControlType="TextBox" Title="扫描件4" Field="Scan4" FormInfoArea="扫描件" ListVisible="False" FormVisible="True" />
+    <Field Connection="LUOLAI1401Context" Table="PM_Contracts" ControlType="Date" FormVisible="True" Field="EDate" />
+  </Fields>
+</Form>
