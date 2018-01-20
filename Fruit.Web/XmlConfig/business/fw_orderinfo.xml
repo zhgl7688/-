@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Form Connection="LUOLAI1401Context" Table="fw_orderinfo" IsView="False" FilterTreeBindField="ordid" TreeGridIdField="ordid" TreeGridNameField="ordid" TreeGridParentIdField="ordid">
+  <SubTables>
+    <Table IsView="False" Table="fw_orderlist" Filter="">
+      <Rels>
+        <FieldRel RelField="ordid" MainField="ordid" />
+      </Rels>
+      <Fields>
+        <Field Table="fw_orderlist" Field="ordlistid" DbType="int" Required="True" ListVisible="True" FormVisible="True" ControlType="AutoId" ReadOnly="True" Title="明细编号" />
+        <Field Table="fw_orderlist" Field="proname" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="品名" />
+        <Field Table="fw_orderlist" Field="spec" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="规格" />
+        <Field Table="fw_orderlist" Field="price" DbType="decimal" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="单价" />
+        <Field Table="fw_orderlist" Field="counts" DbType="decimal" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="数量" />
+        <Field Table="fw_orderlist" Field="listcode" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="Guid编号" />
+      </Fields>
+    </Table>
+  </SubTables>
+  <SaveProducre />
+  <Buttons />
+  <GroupFilters />
+  <Fields>
+    <Field Table="fw_orderinfo" Field="ordid" DbType="char" Required="True" ListVisible="True" FormVisible="True" ControlType="AutoId" ReadOnly="True" Title="订单编号" />
+    <Field Table="fw_orderinfo" Field="selleruserid" DbType="char" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="卖家会员" />
+    <Field Table="fw_orderinfo" Field="buyeruserid" DbType="char" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="买家会员" />
+    <Field Table="fw_orderinfo" Field="tranmode" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="交易模式" />
+    <Field Table="fw_orderinfo" Field="contracturl" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="合同查看" />
+    <Field Table="fw_orderinfo" Field="fromid" DbType="int" Required="False" ListVisible="True" FormVisible="True" ControlType="NumberBox" Title="订单来自" />
+    <Field Table="fw_orderinfo" Field="ordstate" DbType="int" Required="False" ListVisible="True" FormVisible="True" ControlType="NumberBox" Title="订单状态" />
+    <Field Table="fw_orderinfo" Field="isactive" DbType="int" Required="False" ListVisible="True" FormVisible="True" ControlType="NumberBox" Title="是否有效订单" />
+    <Field Table="fw_orderinfo" Field="createdate" DbType="datetime" Required="False" ListVisible="True" FormVisible="True" ControlType="Date" Title="创建日期" />
+    <Field Table="fw_orderinfo" Field="ordcode" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="Guid编号" />
+  </Fields>
+</Form>

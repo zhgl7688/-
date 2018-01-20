@@ -1,0 +1,124 @@
+﻿@section scripts {
+<script type="text/javascript">
+    var data = @MvcHtmlString.Create(JsonExtension.ToJson(Model));
+    $(function(){
+        var db = fruit.databind.root;
+        data.form._row_state = @ViewBag.RowState;
+        db.loadData(data);
+        function loadDetial(){
+        }
+        loadDetial();
+        $.extend(db, {
+            refreshClick:function(){
+                location.assign(top.$(window.frameElement).data('src'));
+            },
+            rejectClick:function(){
+                location.assign(top.$(window.frameElement).data('src'));
+            },
+            newClick:function(){
+                fruit.ajax({
+                        url:'/api/Business/Fw_Auctionbuyinginfo/Newaucid',
+                        success:function(data) {
+                            parent.changeDocTab(window.frameElement, '/Business/Fw_Auctionbuyinginfo/edit/' + data);
+                        }
+                    })
+            },
+            deleteClick:function(){
+                $.messager.confirm('确认', '您确认要删除当前记录吗？', function(r){
+                    if(r){
+                        fruit.ajax({
+                            method:'DELETE',
+                            url: '/api/Business/Fw_Auctionbuyinginfo/'+db.getData('form').aucid,
+                            success: function(data) {
+                                fruit.message('success', '删除成功');
+                                top.closeDocTab(window.frameElement);
+                            }
+                        });
+                    }
+                });
+            },
+            saveClick:function(){
+                if(!db.validate()){fruit.message('error', '请更正验证错误！'); return;}
+                var data = db.getData();
+                fruit.ajax({
+                    url: '/api/Business/Fw_Auctionbuyinginfo/',
+                    data: JSON.stringify(data),
+                    success:function(result){
+                        if(result && result.success){
+                            fruit.message('success', '保存成功');
+                            if(result.form){
+                                db.loadData(result);
+                                loadDetial();
+                            }
+                        }
+                    }
+                });
+            }
+        });
+    });
+</script>
+}
+
+
+<div class="z-toolbar">
+    <a id="a_save" href="#" plain="true" class="easyui-linkbutton" icon="icon-save" data-bind="click:'saveClick',disable:'readonly'" title="保存">保存</a>
+    <a id="a_undo" href="#" plain="true" class="easyui-linkbutton" icon="icon-undo" data-bind="click:'rejectClick',disable:'readonly'" title="撤消">撤消</a>
+    <div class="datagrid-btn-separator"></div>
+    <a id="a_other" href="#" class="easyui-splitbutton" data-options="menu:'#divother',iconCls:'icon-application_go'" title="其他">其他</a>
+</div>
+
+<div id="divother" style="width:100px; display:none;">
+    <div data-options="iconCls:'icon-add'" data-bind="click:'newClick'">新增</div>
+    <div data-options="iconCls:'icon-cross'" data-bind="click:'deleteClick'">删除</div>
+    <div data-options="iconCls:'icon-arrow_refresh'" data-bind="click:'refreshClick'">刷新</div>
+</div>
+
+<div id="divrelations" style="width:100px; display:none;"></div>
+<div id="master" class="container_12" data-bind="inputwidth:0.9">
+<input type="hidden" data-bind="value:'form._row_state'" />
+    <div class="grid-group-1"><div class="lbl">竞拍编号</div>
+   <div class="val">
+<input type="text" data-bind="value:'form.aucid', readOnly:true" class="z-txt readonly" /></div></div>
+    <div class="grid-group-1"><div class="lbl">商品编号</div>
+   <div class="val">
+<input type="text" data-bind="value:'form.proid'" class="z-txt easyui-numberbox" data-options="required:false" /></div></div>
+    <div class="grid-group-1"><div class="lbl">原价</div>
+   <div class="val">
+<input type="text" data-bind="value:'form.primePrice'" class="easyui-validatebox z-txt" data-options="required:false" /></div></div>
+    <div class="grid-group-1"><div class="lbl">底价</div>
+   <div class="val">
+<input type="text" data-bind="value:'form.floorPrice'" class="easyui-validatebox z-txt" data-options="required:false" /></div></div>
+    <div class="grid-group-1"><div class="lbl">加价幅度</div>
+   <div class="val">
+<input type="text" data-bind="value:'form.addPrice'" class="z-txt easyui-numberbox" data-options="required:false" /></div></div>
+    <div class="grid-group-1"><div class="lbl">最高价</div>
+   <div class="val">
+<input type="text" data-bind="value:'form.cellingPrice'" class="easyui-validatebox z-txt" data-options="required:false" /></div></div>
+    <div class="grid-group-1"><div class="lbl">数量</div>
+   <div class="val">
+<input type="text" data-bind="value:'form.counts'" class="z-txt easyui-numberbox" data-options="required:false" /></div></div>
+    <div class="grid-group-1"><div class="lbl">发布人</div>
+   <div class="val">
+<input type="text" data-bind="value:'form.memid'" class="easyui-validatebox z-txt" data-options="required:false" /></div></div>
+    <div class="grid-group-1"><div class="lbl">开始时间</div>
+   <div class="val">
+<input type="text" data-bind="value:'form.starttime',readOnly:false" class="z-txt easyui-datebox" /></div></div>
+    <div class="grid-group-1"><div class="lbl">结束时间</div>
+   <div class="val">
+<input type="text" data-bind="value:'form.endtime',readOnly:false" class="z-txt easyui-datebox" /></div></div>
+    <div class="grid-group-1"><div class="lbl">最小竞拍人数</div>
+   <div class="val">
+<input type="text" data-bind="value:'form.minUserCount'" class="z-txt easyui-numberbox" data-options="required:false" /></div></div>
+    <div class="grid-group-1"><div class="lbl">竞拍宣传图</div>
+   <div class="val">
+<input type="text" data-bind="value:'form.imgurl'" class="easyui-validatebox z-txt" data-options="required:false" /></div></div>
+    <div class="grid-group-1"><div class="lbl">备注</div>
+   <div class="val">
+<input type="text" data-bind="value:'form.remark'" class="easyui-validatebox z-txt" data-options="required:false" /></div></div>
+    <div class="grid-group-1"><div class="lbl">竞拍上架</div>
+   <div class="val">
+<input type="text" data-bind="value:'form.isactive'" class="z-txt easyui-numberbox" data-options="required:false" /></div></div>
+    <div class="grid-group-1"><div class="lbl">GUID</div>
+   <div class="val">
+<input type="text" data-bind="value:'form.auccode'" class="easyui-validatebox z-txt" data-options="required:false" /></div></div>
+</div>

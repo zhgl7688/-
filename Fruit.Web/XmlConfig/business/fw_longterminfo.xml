@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Form Connection="LUOLAI1401Context" Table="fw_longterminfo" IsView="False" FilterTreeBindField="longid" TreeGridIdField="longid" TreeGridNameField="longid" TreeGridParentIdField="longid">
+  <SubTables />
+  <SaveProducre />
+  <Buttons />
+  <GroupFilters />
+  <Fields>
+    <Field Table="fw_longterminfo" Field="longid" DbType="int" Required="True" ListVisible="True" FormVisible="True" ControlType="AutoId" ReadOnly="True" Title="编号" />
+    <Field Table="fw_longterminfo" Field="longname" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="合同名" />
+    <Field Table="fw_longterminfo" Field="mode" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="交易模式" />
+    <Field Table="fw_longterminfo" Field="remark" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="备注" />
+    <Field Table="fw_longterminfo" Field="memid" DbType="char" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="会员" />
+    <Field Table="fw_longterminfo" Field="url" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="合同查看" />
+    <Field Table="fw_longterminfo" Field="createdate" DbType="datetime" Required="False" ListVisible="True" FormVisible="True" ControlType="Date" Title="创建日期" />
+    <Field Table="fw_longterminfo" Field="modifydate" DbType="datetime" Required="False" ListVisible="True" FormVisible="True" ControlType="Date" Title="修改日期" />
+    <Field Table="fw_longterminfo" Field="isactive" DbType="int" Required="False" ListVisible="True" FormVisible="True" ControlType="NumberBox" Title="是否可用" />
+    <Field Table="fw_longterminfo" Field="longcode" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="Guid编号" />
+  </Fields>
+</Form>

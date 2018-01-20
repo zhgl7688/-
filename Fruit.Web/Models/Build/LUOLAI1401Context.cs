@@ -50,35 +50,43 @@ namespace Fruit.Web.Models
         public virtual DbSet<three3> three3 { get; set; }
        
         public virtual DbSet<wq_Pop_Dealer> wq_Pop_Dealer { get; set; }
-        public virtual DbSet<BD_SysParas> BD_SysParas { get; set; }
-        public virtual DbSet<BD_InvTypes> BD_InvTypes { get; set; }
-        public virtual DbSet<BD_Customers> BD_Customers { get; set; }
-        public virtual DbSet<BD_CertTypes> BD_CertTypes { get; set; }
-        public virtual DbSet<BD_InvFees> BD_InvFees { get; set; }
-        public virtual DbSet<HR_Employees> HR_Employees { get; set; }
-        public virtual DbSet<HR_PractiseCerts> HR_PractiseCerts { get; set; }
-       public virtual DbSet<HR_WageSets> HR_WageSets { get; set; }
+        
+        
+        
+        
+        
+        
+        
+       
                
-        public virtual DbSet<PM_ProjectInfoBids> PM_ProjectInfoBids { get; set; }
-        public virtual DbSet<PM_ProjectInfos> PM_ProjectInfos { get; set; }
+        
+        
       
-        public virtual DbSet<PM_Contracts> PM_Contracts { get; set; }
-        public virtual DbSet<HR_CertLoans> HR_CertLoans { get; set; }
-        public virtual DbSet<HR_SocialSecuritySets> HR_SocialSecuritySets { get; set; }
-        public virtual DbSet<BD_Department> BD_Department { get; set; }
+        
+        
+        
+        
         
         public virtual DbSet<FA_Invoices> FA_Invoices { get; set; }
         public virtual DbSet<FA_InvAccepts> FA_InvAccepts { get; set; }
         public virtual DbSet<FA_Receipts> FA_Receipts { get; set; }
-        public virtual DbSet<PM_ContractFiles> PM_ContractFiles { get; set; }
-        public virtual DbSet<HR_HousingFundSet> HR_HousingFundSet { get; set; }
-        public virtual DbSet<HR_NewInvoices> HR_NewInvoices { get; set; }
-        public virtual DbSet<HR_Borrows> HR_Borrows { get; set; }
-        public virtual DbSet<PrepaidTax> PrepaidTax { get; set; }
-        public virtual DbSet<EnterpriseCertificate> EnterpriseCertificate { get; set; }
         
-        public virtual DbSet<v_Certificate> v_Certificate { get; set; }
-        public virtual DbSet<PM_Overdue> PM_Overdue { get; set; }
+        
+        
+        
+        public virtual DbSet<PrepaidTax> PrepaidTax { get; set; }
+        
+        
+        
+        
+        public virtual DbSet<fw_productinfo> fw_productinfo { get; set; }
+        public virtual DbSet<fw_orderinfo> fw_orderinfo { get; set; }
+        public virtual DbSet<fw_orderlist> fw_orderlist { get; set; }
+        public virtual DbSet<fw_auctionbuyinginfo> fw_auctionbuyinginfo { get; set; }
+        public virtual DbSet<fw_teambuyinginfo> fw_teambuyinginfo { get; set; }
+        public virtual DbSet<fw_longterminfo> fw_longterminfo { get; set; }
+        public virtual DbSet<fw_messageinfo> fw_messageinfo { get; set; }
+        public virtual DbSet<fw_recordinfo> fw_recordinfo { get; set; }
         // -- INSERT POINT --
     }
 }

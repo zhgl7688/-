@@ -163,11 +163,6 @@
     <Compile Include="App_Start\HttpControllerSelector.cs" />
     <Compile Include="App_Start\MenuRoleAuthorizeAttribute.cs" />
     <Compile Include="App_Start\SharedRoleAuthorizeAttribute.cs" />
-    <Compile Include="Areas\Contr\Controllers\ContractController.Build.cs" />
-    <Compile Include="Areas\Contr\Controllers\ContractController.cs" />
-    <Compile Include="Areas\Contr\Controllers\ContractfileController.Build.cs" />
-    <Compile Include="Areas\Contr\Controllers\ContractfileController.cs" />
-    <Compile Include="Areas\Fa\Controllers\FainvacceptController.Build.cs" />
     <Compile Include="Areas\Fa\Controllers\FainvacceptController.cs" />
     <Compile Include="Areas\Fa\FaAreaRegistration.cs" />
     <Compile Include="Areas\Mms\Controllers\AttendTrackController.cs" />
@@ -177,8 +172,6 @@
     <Compile Include="Areas\Mms\Controllers\MerchantController.cs" />
     <Compile Include="Areas\Mms\Controllers\ReceiveController.cs" />
     <Compile Include="Areas\Mms\MmsAreaRegistration.cs" />
-    <Compile Include="Areas\Rols\Controllers\CertloanController.Build.cs" />
-    <Compile Include="Areas\Rols\Controllers\CertloanController.cs" />
     <Compile Include="Areas\Sys\Controllers\CodeController.cs" />
     <Compile Include="Areas\Sys\Controllers\LogController.cs" />
     <Compile Include="Areas\Sys\Controllers\MenuController.cs" />
@@ -191,10 +184,6 @@
     <Compile Include="Areas\Sys\Models\SysMenuSelected.cs" />
     <Compile Include="Areas\Sys\Models\SysOrganizeSelected.cs" />
     <Compile Include="Areas\Sys\Models\SysPermissionSelected.cs" />
-    <Compile Include="Areas\Wage\Controllers\FundsetController.Build.cs" />
-    <Compile Include="Areas\Wage\Controllers\FundsetController.cs" />
-    <Compile Include="Areas\Wage\Controllers\SocialsercuritysetController.Build.cs" />
-    <Compile Include="Areas\Wage\Controllers\SocialsercuritysetController.cs" />
     <Compile Include="Common\WebApp.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
@@ -538,78 +527,14 @@
       <DependentUpon>ThreeformController.cs</DependentUpon>
     </Compile>
     <Compile Include="Areas\Contr\ContrAreaRegistration.cs" />
-    <Compile Include="Models\Build\HR_Employees.cs" />
     <Compile Include="Areas\Rols\RolsAreaRegistration.cs" />
-    <Compile Include="Areas\Rols\Controllers\EmployeeController.cs" />
-    <Compile Include="Areas\Rols\Controllers\EmployeeController.Build.cs">
-      <DependentUpon>EmployeeController.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Build\BD_InvTypes.cs" />
     <Compile Include="Areas\Baseinfo\BaseinfoAreaRegistration.cs" />
-    <Compile Include="Areas\Baseinfo\Controllers\FptypeController.cs" />
-    <Compile Include="Areas\Baseinfo\Controllers\FptypeController.Build.cs">
-      <DependentUpon>FptypeController.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Build\BD_Customers.cs" />
-    <Compile Include="Areas\Baseinfo\Controllers\CustomerController.cs" />
-    <Compile Include="Areas\Baseinfo\Controllers\CustomerController.Build.cs">
-      <DependentUpon>CustomerController.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Build\BD_SysParas.cs" />
-    <Compile Include="Areas\Baseinfo\Controllers\SetparamController.cs" />
-    <Compile Include="Areas\Baseinfo\Controllers\SetparamController.Build.cs">
-      <DependentUpon>SetparamController.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Build\BD_CertTypes.cs" />
-    <Compile Include="Areas\Baseinfo\Controllers\CerttypeController.cs" />
-    <Compile Include="Areas\Baseinfo\Controllers\CerttypeController.Build.cs">
-      <DependentUpon>CerttypeController.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Build\BD_InvFees.cs" />
-    <Compile Include="Areas\Baseinfo\Controllers\InvfeeController.cs" />
-    <Compile Include="Areas\Baseinfo\Controllers\InvfeeController.Build.cs">
-      <DependentUpon>InvfeeController.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Build\PM_ProjectInfoBids.cs" />
     <Compile Include="Areas\Project\ProjectAreaRegistration.cs" />
     <Compile Include="Areas\Project\Controllers\ProjectinfobidController.cs" />
-    <Compile Include="Areas\Project\Controllers\ProjectinfobidController.Build.cs">
-      <DependentUpon>ProjectinfobidController.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Build\PM_ProjectInfos.cs" />
-    <Compile Include="Areas\Project\Controllers\ProjectinfoController.cs" />
-    <Compile Include="Areas\Project\Controllers\ProjectinfoController.Build.cs">
-      <DependentUpon>ProjectinfoController.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Build\HR_WageSets.cs" />
     <Compile Include="Areas\Wage\WageAreaRegistration.cs" />
-    <Compile Include="Areas\Wage\Controllers\WagesetController.cs" />
-    <Compile Include="Areas\Wage\Controllers\WagesetController.Build.cs">
-      <DependentUpon>WagesetController.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Build\HR_PractiseCerts.cs" />
-    <Compile Include="Areas\Rols\Controllers\PractisecertController.cs" />
-    <Compile Include="Areas\Rols\Controllers\PractisecertController.Build.cs">
-      <DependentUpon>PractisecertController.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Build\PM_Contracts.cs" />
-    <Compile Include="Models\Build\HR_CertLoans.cs" />
-    <Compile Include="Models\Build\HR_SocialSecuritySets.cs" />
-    <Compile Include="Models\Build\BD_Department.cs" />
-    <Compile Include="Areas\Baseinfo\Controllers\DepartmentController.cs" />
-    <Compile Include="Areas\Baseinfo\Controllers\DepartmentController.Build.cs">
-      <DependentUpon>DepartmentController.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Areas\Project\Controllers\BidprojectinfoController.cs" />
-    <Compile Include="Areas\Project\Controllers\BidprojectinfoController.Build.cs">
-      <DependentUpon>BidprojectinfoController.cs</DependentUpon>
-    </Compile>
     <Compile Include="Models\Build\FA_Invoices.cs" />
     <Compile Include="Models\Build\FA_InvAccepts.cs" />
     <Compile Include="Areas\Fa\Controllers\FainvoiceController.cs" />
-    <Compile Include="Areas\Fa\Controllers\FainvoiceController.Build.cs">
-      <DependentUpon>FainvoiceController.cs</DependentUpon>
-    </Compile>
     <Compile Include="Models\Build\FA_Receipts.cs" />
     <Compile Include="Areas\Fa\Controllers\FareceiptController.cs" />
     <Compile Include="Areas\Fa\Controllers\FareceiptController.Build.cs">
@@ -619,65 +544,52 @@
     <Compile Include="Areas\Fa\Controllers\SettleController.Build.cs">
       <DependentUpon>SettleController.cs</DependentUpon>
     </Compile>
-    <Compile Include="Models\Build\PM_ContractFiles.cs" />
-    <Compile Include="Models\Build\HR_HousingFundSet.cs" />
-    <Compile Include="Areas\Wage\Controllers\Hr_HousfundrecordsController.cs" />
-    <Compile Include="Areas\Wage\Controllers\Hr_HousfundrecordsController.Build.cs">
-      <DependentUpon>Hr_HousfundrecordsController.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Areas\Wage\Controllers\Hr_SocialsecrecordsController.cs" />
-    <Compile Include="Areas\Wage\Controllers\Hr_SocialsecrecordsController.Build.cs">
-      <DependentUpon>Hr_SocialsecrecordsController.cs</DependentUpon>
-    </Compile>
     <Compile Include="Areas\Fa\Controllers\Fa_ProjsettleController.cs" />
     <Compile Include="Areas\Fa\Controllers\Fa_ProjsettleController.Build.cs">
       <DependentUpon>Fa_ProjsettleController.cs</DependentUpon>
     </Compile>
-    <Compile Include="Areas\Project\Controllers\Fa_DepositController.cs" />
-    <Compile Include="Areas\Project\Controllers\Fa_DepositController.Build.cs">
-      <DependentUpon>Fa_DepositController.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Build\HR_NewInvoices.cs" />
-    <Compile Include="Areas\Baseinfo\Controllers\NewinvoicesController.cs" />
-    <Compile Include="Areas\Baseinfo\Controllers\NewinvoicesController.Build.cs">
-      <DependentUpon>NewinvoicesController.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Build\HR_Borrows.cs" />
-    <Compile Include="Areas\Rols\Controllers\BorrowsController.cs" />
-    <Compile Include="Areas\Rols\Controllers\BorrowsController.Build.cs">
-      <DependentUpon>BorrowsController.cs</DependentUpon>
-    </Compile>
     <Compile Include="Models\Build\PrepaidTax.cs" />
     <Compile Include="Areas\Fa\Controllers\PrepaidController.cs" />
-    <Compile Include="Areas\Fa\Controllers\PrepaidController.Build.cs">
-      <DependentUpon>PrepaidController.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Build\EnterpriseCertificate.cs" />
-    <Compile Include="Areas\Rols\Controllers\EnterpriseController.cs" />
-    <Compile Include="Areas\Rols\Controllers\EnterpriseController.Build.cs">
-      <DependentUpon>EnterpriseController.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Areas\Contr\Controllers\RcontractController.cs" />
-    <Compile Include="Areas\Contr\Controllers\RcontractController.Build.cs">
-      <DependentUpon>RcontractController.cs</DependentUpon>
-    </Compile>
     <Compile Include="Areas\Fa\Controllers\RreceiptsController.cs" />
-    <Compile Include="Areas\Fa\Controllers\RreceiptsController.Build.cs">
-      <DependentUpon>RreceiptsController.cs</DependentUpon>
-    </Compile>
     <Compile Include="Areas\Fa\Controllers\RinvoiceController.cs" />
-    <Compile Include="Areas\Fa\Controllers\RinvoiceController.Build.cs">
-      <DependentUpon>RinvoiceController.cs</DependentUpon>
-    </Compile>
     <Compile Include="Areas\Fa\Controllers\RinvacceptsController.cs" />
-    <Compile Include="Areas\Fa\Controllers\RinvacceptsController.Build.cs">
-      <DependentUpon>RinvacceptsController.cs</DependentUpon>
+    <Compile Include="Models\Build\fw_productinfo.cs" />
+    <Compile Include="Areas\Business\BusinessAreaRegistration.cs" />
+    <Compile Include="Areas\Business\Controllers\Fw_ProductinfoController.cs" />
+    <Compile Include="Areas\Business\Controllers\Fw_ProductinfoController.Build.cs">
+      <DependentUpon>Fw_ProductinfoController.cs</DependentUpon>
     </Compile>
-    <Compile Include="Models\Build\v_Certificate.cs" />
-    <Compile Include="Models\Build\PM_Overdue.cs" />
-    <Compile Include="Areas\Baseinfo\Controllers\OverdueController.cs" />
-    <Compile Include="Areas\Baseinfo\Controllers\OverdueController.Build.cs">
-      <DependentUpon>OverdueController.cs</DependentUpon>
+    <Compile Include="Models\Build\fw_orderinfo.cs" />
+    <Compile Include="Models\Build\fw_orderlist.cs" />
+    <Compile Include="Areas\Business\Controllers\Fw_OrderinfoController.cs" />
+    <Compile Include="Areas\Business\Controllers\Fw_OrderinfoController.Build.cs">
+      <DependentUpon>Fw_OrderinfoController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Build\fw_auctionbuyinginfo.cs" />
+    <Compile Include="Areas\Business\Controllers\Fw_AuctionbuyinginfoController.cs" />
+    <Compile Include="Areas\Business\Controllers\Fw_AuctionbuyinginfoController.Build.cs">
+      <DependentUpon>Fw_AuctionbuyinginfoController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Build\fw_teambuyinginfo.cs" />
+    <Compile Include="Areas\Business\Controllers\Fw_TeambuyinginfoController.cs" />
+    <Compile Include="Areas\Business\Controllers\Fw_TeambuyinginfoController.Build.cs">
+      <DependentUpon>Fw_TeambuyinginfoController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Build\fw_longterminfo.cs" />
+    <Compile Include="Areas\Business\Controllers\Fw_LongterminfoController.cs" />
+    <Compile Include="Areas\Business\Controllers\Fw_LongterminfoController.Build.cs">
+      <DependentUpon>Fw_LongterminfoController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Build\fw_messageinfo.cs" />
+    <Compile Include="Areas\Message\MessageAreaRegistration.cs" />
+    <Compile Include="Areas\Message\Controllers\Fw_MessageinfoController.cs" />
+    <Compile Include="Areas\Message\Controllers\Fw_MessageinfoController.Build.cs">
+      <DependentUpon>Fw_MessageinfoController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Build\fw_recordinfo.cs" />
+    <Compile Include="Areas\Message\Controllers\Fw_RecordinfoController.cs" />
+    <Compile Include="Areas\Message\Controllers\Fw_RecordinfoController.Build.cs">
+      <DependentUpon>Fw_RecordinfoController.cs</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -3495,7 +3407,6 @@
     <Content Include="Areas\Rols\Views\Practisecert - 复制\Edit.cshtml" />
     <Content Include="Areas\Rols\Views\Practisecert - 复制\Index.cshtml" />
     <Content Include="CamPartialPage.html" />
-    <Content Include="Areas\Rols\Views\Practisecert\Edit.cshtml" />
     <Content Include="Areas\Contr\Views\Contract\Edit2.cshtml" />
     <None Include="bundleconfig.json" />
     <None Include="Properties\PublishProfiles\Base.pubxml" />
@@ -3533,7 +3444,11 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Areas\Baseinfo\Models\" />
+    <Folder Include="Areas\Baseinfo\Views\Newinvoices\" />
+    <Folder Include="Areas\Baseinfo\Views\Overdue\" />
+    <Folder Include="Areas\Business\Models\" />
     <Folder Include="Areas\Contr\Models\" />
+    <Folder Include="Areas\Contr\Views\Rcontract\" />
     <Folder Include="Areas\Fa\Models\" />
     <Folder Include="Areas\Mms\Models\" />
     <Folder Include="Areas\Mms\Views\Merchant\" />
@@ -3541,6 +3456,9 @@
     <Folder Include="Areas\Psi\Models\" />
     <Folder Include="Areas\Put\Models\" />
     <Folder Include="Areas\Rols\Models\" />
+    <Folder Include="Areas\Rols\Views\Borrows\" />
+    <Folder Include="Areas\Rols\Views\Enterprise\" />
+    <Folder Include="Areas\Rols\Views\Vcertificate\" />
     <Folder Include="Areas\Sys\Views\Default\" />
     <Folder Include="Areas\Wage\Models\" />
     <Folder Include="Areas\Whe\Models\" />
@@ -3549,16 +3467,17 @@
     <Folder Include="Views\Plugins\" />
     <Folder Include="XmlConfig\" />
     <Folder Include="Models\Build" />
-    <Folder Include="Areas\Baseinfo\Views\Newinvoices" />
-    <Folder Include="Areas\Rols\Views\Borrows" />
-    <Folder Include="Areas\Fa\Views\Prepaid" />
-    <Folder Include="Areas\Rols\Views\Enterprise" />
-    <Folder Include="Areas\Contr\Views\Rcontract" />
-    <Folder Include="Areas\Fa\Views\Rreceipts" />
-    <Folder Include="Areas\Fa\Views\Rinvoice" />
-    <Folder Include="Areas\Fa\Views\Rinvaccepts" />
-    <Folder Include="Areas\Rols\Views\Vcertificate" />
-    <Folder Include="Areas\Baseinfo\Views\Overdue" />
+    <Folder Include="Areas\Business\Views\Fw_Orderinfo" />
+    <Folder Include="Areas\Business\Views\Fw_Auctionbuyinginfo" />
+    <Folder Include="Areas\Business\Views\Fw_Teambuyinginfo" />
+    <Folder Include="Areas\Business\Views\Fw_Longterminfo" />
+    <Folder Include="Areas\Message" />
+    <Folder Include="Areas\Message\Controllers" />
+    <Folder Include="Areas\Message\Models" />
+    <Folder Include="Areas\Message\Views" />
+    <Folder Include="Areas\Message\Views\Shared" />
+    <Folder Include="Areas\Message\Views\Fw_Messageinfo" />
+    <Folder Include="Areas\Message\Views\Fw_Recordinfo" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -3650,73 +3569,48 @@
     <Content Include="Areas\Rols\Views\_ViewStart.cshtml" />
     <Content Include="Areas\Rols\Views\web.config" />
     <Content Include="Areas\Rols\Views\Shared\_Layout.cshtml" />
-    <Content Include="Areas\Rols\Views\Employee\Index.cshtml" />
-    <Content Include="Areas\Rols\Views\Employee\Edit.cshtml" />
     <Content Include="Areas\Baseinfo\Views\_ViewStart.cshtml" />
     <Content Include="Areas\Baseinfo\Views\web.config" />
     <Content Include="Areas\Baseinfo\Views\Shared\_Layout.cshtml" />
-    <Content Include="Areas\Baseinfo\Views\Fptype\Index.cshtml" />
-    <Content Include="Areas\Baseinfo\Views\Fptype\Edit.cshtml" />
-    <Content Include="Areas\Baseinfo\Views\Customer\Index.cshtml" />
-    <Content Include="Areas\Baseinfo\Views\Customer\Edit.cshtml" />
-    <Content Include="Areas\Baseinfo\Views\Setparam\Index.cshtml" />
-    <Content Include="Areas\Baseinfo\Views\Setparam\Edit.cshtml" />
-    <Content Include="Areas\Baseinfo\Views\Certtype\Index.cshtml" />
-    <Content Include="Areas\Baseinfo\Views\Certtype\Edit.cshtml" />
-    <Content Include="Areas\Baseinfo\Views\Invfee\Index.cshtml" />
-    <Content Include="Areas\Baseinfo\Views\Invfee\Edit.cshtml" />
     <Content Include="Areas\Project\Views\_ViewStart.cshtml" />
     <Content Include="Areas\Project\Views\web.config" />
     <Content Include="Areas\Project\Views\Shared\_Layout.cshtml" />
     <Content Include="Areas\Project\Views\Projectinfobid\Index.cshtml" />
     <Content Include="Areas\Project\Views\Projectinfobid\Edit.cshtml" />
-    <Content Include="Areas\Project\Views\Projectinfo\Index.cshtml" />
-    <Content Include="Areas\Project\Views\Projectinfo\Edit.cshtml" />
     <Content Include="Areas\Wage\Views\_ViewStart.cshtml" />
     <Content Include="Areas\Wage\Views\web.config" />
     <Content Include="Areas\Wage\Views\Shared\_Layout.cshtml" />
-    <Content Include="Areas\Wage\Views\Wageset\Index.cshtml" />
-    <Content Include="Areas\Wage\Views\Wageset\Edit.cshtml" />
-    <Content Include="Areas\Rols\Views\Practisecert\Index.cshtml" />
     <Content Include="Areas\Rols\Views\Practisecert\Edit2.cshtml" />
-    <Content Include="Areas\Contr\Views\Contract\Index.cshtml" />
-    <Content Include="Areas\Contr\Views\Contract\Edit.cshtml" />
-    <Content Include="Areas\Rols\Views\Certloan\Index.cshtml" />
-    <Content Include="Areas\Rols\Views\Certloan\Edit.cshtml" />
-    <Content Include="Areas\Wage\Views\Socialsercurityset\Index.cshtml" />
-    <Content Include="Areas\Wage\Views\Socialsercurityset\Edit.cshtml" />
-    <Content Include="Areas\Baseinfo\Views\Department\Index.cshtml" />
-    <Content Include="Areas\Baseinfo\Views\Department\Edit.cshtml" />
-    <Content Include="Areas\Project\Views\Bidprojectinfo\Index.cshtml" />
-    <Content Include="Areas\Project\Views\Bidprojectinfo\Edit.cshtml" />
     <Content Include="Areas\Fa\Views\Fareceipt\Index.cshtml" />
     <Content Include="Areas\Fa\Views\Fareceipt\Edit.cshtml" />
     <Content Include="Areas\Fa\Views\Settle\Index.cshtml" />
-    <Content Include="Areas\Contr\Views\Contractfile\Index.cshtml" />
-    <Content Include="Areas\Contr\Views\Contractfile\Edit.cshtml" />
-    <Content Include="Areas\Wage\Views\Fundset\Index.cshtml" />
-    <Content Include="Areas\Wage\Views\Fundset\Edit.cshtml" />
-    <Content Include="Areas\Wage\Views\Hr_Housfundrecords\Index.cshtml" />
-    <Content Include="Areas\Wage\Views\Hr_Socialsecrecords\Index.cshtml" />
     <Content Include="App_Data\Reports\Kehuoduizhang.frx" />
     <Content Include="Areas\Fa\Views\Fa_Projsettle\Index.cshtml" />
-    <Content Include="Areas\Project\Views\Fa_Deposit\Index.cshtml" />
-    <Content Include="Areas\Baseinfo\Views\Newinvoices\Index.cshtml" />
-    <Content Include="Areas\Baseinfo\Views\Newinvoices\Edit.cshtml" />
-    <Content Include="Areas\Rols\Views\Borrows\Index.cshtml" />
-    <Content Include="Areas\Rols\Views\Borrows\Edit.cshtml" />
     <Content Include="Areas\Fa\Views\Prepaid\Index.cshtml" />
     <Content Include="Areas\Fa\Views\Prepaid\Edit.cshtml" />
-    <Content Include="Areas\Rols\Views\Enterprise\Index.cshtml" />
-    <Content Include="Areas\Rols\Views\Enterprise\Edit.cshtml" />
-    <Content Include="Areas\Contr\Views\Rcontract\Index.cshtml" />
     <Content Include="Areas\Fa\Views\Rreceipts\Index.cshtml" />
     <Content Include="Areas\Fa\Views\Rinvoice\Index.cshtml" />
     <Content Include="Areas\Fa\Views\Rinvaccepts\Index.cshtml" />
-    <Content Include="Areas\Rols\Views\Vcertificate\Index.cshtml" />
-    <Content Include="Areas\Rols\Views\Vcertificate\Edit.cshtml" />
-    <Content Include="Areas\Baseinfo\Views\Overdue\Index.cshtml" />
-    <Content Include="Areas\Baseinfo\Views\Overdue\Edit.cshtml" />
+    <Content Include="Areas\Business\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\Business\Views\web.config" />
+    <Content Include="Areas\Business\Views\Shared\_Layout.cshtml" />
+    <Content Include="Areas\Business\Views\Fw_Productinfo\Index.cshtml" />
+    <Content Include="Areas\Business\Views\Fw_Productinfo\Edit.cshtml" />
+    <Content Include="Areas\Business\Views\Fw_Orderinfo\Index.cshtml" />
+    <Content Include="Areas\Business\Views\Fw_Orderinfo\Edit.cshtml" />
+    <Content Include="Areas\Business\Views\Fw_Auctionbuyinginfo\Index.cshtml" />
+    <Content Include="Areas\Business\Views\Fw_Auctionbuyinginfo\Edit.cshtml" />
+    <Content Include="Areas\Business\Views\Fw_Teambuyinginfo\Index.cshtml" />
+    <Content Include="Areas\Business\Views\Fw_Teambuyinginfo\Edit.cshtml" />
+    <Content Include="Areas\Business\Views\Fw_Longterminfo\Index.cshtml" />
+    <Content Include="Areas\Business\Views\Fw_Longterminfo\Edit.cshtml" />
+    <Content Include="Areas\Message\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\Message\Views\web.config" />
+    <Content Include="Areas\Message\Views\Shared\_Layout.cshtml" />
+    <Content Include="Areas\Message\Views\Fw_Messageinfo\Index.cshtml" />
+    <Content Include="Areas\Message\Views\Fw_Messageinfo\Edit.cshtml" />
+    <Content Include="Areas\Message\Views\Fw_Recordinfo\Index.cshtml" />
+    <Content Include="Areas\Message\Views\Fw_Recordinfo\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Fruit.Core\Fruit.Core.csproj">

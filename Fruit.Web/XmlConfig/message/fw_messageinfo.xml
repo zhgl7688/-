@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Form Connection="LUOLAI1401Context" Table="fw_messageinfo" IsView="False" FilterTreeBindField="messid" TreeGridIdField="messid" TreeGridNameField="messid" TreeGridParentIdField="messid">
+  <SubTables />
+  <SaveProducre />
+  <Buttons />
+  <GroupFilters />
+  <Fields>
+    <Field Table="fw_messageinfo" Field="messid" DbType="int" Required="True" ListVisible="True" FormVisible="True" ControlType="AutoId" ReadOnly="True" Title="编号" />
+    <Field Table="fw_messageinfo" Field="fromid" DbType="char" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="发信人" />
+    <Field Table="fw_messageinfo" Field="toid" DbType="char" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="收信人" />
+    <Field Table="fw_messageinfo" Field="title" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="标题" />
+    <Field Table="fw_messageinfo" Field="messcontent" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="内容" />
+    <Field Table="fw_messageinfo" Field="attachmenturl" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="附件地址" />
+    <Field Table="fw_messageinfo" Field="createtime" DbType="datetime" Required="False" ListVisible="True" FormVisible="True" ControlType="Date" Title="创建时间" />
+    <Field Table="fw_messageinfo" Field="isread" DbType="int" Required="False" ListVisible="True" FormVisible="True" ControlType="NumberBox" Title="已读" />
+    <Field Table="fw_messageinfo" Field="isdelete" DbType="int" Required="False" ListVisible="True" FormVisible="True" ControlType="NumberBox" Title="已删除" />
+    <Field Table="fw_messageinfo" Field="messcode" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="Guid编号" />
+  </Fields>
+</Form>

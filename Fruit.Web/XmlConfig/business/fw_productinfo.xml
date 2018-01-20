@@ -1,0 +1,66 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Form Connection="LUOLAI1401Context" Table="fw_productinfo" IsView="False" FilterTreeBindField="proid" TreeGridIdField="proid" TreeGridNameField="proid" TreeGridParentIdField="proid">
+  <SubTables />
+  <SaveProducre />
+  <Buttons />
+  <GroupFilters />
+  <Fields>
+    <Field Table="fw_productinfo" Field="proid" DbType="int" Required="True" ListVisible="True" FormVisible="True" ControlType="AutoId" ReadOnly="True" Title="商品编号">
+      <CascadeFilter />
+    </Field>
+    <Field Table="fw_productinfo" Field="catid" DbType="int" Required="False" ListVisible="True" FormVisible="True" ControlType="NumberBox" Title="分类编号">
+      <CascadeFilter />
+    </Field>
+    <Field Table="fw_productinfo" Field="proname" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="品名">
+      <CascadeFilter />
+    </Field>
+    <Field Table="fw_productinfo" Field="spec" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="规格">
+      <CascadeFilter />
+    </Field>
+    <Field Table="fw_productinfo" Field="memid" DbType="char" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="会员">
+      <CascadeFilter />
+    </Field>
+    <Field Table="fw_productinfo" Field="price" DbType="decimal" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="单价">
+      <CascadeFilter />
+    </Field>
+    <Field Table="fw_productinfo" Field="sellmode" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="交易模式">
+      <CascadeFilter />
+    </Field>
+    <Field Table="fw_productinfo" Field="grade" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="牌号">
+      <CascadeFilter />
+    </Field>
+    <Field Table="fw_productinfo" Field="minprodcount" DbType="int" Required="False" ListVisible="True" FormVisible="True" ControlType="NumberBox" Title="起订量">
+      <CascadeFilter />
+    </Field>
+    <Field Table="fw_productinfo" Field="stock" DbType="int" Required="False" ListVisible="True" FormVisible="True" ControlType="NumberBox" Title="库存">
+      <CascadeFilter />
+    </Field>
+    <Field Table="fw_productinfo" Field="isactive" DbType="int" Required="False" ListVisible="True" FormVisible="True" ControlType="NumberBox" Title="是否已上架">
+      <CascadeFilter />
+    </Field>
+    <Field Table="fw_productinfo" Field="depositseller" DbType="int" Required="False" ListVisible="True" FormVisible="True" ControlType="NumberBox" Title="卖家保证金率%">
+      <CascadeFilter />
+    </Field>
+    <Field Table="fw_productinfo" Field="depositbuyer" DbType="int" Required="False" ListVisible="True" FormVisible="True" ControlType="NumberBox" Title="买家保证金率%">
+      <CascadeFilter />
+    </Field>
+    <Field Table="fw_productinfo" Field="issale" DbType="int" Required="False" ListVisible="True" FormVisible="True" ControlType="NumberBox" Title="销售（求购）">
+      <CascadeFilter />
+    </Field>
+    <Field Table="fw_productinfo" Field="createdate" DbType="datetime" Required="False" ListVisible="True" FormVisible="True" ControlType="Date" Title="创建日期">
+      <CascadeFilter />
+    </Field>
+    <Field Table="fw_productinfo" Field="modifydate" DbType="datetime" Required="False" ListVisible="True" FormVisible="True" ControlType="Date" Title="修改日期">
+      <CascadeFilter />
+    </Field>
+    <Field Table="fw_productinfo" Field="viewcount" DbType="int" Required="False" ListVisible="True" FormVisible="True" ControlType="NumberBox" Title="热度">
+      <CascadeFilter />
+    </Field>
+    <Field Table="fw_productinfo" Field="remark" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="备注">
+      <CascadeFilter />
+    </Field>
+    <Field Table="fw_productinfo" Field="procode" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="Guid编号">
+      <CascadeFilter />
+    </Field>
+  </Fields>
+</Form>

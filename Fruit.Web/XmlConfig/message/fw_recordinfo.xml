@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Form Connection="LUOLAI1401Context" Table="fw_recordinfo" IsView="False" FilterTreeBindField="Id" TreeGridIdField="Id" TreeGridNameField="Id" TreeGridParentIdField="Id">
+  <SubTables />
+  <SaveProducre />
+  <Buttons />
+  <GroupFilters />
+  <Fields>
+    <Field Table="fw_recordinfo" Field="Id" DbType="int" Required="True" ListVisible="True" FormVisible="True" ControlType="AutoId" ReadOnly="True" Title="编号" />
+    <Field Table="fw_recordinfo" Field="fromid" DbType="int" Required="False" ListVisible="True" FormVisible="True" ControlType="NumberBox" Title="来源编号" />
+    <Field Table="fw_recordinfo" Field="frommodule" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="来源模块（洽谈、竞拍或团购）" />
+    <Field Table="fw_recordinfo" Field="price" DbType="decimal" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="单价" />
+    <Field Table="fw_recordinfo" Field="counts" DbType="decimal" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="数量" />
+    <Field Table="fw_recordinfo" Field="memid" DbType="char" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="会员" />
+    <Field Table="fw_recordinfo" Field="createdate" DbType="datetime" Required="False" ListVisible="True" FormVisible="True" ControlType="Date" Title="创建日期" />
+    <Field Table="fw_recordinfo" Field="fromcode" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="Guid编号" />
+  </Fields>
+</Form>

@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Form Connection="LUOLAI1401Context" Table="fw_teambuyinginfo" IsView="False" FilterTreeBindField="" TreeGridIdField="" TreeGridNameField="" TreeGridParentIdField="">
+  <SubTables />
+  <SaveProducre />
+  <Buttons />
+  <GroupFilters />
+  <Fields>
+    <Field Table="fw_captialaccountinfo" Field="accid" DbType="int" Required="True" ListVisible="True" FormVisible="True" ControlType="AutoId" ReadOnly="True" Title="编号" />
+    <Field Table="fw_captialaccountinfo" Field="amount" DbType="decimal" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="商品编号" />
+    <Field Table="fw_captialaccountinfo" Field="ordid" DbType="char" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" />
+    <Field Table="fw_captialaccountinfo" Field="remark" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" />
+    <Field Table="fw_captialaccountinfo" Field="HandleType" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" />
+    <Field Table="fw_captialaccountinfo" Field="HandleAmount" DbType="decimal" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" />
+    <Field Table="fw_captialaccountinfo" Field="HandleDate" DbType="datetime" Required="False" ListVisible="True" FormVisible="True" ControlType="Date" />
+    <Field Table="fw_captialaccountinfo" Field="corpid" DbType="int" Required="False" ListVisible="True" FormVisible="True" ControlType="NumberBox" />
+    <Field Table="fw_teambuyinginfo" Field="teamid" DbType="int" Required="True" ListVisible="True" FormVisible="True" ControlType="AutoId" ReadOnly="True" Title="编号" />
+    <Field Table="fw_teambuyinginfo" Field="proid" DbType="int" Required="False" ListVisible="True" FormVisible="True" ControlType="NumberBox" Title="商品编号" />
+    <Field Table="fw_teambuyinginfo" Field="primePrice" DbType="decimal" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="原价" />
+    <Field Table="fw_teambuyinginfo" Field="teamPrice" DbType="decimal" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="团购价" />
+    <Field Table="fw_teambuyinginfo" Field="counts" DbType="int" Required="False" ListVisible="True" FormVisible="True" ControlType="NumberBox" Title="商品总数量" />
+    <Field Table="fw_teambuyinginfo" Field="memid" DbType="char" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="发布人" />
+    <Field Table="fw_teambuyinginfo" Field="starttime" DbType="datetime" Required="False" ListVisible="True" FormVisible="True" ControlType="Date" Title="开始时间" />
+    <Field Table="fw_teambuyinginfo" Field="Endtime" DbType="datetime" Required="False" ListVisible="True" FormVisible="True" ControlType="Date" Title="结束时间" />
+    <Field Table="fw_teambuyinginfo" Field="minUserCount" DbType="int" Required="False" ListVisible="True" FormVisible="True" ControlType="NumberBox" Title="最低团购人数" />
+    <Field Table="fw_teambuyinginfo" Field="minProdCount" DbType="decimal" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="商品起订量" />
+    <Field Table="fw_teambuyinginfo" Field="imgurl" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="团购宣传图片" />
+    <Field Table="fw_teambuyinginfo" Field="remark" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="备注" />
+    <Field Table="fw_teambuyinginfo" Field="isactive" DbType="int" Required="False" ListVisible="True" FormVisible="True" ControlType="NumberBox" Title="是否启用（团购开始）" />
+    <Field Table="fw_teambuyinginfo" Field="teamcode" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="Guid编号" />
+  </Fields>
+</Form>
