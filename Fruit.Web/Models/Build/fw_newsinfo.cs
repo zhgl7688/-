@@ -19,14 +19,19 @@ namespace Fruit.Web.Models
         [Key, Column(Order = 0), DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int newsid { get; set; }
         public string newstitle { get; set; }
+        public string newscontenth { get; set; }
         public string newscontent { get; set; }
         public string category { get; set; }
         public int? clicks { get; set; }
         public int? isslide { get; set; }
         public string slidepicurl { get; set; }
         public string imgurl { get; set; }
-        public int? userid { get; set; }
+        public string userid { get; set; }
         public DateTime? pubtime { get; set; }
         public string newscode { get; set; }
+        public DateTime? CreateDate { get; set; }
+        public string CreatePerson { get; set; }
+        public DateTime? UpdateDate { get; set; }
+        public string UpdatePerson { get; set; }
     }
 }

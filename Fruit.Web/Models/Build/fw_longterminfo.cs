@@ -23,9 +23,12 @@ namespace Fruit.Web.Models
         public string remark { get; set; }
         public string memid { get; set; }
         public string url { get; set; }
-        public DateTime? createdate { get; set; }
-        public DateTime? modifydate { get; set; }
         public int? isactive { get; set; }
+        public int? ispassed { get; set; }
         public string longcode { get; set; }
+        public DateTime? CreateDate { get; set; }
+        public string CreatePerson { get; set; }
+        public DateTime? UpdateDate { get; set; }
+        public string UpdatePerson { get; set; }
     }
 }

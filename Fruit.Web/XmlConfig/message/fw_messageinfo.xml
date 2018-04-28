@@ -5,15 +5,46 @@
   <Buttons />
   <GroupFilters />
   <Fields>
-    <Field Table="fw_messageinfo" Field="messid" DbType="int" Required="True" ListVisible="True" FormVisible="True" ControlType="AutoId" ReadOnly="True" Title="编号" />
-    <Field Table="fw_messageinfo" Field="fromid" DbType="char" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="发信人" />
-    <Field Table="fw_messageinfo" Field="toid" DbType="char" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="收信人" />
-    <Field Table="fw_messageinfo" Field="title" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="标题" />
-    <Field Table="fw_messageinfo" Field="messcontent" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="内容" />
-    <Field Table="fw_messageinfo" Field="attachmenturl" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="附件地址" />
-    <Field Table="fw_messageinfo" Field="createtime" DbType="datetime" Required="False" ListVisible="True" FormVisible="True" ControlType="Date" Title="创建时间" />
-    <Field Table="fw_messageinfo" Field="isread" DbType="int" Required="False" ListVisible="True" FormVisible="True" ControlType="NumberBox" Title="已读" />
-    <Field Table="fw_messageinfo" Field="isdelete" DbType="int" Required="False" ListVisible="True" FormVisible="True" ControlType="NumberBox" Title="已删除" />
-    <Field Table="fw_messageinfo" Field="messcode" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="Guid编号" />
+    <Field Table="fw_messageinfo" Field="messid" DbType="int" Required="True" ListVisible="True" FormVisible="True" ControlType="AutoId" ReadOnly="True" Title="编号">
+      <CascadeFilter />
+    </Field>
+    <Field Table="fw_messageinfo" Field="title" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="标题" Searchable="True">
+      <CascadeFilter />
+    </Field>
+    <Field Table="fw_messageinfo" Field="fromid" DbType="char" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="发信人" Searchable="True">
+      <CascadeFilter />
+    </Field>
+    <Field Table="fw_messageinfo" Field="toid" DbType="char" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="收信人" Searchable="True">
+      <CascadeFilter />
+    </Field>
+    <Field Table="fw_messageinfo" Field="attachmenturl" DbType="varchar" Required="False" ListVisible="False" FormVisible="True" ControlType="File" Title="附件地址">
+      <CascadeFilter />
+      <FileControlInfo />
+    </Field>
+    <Field Table="fw_messageinfo" Field="isread" DbType="int" Required="False" ListVisible="True" FormVisible="True" ControlType="NumberBox" Title="已读">
+      <CascadeFilter />
+    </Field>
+    <Field Table="fw_messageinfo" Field="messcontent" DbType="varchar" Required="False" ListVisible="False" FormVisible="True" ControlType="RichTextBox" Title="内容">
+      <CascadeFilter />
+      <RichTextControlInfo />
+    </Field>
+    <Field Table="fw_messageinfo" Field="isdelete" DbType="int" Required="False" ListVisible="True" FormVisible="True" ControlType="NumberBox" Title="已删除">
+      <CascadeFilter />
+    </Field>
+    <Field Table="fw_messageinfo" Field="messcode" DbType="varchar" Required="False" ListVisible="False" FormVisible="False" ControlType="TextBox" Title="Guid编号">
+      <CascadeFilter />
+    </Field>
+    <Field Connection="LUOLAI1401Context" Table="fw_messageinfo" Field="CreateDate" Title="创建日期" ControlType="Date" FormVisible="True" DbType="datetime">
+      <CascadeFilter />
+    </Field>
+    <Field Connection="LUOLAI1401Context" Table="fw_messageinfo" Field="CreatePerson" Title="创建人" ControlType="TextBox" FormVisible="True" DbType="varchar">
+      <CascadeFilter />
+    </Field>
+    <Field Connection="LUOLAI1401Context" Table="fw_messageinfo" Field="UpdateDate" Title="修改日期" ControlType="Date" FormVisible="True" DbType="datetime">
+      <CascadeFilter />
+    </Field>
+    <Field Connection="LUOLAI1401Context" Table="fw_messageinfo" Field="UpdatePerson" Title="修改人" ControlType="TextBox" FormVisible="True" DbType="varchar">
+      <CascadeFilter />
+    </Field>
   </Fields>
 </Form>

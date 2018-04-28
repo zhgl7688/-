@@ -16,9 +16,13 @@ namespace Fruit.Web.Models
     
     public partial class fw_memberinfo
     {
+        [Key, Column(Order = 1), DatabaseGenerated(DatabaseGeneratedOption.None)]
+        public string phone { get; set; }
+        public string Fid { get; set; }
         [Key, Column(Order = 0), DatabaseGenerated(DatabaseGeneratedOption.None)]
         public string memid { get; set; }
         public string mempass { get; set; }
+        public string paypass { get; set; }
         public string realname { get; set; }
         public int? gender { get; set; }
         public string email { get; set; }
@@ -29,6 +33,16 @@ namespace Fruit.Web.Models
         public int? ispassed { get; set; }
         public int? isenabled { get; set; }
         public int? corpid { get; set; }
-        public string memcode { get; set; }
+        public DateTime? CreateDate { get; set; }
+        public string CreatePerson { get; set; }
+        public DateTime? UpdateDate { get; set; }
+        public string UpdatePerson { get; set; }
+        public int? Cimg1 { get; set; }
+        public int? Cimg2 { get; set; }
+        public int? Cimg3 { get; set; }
+        public int? Cimgcode1 { get; set; }
+        public int? Cimgcode2 { get; set; }
+        public int? Cletterurl { get; set; }
+        public int? Xletterurl { get; set; }
     }
 }

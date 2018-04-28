@@ -30,6 +30,11 @@ namespace Fruit.Web.Models
         public string imgurl { get; set; }
         public string remark { get; set; }
         public int? isactive { get; set; }
+        public int? ispassed { get; set; }
         public string teamcode { get; set; }
+        public DateTime? CreateDate { get; set; }
+        public string CreatePerson { get; set; }
+        public DateTime? UpdateDate { get; set; }
+        public string UpdatePerson { get; set; }
     }
 }

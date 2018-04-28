@@ -95,6 +95,20 @@ namespace Fruit.Web.Models
         public virtual DbSet<fw_contractinfo> fw_contractinfo { get; set; }
         public virtual DbSet<fw_memberinfo> fw_memberinfo { get; set; }
         public virtual DbSet<fw_userinfo> fw_userinfo { get; set; }
+        public virtual DbSet<fw_disputeinfo> fw_disputeinfo { get; set; }
+
+        public virtual DbSet<fw_depositinfo> fw_depositinfo { get; set; }
+        public virtual DbSet<fw_directprice> fw_directprice { get; set; }
+        public virtual DbSet<fw_ObjectionResult> fw_ObjectionResult { get; set; }
+        public virtual DbSet<fw_Objection> fw_Objection { get; set; }
+        public virtual DbSet<fw_directinfo> fw_directinfo { get; set; }
+        public virtual DbSet<fw_teambuying> fw_teambuying { get; set; }
+        public virtual DbSet<fw_Direct> fw_Direct { get; set; }
+        public virtual DbSet<v_ObjectionResult> v_ObjectionResult { get; set; }
+        public virtual DbSet<v_ObjectionResult1> v_ObjectionResult1 { get; set; }
+        public virtual DbSet<v_Orderinfo> v_Orderinfo { get; set; }
+        public virtual DbSet<v_MemberAll> v_MemberAll { get; set; }
+        public virtual DbSet<v_objection> v_objection { get; set; }
         // -- INSERT POINT --
     }
 }

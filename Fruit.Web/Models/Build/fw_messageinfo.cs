@@ -16,16 +16,19 @@ namespace Fruit.Web.Models
     
     public partial class fw_messageinfo
     {
-        [Key, Column(Order = 0), DatabaseGenerated(DatabaseGeneratedOption.None)]
+        [Key, Column(Order = 0), DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int messid { get; set; }
         public string fromid { get; set; }
         public string toid { get; set; }
         public string title { get; set; }
         public string messcontent { get; set; }
         public string attachmenturl { get; set; }
-        public DateTime? createtime { get; set; }
         public int? isread { get; set; }
         public int? isdelete { get; set; }
         public string messcode { get; set; }
+        public DateTime? CreateDate { get; set; }
+        public string CreatePerson { get; set; }
+        public DateTime? UpdateDate { get; set; }
+        public string UpdatePerson { get; set; }
     }
 }

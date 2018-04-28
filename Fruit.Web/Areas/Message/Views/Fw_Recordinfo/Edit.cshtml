@@ -82,9 +82,9 @@
     <div class="grid-group-1"><div class="lbl">来源编号</div>
    <div class="val">
 <input type="text" data-bind="value:'form.fromid'" class="z-txt easyui-numberbox" data-options="required:false" /></div></div>
-    <div class="grid-group-1"><div class="lbl">来源模块（洽谈、竞拍或团购）</div>
+    <div class="grid-group-1"><div class="lbl">来源模块</div>
    <div class="val">
-<input type="text" data-bind="value:'form.frommodule'" class="easyui-validatebox z-txt" data-options="required:false" /></div></div>
+<input type="text" data-bind="value:'form.frommodule',datasource:'dataSource.frommodule'" class="z-txt easyui-combobox" data-options="required:false, readonly:false" /></div></div>
     <div class="grid-group-1"><div class="lbl">单价</div>
    <div class="val">
 <input type="text" data-bind="value:'form.price'" class="easyui-validatebox z-txt" data-options="required:false" /></div></div>
@@ -93,11 +93,23 @@
 <input type="text" data-bind="value:'form.counts'" class="easyui-validatebox z-txt" data-options="required:false" /></div></div>
     <div class="grid-group-1"><div class="lbl">会员</div>
    <div class="val">
-<input type="text" data-bind="value:'form.memid'" class="easyui-validatebox z-txt" data-options="required:false" /></div></div>
+<input type="text" data-bind="value:'form.memid',datasource:'dataSource.memid'" class="z-txt easyui-combobox" data-options="required:false, readonly:false" /></div></div>
+</div>
+<div id="tt" class="easyui-tabs">
+    <div title="表单信息" style="padding-top:2px;">
+        <div class="container_12" id="BillDetail" data-bind="inputwidth:0.9,autoheight:181">
     <div class="grid-group-1"><div class="lbl">创建日期</div>
    <div class="val">
-<input type="text" data-bind="value:'form.createdate',readOnly:false" class="z-txt easyui-datebox" /></div></div>
-    <div class="grid-group-1"><div class="lbl">Guid编号</div>
+<input type="text" data-bind="value:'form.CreateDate',readOnly:false" class="z-txt easyui-datebox" /></div></div>
+    <div class="grid-group-1"><div class="lbl">创建人</div>
    <div class="val">
-<input type="text" data-bind="value:'form.fromcode'" class="easyui-validatebox z-txt" data-options="required:false" /></div></div>
+<input type="text" data-bind="value:'form.CreatePerson'" class="easyui-validatebox z-txt" data-options="required:false" /></div></div>
+    <div class="grid-group-1"><div class="lbl">修改日期</div>
+   <div class="val">
+<input type="text" data-bind="value:'form.UpdateDate',readOnly:false" class="z-txt easyui-datebox" /></div></div>
+    <div class="grid-group-1"><div class="lbl">修改人</div>
+   <div class="val">
+<input type="text" data-bind="value:'form.UpdatePerson'" class="easyui-validatebox z-txt" data-options="required:false" /></div></div>
+        </div>
+    </div>
 </div>

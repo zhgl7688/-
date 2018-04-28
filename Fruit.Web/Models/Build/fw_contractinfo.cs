@@ -20,9 +20,9 @@ namespace Fruit.Web.Models
         public string conid { get; set; }
         public string conname { get; set; }
         public string linkurl { get; set; }
-        public int? handleuserid { get; set; }
-        public DateTime? createtime { get; set; }
-        public DateTime? modifytime { get; set; }
-        public string concode { get; set; }
+        public DateTime? CreateDate { get; set; }
+        public string CreatePerson { get; set; }
+        public DateTime? UpdateDate { get; set; }
+        public string UpdatePerson { get; set; }
     }
 }

@@ -5,7 +5,7 @@ $(function () {
     var homePage = {
         iconCls: 'icon-house',
         title: '我的桌面',
-        url:'/Home/About'
+        url: '/Home/About'
     }
 
     function navMenuClick(e) {
@@ -38,7 +38,7 @@ $(function () {
                 var navMenuTree = $('<ul></ul>')
                 $('#navMenu').accordion('add', {
                     title: data[i].MenuName,
-                    iconCls:data[i].IconClass,
+                    iconCls: data[i].IconClass,
                     content: navMenuTree,
                     selected: first
                 });
@@ -169,7 +169,35 @@ $(function () {
             html: "#password-template",
             viewModel: function (w) {
                 //w.find("[name=UserCode]").val(@ViewBag.UserName);
-                w.find("#pwd_confirm").click(function () { w.dialog('close'); });
+                w.find("#pwd_confirm").click(function () {
+                    var oldPassword = $('#oldPassword').val()
+                    if (oldPassword.length == 0) {
+                        alert("原密码不能为空！")
+                        return;
+                    }
+                    var newPassword = $('#newPassword').val()
+                    if (newPassword.length == 0) {
+                        alert("新密码不能为空！")
+                        return;
+                    }
+                    if ($('#newPassword').val() != $('#repleayPassword').val()) {
+                        alert("新密码两次输入不一致")
+                        return;
+                    }
+                    $.post("/account/ModifyPassword",
+                        { UserCode: $('#UserCode').val(), oldPassword: oldPassword, newPassword: newPassword },
+                        function (data) {
+                        if (data.success) {
+                            alert(data.msg);
+                     
+                             w.dialog('close')
+                        } else {
+                            alert(data.msg)
+                        }
+
+                    })
+
+                });
                 w.find("#pwd_close").click(function () { w.dialog('close'); });
             }
         });

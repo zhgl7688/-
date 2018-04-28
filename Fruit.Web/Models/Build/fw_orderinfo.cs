@@ -18,14 +18,27 @@ namespace Fruit.Web.Models
     {
         [Key, Column(Order = 0), DatabaseGenerated(DatabaseGeneratedOption.None)]
         public string ordid { get; set; }
+        [Key, Column(Order = 1), DatabaseGenerated(DatabaseGeneratedOption.None)]
         public string selleruserid { get; set; }
         public string buyeruserid { get; set; }
         public string tranmode { get; set; }
         public string contracturl { get; set; }
         public int? fromid { get; set; }
         public int? ordstate { get; set; }
+        public decimal? totalamount { get; set; }
+        public decimal? buyerDepAmt { get; set; }
+        public decimal? sellerDepAmt { get; set; }
         public int? isactive { get; set; }
-        public DateTime? createdate { get; set; }
         public string ordcode { get; set; }
+        public DateTime? CreateDate { get; set; }
+        public string CreatePerson { get; set; }
+        public DateTime? UpdateDate { get; set; }
+        public string UpdatePerson { get; set; }
+        public string SelfMentioning { get; set; }
+        public string NameDriver { get; set; }
+        public string DeliveryAddress { get; set; }
+        public string pathfilename { get; set; }
+        public string LicensePlate { get; set; }
+        public string pathvoucher { get; set; }
     }
 }

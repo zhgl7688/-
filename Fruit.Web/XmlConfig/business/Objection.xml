@@ -1,0 +1,88 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Form Connection="LUOLAI1401Context" Table="fw_Objection" IsView="False" FilterTreeBindField="objectionid" TreeGridIdField="objectionid" TreeGridNameField="objectionid" TreeGridParentIdField="objectionid" UseVTab="True" VTab="异议处理|#,异议结果|/business/fw_ObjectionResult">
+  <SubTables />
+  <SaveProducre />
+  <Buttons>
+    <Button Id="BShencheng" Title="生成异议单" Reload="True" IconCls="wand">
+      <ServerBehavior Connection="LUOLAI1401Context" CommandText="exec ups_ObjectionResult @id" DataType="Value">
+        <Inputs>
+          <Input ParameterName="@id" SourceField="objectionid" />
+        </Inputs>
+      </ServerBehavior>
+      <ScriptAfter><![CDATA[alert(data)]]></ScriptAfter>
+    </Button>
+  </Buttons>
+  <GroupFilters />
+  <Fields>
+    <Field Table="fw_Objection" Field="objectionid" DbType="int" Required="True" ListVisible="True" FormVisible="True" ControlType="AutoId" ReadOnly="True" Title="异议编号">
+      <CascadeFilter />
+    </Field>
+    <Field Table="fw_Objection" Field="orderid" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="订单编号" Searchable="True">
+      <CascadeFilter />
+    </Field>
+    <Field Table="fw_Objection" Field="orderprice" DbType="decimal" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="订单金额" ReadOnly="True">
+      <CascadeFilter />
+    </Field>
+    <Field Table="fw_Objection" Field="Objectionstatus" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="Dropdown" Title="异议原因" ControlValue="议价原因">
+      <CascadeFilter />
+    </Field>
+    <Field Table="fw_Objection" Field="otherstatus" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="Dropdown" Title="额外费用类型" ControlValue="其他费用">
+      <CascadeFilter />
+    </Field>
+    <Field Table="fw_Objection" Field="otherprice" DbType="decimal" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="额外费用" ReadOnly="True">
+      <CascadeFilter />
+    </Field>
+    <Field Connection="LUOLAI1401Context" Table="fw_Objection" Field="IsContinue" Title="订单是否继续" ControlType="Dropdown" FormVisible="True" ListVisible="True" ControlValue="是否" DbType="int">
+      <CascadeFilter />
+    </Field>
+    <Field Table="fw_Objection" Field="MemId" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="买方申请" ControlValue="用户企业信息" Searchable="True" ReadOnly="True">
+      <CascadeFilter />
+    </Field>
+    <Field Connection="LUOLAI1401Context" Table="fw_Objection" ControlType="TextBox" FormVisible="True" ListVisible="True" ColumnWidth="80" Title="卖家申请" Field="MemIdSeller" DbType="varchar" ControlValue="用户企业信息" ReadOnly="True">
+      <CascadeFilter />
+    </Field>
+    <Field Connection="LUOLAI1401Context" Table="fw_Objection" ControlType="Dropdown" ControlValue="是否" Title="申请人取消" Field="objState" DbType="int" FormVisible="True" ListVisible="True">
+      <CascadeFilter />
+    </Field>
+    <Field Table="fw_Objection" Field="CreateDate" DbType="datetime" Required="False" ListVisible="False" FormVisible="True" ControlType="Date" ReadOnly="True" Title="创建日期">
+      <CascadeFilter />
+    </Field>
+    <Field Table="fw_Objection" Field="CreatePerson" DbType="varchar" Required="False" ListVisible="False" FormVisible="True" ControlType="TextBox" ReadOnly="True" Title="创建人">
+      <CascadeFilter />
+    </Field>
+    <Field Table="fw_Objection" Field="UpdateDate" DbType="datetime" Required="False" ListVisible="False" FormVisible="True" ControlType="Date" ReadOnly="True" Title="更改日期">
+      <CascadeFilter />
+    </Field>
+    <Field Table="fw_Objection" Field="UpdatePerson" DbType="varchar" Required="False" ListVisible="False" FormVisible="True" ControlType="TextBox" ReadOnly="True" Title="更改人">
+      <CascadeFilter />
+    </Field>
+    <Field Table="fw_Objection" Field="isShow" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="Dropdown" Title="是否通过" ControlValue="是否" Searchable="True" FormInfoArea="表单信息">
+      <CascadeFilter />
+    </Field>
+    <Field Table="fw_Objection" Field="Cimg1" DbType="int" Required="False" ListVisible="True" FormVisible="True" ControlType="File" Title="凭证1" ColumnWidth="80">
+      <CascadeFilter />
+      <FileControlInfo />
+    </Field>
+    <Field Table="fw_Objection" Field="Cimg2" DbType="int" Required="False" ListVisible="True" FormVisible="True" ControlType="File" Title="凭证2" ColumnWidth="80">
+      <CascadeFilter />
+      <FileControlInfo />
+    </Field>
+    <Field Table="fw_Objection" Field="Cimg3" DbType="int" Required="False" ListVisible="True" FormVisible="True" ControlType="File" Title="凭证3" ColumnWidth="80">
+      <CascadeFilter />
+      <FileControlInfo />
+    </Field>
+    <Field Connection="LUOLAI1401Context" Table="fw_Objection" ControlType="Dropdown" ColumnWidth="80" Title="对方是否同意" Field="IsAgreed" FormVisible="True" ListVisible="True" DbType="varchar" ControlValue="是否同意" ReadOnly="True">
+      <CascadeFilter />
+    </Field>
+    <Field Table="fw_Objection" Field="explain" DbType="varchar" Required="False" ListVisible="False" FormVisible="True" ControlType="MultiTextBox" Title="说明" ReadOnly="True">
+      <CascadeFilter />
+      <FileControlInfo />
+    </Field>
+    <Field Connection="LUOLAI1401Context" Table="fw_Objection" ControlType="MultiTextBox" FormVisible="True" Title="修改说明" Field="sysExplain" FormInfoArea="表单信息" DbType="varchar">
+      <CascadeFilter />
+    </Field>
+    <Field Connection="LUOLAI1401Context" Table="fw_Objection" ControlType="Dropdown" FormVisible="True" ListVisible="True" Title="平台介入" Field="IsOnJudge" DbType="varchar" ControlValue="是否">
+      <CascadeFilter />
+    </Field>
+  </Fields>
+</Form>

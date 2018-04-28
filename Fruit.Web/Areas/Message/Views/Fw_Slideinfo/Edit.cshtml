@@ -79,19 +79,34 @@
     <div class="grid-group-1"><div class="lbl">编号</div>
    <div class="val">
 <input type="text" data-bind="value:'form.id', readOnly:true" class="z-txt readonly" /></div></div>
-    <div class="grid-group-1"><div class="lbl">标题</div>
+    <div class="grid-group-2"><div class="lbl">标题</div>
    <div class="val">
 <input type="text" data-bind="value:'form.title'" class="easyui-validatebox z-txt" data-options="required:false" /></div></div>
     <div class="grid-group-1"><div class="lbl">图片地址</div>
    <div class="val">
-<input type="text" data-bind="value:'form.imgurl'" class="easyui-validatebox z-txt" data-options="required:false" /></div></div>
+<input type="text" data-bind="value:'form.imgurl'" class="easyui-file" data-options="{numberLimits:1,path:'',sizeLimits:2097152,typeLimits:'jpg,gif,png',viewMode:'Default'}" /></div></div>
     <div class="grid-group-1"><div class="lbl">链接地址</div>
    <div class="val">
 <input type="text" data-bind="value:'form.linkurl'" class="easyui-validatebox z-txt" data-options="required:false" /></div></div>
     <div class="grid-group-1"><div class="lbl">热度</div>
    <div class="val">
 <input type="text" data-bind="value:'form.clickcounts'" class="z-txt easyui-numberbox" data-options="required:false" /></div></div>
-    <div class="grid-group-1"><div class="lbl">Guid编号</div>
+</div>
+<div id="tt" class="easyui-tabs">
+    <div title="表单信息" style="padding-top:2px;">
+        <div class="container_12" id="BillDetail" data-bind="inputwidth:0.9,autoheight:181">
+    <div class="grid-group-1"><div class="lbl">创建日期</div>
    <div class="val">
-<input type="text" data-bind="value:'form.code'" class="easyui-validatebox z-txt" data-options="required:false" /></div></div>
+<input type="text" data-bind="value:'form.CreateDate',readOnly:false" class="z-txt easyui-datebox" /></div></div>
+    <div class="grid-group-1"><div class="lbl">创建人</div>
+   <div class="val">
+<input type="text" data-bind="value:'form.CreatePerson'" class="easyui-validatebox z-txt" data-options="required:false" /></div></div>
+    <div class="grid-group-1"><div class="lbl">修改日期</div>
+   <div class="val">
+<input type="text" data-bind="value:'form.UpdateDate',readOnly:false" class="z-txt easyui-datebox" /></div></div>
+    <div class="grid-group-1"><div class="lbl">修改人</div>
+   <div class="val">
+<input type="text" data-bind="value:'form.UpdatePerson'" class="easyui-validatebox z-txt" data-options="required:false" /></div></div>
+        </div>
+    </div>
 </div>

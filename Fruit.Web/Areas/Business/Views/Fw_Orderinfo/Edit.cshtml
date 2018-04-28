@@ -81,7 +81,6 @@
 
 <div id="divother" style="width:100px; display:none;">
     <div data-options="iconCls:'icon-add'" data-bind="click:'newClick'">新增</div>
-    <div data-options="iconCls:'icon-cross'" data-bind="click:'deleteClick'">删除</div>
     <div data-options="iconCls:'icon-arrow_refresh'" data-bind="click:'refreshClick'">刷新</div>
 </div>
 
@@ -93,43 +92,39 @@
 <input type="text" data-bind="value:'form.ordid', readOnly:true" class="z-txt readonly" /></div></div>
     <div class="grid-group-1"><div class="lbl">卖家会员</div>
    <div class="val">
-<input type="text" data-bind="value:'form.selleruserid'" class="easyui-validatebox z-txt" data-options="required:false" /></div></div>
+<input type="text" data-bind="value:'form.selleruserid',datasource:'dataSource.selleruserid'" class="z-txt easyui-combobox" data-options="required:false, readonly:false" /></div></div>
     <div class="grid-group-1"><div class="lbl">买家会员</div>
    <div class="val">
-<input type="text" data-bind="value:'form.buyeruserid'" class="easyui-validatebox z-txt" data-options="required:false" /></div></div>
+<input type="text" data-bind="value:'form.buyeruserid',datasource:'dataSource.buyeruserid'" class="z-txt easyui-combobox" data-options="required:false, readonly:false" /></div></div>
     <div class="grid-group-1"><div class="lbl">交易模式</div>
    <div class="val">
-<input type="text" data-bind="value:'form.tranmode'" class="easyui-validatebox z-txt" data-options="required:false" /></div></div>
-    <div class="grid-group-1"><div class="lbl">合同查看</div>
-   <div class="val">
-<input type="text" data-bind="value:'form.contracturl'" class="easyui-validatebox z-txt" data-options="required:false" /></div></div>
+<input type="text" data-bind="value:'form.tranmode',datasource:'dataSource.tranmode'" class="z-txt easyui-combobox" data-options="required:false, readonly:false" /></div></div>
     <div class="grid-group-1"><div class="lbl">订单来自</div>
    <div class="val">
 <input type="text" data-bind="value:'form.fromid'" class="z-txt easyui-numberbox" data-options="required:false" /></div></div>
     <div class="grid-group-1"><div class="lbl">订单状态</div>
    <div class="val">
-<input type="text" data-bind="value:'form.ordstate'" class="z-txt easyui-numberbox" data-options="required:false" /></div></div>
+<input type="text" data-bind="value:'form.ordstate',datasource:'dataSource.ordstate'" class="z-txt easyui-combobox" data-options="required:false, readonly:false" /></div></div>
     <div class="grid-group-1"><div class="lbl">是否有效订单</div>
    <div class="val">
-<input type="text" data-bind="value:'form.isactive'" class="z-txt easyui-numberbox" data-options="required:false" /></div></div>
-    <div class="grid-group-1"><div class="lbl">创建日期</div>
+<input type="text" data-bind="value:'form.isactive',datasource:'dataSource.isactive'" class="z-txt easyui-combobox" data-options="required:false, readonly:false" /></div></div>
+    <div class="grid-group-1"><div class="lbl">交货方式</div>
    <div class="val">
-<input type="text" data-bind="value:'form.createdate',readOnly:false" class="z-txt easyui-datebox" /></div></div>
-    <div class="grid-group-1"><div class="lbl">Guid编号</div>
+<input type="text" data-bind="value:'form.SelfMentioning',datasource:'dataSource.SelfMentioning'" class="z-txt easyui-combobox" data-options="required:false, readonly:false" /></div></div>
+    <div class="grid-group-1"><div class="lbl">上传凭证</div>
    <div class="val">
-<input type="text" data-bind="value:'form.ordcode'" class="easyui-validatebox z-txt" data-options="required:false" /></div></div>
+<input type="text" data-bind="value:'form.pathvoucher'" class="easyui-file" data-options="{numberLimits:1,path:'',sizeLimits:2097152,typeLimits:'jpg,gif,png',viewMode:'Default'}" /></div></div>
 </div>
 <div id="tt" class="easyui-tabs">
-    <div title="fw_orderlist">
+    <div title="订单明细">
         <table id="listfw_orderlist" data-subtable="fw_orderlist" data-bind="datagrid:'grid'" data-options="'fixSize':{w:6,h:'auto'},'toolbar':'#gridtbfw_orderlist','showFooter':false,'border':false,'editMode':'select','singleSelect':true,'fitColumns':false,'autoRowHeight':false">
             <thead>
                 <tr>
-    <th field="ordlistid">明细编号    </th>
-    <th field="proname" data-options="editor:{type:'validatebox',options:{required:false}}">品名    </th>
-    <th field="spec" data-options="editor:{type:'validatebox',options:{required:false}}">规格    </th>
-    <th field="price" data-options="editor:{type:'validatebox',options:{required:false}}">单价    </th>
-    <th field="counts" data-options="editor:{type:'validatebox',options:{required:false}}">数量    </th>
-    <th field="listcode" data-options="editor:{type:'validatebox',options:{required:false}}">Guid编号    </th>
+    <th field="ordlistid">编号    </th>
+    <th field="proname" data-options="editor:{type:'validatebox',options:{required:false}}" width="200">品名    </th>
+    <th field="spec" data-options="editor:{type:'validatebox',options:{required:false}}" width="80">规格    </th>
+    <th field="price" data-options="editor:{type:'validatebox',options:{required:false}}" width="100">单价    </th>
+    <th field="counts" data-options="editor:{type:'validatebox',options:{required:false}}" width="100">数量    </th>
                 </tr>
             </thead>
         </table>
@@ -137,6 +132,22 @@
         <div id="gridtbfw_orderlist">
             <a href="#" class="easyui-linkbutton" data-options="iconCls:'icon-search',plain:true" data-bind="click:'addRowfw_orderlistClick',disable:'readonly'">增加</a>
             <a href="#" class="easyui-linkbutton" data-options="iconCls:'icon-remove',plain:true" data-bind="click:'removeRowfw_orderlistClick',disable:'readonly'">删除</a>
+        </div>
+    </div>
+    <div title="表单信息" style="padding-top:2px;">
+        <div class="container_12" id="BillDetail" data-bind="inputwidth:0.9,autoheight:181">
+    <div class="grid-group-1"><div class="lbl">创建日期</div>
+   <div class="val">
+<input type="text" data-bind="value:'form.CreateDate',readOnly:false" class="z-txt easyui-datebox" /></div></div>
+    <div class="grid-group-1"><div class="lbl">创建人</div>
+   <div class="val">
+<input type="text" data-bind="value:'form.CreatePerson'" class="easyui-validatebox z-txt" data-options="required:false" /></div></div>
+    <div class="grid-group-1"><div class="lbl">修改日期</div>
+   <div class="val">
+<input type="text" data-bind="value:'form.UpdateDate',readOnly:false" class="z-txt easyui-datebox" /></div></div>
+    <div class="grid-group-1"><div class="lbl">修改人</div>
+   <div class="val">
+<input type="text" data-bind="value:'form.UpdatePerson'" class="easyui-validatebox z-txt" data-options="required:false" /></div></div>
         </div>
     </div>
 </div>

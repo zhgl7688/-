@@ -19,11 +19,15 @@ namespace Fruit.Web.Models
         [Key, Column(Order = 0), DatabaseGenerated(DatabaseGeneratedOption.None)]
         public string helpid { get; set; }
         public string helptitle { get; set; }
+        public string helpcontent_h { get; set; }
         public string helpcontent { get; set; }
         public int? isenabled { get; set; }
         public int? handleuserid { get; set; }
-        public DateTime? createtime { get; set; }
-        public DateTime? modifytime { get; set; }
         public string helpcode { get; set; }
+        public int? sort { get; set; }
+        public DateTime? CreateDate { get; set; }
+        public string CreatePerson { get; set; }
+        public DateTime? UpdateDate { get; set; }
+        public string UpdatePerson { get; set; }
     }
 }

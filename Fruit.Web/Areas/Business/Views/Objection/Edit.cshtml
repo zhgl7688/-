@@ -1,0 +1,162 @@
+﻿@section scripts {
+<script type="text/javascript">
+    var data = @MvcHtmlString.Create(JsonExtension.ToJson(Model));
+    $(function(){
+        var db = fruit.databind.root;
+        $.extend(db, {
+        buttonBShencheng : function() {
+            var row = db.getData('form');
+            function ScriptAfter(data) {
+                alert(data)
+                db.invoke('refresh');
+            }
+            fruit.ajax({url:'/api/Business/Objection/doBShencheng', method:'post', data: JSON.stringify(row), success:ScriptAfter});
+        }
+        });
+        data.form._row_state = @ViewBag.RowState;
+        db.loadData(data);
+        function loadDetial(){
+        }
+        loadDetial();
+        $.extend(db, {
+            refreshClick:function(){
+                location.assign(top.$(window.frameElement).data('src'));
+            },
+            rejectClick:function(){
+                location.assign(top.$(window.frameElement).data('src'));
+            },
+            newClick:function(){
+                fruit.ajax({
+                        url:'/api/Business/Objection/Newobjectionid',
+                        success:function(data) {
+                            parent.changeDocTab(window.frameElement, '/Business/Objection/edit/' + data);
+                        }
+                    })
+            },
+            deleteClick:function(){
+                $.messager.confirm('确认', '您确认要删除当前记录吗？', function(r){
+                    if(r){
+                        fruit.ajax({
+                            method:'DELETE',
+                            url: '/api/Business/Objection/'+db.getData('form').objectionid,
+                            success: function(data) {
+                                fruit.message('success', '删除成功');
+                                top.closeDocTab(window.frameElement);
+                            }
+                        });
+                    }
+                });
+            },
+            saveClick:function(){
+                if(!db.validate()){fruit.message('error', '请更正验证错误！'); return;}
+                var data = db.getData();
+                fruit.ajax({
+                    url: '/api/Business/Objection/',
+                    data: JSON.stringify(data),
+                    success:function(result){
+                        if(result && result.success){
+                            fruit.message('success', '保存成功');
+                            if(result.form){
+                                db.loadData(result);
+                                loadDetial();
+                            }
+                        }
+                    }
+                });
+            }
+        });
+    });
+</script>
+}
+
+
+<div class="z-toolbar">
+    <a id="a_save" href="#" plain="true" class="easyui-linkbutton" icon="icon-save" data-bind="click:'saveClick',disable:'readonly'" title="保存">保存</a>
+    <a id="a_undo" href="#" plain="true" class="easyui-linkbutton" icon="icon-undo" data-bind="click:'rejectClick',disable:'readonly'" title="撤消">撤消</a>
+    <a class="easyui-linkbutton" iconcls="icon-wand" plain="true" data-bind="click:'buttonBShencheng'" DynamicReadOnly="Disable">生成异议单</a>
+    <div class="datagrid-btn-separator"></div>
+    <a id="a_other" href="#" class="easyui-splitbutton" data-options="menu:'#divother',iconCls:'icon-application_go'" title="其他">其他</a>
+</div>
+
+<div id="divother" style="width:100px; display:none;">
+    <div data-options="iconCls:'icon-add'" data-bind="click:'newClick'">新增</div>
+    <div data-options="iconCls:'icon-cross'" data-bind="click:'deleteClick'">删除</div>
+    <div data-options="iconCls:'icon-arrow_refresh'" data-bind="click:'refreshClick'">刷新</div>
+</div>
+
+<div id="divrelations" style="width:100px; display:none;"></div>
+<div id="master" class="container_12" data-bind="inputwidth:0.9">
+<input type="hidden" data-bind="value:'form._row_state'" />
+    <div class="grid-group-1"><div class="lbl">异议编号</div>
+   <div class="val">
+<input type="text" data-bind="value:'form.objectionid', readOnly:true" class="z-txt readonly" /></div></div>
+    <div class="grid-group-1"><div class="lbl">订单编号</div>
+   <div class="val">
+<input type="text" data-bind="value:'form.orderid'" class="easyui-validatebox z-txt" data-options="required:false" /></div></div>
+    <div class="grid-group-1"><div class="lbl">订单金额</div>
+   <div class="val">
+<input type="text" data-bind="value:'form.orderprice', readOnly:true" class="z-txt readonly" /></div></div>
+    <div class="grid-group-1"><div class="lbl">异议原因</div>
+   <div class="val">
+<input type="text" data-bind="value:'form.Objectionstatus',datasource:'dataSource.Objectionstatus'" class="z-txt easyui-combobox" data-options="required:false, readonly:false" /></div></div>
+    <div class="grid-group-1"><div class="lbl">额外费用类型</div>
+   <div class="val">
+<input type="text" data-bind="value:'form.otherstatus',datasource:'dataSource.otherstatus'" class="z-txt easyui-combobox" data-options="required:false, readonly:false" /></div></div>
+    <div class="grid-group-1"><div class="lbl">额外费用</div>
+   <div class="val">
+<input type="text" data-bind="value:'form.otherprice', readOnly:true" class="z-txt readonly" /></div></div>
+    <div class="grid-group-1"><div class="lbl">订单是否继续</div>
+   <div class="val">
+<input type="text" data-bind="value:'form.IsContinue',datasource:'dataSource.IsContinue'" class="z-txt easyui-combobox" data-options="required:false, readonly:false" /></div></div>
+    <div class="grid-group-1"><div class="lbl">买方申请</div>
+   <div class="val">
+<input type="text" data-bind="value:'form.MemId', readOnly:true" class="z-txt readonly" /></div></div>
+    <div class="grid-group-1"><div class="lbl">卖家申请</div>
+   <div class="val">
+<input type="text" data-bind="value:'form.MemIdSeller', readOnly:true" class="z-txt readonly" /></div></div>
+    <div class="grid-group-1"><div class="lbl">申请人取消</div>
+   <div class="val">
+<input type="text" data-bind="value:'form.objState',datasource:'dataSource.objState'" class="z-txt easyui-combobox" data-options="required:false, readonly:false" /></div></div>
+    <div class="grid-group-1"><div class="lbl">凭证1</div>
+   <div class="val">
+<input type="text" data-bind="value:'form.Cimg1'" class="easyui-file" data-options="{numberLimits:1,path:'',sizeLimits:2097152,typeLimits:'jpg,gif,png',viewMode:'Default'}" /></div></div>
+    <div class="grid-group-1"><div class="lbl">凭证2</div>
+   <div class="val">
+<input type="text" data-bind="value:'form.Cimg2'" class="easyui-file" data-options="{numberLimits:1,path:'',sizeLimits:2097152,typeLimits:'jpg,gif,png',viewMode:'Default'}" /></div></div>
+    <div class="grid-group-1"><div class="lbl">凭证3</div>
+   <div class="val">
+<input type="text" data-bind="value:'form.Cimg3'" class="easyui-file" data-options="{numberLimits:1,path:'',sizeLimits:2097152,typeLimits:'jpg,gif,png',viewMode:'Default'}" /></div></div>
+    <div class="grid-group-1"><div class="lbl">对方是否同意</div>
+   <div class="val">
+<input type="text" data-bind="value:'form.IsAgreed',datasource:'dataSource.IsAgreed'" class="z-txt easyui-combobox" data-options="required:false, readonly:true" /></div></div>
+    <div class="grid-group-8"><div class="lbl">说明</div>
+   <div class="val">
+<textarea data-bind="value:'form.explain'" class="easyui-validatebox" data-options="required:false"></textarea></div></div>
+    <div class="grid-group-1"><div class="lbl">平台介入</div>
+   <div class="val">
+<input type="text" data-bind="value:'form.IsOnJudge',datasource:'dataSource.IsOnJudge'" class="z-txt easyui-combobox" data-options="required:false, readonly:false" /></div></div>
+</div>
+<div id="tt" class="easyui-tabs">
+    <div title="表单信息" style="padding-top:2px;">
+        <div class="container_12" id="BillDetail" data-bind="inputwidth:0.9,autoheight:181">
+    <div class="grid-group-1"><div class="lbl">创建日期</div>
+   <div class="val">
+<input type="text" data-bind="value:'form.CreateDate',readOnly:true" class="z-txt easyui-datebox" /></div></div>
+    <div class="grid-group-1"><div class="lbl">创建人</div>
+   <div class="val">
+<input type="text" data-bind="value:'form.CreatePerson', readOnly:true" class="z-txt readonly" /></div></div>
+    <div class="grid-group-1"><div class="lbl">更改日期</div>
+   <div class="val">
+<input type="text" data-bind="value:'form.UpdateDate',readOnly:true" class="z-txt easyui-datebox" /></div></div>
+    <div class="grid-group-1"><div class="lbl">更改人</div>
+   <div class="val">
+<input type="text" data-bind="value:'form.UpdatePerson', readOnly:true" class="z-txt readonly" /></div></div>
+    <div class="grid-group-1"><div class="lbl">是否通过</div>
+   <div class="val">
+<input type="text" data-bind="value:'form.isShow',datasource:'dataSource.isShow'" class="z-txt easyui-combobox" data-options="required:false, readonly:false" /></div></div>
+    <div class="grid-group-8"><div class="lbl">修改说明</div>
+   <div class="val">
+<textarea data-bind="value:'form.sysExplain'" class="easyui-validatebox" data-options="required:false"></textarea></div></div>
+        </div>
+    </div>
+</div>

@@ -446,6 +446,44 @@ var db = new fruit.databind($('#popupgridbox'));
             
              
             
+            // POPUP 订单选择 START
+            LookupConfigs.Add("订单选择", new LookupConfig
+            {
+                GetContext = () =>
+                {
+                    return @"<div id=""popupgridbox""><div class=""z-search""><label for=""form_selleruserid"">卖家会员:</label><input id=""form_selleruserid"" class=""easyui-textbox"" data-bind=""value:'form.selleruserid'"" /><label for=""form_ordid"">订单号:</label><input id=""form_ordid"" class=""easyui-textbox"" data-bind=""value:'form.ordid'"" /><a href=""#"" class=""easyui-linkbutton"" iconCls=""icon-search"" plain=""true"" data-bind=""click:'popupSearch'"">搜索</a></div><table data-bind=""datagrid"" data-options=""border:false, rownumbers:true, pagination:true, pageSize:20, url:'/Plugins/GetLookupData/订单选择'"" style=""height:300px;"" data-value-fields=""ordid"" data-list-fields=""selleruserid,ordid,buyeruserid"" data-return-fields=""""><thead><tr><th field=""selleruserid"">卖家会员</th><th field=""ordid"">订单号</th><th field=""buyeruserid"">买家会员</th></tr></thead></table></div>
+<script>
+var db = new fruit.databind($('#popupgridbox'));
+</script>";
+                },
+                GetData = (pageReq) =>
+                {
+                    using(var db = new LUOLAI1401Context())
+                    {
+                        var _input = System.Web.HttpContext.Current.Request["_input"];
+                        var sbCondition = new System.Text.StringBuilder();
+                        if(string.IsNullOrEmpty(_input))
+                        {
+                            SerachCondition.TextBox(sbCondition, "selleruserid", "selleruserid", "char");
+                            SerachCondition.TextBox(sbCondition, "ordid", "ordid", "char");
+                        }
+                        else
+                        {
+                            sbCondition.Append(" ( ");
+                            SerachCondition.TextBox(sbCondition, "_input", "selleruserid", "char", false, true);
+                            SerachCondition.TextBox(sbCondition, "_input", "ordid", "char", false, true);
+                            sbCondition.Length-=5;
+                            sbCondition.Append(" )     ");
+                        }
+                        if(sbCondition.Length > 5)
+                        {
+                            sbCondition.Length-=5;
+                        }
+                        return pageReq.ToPageList<fw_orderinfo>(db.Database, "*", "fw_orderinfo", sbCondition.ToString(), "selleruserid", "desc");
+                    }
+                }
+            });
+            // POPUP 订单选择 END
             // -- INSERT POINT --
         }
     }

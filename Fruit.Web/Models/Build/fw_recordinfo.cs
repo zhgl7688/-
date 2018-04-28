@@ -23,7 +23,10 @@ namespace Fruit.Web.Models
         public decimal? price { get; set; }
         public decimal? counts { get; set; }
         public string memid { get; set; }
-        public DateTime? createdate { get; set; }
         public string fromcode { get; set; }
+        public DateTime? CreateDate { get; set; }
+        public string CreatePerson { get; set; }
+        public DateTime? UpdateDate { get; set; }
+        public string UpdatePerson { get; set; }
     }
 }

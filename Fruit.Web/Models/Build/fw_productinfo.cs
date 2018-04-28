@@ -17,6 +17,7 @@ namespace Fruit.Web.Models
     public partial class fw_productinfo
     {
         [Key, Column(Order = 0), DatabaseGenerated(DatabaseGeneratedOption.None)]
+        public int? Fid { get; set; }
         public int proid { get; set; }
         public int? catid { get; set; }
         public string proname { get; set; }
@@ -28,13 +29,19 @@ namespace Fruit.Web.Models
         public int? minprodcount { get; set; }
         public int? stock { get; set; }
         public int? isactive { get; set; }
-        public int? depositseller { get; set; }
-        public int? depositbuyer { get; set; }
+        public int? ispassed { get; set; }
+        public decimal? depositseller { get; set; }
+        public decimal? depositbuyer { get; set; }
         public int? issale { get; set; }
-        public DateTime? createdate { get; set; }
-        public DateTime? modifydate { get; set; }
+        public int? addid { get; set; }
         public int? viewcount { get; set; }
         public string remark { get; set; }
         public string procode { get; set; }
+        public DateTime? CreateDate { get; set; }
+        public string CreatePerson { get; set; }
+        public DateTime? UpdateDate { get; set; }
+        public string UpdatePerson { get; set; }
+        public decimal? lockStock { get; set; }
+        public int ispaid { get; set; }
     }
 }

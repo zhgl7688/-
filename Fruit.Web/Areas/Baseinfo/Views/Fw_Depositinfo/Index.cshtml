@@ -1,0 +1,108 @@
+﻿@section scripts {
+<script type="text/javascript">
+   var col_fw_depositinfo_cat1_RefText_formatter = function(v, r) {return r.cat1_RefText;}
+   var col_fw_depositinfo_cat2_RefText_formatter = function(v, r) {return r.cat2_RefText;}
+   var col_fw_depositinfo_memid_RefText_formatter = function(v, r) {return r.memid_RefText;}
+    $(function(){
+        if($('#searchDialogTemplate').length == 1) {
+            $('#showSearch').show();
+        }
+        var db = fruit.databind.root;
+
+            $.extend(db.options, {
+                searchClick: function(){
+                    var serach = db.getData('serach');
+                    db.invoke('setLoadParams', serach);
+                },
+                showSearchClick: function() {
+                    var serachDialog = $('<div></div>').html($('#searchDialogTemplate').html());
+                    var serachDialogDB = new fruit.databind(serachDialog[0], {
+                        onInit:function(){
+                            this.loadData(data);
+                            var serach = db.getData('serach');
+                            this.loadData({serach:serach});
+                        }
+                    });
+                    serachDialog.dialog({title:'搜索', width:600, height:500, cache:false,modal:true,buttons:[
+                        {text:'搜索',handler:function(){
+                            var serach = serachDialogDB.getData('serach');
+                            db.loadData({serach:serach});
+                            db.invoke('setLoadParams', serach);
+                            serachDialog.dialog('close');
+                        }},
+                        {text:'关闭',handler:function(){
+                            serachDialog.dialog('close');
+                        }},
+                    ], onClose:function(){
+                        serachDialog.dialog('destroy');
+                    }});
+                },
+                clearClick: function(){
+                    db.clearData('serach');
+                    db.invoke('setLoadParams', {});
+                }
+            });
+        $.extend(db.options, {
+            add: function(){
+                fruit.ajax({
+                        url:'/api/Baseinfo/Fw_Depositinfo/Newdepid',
+                        success:function(data) {
+                            parent.showDocTab('icon-money_yen', '保证金设置明细', '/Baseinfo/Fw_Depositinfo/edit/' + data);
+                        }
+                    })
+            },
+            edit: function(){
+                    var grid = db.binds.grid;
+                    var row = grid.getSelected();
+                    if(row == null) {
+                        fruit.message('warning', '请先选择一个保证金设置');
+                        return;
+                    }
+                    parent.showDocTab('icon-house_in', '保证金设置明细', '/Baseinfo/Fw_Depositinfo/edit/' + row.depid);
+            },
+             'delete': function() {
+                    var grid = db.binds.grid;
+                    var rows = grid.getSelections();
+                    if(rows.length == 0) return;
+                    var ids = [];
+                    $.each(rows, function(){
+                        ids.push(this.depid);
+                    });
+                    $.messager.confirm('确认', '您确认要删除所选记录吗？', function(r){
+                        if(r){
+                            grid.jq.showLoading('正在处理…');
+                            fruit.ajax({
+                                method:'DELETE',
+                                url: '/api/Baseinfo/Fw_Depositinfo/'+ids.join(),
+                                success: function(data) {
+                                    grid.jq.hideLoading();
+                                    grid.refresh();
+                                }
+                            })
+                        }
+                    });
+                },
+        });
+    });
+</script>
+}
+<div class="z-toolbar">
+
+    <a class="easyui-linkbutton" iconcls="icon-arrow_refresh" plain="true" data-bind="click:'refresh'">刷新</a>
+    <a class="easyui-linkbutton" iconcls="icon-add" plain="true" data-bind="click:'add'">新增</a>
+    <a class="easyui-linkbutton" iconcls="icon-edit" plain="true" data-bind="click:'edit'">编辑</a>
+    <a class="easyui-linkbutton" iconcls="icon-cross" plain="true" data-bind="click:'delete'">删除</a>
+    <a class="easyui-splitbutton" plain="true" data-options="iconCls:'icon-download'" suffix="xls" data-bind="click:'download'">导出</a>
+</div>
+<table id="grid" data-bind="datagrid" data-options="fixSize:{w:4, h:'auto'}, autoRowHeight: false, rownumbers:true, method:'get', url:'/api/baseinfo/fw_depositinfo', pagination:true, pageSize:20, checkOnSelect:true, selectOnCheck:true, singleSelect:false">
+<thead>
+<tr>
+    <th field="SelectedRowKey" data-options="checkbox:true"></th>
+    <th field="depid">编号    </th>
+    <th field="cat1" data-options="editor:{type:'combobox', options:{required:false}}" formatter="col_fw_depositinfo_cat1_RefText_formatter">一级分类    </th>
+    <th field="cat2" data-options="editor:{type:'combobox', options:{required:false}}" formatter="col_fw_depositinfo_cat2_RefText_formatter">二级分类    </th>
+    <th field="memid" data-options="editor:{type:'combobox', options:{required:false}}" formatter="col_fw_depositinfo_memid_RefText_formatter">卖家    </th>
+    <th field="deposit" data-options="editor:{type:'numberbox',options:{precision:2, required:false}}">保证金率    </th>
+</tr>
+</thead>
+</table>

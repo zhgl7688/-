@@ -2,7 +2,5 @@
 <AutoIdRules>
   <Rule Id="十二位编号" Expression="{序列号}" NoLength="12" />
   <Rule Id="序号" Expression="{序列号}" />
-  <Rule Id="地区编号" Expression="AREA{序列号}" NoLength="3" />
-  <Rule Id="客户编号" Expression="CU{序列号}" NoLength="5" />
   <Rule Id="合同编号" Expression="{SESSION.UserName}{年}{序列号}" NoLength="4" />
 </AutoIdRules>

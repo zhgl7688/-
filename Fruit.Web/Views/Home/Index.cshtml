@@ -25,7 +25,7 @@
         </div>
     </div>
     <span class="head-left" style="width:370px">
-       上海誉童建设集团有限公司
+        源料网
     </span>
 
 </div>
@@ -51,15 +51,15 @@
 
 
 <script type="text/html" id="password-template">
-    <div class="container_12" style="width:90%;margin:5%;">
+    <div class="container_12" style="width:90%;margin:5%;"><input type="hidden"   name="UserCode"   id="UserCode"   value="@User.Identity.Name" />
         <div class="grid_3 lbl">登陆名：</div>
-        <div class="grid_9 val"><input type="text" class="z-txt readonly " name="UserCode" disabled="disabled" value="@ViewBag.UserName" /></div>
+        <div class="grid_9 val"><input type="text" class="z-txt readonly " name="UserName" disabled="disabled" value="@ViewBag.UserName" /></div>
         <div class="grid_3 lbl">原密码：</div>
-        <div class="grid_9 val"><input type="password" class="z-txt" /></div>
+        <div class="grid_9 val"><input type="password" class="z-txt" name="oldPassword" id="oldPassword"  /></div>
         <div class="grid_3 lbl">新密码：</div>
-        <div class="grid_9 val"><input type="password" class="z-txt" /></div>
+        <div class="grid_9 val"><input type="password" class="z-txt" name="newPassword" id="newPassword"   /></div>
         <div class="grid_3 lbl">确　认：</div>
-        <div class="grid_9 val"><input type="password" class="z-txt" /></div>
+        <div class="grid_9 val"><input type="password" class="z-txt" name="repleayPassword" id="repleayPassword"   /></div>
         <div class="clear"></div>
     </div>
 

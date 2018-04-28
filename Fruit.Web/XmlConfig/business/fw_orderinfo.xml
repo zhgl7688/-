@@ -1,17 +1,17 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Form Connection="LUOLAI1401Context" Table="fw_orderinfo" IsView="False" FilterTreeBindField="ordid" TreeGridIdField="ordid" TreeGridNameField="ordid" TreeGridParentIdField="ordid">
+<Form Connection="LUOLAI1401Context" Table="fw_orderinfo" IsView="False" FilterTreeBindField="ordid" TreeGridIdField="ordid" TreeGridNameField="ordid" TreeGridParentIdField="ordid" UseAfterSaveAction="True">
   <SubTables>
-    <Table IsView="False" Table="fw_orderlist" Filter="">
+    <Table IsView="False" Table="fw_orderlist" Filter="" Title="订单明细">
       <Rels>
         <FieldRel RelField="ordid" MainField="ordid" />
       </Rels>
       <Fields>
-        <Field Table="fw_orderlist" Field="ordlistid" DbType="int" Required="True" ListVisible="True" FormVisible="True" ControlType="AutoId" ReadOnly="True" Title="明细编号" />
-        <Field Table="fw_orderlist" Field="proname" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="品名" />
-        <Field Table="fw_orderlist" Field="spec" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="规格" />
-        <Field Table="fw_orderlist" Field="price" DbType="decimal" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="单价" />
-        <Field Table="fw_orderlist" Field="counts" DbType="decimal" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="数量" />
-        <Field Table="fw_orderlist" Field="listcode" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="Guid编号" />
+        <Field Table="fw_orderlist" Field="ordlistid" DbType="int" Required="True" ListVisible="True" FormVisible="True" ControlType="AutoId" ReadOnly="True" Title="编号" />
+        <Field Table="fw_orderlist" Field="proname" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="品名" ColumnWidth="200" />
+        <Field Table="fw_orderlist" Field="spec" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="规格" ColumnWidth="80" />
+        <Field Table="fw_orderlist" Field="price" DbType="decimal" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="单价" ColumnWidth="100" />
+        <Field Table="fw_orderlist" Field="counts" DbType="decimal" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="数量" ColumnWidth="100" />
+        <Field Table="fw_orderlist" Field="listcode" DbType="varchar" Required="False" ListVisible="False" FormVisible="False" ControlType="TextBox" Title="Guid编号" />
       </Fields>
     </Table>
   </SubTables>
@@ -19,15 +19,57 @@
   <Buttons />
   <GroupFilters />
   <Fields>
-    <Field Table="fw_orderinfo" Field="ordid" DbType="char" Required="True" ListVisible="True" FormVisible="True" ControlType="AutoId" ReadOnly="True" Title="订单编号" />
-    <Field Table="fw_orderinfo" Field="selleruserid" DbType="char" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="卖家会员" />
-    <Field Table="fw_orderinfo" Field="buyeruserid" DbType="char" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="买家会员" />
-    <Field Table="fw_orderinfo" Field="tranmode" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="交易模式" />
-    <Field Table="fw_orderinfo" Field="contracturl" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="合同查看" />
-    <Field Table="fw_orderinfo" Field="fromid" DbType="int" Required="False" ListVisible="True" FormVisible="True" ControlType="NumberBox" Title="订单来自" />
-    <Field Table="fw_orderinfo" Field="ordstate" DbType="int" Required="False" ListVisible="True" FormVisible="True" ControlType="NumberBox" Title="订单状态" />
-    <Field Table="fw_orderinfo" Field="isactive" DbType="int" Required="False" ListVisible="True" FormVisible="True" ControlType="NumberBox" Title="是否有效订单" />
-    <Field Table="fw_orderinfo" Field="createdate" DbType="datetime" Required="False" ListVisible="True" FormVisible="True" ControlType="Date" Title="创建日期" />
-    <Field Table="fw_orderinfo" Field="ordcode" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="Guid编号" />
+    <Field Table="fw_orderinfo" Field="ordid" DbType="char" Required="True" ListVisible="True" FormVisible="True" ControlType="AutoId" ReadOnly="True" Title="订单编号">
+      <CascadeFilter />
+    </Field>
+    <Field Table="fw_orderinfo" Field="selleruserid" DbType="char" Required="False" ListVisible="True" FormVisible="True" ControlType="Dropdown" Title="卖家会员" ControlValue="会员" Searchable="True">
+      <CascadeFilter />
+    </Field>
+    <Field Table="fw_orderinfo" Field="buyeruserid" DbType="char" Required="False" ListVisible="True" FormVisible="True" ControlType="Dropdown" Title="买家会员" ControlValue="会员" Searchable="True">
+      <CascadeFilter />
+    </Field>
+    <Field Table="fw_orderinfo" Field="tranmode" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="Dropdown" Title="交易模式" ControlValue="交易模式" Searchable="True">
+      <CascadeFilter />
+    </Field>
+    <Field Table="fw_orderinfo" Field="contracturl" DbType="varchar" Required="False" ListVisible="False" FormVisible="False" ControlType="File" Title="合同查看">
+      <CascadeFilter />
+      <FileControlInfo />
+    </Field>
+    <Field Table="fw_orderinfo" Field="fromid" DbType="int" Required="False" ListVisible="True" FormVisible="True" ControlType="NumberBox" Title="订单来自">
+      <CascadeFilter />
+    </Field>
+    <Field Table="fw_orderinfo" Field="ordstate" DbType="int" Required="False" ListVisible="True" FormVisible="True" ControlType="Dropdown" Title="订单状态" Searchable="True" ControlValue="订单状态">
+      <CascadeFilter />
+    </Field>
+    <Field Table="fw_orderinfo" Field="isactive" DbType="int" Required="False" ListVisible="True" FormVisible="True" ControlType="Dropdown" Title="是否有效订单" ControlValue="是否">
+      <CascadeFilter />
+    </Field>
+    <Field Connection="LUOLAI1401Context" Table="fw_orderinfo" Field="pathvoucher" ControlType="File" FormVisible="True" Title="上传凭证" DbType="varchar" ListVisible="True" ColumnWidth="70">
+      <FileControlInfo />
+      <CascadeFilter />
+    </Field>
+    <Field Connection="LUOLAI1401Context" Table="fw_orderinfo" ControlType="Dropdown" ListVisible="True" FormVisible="True" Title="交货方式" Field="SelfMentioning" DbType="varchar" ControlValue="交货方式">
+      <CascadeFilter />
+    </Field>
+    <Field Table="fw_orderinfo" Field="ordcode" DbType="varchar" Required="False" ListVisible="False" FormVisible="False" ControlType="TextBox" Title="Guid编号">
+      <CascadeFilter />
+    </Field>
+    <Field Connection="LUOLAI1401Context" Table="fw_orderinfo" ControlType="Date" FormVisible="True" Title="创建日期" Field="CreateDate" DbType="datetime">
+      <CascadeFilter />
+    </Field>
+    <Field Connection="LUOLAI1401Context" Table="fw_orderinfo" ControlType="TextBox" Title="创建人" Field="CreatePerson" FormVisible="True" DbType="varchar">
+      <CascadeFilter />
+    </Field>
+    <Field Connection="LUOLAI1401Context" Table="fw_orderinfo" ControlType="Date" Title="修改日期" Field="UpdateDate" FormVisible="True" DbType="datetime">
+      <CascadeFilter />
+    </Field>
+    <Field Connection="LUOLAI1401Context" Table="fw_orderinfo" ControlType="TextBox" FormVisible="True" Title="修改人" Field="UpdatePerson" DbType="varchar" FormWidth="1">
+      <CascadeFilter />
+    </Field>
   </Fields>
+  <AfterSaveAction Connection="LUOLAI1401Context" CommandText="UPDATE fw_orderinfo SET pathfilename=Path FROM SYS_YLW.dbo.sys_file WHERE pathvoucher=FileId AND ordid=@ordid">
+    <Inputs>
+      <Input ParameterName="@ordid" SourceField="ordid" />
+    </Inputs>
+  </AfterSaveAction>
 </Form>

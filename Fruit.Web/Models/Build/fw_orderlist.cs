@@ -20,10 +20,11 @@ namespace Fruit.Web.Models
         public int ordlistid { get; set; }
         [Key, Column(Order = 0), DatabaseGenerated(DatabaseGeneratedOption.None)]
         public string ordid { get; set; }
+        public int? proid { get; set; }
         public string proname { get; set; }
         public string spec { get; set; }
         public decimal? price { get; set; }
         public decimal? counts { get; set; }
-        public string listcode { get; set; }
+        public decimal? subtotal { get; set; }
     }
 }

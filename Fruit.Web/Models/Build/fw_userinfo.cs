@@ -22,8 +22,11 @@ namespace Fruit.Web.Models
         public string userpass { get; set; }
         public DateTime? regtime { get; set; }
         public DateTime? lasttime { get; set; }
-        public int? isadmin { get; set; }
-        public int? isenabled { get; set; }
-        public string usercode { get; set; }
+        public string isadmin { get; set; }
+        public string isenabled { get; set; }
+        public DateTime? CreateDate { get; set; }
+        public string CreatePerson { get; set; }
+        public DateTime? UpdateDate { get; set; }
+        public string UpdatePerson { get; set; }
     }
 }

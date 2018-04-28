@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Form Connection="LUOLAI1401Context" Table="fw_disputeinfo" IsView="False" FilterTreeBindField="" TreeGridIdField="" TreeGridNameField="" TreeGridParentIdField="">
+  <SubTables />
+  <SaveProducre />
+  <Buttons />
+  <GroupFilters />
+  <Fields>
+    <Field Table="fw_disputeinfo" Field="disid" DbType="int" Required="True" ListVisible="True" FormVisible="True" ControlType="AutoId" ReadOnly="True" Title="编号">
+      <CascadeFilter />
+    </Field>
+    <Field Table="fw_disputeinfo" Field="ordid" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="Dropdown" Title="纠纷订单" ControlValue="订单选择">
+      <CascadeFilter />
+      <PopupOption />
+    </Field>
+    <Field Table="fw_disputeinfo" Field="disputememid" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="Dropdown" Title="违约方" ControlValue="违约方">
+      <CascadeFilter ParentField="ordid" Enable="False" ConditionField="" FullIfParentNull="False" />
+    </Field>
+    <Field Table="fw_disputeinfo" Field="dispositacount" DbType="numeric" Required="False" ListVisible="True" FormVisible="True" ControlType="NumberBox" Title="违约金金额">
+      <CascadeFilter />
+    </Field>
+    <Field Table="fw_disputeinfo" Field="remark" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="备注说明" FormWidth="3">
+      <CascadeFilter />
+    </Field>
+    <Field Table="fw_disputeinfo" Field="CreateDate" DbType="datetime" Required="False" ListVisible="False" FormVisible="True" ControlType="Date" ReadOnly="True" Title="创建日期">
+      <CascadeFilter />
+    </Field>
+    <Field Table="fw_disputeinfo" Field="CreatePerson" DbType="varchar" Required="False" ListVisible="False" FormVisible="True" ControlType="TextBox" ReadOnly="True" Title="创建人">
+      <CascadeFilter />
+    </Field>
+    <Field Table="fw_disputeinfo" Field="UpdateDate" DbType="datetime" Required="False" ListVisible="False" FormVisible="True" ControlType="Date" ReadOnly="True" Title="更改日期">
+      <CascadeFilter />
+    </Field>
+    <Field Table="fw_disputeinfo" Field="UpdatePerson" DbType="varchar" Required="False" ListVisible="False" FormVisible="True" ControlType="TextBox" ReadOnly="True" Title="更改人">
+      <CascadeFilter />
+    </Field>
+  </Fields>
+</Form>

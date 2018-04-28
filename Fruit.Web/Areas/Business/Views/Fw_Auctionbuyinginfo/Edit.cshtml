@@ -3,6 +3,15 @@
     var data = @MvcHtmlString.Create(JsonExtension.ToJson(Model));
     $(function(){
         var db = fruit.databind.root;
+        $.extend(db, {
+        buttonJXShenhe : function() {
+            var row = db.getData('form');
+            function ScriptAfter(data) {
+                alert(data)
+            }
+            fruit.ajax({url:'/api/Business/Fw_Auctionbuyinginfo/doJXShenhe', method:'post', data: JSON.stringify(row), success:ScriptAfter});
+        }
+        });
         data.form._row_state = @ViewBag.RowState;
         db.loadData(data);
         function loadDetial(){
@@ -63,6 +72,7 @@
 <div class="z-toolbar">
     <a id="a_save" href="#" plain="true" class="easyui-linkbutton" icon="icon-save" data-bind="click:'saveClick',disable:'readonly'" title="保存">保存</a>
     <a id="a_undo" href="#" plain="true" class="easyui-linkbutton" icon="icon-undo" data-bind="click:'rejectClick',disable:'readonly'" title="撤消">撤消</a>
+    <a class="easyui-linkbutton" iconcls="icon-bullet_tick" plain="true" data-bind="click:'buttonJXShenhe'" DynamicReadOnly="Disable">审核</a>
     <div class="datagrid-btn-separator"></div>
     <a id="a_other" href="#" class="easyui-splitbutton" data-options="menu:'#divother',iconCls:'icon-application_go'" title="其他">其他</a>
 </div>
@@ -79,9 +89,9 @@
     <div class="grid-group-1"><div class="lbl">竞拍编号</div>
    <div class="val">
 <input type="text" data-bind="value:'form.aucid', readOnly:true" class="z-txt readonly" /></div></div>
-    <div class="grid-group-1"><div class="lbl">商品编号</div>
+    <div class="grid-group-1"><div class="lbl">商品名称</div>
    <div class="val">
-<input type="text" data-bind="value:'form.proid'" class="z-txt easyui-numberbox" data-options="required:false" /></div></div>
+<input type="text" data-bind="value:'form.ProName'" class="easyui-validatebox z-txt" data-options="required:false" /></div></div>
     <div class="grid-group-1"><div class="lbl">原价</div>
    <div class="val">
 <input type="text" data-bind="value:'form.primePrice'" class="easyui-validatebox z-txt" data-options="required:false" /></div></div>
@@ -99,7 +109,7 @@
 <input type="text" data-bind="value:'form.counts'" class="z-txt easyui-numberbox" data-options="required:false" /></div></div>
     <div class="grid-group-1"><div class="lbl">发布人</div>
    <div class="val">
-<input type="text" data-bind="value:'form.memid'" class="easyui-validatebox z-txt" data-options="required:false" /></div></div>
+<input type="text" data-bind="value:'form.memid',datasource:'dataSource.memid'" class="z-txt easyui-combobox" data-options="required:false, readonly:false" /></div></div>
     <div class="grid-group-1"><div class="lbl">开始时间</div>
    <div class="val">
 <input type="text" data-bind="value:'form.starttime',readOnly:false" class="z-txt easyui-datebox" /></div></div>
@@ -112,13 +122,31 @@
     <div class="grid-group-1"><div class="lbl">竞拍宣传图</div>
    <div class="val">
 <input type="text" data-bind="value:'form.imgurl'" class="easyui-validatebox z-txt" data-options="required:false" /></div></div>
-    <div class="grid-group-1"><div class="lbl">备注</div>
+    <div class="grid-group-1"><div class="lbl">是否审核</div>
+   <div class="val">
+<input type="text" data-bind="value:'form.ispassed',datasource:'dataSource.ispassed'" class="z-txt easyui-combobox" data-options="required:false, readonly:true" /></div></div>
+    <div class="grid-group-3"><div class="lbl">备注</div>
    <div class="val">
 <input type="text" data-bind="value:'form.remark'" class="easyui-validatebox z-txt" data-options="required:false" /></div></div>
     <div class="grid-group-1"><div class="lbl">竞拍上架</div>
    <div class="val">
-<input type="text" data-bind="value:'form.isactive'" class="z-txt easyui-numberbox" data-options="required:false" /></div></div>
-    <div class="grid-group-1"><div class="lbl">GUID</div>
+<input type="text" data-bind="value:'form.isactive',datasource:'dataSource.isactive'" class="z-txt easyui-combobox" data-options="required:false, readonly:false" /></div></div>
+</div>
+<div id="tt" class="easyui-tabs">
+    <div title="表单信息" style="padding-top:2px;">
+        <div class="container_12" id="BillDetail" data-bind="inputwidth:0.9,autoheight:181">
+    <div class="grid-group-1"><div class="lbl">创建时间</div>
    <div class="val">
-<input type="text" data-bind="value:'form.auccode'" class="easyui-validatebox z-txt" data-options="required:false" /></div></div>
+<input type="text" data-bind="value:'form.CreateDate',readOnly:false" class="z-txt easyui-datebox" /></div></div>
+    <div class="grid-group-1"><div class="lbl">创建人</div>
+   <div class="val">
+<input type="text" data-bind="value:'form.CreatePerson'" class="easyui-validatebox z-txt" data-options="required:false" /></div></div>
+    <div class="grid-group-1"><div class="lbl">修改日期</div>
+   <div class="val">
+<input type="text" data-bind="value:'form.UpdateDate',readOnly:false" class="z-txt easyui-datebox" /></div></div>
+    <div class="grid-group-1"><div class="lbl">修改人</div>
+   <div class="val">
+<input type="text" data-bind="value:'form.UpdatePerson'" class="easyui-validatebox z-txt" data-options="required:false" /></div></div>
+        </div>
+    </div>
 </div>

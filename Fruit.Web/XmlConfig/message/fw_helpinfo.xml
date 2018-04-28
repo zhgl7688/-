@@ -1,17 +1,42 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Form Connection="LUOLAI1401Context" Table="fw_helpinfo" IsView="False" FilterTreeBindField="helpid" TreeGridIdField="helpid" TreeGridNameField="helpid" TreeGridParentIdField="helpid">
+<Form Connection="LUOLAI1401Context" Table="fw_helpinfo" IsView="False" FilterTreeBindField="helpid" TreeGridIdField="helpid" TreeGridNameField="helpid" TreeGridParentIdField="helpid" UseAfterSaveAction="True">
   <SubTables />
   <SaveProducre />
   <Buttons />
   <GroupFilters />
   <Fields>
-    <Field Table="fw_helpinfo" Field="helpid" DbType="varchar" Required="True" ListVisible="True" FormVisible="True" ControlType="AutoId" ReadOnly="True" Title="编号" />
-    <Field Table="fw_helpinfo" Field="helptitle" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="标题" />
-    <Field Table="fw_helpinfo" Field="helpcontent" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="内容" />
-    <Field Table="fw_helpinfo" Field="isenabled" DbType="int" Required="False" ListVisible="True" FormVisible="True" ControlType="NumberBox" Title="是否启用或删除" />
-    <Field Table="fw_helpinfo" Field="handleuserid" DbType="int" Required="False" ListVisible="True" FormVisible="True" ControlType="NumberBox" Title="操作人" />
-    <Field Table="fw_helpinfo" Field="createtime" DbType="smalldatetime" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="创建日期" />
-    <Field Table="fw_helpinfo" Field="modifytime" DbType="smalldatetime" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="修改日期" />
-    <Field Table="fw_helpinfo" Field="helpcode" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="Guid编号" />
+    <Field Table="fw_helpinfo" Field="helpid" DbType="varchar" Required="True" ListVisible="False" FormVisible="False" ControlType="AutoId" ReadOnly="True" Title="编号">
+      <CascadeFilter />
+    </Field>
+    <Field Table="fw_helpinfo" Field="helptitle" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="标题" FormWidth="2" Searchable="True">
+      <CascadeFilter />
+    </Field>
+    <Field Table="fw_helpinfo" Field="isenabled" DbType="int" Required="False" ListVisible="True" FormVisible="True" ControlType="Dropdown" Title="是否启用或删除" ControlValue="是否">
+      <CascadeFilter />
+    </Field>
+    <Field Table="fw_helpinfo" Field="helpcontent_h" DbType="varchar" Required="False" ListVisible="False" FormVisible="True" ControlType="RichTextBox" Title="内容">
+      <RichTextControlInfo />
+      <CascadeFilter />
+    </Field>
+    <Field Table="fw_helpinfo" Field="handleuserid" DbType="int" Required="False" ListVisible="False" FormVisible="False" ControlType="NumberBox" Title="操作人">
+      <CascadeFilter />
+    </Field>
+    <Field Connection="LUOLAI1401Context" Table="fw_helpinfo" ControlType="Date" ListVisible="True" FormVisible="True" FormInfoArea="表单信息" Title="创建日期" Field="CreateDate" DbType="datetime">
+      <CascadeFilter />
+    </Field>
+    <Field Connection="LUOLAI1401Context" Table="fw_helpinfo" ControlType="TextBox" ListVisible="True" FormVisible="True" FormInfoArea="表单信息" Title="创建人" Field="CreatePerson" DbType="varchar">
+      <CascadeFilter />
+    </Field>
+    <Field Connection="LUOLAI1401Context" Table="fw_helpinfo" ControlType="Date" FormInfoArea="表单信息" Title="修改日期" Field="UpdateDate" DbType="datetime" FormVisible="True" ListVisible="True">
+      <CascadeFilter />
+    </Field>
+    <Field Connection="LUOLAI1401Context" Table="fw_helpinfo" ControlType="TextBox" FormInfoArea="表单信息" Title="修改人" Field="UpdatePerson" DbType="varchar" FormVisible="True" ListVisible="True">
+      <CascadeFilter />
+    </Field>
   </Fields>
+  <AfterSaveAction Connection="LUOLAI1401Context" CommandText="UPDATE fw_helpinfo SET helpcontent=REPLACE(helpcontent_h,'/upload/','/admin/upload/') WHERE helpid=@helpid">
+    <Inputs>
+      <Input ParameterName="@helpid" SourceField="helpid" />
+    </Inputs>
+  </AfterSaveAction>
 </Form>

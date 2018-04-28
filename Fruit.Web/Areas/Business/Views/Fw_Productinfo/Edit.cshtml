@@ -3,6 +3,15 @@
     var data = @MvcHtmlString.Create(JsonExtension.ToJson(Model));
     $(function(){
         var db = fruit.databind.root;
+        $.extend(db, {
+        buttonGXshenhe : function() {
+            var row = db.getData('form');
+            function ScriptAfter(data) {
+                alert(data)
+            }
+            fruit.ajax({url:'/api/Business/Fw_Productinfo/doGXshenhe', method:'post', data: JSON.stringify(row), success:ScriptAfter});
+        }
+        });
         data.form._row_state = @ViewBag.RowState;
         db.loadData(data);
         function loadDetial(){
@@ -17,7 +26,7 @@
             },
             newClick:function(){
                 fruit.ajax({
-                        url:'/api/Business/Fw_Productinfo/Newproid',
+                        url:'/api/Business/Fw_Productinfo/NewFid',
                         success:function(data) {
                             parent.changeDocTab(window.frameElement, '/Business/Fw_Productinfo/edit/' + data);
                         }
@@ -28,7 +37,7 @@
                     if(r){
                         fruit.ajax({
                             method:'DELETE',
-                            url: '/api/Business/Fw_Productinfo/'+db.getData('form').proid,
+                            url: '/api/Business/Fw_Productinfo/'+db.getData('form').Fid,
                             success: function(data) {
                                 fruit.message('success', '删除成功');
                                 top.closeDocTab(window.frameElement);
@@ -63,6 +72,7 @@
 <div class="z-toolbar">
     <a id="a_save" href="#" plain="true" class="easyui-linkbutton" icon="icon-save" data-bind="click:'saveClick',disable:'readonly'" title="保存">保存</a>
     <a id="a_undo" href="#" plain="true" class="easyui-linkbutton" icon="icon-undo" data-bind="click:'rejectClick',disable:'readonly'" title="撤消">撤消</a>
+    <a class="easyui-linkbutton" iconcls="icon-bullet_tick" plain="true" data-bind="click:'buttonGXshenhe'" DynamicReadOnly="Disable">审核</a>
     <div class="datagrid-btn-separator"></div>
     <a id="a_other" href="#" class="easyui-splitbutton" data-options="menu:'#divother',iconCls:'icon-application_go'" title="其他">其他</a>
 </div>
@@ -78,25 +88,25 @@
 <input type="hidden" data-bind="value:'form._row_state'" />
     <div class="grid-group-1"><div class="lbl">商品编号</div>
    <div class="val">
-<input type="text" data-bind="value:'form.proid', readOnly:true" class="z-txt readonly" /></div></div>
+<input type="text" data-bind="value:'form.Fid', readOnly:true" class="z-txt readonly" /></div></div>
     <div class="grid-group-1"><div class="lbl">分类编号</div>
    <div class="val">
-<input type="text" data-bind="value:'form.catid'" class="z-txt easyui-numberbox" data-options="required:false" /></div></div>
+<input type="text" data-bind="value:'form.catid',datasource:'dataSource.catid'" class="z-txt easyui-combobox" data-options="required:false, readonly:false" /></div></div>
     <div class="grid-group-1"><div class="lbl">品名</div>
    <div class="val">
 <input type="text" data-bind="value:'form.proname'" class="easyui-validatebox z-txt" data-options="required:false" /></div></div>
     <div class="grid-group-1"><div class="lbl">规格</div>
    <div class="val">
-<input type="text" data-bind="value:'form.spec'" class="easyui-validatebox z-txt" data-options="required:false" /></div></div>
+<input type="text" data-bind="value:'form.spec',datasource:'dataSource.spec'" class="z-txt easyui-combobox" data-options="required:false, readonly:false" /></div></div>
     <div class="grid-group-1"><div class="lbl">会员</div>
    <div class="val">
-<input type="text" data-bind="value:'form.memid'" class="easyui-validatebox z-txt" data-options="required:false" /></div></div>
+<input type="text" data-bind="value:'form.memid',datasource:'dataSource.memid'" class="z-txt easyui-combobox" data-options="required:false, readonly:false" /></div></div>
     <div class="grid-group-1"><div class="lbl">单价</div>
    <div class="val">
 <input type="text" data-bind="value:'form.price'" class="easyui-validatebox z-txt" data-options="required:false" /></div></div>
     <div class="grid-group-1"><div class="lbl">交易模式</div>
    <div class="val">
-<input type="text" data-bind="value:'form.sellmode'" class="easyui-validatebox z-txt" data-options="required:false" /></div></div>
+<input type="text" data-bind="value:'form.sellmode',datasource:'dataSource.sellmode'" class="z-txt easyui-combobox" data-options="required:false, readonly:false" /></div></div>
     <div class="grid-group-1"><div class="lbl">牌号</div>
    <div class="val">
 <input type="text" data-bind="value:'form.grade'" class="easyui-validatebox z-txt" data-options="required:false" /></div></div>
@@ -106,9 +116,9 @@
     <div class="grid-group-1"><div class="lbl">库存</div>
    <div class="val">
 <input type="text" data-bind="value:'form.stock'" class="z-txt easyui-numberbox" data-options="required:false" /></div></div>
-    <div class="grid-group-1"><div class="lbl">是否已上架</div>
+    <div class="grid-group-1"><div class="lbl">是否上架</div>
    <div class="val">
-<input type="text" data-bind="value:'form.isactive'" class="z-txt easyui-numberbox" data-options="required:false" /></div></div>
+<input type="text" data-bind="value:'form.isactive',datasource:'dataSource.isactive'" class="z-txt easyui-combobox" data-options="required:false, readonly:false" /></div></div>
     <div class="grid-group-1"><div class="lbl">卖家保证金率%</div>
    <div class="val">
 <input type="text" data-bind="value:'form.depositseller'" class="z-txt easyui-numberbox" data-options="required:false" /></div></div>
@@ -117,20 +127,32 @@
 <input type="text" data-bind="value:'form.depositbuyer'" class="z-txt easyui-numberbox" data-options="required:false" /></div></div>
     <div class="grid-group-1"><div class="lbl">销售（求购）</div>
    <div class="val">
-<input type="text" data-bind="value:'form.issale'" class="z-txt easyui-numberbox" data-options="required:false" /></div></div>
-    <div class="grid-group-1"><div class="lbl">创建日期</div>
-   <div class="val">
-<input type="text" data-bind="value:'form.createdate',readOnly:false" class="z-txt easyui-datebox" /></div></div>
-    <div class="grid-group-1"><div class="lbl">修改日期</div>
-   <div class="val">
-<input type="text" data-bind="value:'form.modifydate',readOnly:false" class="z-txt easyui-datebox" /></div></div>
+<input type="text" data-bind="value:'form.issale',datasource:'dataSource.issale'" class="z-txt easyui-combobox" data-options="required:false, readonly:false" /></div></div>
     <div class="grid-group-1"><div class="lbl">热度</div>
    <div class="val">
 <input type="text" data-bind="value:'form.viewcount'" class="z-txt easyui-numberbox" data-options="required:false" /></div></div>
-    <div class="grid-group-1"><div class="lbl">备注</div>
+    <div class="grid-group-1"><div class="lbl">挂牌时间</div>
+   <div class="val">
+<input type="text" data-bind="value:'form.CreateDate',readOnly:true" class="z-txt easyui-datebox" /></div></div>
+    <div class="grid-group-3"><div class="lbl">备注</div>
    <div class="val">
 <input type="text" data-bind="value:'form.remark'" class="easyui-validatebox z-txt" data-options="required:false" /></div></div>
-    <div class="grid-group-1"><div class="lbl">Guid编号</div>
+    <div class="grid-group-1"><div class="lbl">是否审核</div>
    <div class="val">
-<input type="text" data-bind="value:'form.procode'" class="easyui-validatebox z-txt" data-options="required:false" /></div></div>
+<input type="text" data-bind="value:'form.ispassed',datasource:'dataSource.ispassed'" class="z-txt easyui-combobox" data-options="required:false, readonly:true" /></div></div>
+</div>
+<div id="tt" class="easyui-tabs">
+    <div title="表单信息" style="padding-top:2px;">
+        <div class="container_12" id="BillDetail" data-bind="inputwidth:0.9,autoheight:181">
+    <div class="grid-group-1"><div class="lbl">创建人</div>
+   <div class="val">
+<input type="text" data-bind="value:'form.CreatePerson', readOnly:true" class="z-txt readonly" /></div></div>
+    <div class="grid-group-1"><div class="lbl">修改人</div>
+   <div class="val">
+<input type="text" data-bind="value:'form.UpdatePerson', readOnly:true" class="z-txt readonly" /></div></div>
+    <div class="grid-group-1"><div class="lbl">修改日期</div>
+   <div class="val">
+<input type="text" data-bind="value:'form.UpdateDate',readOnly:true" class="z-txt easyui-datebox" /></div></div>
+        </div>
+    </div>
 </div>

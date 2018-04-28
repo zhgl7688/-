@@ -1,4 +1,6 @@
 ﻿@section scripts {
+<script src="~/Content/js/ueditor/ueditor.config.js"></script>
+<script src="~/Content/js/ueditor/ueditor.all.min.js"></script>
 <script type="text/javascript">
     var data = @MvcHtmlString.Create(JsonExtension.ToJson(Model));
     $(function(){
@@ -79,31 +81,43 @@
     <div class="grid-group-1"><div class="lbl">编号</div>
    <div class="val">
 <input type="text" data-bind="value:'form.messid', readOnly:true" class="z-txt readonly" /></div></div>
+    <div class="grid-group-1"><div class="lbl">标题</div>
+   <div class="val">
+<input type="text" data-bind="value:'form.title'" class="easyui-validatebox z-txt" data-options="required:false" /></div></div>
     <div class="grid-group-1"><div class="lbl">发信人</div>
    <div class="val">
 <input type="text" data-bind="value:'form.fromid'" class="easyui-validatebox z-txt" data-options="required:false" /></div></div>
     <div class="grid-group-1"><div class="lbl">收信人</div>
    <div class="val">
 <input type="text" data-bind="value:'form.toid'" class="easyui-validatebox z-txt" data-options="required:false" /></div></div>
-    <div class="grid-group-1"><div class="lbl">标题</div>
-   <div class="val">
-<input type="text" data-bind="value:'form.title'" class="easyui-validatebox z-txt" data-options="required:false" /></div></div>
-    <div class="grid-group-1"><div class="lbl">内容</div>
-   <div class="val">
-<input type="text" data-bind="value:'form.messcontent'" class="easyui-validatebox z-txt" data-options="required:false" /></div></div>
     <div class="grid-group-1"><div class="lbl">附件地址</div>
    <div class="val">
-<input type="text" data-bind="value:'form.attachmenturl'" class="easyui-validatebox z-txt" data-options="required:false" /></div></div>
-    <div class="grid-group-1"><div class="lbl">创建时间</div>
-   <div class="val">
-<input type="text" data-bind="value:'form.createtime',readOnly:false" class="z-txt easyui-datebox" /></div></div>
+<input type="text" data-bind="value:'form.attachmenturl'" class="easyui-file" data-options="{numberLimits:1,path:'',sizeLimits:2097152,typeLimits:'jpg,gif,png',viewMode:'Default'}" /></div></div>
     <div class="grid-group-1"><div class="lbl">已读</div>
    <div class="val">
 <input type="text" data-bind="value:'form.isread'" class="z-txt easyui-numberbox" data-options="required:false" /></div></div>
+    <div class="grid-group-8"><div class="lbl">内容</div>
+   <div class="val">
+<input type="hidden" data-bind="value:'form.messcontent'" richtextbox="messcontent_editor"><script id="messcontent_editor" type="text/plan"></script></div></div>
     <div class="grid-group-1"><div class="lbl">已删除</div>
    <div class="val">
 <input type="text" data-bind="value:'form.isdelete'" class="z-txt easyui-numberbox" data-options="required:false" /></div></div>
-    <div class="grid-group-1"><div class="lbl">Guid编号</div>
+</div>
+<div id="tt" class="easyui-tabs">
+    <div title="表单信息" style="padding-top:2px;">
+        <div class="container_12" id="BillDetail" data-bind="inputwidth:0.9,autoheight:181">
+    <div class="grid-group-1"><div class="lbl">创建日期</div>
    <div class="val">
-<input type="text" data-bind="value:'form.messcode'" class="easyui-validatebox z-txt" data-options="required:false" /></div></div>
+<input type="text" data-bind="value:'form.CreateDate',readOnly:false" class="z-txt easyui-datebox" /></div></div>
+    <div class="grid-group-1"><div class="lbl">创建人</div>
+   <div class="val">
+<input type="text" data-bind="value:'form.CreatePerson'" class="easyui-validatebox z-txt" data-options="required:false" /></div></div>
+    <div class="grid-group-1"><div class="lbl">修改日期</div>
+   <div class="val">
+<input type="text" data-bind="value:'form.UpdateDate',readOnly:false" class="z-txt easyui-datebox" /></div></div>
+    <div class="grid-group-1"><div class="lbl">修改人</div>
+   <div class="val">
+<input type="text" data-bind="value:'form.UpdatePerson'" class="easyui-validatebox z-txt" data-options="required:false" /></div></div>
+        </div>
+    </div>
 </div>

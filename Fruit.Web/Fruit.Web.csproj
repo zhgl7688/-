@@ -377,6 +377,7 @@
     <Compile Include="Models\mms_warehouseStockHistory.cs">
       <DependentUpon>MmsContext.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\ModifyPasswordModel.cs" />
     <Compile Include="Models\REMP_Change.cs">
       <DependentUpon>MmsContext.tt</DependentUpon>
     </Compile>
@@ -632,6 +633,51 @@
     <Compile Include="Areas\Member\Controllers\Fw_UserinfoController.Build.cs">
       <DependentUpon>Fw_UserinfoController.cs</DependentUpon>
     </Compile>
+    <Compile Include="Models\Build\fw_disputeinfo.cs" />
+    <Compile Include="Areas\Business\Controllers\Fw_DisputeinfoController.cs" />
+    <Compile Include="Areas\Business\Controllers\Fw_DisputeinfoController.Build.cs">
+      <DependentUpon>Fw_DisputeinfoController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Build\fw_depositinfo.cs" />
+    <Compile Include="Areas\Baseinfo\Controllers\Fw_DepositinfoController.cs" />
+    <Compile Include="Areas\Baseinfo\Controllers\Fw_DepositinfoController.Build.cs">
+      <DependentUpon>Fw_DepositinfoController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Build\fw_directprice.cs" />
+    <Compile Include="Areas\Baseinfo\Controllers\Fw_DirectpriceController.cs" />
+    <Compile Include="Areas\Baseinfo\Controllers\Fw_DirectpriceController.Build.cs">
+      <DependentUpon>Fw_DirectpriceController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Build\fw_ObjectionResult.cs" />
+    <Compile Include="Areas\Business\Controllers\Fw_ObjectionresultController.cs" />
+    <Compile Include="Areas\Business\Controllers\Fw_ObjectionresultController.Build.cs">
+      <DependentUpon>Fw_ObjectionresultController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Build\fw_Objection.cs" />
+    <Compile Include="Areas\Business\Controllers\ObjectionController.cs" />
+    <Compile Include="Areas\Business\Controllers\ObjectionController.Build.cs">
+      <DependentUpon>ObjectionController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Build\fw_directinfo.cs" />
+    <Compile Include="Areas\Message\Controllers\DirectinfoController.cs" />
+    <Compile Include="Areas\Message\Controllers\DirectinfoController.Build.cs">
+      <DependentUpon>DirectinfoController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Build\fw_teambuying.cs" />
+    <Compile Include="Models\Build\fw_Direct.cs" />
+    <Compile Include="Areas\Message\Controllers\FwhistController.cs" />
+    <Compile Include="Areas\Message\Controllers\FwhistController.Build.cs">
+      <DependentUpon>FwhistController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Build\v_ObjectionResult.cs" />
+    <Compile Include="Models\Build\v_ObjectionResult1.cs" />
+    <Compile Include="Models\Build\v_Orderinfo.cs" />
+    <Compile Include="Models\Build\v_MemberAll.cs" />
+    <Compile Include="Areas\Business\Controllers\TestController.cs" />
+    <Compile Include="Areas\Business\Controllers\TestController.Build.cs">
+      <DependentUpon>TestController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Build\v_objection.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\easyui\datagrid-detailview.js" />
@@ -3445,12 +3491,11 @@
     <Content Include="Areas\Fa\Views\Shared\_Layout.cshtml" />
     <Content Include="Areas\Fa\Views\_ViewStart.cshtml" />
     <Content Include="Areas\Fa\Views\web.config" />
-    <Content Include="Areas\Rols\Views\Practisecert - 复制\Edit.cshtml" />
-    <Content Include="Areas\Rols\Views\Practisecert - 复制\Index.cshtml" />
     <Content Include="CamPartialPage.html" />
     <Content Include="Areas\Contr\Views\Contract\Edit2.cshtml" />
     <None Include="bundleconfig.json" />
     <None Include="Properties\PublishProfiles\Base.pubxml" />
+    <None Include="Properties\PublishProfiles\CustomProfile.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -3491,6 +3536,8 @@
     <Folder Include="Areas\Contr\Models\" />
     <Folder Include="Areas\Contr\Views\Rcontract\" />
     <Folder Include="Areas\Fa\Models\" />
+    <Folder Include="Areas\Member\Models\" />
+    <Folder Include="Areas\Message\Models\" />
     <Folder Include="Areas\Mms\Models\" />
     <Folder Include="Areas\Mms\Views\Merchant\" />
     <Folder Include="Areas\Project\Models\" />
@@ -3507,31 +3554,6 @@
     <Folder Include="Views\File\" />
     <Folder Include="Views\Plugins\" />
     <Folder Include="XmlConfig\" />
-    <Folder Include="Models\Build" />
-    <Folder Include="Areas\Business\Views\Fw_Orderinfo" />
-    <Folder Include="Areas\Business\Views\Fw_Auctionbuyinginfo" />
-    <Folder Include="Areas\Business\Views\Fw_Teambuyinginfo" />
-    <Folder Include="Areas\Business\Views\Fw_Longterminfo" />
-    <Folder Include="Areas\Message" />
-    <Folder Include="Areas\Message\Controllers" />
-    <Folder Include="Areas\Message\Models" />
-    <Folder Include="Areas\Message\Views" />
-    <Folder Include="Areas\Message\Views\Shared" />
-    <Folder Include="Areas\Message\Views\Fw_Messageinfo" />
-    <Folder Include="Areas\Message\Views\Fw_Recordinfo" />
-    <Folder Include="Areas\Message\Views\Fw_Newsinfo" />
-    <Folder Include="Areas\Message\Views\Fw_Slideinfo" />
-    <Folder Include="Areas\Message\Views\Fw_Helpinfo" />
-    <Folder Include="Areas\Baseinfo\Views\Fw_Categoryinfo" />
-    <Folder Include="Areas\Baseinfo\Views\Fw_Calendarinfo" />
-    <Folder Include="Areas\Baseinfo\Views\Fw_Contractinfo" />
-    <Folder Include="Areas\Member" />
-    <Folder Include="Areas\Member\Controllers" />
-    <Folder Include="Areas\Member\Models" />
-    <Folder Include="Areas\Member\Views" />
-    <Folder Include="Areas\Member\Views\Shared" />
-    <Folder Include="Areas\Member\Views\Fw_Memberinfo" />
-    <Folder Include="Areas\Member\Views\Fw_Userinfo" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -3613,10 +3635,6 @@
     <Content Include="Areas\Mms\Views\Wq_Termpop\Edit.cshtml" />
     <Content Include="Areas\Mms\Views\Treetest\Index.cshtml" />
     <Content Include="Areas\Mms\Views\Treetest\Edit.cshtml" />
-    <Content Include="Areas\Mms\Views\Employee\Index.cshtml" />
-    <Content Include="Areas\Mms\Views\Employee\Edit.cshtml" />
-    <Content Include="Areas\Mms\Views\Wage\Index.cshtml" />
-    <Content Include="Areas\Mms\Views\Wage\Edit.cshtml" />
     <Content Include="Areas\Contr\Views\_ViewStart.cshtml" />
     <Content Include="Areas\Contr\Views\web.config" />
     <Content Include="Areas\Contr\Views\Shared\_Layout.cshtml" />
@@ -3684,6 +3702,21 @@
     <Content Include="Areas\Member\Views\Fw_Memberinfo\Edit.cshtml" />
     <Content Include="Areas\Member\Views\Fw_Userinfo\Index.cshtml" />
     <Content Include="Areas\Member\Views\Fw_Userinfo\Edit.cshtml" />
+    <Content Include="Areas\Business\Views\Fw_Disputeinfo\Index.cshtml" />
+    <Content Include="Areas\Business\Views\Fw_Disputeinfo\Edit.cshtml" />
+    <Content Include="Areas\Baseinfo\Views\Fw_Depositinfo\Index.cshtml" />
+    <Content Include="Areas\Baseinfo\Views\Fw_Depositinfo\Edit.cshtml" />
+    <Content Include="Areas\Baseinfo\Views\Fw_Directprice\Index.cshtml" />
+    <Content Include="Areas\Baseinfo\Views\Fw_Directprice\Edit.cshtml" />
+    <Content Include="Areas\Business\Views\Fw_Objectionresult\Index.cshtml" />
+    <Content Include="Areas\Business\Views\Fw_Objectionresult\Edit.cshtml" />
+    <Content Include="Areas\Business\Views\Objection\Index.cshtml" />
+    <Content Include="Areas\Business\Views\Objection\Edit.cshtml" />
+    <Content Include="Areas\Message\Views\Directinfo\Index.cshtml" />
+    <Content Include="Areas\Message\Views\Directinfo\Edit.cshtml" />
+    <Content Include="Areas\Message\Views\Fwhist\Index.cshtml" />
+    <Content Include="Areas\Business\Views\Test\Index.cshtml" />
+    <Content Include="Areas\Business\Views\Test\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Fruit.Core\Fruit.Core.csproj">

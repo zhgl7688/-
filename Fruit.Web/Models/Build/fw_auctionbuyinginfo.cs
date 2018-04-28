@@ -31,6 +31,24 @@ namespace Fruit.Web.Models
         public string imgurl { get; set; }
         public string remark { get; set; }
         public int? isactive { get; set; }
+        public int? ispassed { get; set; }
         public string auccode { get; set; }
+        public DateTime? CreateDate { get; set; }
+        public string CreatePerson { get; set; }
+        public DateTime? UpdateDate { get; set; }
+        public string UpdatePerson { get; set; }
+        public int? CatId { get; set; }
+        public string ProName { get; set; }
+        public string Spec { get; set; }
+        public string Grade { get; set; }
+        public decimal? DepositBuyer { get; set; }
+        public string PayType { get; set; }
+        public int? IsSplit { get; set; }
+        public decimal cautionAmt { get; set; }
+        public string cautionFlay { get; set; }
+        public int ispayback { get; set; }
+        public int dealFlag { get; set; }
+        public int dealTimes { get; set; }
+        public int isSuccess { get; set; }
     }
 }

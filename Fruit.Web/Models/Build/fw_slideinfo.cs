@@ -23,5 +23,9 @@ namespace Fruit.Web.Models
         public string linkurl { get; set; }
         public int? clickcounts { get; set; }
         public string code { get; set; }
+        public DateTime? CreateDate { get; set; }
+        public string CreatePerson { get; set; }
+        public DateTime? UpdateDate { get; set; }
+        public string UpdatePerson { get; set; }
     }
 }

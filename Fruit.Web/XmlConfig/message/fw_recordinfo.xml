@@ -5,13 +5,35 @@
   <Buttons />
   <GroupFilters />
   <Fields>
-    <Field Table="fw_recordinfo" Field="Id" DbType="int" Required="True" ListVisible="True" FormVisible="True" ControlType="AutoId" ReadOnly="True" Title="编号" />
-    <Field Table="fw_recordinfo" Field="fromid" DbType="int" Required="False" ListVisible="True" FormVisible="True" ControlType="NumberBox" Title="来源编号" />
-    <Field Table="fw_recordinfo" Field="frommodule" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="来源模块（洽谈、竞拍或团购）" />
-    <Field Table="fw_recordinfo" Field="price" DbType="decimal" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="单价" />
-    <Field Table="fw_recordinfo" Field="counts" DbType="decimal" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="数量" />
-    <Field Table="fw_recordinfo" Field="memid" DbType="char" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="会员" />
-    <Field Table="fw_recordinfo" Field="createdate" DbType="datetime" Required="False" ListVisible="True" FormVisible="True" ControlType="Date" Title="创建日期" />
-    <Field Table="fw_recordinfo" Field="fromcode" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="Guid编号" />
+    <Field Table="fw_recordinfo" Field="Id" DbType="int" Required="True" ListVisible="True" FormVisible="True" ControlType="AutoId" ReadOnly="True" Title="编号">
+      <CascadeFilter />
+    </Field>
+    <Field Table="fw_recordinfo" Field="fromid" DbType="int" Required="False" ListVisible="True" FormVisible="True" ControlType="NumberBox" Title="来源编号">
+      <CascadeFilter />
+    </Field>
+    <Field Table="fw_recordinfo" Field="frommodule" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="Dropdown" Title="来源模块" ControlValue="来源模块" Searchable="True">
+      <CascadeFilter />
+    </Field>
+    <Field Table="fw_recordinfo" Field="price" DbType="decimal" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="单价">
+      <CascadeFilter />
+    </Field>
+    <Field Table="fw_recordinfo" Field="counts" DbType="decimal" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="数量">
+      <CascadeFilter />
+    </Field>
+    <Field Table="fw_recordinfo" Field="memid" DbType="char" Required="False" ListVisible="True" FormVisible="True" ControlType="Dropdown" Title="会员" ControlValue="会员" Searchable="True">
+      <CascadeFilter />
+    </Field>
+    <Field Connection="LUOLAI1401Context" Table="fw_recordinfo" Title="创建日期" Field="CreateDate" ControlType="Date" FormVisible="True" DbType="datetime">
+      <CascadeFilter />
+    </Field>
+    <Field Connection="LUOLAI1401Context" Table="fw_recordinfo" Title="创建人" Field="CreatePerson" ControlType="TextBox" FormVisible="True" DbType="varchar">
+      <CascadeFilter />
+    </Field>
+    <Field Connection="LUOLAI1401Context" Table="fw_recordinfo" Title="修改日期" Field="UpdateDate" ControlType="Date" FormVisible="True" DbType="datetime">
+      <CascadeFilter />
+    </Field>
+    <Field Connection="LUOLAI1401Context" Table="fw_recordinfo" Title="修改人" Field="UpdatePerson" ControlType="TextBox" FormVisible="True" DbType="varchar">
+      <CascadeFilter />
+    </Field>
   </Fields>
 </Form>

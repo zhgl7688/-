@@ -1,20 +1,59 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Form Connection="LUOLAI1401Context" Table="fw_newsinfo" IsView="False" FilterTreeBindField="newsid" TreeGridIdField="newsid" TreeGridNameField="newsid" TreeGridParentIdField="newsid">
+<Form Connection="LUOLAI1401Context" Table="fw_newsinfo" IsView="False" FilterTreeBindField="newsid" TreeGridIdField="newsid" TreeGridNameField="newsid" TreeGridParentIdField="newsid" UseAfterSaveAction="True">
   <SubTables />
   <SaveProducre />
   <Buttons />
   <GroupFilters />
   <Fields>
-    <Field Table="fw_newsinfo" Field="newsid" DbType="int" Required="True" ListVisible="True" FormVisible="True" ControlType="AutoId" ReadOnly="True" Title="编号" />
-    <Field Table="fw_newsinfo" Field="newstitle" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="标题" />
-    <Field Table="fw_newsinfo" Field="newscontent" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="内容" />
-    <Field Table="fw_newsinfo" Field="category" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="频道" />
-    <Field Table="fw_newsinfo" Field="clicks" DbType="int" Required="False" ListVisible="True" FormVisible="True" ControlType="NumberBox" Title="热度" />
-    <Field Table="fw_newsinfo" Field="isslide" DbType="int" Required="False" ListVisible="True" FormVisible="True" ControlType="NumberBox" Title="是否资讯页轮播新闻" />
-    <Field Table="fw_newsinfo" Field="slidepicurl" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="轮播图片" />
-    <Field Table="fw_newsinfo" Field="imgurl" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="标题图" />
-    <Field Table="fw_newsinfo" Field="userid" DbType="int" Required="False" ListVisible="True" FormVisible="True" ControlType="NumberBox" Title="发布人" />
-    <Field Table="fw_newsinfo" Field="pubtime" DbType="datetime" Required="False" ListVisible="True" FormVisible="True" ControlType="Date" Title="发布时间" />
-    <Field Table="fw_newsinfo" Field="newscode" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="Guid编号" />
+    <Field Table="fw_newsinfo" Field="newsid" DbType="int" Required="True" ListVisible="True" FormVisible="True" ControlType="AutoId" ReadOnly="True" Title="编号">
+      <CascadeFilter />
+    </Field>
+    <Field Table="fw_newsinfo" Field="newstitle" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="标题" FormWidth="2" Searchable="True">
+      <CascadeFilter />
+    </Field>
+    <Field Table="fw_newsinfo" Field="category" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="频道">
+      <CascadeFilter />
+    </Field>
+    <Field Table="fw_newsinfo" Field="clicks" DbType="int" Required="False" ListVisible="True" FormVisible="True" ControlType="NumberBox" Title="热度">
+      <CascadeFilter />
+    </Field>
+    <Field Table="fw_newsinfo" Field="isslide" DbType="int" Required="False" ListVisible="True" FormVisible="True" ControlType="Dropdown" Title="是否资讯页轮播" ControlValue="是否">
+      <CascadeFilter />
+    </Field>
+    <Field Table="fw_newsinfo" Field="slidepicurl" DbType="varchar" Required="False" ListVisible="False" FormVisible="True" ControlType="File" Title="轮播图片">
+      <CascadeFilter />
+      <FileControlInfo />
+    </Field>
+    <Field Table="fw_newsinfo" Field="imgurl" DbType="varchar" Required="False" ListVisible="False" FormVisible="True" ControlType="File" Title="标题图">
+      <CascadeFilter />
+      <FileControlInfo />
+    </Field>
+    <Field Table="fw_newsinfo" Field="userid" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="Dropdown" Title="发布人" ControlValue="登录用户" Searchable="True" DefaultValue="{USER.UserCode}" ReadOnly="True">
+      <CascadeFilter />
+    </Field>
+    <Field Connection="LUOLAI1401Context" Table="fw_newsinfo" ControlType="Date" ListVisible="True" FormVisible="True" Title="发布时间" Field="pubtime" DbType="datetime">
+      <CascadeFilter />
+    </Field>
+    <Field Table="fw_newsinfo" Field="newscontenth" DbType="varchar" Required="False" ListVisible="False" FormVisible="True" ControlType="RichTextBox" Title="内容">
+      <RichTextControlInfo />
+      <CascadeFilter />
+    </Field>
+    <Field Connection="LUOLAI1401Context" Table="fw_newsinfo" Field="CreateDate" Title="创建日期" ControlType="Date" FormVisible="True" DbType="datetime">
+      <CascadeFilter />
+    </Field>
+    <Field Connection="LUOLAI1401Context" Table="fw_newsinfo" Field="CreatePerson" Title="创建人" ControlType="TextBox" FormVisible="True" DbType="varchar">
+      <CascadeFilter />
+    </Field>
+    <Field Connection="LUOLAI1401Context" Table="fw_newsinfo" Field="UpdateDate" Title="修改日期" ControlType="Date" FormVisible="True" DbType="datetime">
+      <CascadeFilter />
+    </Field>
+    <Field Connection="LUOLAI1401Context" Table="fw_newsinfo" Field="UpdatePerson" Title="修改人" ControlType="TextBox" FormVisible="True" DbType="varchar">
+      <CascadeFilter />
+    </Field>
   </Fields>
+  <AfterSaveAction Connection="LUOLAI1401Context" CommandText="UPDATE fw_newsinfo SET newscontent=REPLACE(newscontenth,'/upload/','/admin/upload/') WHERE newsid=@newsid">
+    <Inputs>
+      <Input SourceField="newsid" ParameterName="@newsid" />
+    </Inputs>
+  </AfterSaveAction>
 </Form>

@@ -3,6 +3,22 @@
     var data = @MvcHtmlString.Create(JsonExtension.ToJson(Model));
     $(function(){
         var db = fruit.databind.root;
+        $.extend(db, {
+        buttonBVIPX : function() {
+            var row = db.getData('form');
+            function ScriptAfter(data) {
+                alert(data);
+            }
+            fruit.ajax({url:'/api/Member/Fw_Memberinfo/doBVIPX', method:'post', data: JSON.stringify(row), success:ScriptAfter});
+        },
+        buttonBQXRZ : function() {
+            var row = db.getData('form');
+            function ScriptAfter(data) {
+                alert(data);
+            }
+            fruit.ajax({url:'/api/Member/Fw_Memberinfo/doBQXRZ', method:'post', data: JSON.stringify(row), success:ScriptAfter});
+        }
+        });
         data.form._row_state = @ViewBag.RowState;
         db.loadData(data);
         function loadDetial(){
@@ -17,7 +33,7 @@
             },
             newClick:function(){
                 fruit.ajax({
-                        url:'/api/Member/Fw_Memberinfo/Newmemid',
+                        url:'/api/Member/Fw_Memberinfo/NewFid',
                         success:function(data) {
                             parent.changeDocTab(window.frameElement, '/Member/Fw_Memberinfo/edit/' + data);
                         }
@@ -28,7 +44,7 @@
                     if(r){
                         fruit.ajax({
                             method:'DELETE',
-                            url: '/api/Member/Fw_Memberinfo/'+db.getData('form').memid,
+                            url: '/api/Member/Fw_Memberinfo/'+db.getData('form').Fid,
                             success: function(data) {
                                 fruit.message('success', '删除成功');
                                 top.closeDocTab(window.frameElement);
@@ -63,6 +79,8 @@
 <div class="z-toolbar">
     <a id="a_save" href="#" plain="true" class="easyui-linkbutton" icon="icon-save" data-bind="click:'saveClick',disable:'readonly'" title="保存">保存</a>
     <a id="a_undo" href="#" plain="true" class="easyui-linkbutton" icon="icon-undo" data-bind="click:'rejectClick',disable:'readonly'" title="撤消">撤消</a>
+    <a class="easyui-linkbutton" iconcls="icon-bullet_tick" plain="true" data-bind="click:'buttonBVIPX'" DynamicReadOnly="Disable">认证</a>
+    <a class="easyui-linkbutton" iconcls="icon-cdr_cross" plain="true" data-bind="click:'buttonBQXRZ'" DynamicReadOnly="Disable">取消认证</a>
     <div class="datagrid-btn-separator"></div>
     <a id="a_other" href="#" class="easyui-splitbutton" data-options="menu:'#divother',iconCls:'icon-application_go'" title="其他">其他</a>
 </div>
@@ -76,18 +94,16 @@
 <div id="divrelations" style="width:100px; display:none;"></div>
 <div id="master" class="container_12" data-bind="inputwidth:0.9">
 <input type="hidden" data-bind="value:'form._row_state'" />
+<input type="hidden" data-bind="value:'form.Fid'" />
     <div class="grid-group-1"><div class="lbl">会员手机</div>
    <div class="val">
-<input type="text" data-bind="value:'form.memid', readOnly:true" class="z-txt readonly" /></div></div>
-    <div class="grid-group-1"><div class="lbl">密码</div>
-   <div class="val">
-<input type="text" data-bind="value:'form.mempass'" class="easyui-validatebox z-txt" data-options="required:false" /></div></div>
-    <div class="grid-group-1"><div class="lbl">真实姓名</div>
+<input type="text" data-bind="value:'form.memid'" class="easyui-validatebox z-txt" data-options="required:true" /></div></div>
+    <div class="grid-group-1"><div class="lbl">公司名</div>
    <div class="val">
 <input type="text" data-bind="value:'form.realname'" class="easyui-validatebox z-txt" data-options="required:false" /></div></div>
     <div class="grid-group-1"><div class="lbl">性别</div>
    <div class="val">
-<input type="text" data-bind="value:'form.gender'" class="z-txt easyui-numberbox" data-options="required:false" /></div></div>
+<input type="text" data-bind="value:'form.gender',datasource:'dataSource.gender'" class="z-txt easyui-combobox" data-options="required:false, readonly:false" /></div></div>
     <div class="grid-group-1"><div class="lbl">Email</div>
    <div class="val">
 <input type="text" data-bind="value:'form.email'" class="easyui-validatebox z-txt" data-options="required:false" /></div></div>
@@ -99,20 +115,53 @@
 <input type="text" data-bind="value:'form.wechat'" class="easyui-validatebox z-txt" data-options="required:false" /></div></div>
     <div class="grid-group-1"><div class="lbl">注册时间</div>
    <div class="val">
-<input type="text" data-bind="value:'form.regtime',readOnly:false" class="z-txt easyui-datebox" /></div></div>
+<input type="text" data-bind="value:'form.regtime', readOnly:false" class="z-txt easyui-datetimebox" data-options="required:false" /></div></div>
     <div class="grid-group-1"><div class="lbl">最后登录</div>
    <div class="val">
-<input type="text" data-bind="value:'form.lasttime',readOnly:false" class="z-txt easyui-datebox" /></div></div>
-    <div class="grid-group-1"><div class="lbl">是否已认证</div>
+<input type="text" data-bind="value:'form.lasttime', readOnly:false" class="z-txt easyui-datetimebox" data-options="required:false" /></div></div>
+    <div class="grid-group-1"><div class="lbl">认证状态</div>
    <div class="val">
-<input type="text" data-bind="value:'form.ispassed'" class="z-txt easyui-numberbox" data-options="required:false" /></div></div>
+<input type="text" data-bind="value:'form.ispassed',datasource:'dataSource.ispassed'" class="z-txt easyui-combobox" data-options="required:false, readonly:true" /></div></div>
     <div class="grid-group-1"><div class="lbl">是否启用</div>
    <div class="val">
-<input type="text" data-bind="value:'form.isenabled'" class="z-txt easyui-numberbox" data-options="required:false" /></div></div>
-    <div class="grid-group-1"><div class="lbl">企业编号</div>
+<input type="text" data-bind="value:'form.isenabled',datasource:'dataSource.isenabled'" class="z-txt easyui-combobox" data-options="required:false, readonly:false" /></div></div>
+    <div class="grid-group-1"><div class="lbl">营业执照</div>
    <div class="val">
-<input type="text" data-bind="value:'form.corpid'" class="z-txt easyui-numberbox" data-options="required:false" /></div></div>
-    <div class="grid-group-1"><div class="lbl">Guid编号</div>
+<input type="text" data-bind="value:'form.Cimg1'" class="easyui-file" data-options="{numberLimits:1,path:'',sizeLimits:2097152,typeLimits:'jpg,gif,png',viewMode:'Default'}" /></div></div>
+    <div class="grid-group-1"><div class="lbl">机构信用代码证</div>
    <div class="val">
-<input type="text" data-bind="value:'form.memcode'" class="easyui-validatebox z-txt" data-options="required:false" /></div></div>
+<input type="text" data-bind="value:'form.Cimg2'" class="easyui-file" data-options="{numberLimits:1,path:'',sizeLimits:2097152,typeLimits:'jpg,gif,png',viewMode:'Default'}" /></div></div>
+    <div class="grid-group-1"><div class="lbl">银行开户许可证</div>
+   <div class="val">
+<input type="text" data-bind="value:'form.Cimg3'" class="easyui-file" data-options="{numberLimits:1,path:'',sizeLimits:2097152,typeLimits:'jpg,gif,png',viewMode:'Default'}" /></div></div>
+    <div class="grid-group-1"><div class="lbl">法人身份证（正）</div>
+   <div class="val">
+<input type="text" data-bind="value:'form.Cimgcode1'" class="easyui-file" data-options="{numberLimits:1,path:'',sizeLimits:2097152,typeLimits:'jpg,gif,png',viewMode:'Default'}" /></div></div>
+    <div class="grid-group-1"><div class="lbl">法人身份证（反）</div>
+   <div class="val">
+<input type="text" data-bind="value:'form.Cimgcode2'" class="easyui-file" data-options="{numberLimits:1,path:'',sizeLimits:2097152,typeLimits:'jpg,gif,png',viewMode:'Default'}" /></div></div>
+    <div class="grid-group-1"><div class="lbl">销户申请书</div>
+   <div class="val">
+<input type="text" data-bind="value:'form.Xletterurl'" class="easyui-file" data-options="{numberLimits:1,path:'',sizeLimits:2097152,typeLimits:'jpg,gif,png',viewMode:'Default'}" /></div></div>
+    <div class="grid-group-1"><div class="lbl">委托交易书</div>
+   <div class="val">
+<input type="text" data-bind="value:'form.Cletterurl'" class="easyui-file" data-options="{numberLimits:1,path:'',sizeLimits:2097152,typeLimits:'jpg,gif,png',viewMode:'Default'}" /></div></div>
+</div>
+<div id="tt" class="easyui-tabs">
+    <div title="表单信息" style="padding-top:2px;">
+        <div class="container_12" id="BillDetail" data-bind="inputwidth:0.9,autoheight:181">
+    <div class="grid-group-1"><div class="lbl">创建日期</div>
+   <div class="val">
+<input type="text" data-bind="value:'form.CreateDate',readOnly:false" class="z-txt easyui-datebox" /></div></div>
+    <div class="grid-group-1"><div class="lbl">创建人</div>
+   <div class="val">
+<input type="text" data-bind="value:'form.CreatePerson'" class="easyui-validatebox z-txt" data-options="required:false" /></div></div>
+    <div class="grid-group-1"><div class="lbl">修改日期</div>
+   <div class="val">
+<input type="text" data-bind="value:'form.UpdateDate',readOnly:false" class="z-txt easyui-datebox" /></div></div>
+    <div class="grid-group-1"><div class="lbl">修改人</div>
+   <div class="val">
+<input type="text" data-bind="value:'form.UpdatePerson'" class="easyui-validatebox z-txt" data-options="required:false" /></div></div>
+        </div>
+    </div>
 </div>

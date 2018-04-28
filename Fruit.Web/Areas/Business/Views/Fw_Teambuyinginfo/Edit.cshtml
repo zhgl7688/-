@@ -3,6 +3,15 @@
     var data = @MvcHtmlString.Create(JsonExtension.ToJson(Model));
     $(function(){
         var db = fruit.databind.root;
+        $.extend(db, {
+        buttonTXShenhe : function() {
+            var row = db.getData('form');
+            function ScriptAfter(data) {
+                alert(data)
+            }
+            fruit.ajax({url:'/api/Business/Fw_Teambuyinginfo/doTXShenhe', method:'post', data: JSON.stringify(row), success:ScriptAfter});
+        }
+        });
         data.form._row_state = @ViewBag.RowState;
         db.loadData(data);
         function loadDetial(){
@@ -17,7 +26,7 @@
             },
             newClick:function(){
                 fruit.ajax({
-                        url:'/api/Business/Fw_Teambuyinginfo/Newteamid',
+                        url:'/api/Business/Fw_Teambuyinginfo/Newprocode',
                         success:function(data) {
                             parent.changeDocTab(window.frameElement, '/Business/Fw_Teambuyinginfo/edit/' + data);
                         }
@@ -28,7 +37,7 @@
                     if(r){
                         fruit.ajax({
                             method:'DELETE',
-                            url: '/api/Business/Fw_Teambuyinginfo/'+db.getData('form').teamid,
+                            url: '/api/Business/Fw_Teambuyinginfo/'+db.getData('form').procode,
                             success: function(data) {
                                 fruit.message('success', '删除成功');
                                 top.closeDocTab(window.frameElement);
@@ -63,6 +72,7 @@
 <div class="z-toolbar">
     <a id="a_save" href="#" plain="true" class="easyui-linkbutton" icon="icon-save" data-bind="click:'saveClick',disable:'readonly'" title="保存">保存</a>
     <a id="a_undo" href="#" plain="true" class="easyui-linkbutton" icon="icon-undo" data-bind="click:'rejectClick',disable:'readonly'" title="撤消">撤消</a>
+    <a class="easyui-linkbutton" iconcls="icon-bullet_tick" plain="true" data-bind="click:'buttonTXShenhe'" DynamicReadOnly="Disable">审核</a>
     <div class="datagrid-btn-separator"></div>
     <a id="a_other" href="#" class="easyui-splitbutton" data-options="menu:'#divother',iconCls:'icon-application_go'" title="其他">其他</a>
 </div>
@@ -76,46 +86,94 @@
 <div id="divrelations" style="width:100px; display:none;"></div>
 <div id="master" class="container_12" data-bind="inputwidth:0.9">
 <input type="hidden" data-bind="value:'form._row_state'" />
-    <div class="grid-group-1"><div class="lbl">编号</div>
+    <div class="grid-group-1"><div class="lbl">团购编号</div>
    <div class="val">
-<input type="text" data-bind="value:'form.teamid', readOnly:true" class="z-txt readonly" /></div></div>
-    <div class="grid-group-1"><div class="lbl">商品编号</div>
+<input type="text" data-bind="value:'form.procode', readOnly:true" class="z-txt readonly" /></div></div>
+    <div class="grid-group-1"><div class="lbl">分类编号</div>
    <div class="val">
-<input type="text" data-bind="value:'form.proid'" class="z-txt easyui-numberbox" data-options="required:false" /></div></div>
+<input type="text" data-bind="value:'form.catid'" class="z-txt easyui-numberbox" data-options="required:false" /></div></div>
+    <div class="grid-group-1"><div class="lbl">团购商品名称</div>
+   <div class="val">
+<input type="text" data-bind="value:'form.proname'" class="easyui-validatebox z-txt" data-options="required:false" /></div></div>
+    <div class="grid-group-1"><div class="lbl">规格</div>
+   <div class="val">
+<input type="text" data-bind="value:'form.spec'" class="easyui-validatebox z-txt" data-options="required:false" /></div></div>
+    <div class="grid-group-1"><div class="lbl">发布会员</div>
+   <div class="val">
+<input type="text" data-bind="value:'form.memid',datasource:'dataSource.memid'" class="z-txt easyui-combobox" data-options="required:false, readonly:false" /></div></div>
+    <div class="grid-group-1"><div class="lbl">销售模式</div>
+   <div class="val">
+<input type="text" data-bind="value:'form.sellmode'" class="easyui-validatebox z-txt" data-options="required:false" /></div></div>
     <div class="grid-group-1"><div class="lbl">原价</div>
    <div class="val">
-<input type="text" data-bind="value:'form.primePrice'" class="easyui-validatebox z-txt" data-options="required:false" /></div></div>
+<input type="text" data-bind="value:'form.price'" class="easyui-validatebox z-txt" data-options="required:false" /></div></div>
     <div class="grid-group-1"><div class="lbl">团购价</div>
    <div class="val">
-<input type="text" data-bind="value:'form.teamPrice'" class="easyui-validatebox z-txt" data-options="required:false" /></div></div>
-    <div class="grid-group-1"><div class="lbl">商品总数量</div>
+<input type="text" data-bind="value:'form.GroupPrice'" class="easyui-validatebox z-txt" data-options="required:false" /></div></div>
+    <div class="grid-group-1"><div class="lbl">牌号</div>
    <div class="val">
-<input type="text" data-bind="value:'form.counts'" class="z-txt easyui-numberbox" data-options="required:false" /></div></div>
-    <div class="grid-group-1"><div class="lbl">发布人</div>
+<input type="text" data-bind="value:'form.grade'" class="easyui-validatebox z-txt" data-options="required:false" /></div></div>
+    <div class="grid-group-1"><div class="lbl">起购量</div>
    <div class="val">
-<input type="text" data-bind="value:'form.memid'" class="easyui-validatebox z-txt" data-options="required:false" /></div></div>
-    <div class="grid-group-1"><div class="lbl">开始时间</div>
+<input type="text" data-bind="value:'form.minprodcount'" class="z-txt easyui-numberbox" data-options="required:false" /></div></div>
+    <div class="grid-group-1"><div class="lbl">库存</div>
    <div class="val">
-<input type="text" data-bind="value:'form.starttime',readOnly:false" class="z-txt easyui-datebox" /></div></div>
+<input type="text" data-bind="value:'form.stock'" class="z-txt easyui-numberbox" data-options="required:false" /></div></div>
+    <div class="grid-group-1"><div class="lbl">是否上架</div>
+   <div class="val">
+<input type="text" data-bind="value:'form.isactive',datasource:'dataSource.isactive'" class="z-txt easyui-combobox" data-options="required:false, readonly:false" /></div></div>
+    <div class="grid-group-1"><div class="lbl">买家保证金率</div>
+   <div class="val">
+<input type="text" data-bind="value:'form.depositbuyer'" class="easyui-validatebox z-txt" data-options="required:false" /></div></div>
+    <div class="grid-group-1"><div class="lbl">保证金</div>
+   <div class="val">
+<input type="text" data-bind="value:'form.cautionAmt'" class="z-txt easyui-numberbox" data-options="required:false,precision:2" /></div></div>
+    <div class="grid-group-1"><div class="lbl">查看次数(热度)</div>
+   <div class="val">
+<input type="text" data-bind="value:'form.viewcount'" class="z-txt easyui-numberbox" data-options="required:false" /></div></div>
     <div class="grid-group-1"><div class="lbl">结束时间</div>
    <div class="val">
-<input type="text" data-bind="value:'form.Endtime',readOnly:false" class="z-txt easyui-datebox" /></div></div>
-    <div class="grid-group-1"><div class="lbl">最低团购人数</div>
+<input type="text" data-bind="value:'form.endtime', readOnly:false" class="z-txt easyui-datetimebox" data-options="required:false" /></div></div>
+    <div class="grid-group-1"><div class="lbl">开始时间</div>
    <div class="val">
-<input type="text" data-bind="value:'form.minUserCount'" class="z-txt easyui-numberbox" data-options="required:false" /></div></div>
-    <div class="grid-group-1"><div class="lbl">商品起订量</div>
+<input type="text" data-bind="value:'form.starttime', readOnly:false" class="z-txt easyui-datetimebox" data-options="required:false" /></div></div>
+    <div class="grid-group-1"><div class="lbl">是否审核通过</div>
    <div class="val">
-<input type="text" data-bind="value:'form.minProdCount'" class="easyui-validatebox z-txt" data-options="required:false" /></div></div>
-    <div class="grid-group-1"><div class="lbl">团购宣传图片</div>
+<input type="text" data-bind="value:'form.ispassed',datasource:'dataSource.ispassed'" class="z-txt easyui-combobox" data-options="required:false, readonly:false" /></div></div>
+    <div class="grid-group-1"><div class="lbl">是否已支付保证金</div>
    <div class="val">
-<input type="text" data-bind="value:'form.imgurl'" class="easyui-validatebox z-txt" data-options="required:false" /></div></div>
-    <div class="grid-group-1"><div class="lbl">备注</div>
+<input type="text" data-bind="value:'form.cautionFlay',datasource:'dataSource.cautionFlay'" class="z-txt easyui-combobox" data-options="required:false, readonly:false" /></div></div>
+    <div class="grid-group-1"><div class="lbl">是否退回</div>
+   <div class="val">
+<input type="text" data-bind="value:'form.ispayback',datasource:'dataSource.ispayback'" class="z-txt easyui-combobox" data-options="required:false, readonly:false" /></div></div>
+    <div class="grid-group-1"><div class="lbl">是否已处理</div>
+   <div class="val">
+<input type="text" data-bind="value:'form.dealFlag',datasource:'dataSource.dealFlag'" class="z-txt easyui-combobox" data-options="required:true, readonly:false" /></div></div>
+    <div class="grid-group-1"><div class="lbl">处理日期</div>
+   <div class="val">
+<input type="text" data-bind="value:'form.dealTimes', readOnly:false" class="z-txt easyui-datebox" data-options="required:true" /></div></div>
+    <div class="grid-group-1"><div class="lbl">是否处理成功</div>
+   <div class="val">
+<input type="text" data-bind="value:'form.isSuccess',datasource:'dataSource.isSuccess'" class="z-txt easyui-combobox" data-options="required:true, readonly:false" /></div></div>
+    <div class="grid-group-2"><div class="lbl">备注</div>
    <div class="val">
 <input type="text" data-bind="value:'form.remark'" class="easyui-validatebox z-txt" data-options="required:false" /></div></div>
-    <div class="grid-group-1"><div class="lbl">是否启用（团购开始）</div>
+</div>
+<div id="tt" class="easyui-tabs">
+    <div title="表单信息" style="padding-top:2px;">
+        <div class="container_12" id="BillDetail" data-bind="inputwidth:0.9,autoheight:181">
+    <div class="grid-group-1"><div class="lbl">创建人</div>
    <div class="val">
-<input type="text" data-bind="value:'form.isactive'" class="z-txt easyui-numberbox" data-options="required:false" /></div></div>
-    <div class="grid-group-1"><div class="lbl">Guid编号</div>
+<input type="text" data-bind="value:'form.CreatePerson', readOnly:true" class="z-txt readonly" /></div></div>
+    <div class="grid-group-1"><div class="lbl">更改日期</div>
    <div class="val">
-<input type="text" data-bind="value:'form.teamcode'" class="easyui-validatebox z-txt" data-options="required:false" /></div></div>
+<input type="text" data-bind="value:'form.UpdateDate',readOnly:true" class="z-txt easyui-datebox" /></div></div>
+    <div class="grid-group-1"><div class="lbl">更改人</div>
+   <div class="val">
+<input type="text" data-bind="value:'form.UpdatePerson', readOnly:true" class="z-txt readonly" /></div></div>
+    <div class="grid-group-1"><div class="lbl">创建日期</div>
+   <div class="val">
+<input type="text" data-bind="value:'form.CreateDate',readOnly:true" class="z-txt easyui-datebox" /></div></div>
+        </div>
+    </div>
 </div>

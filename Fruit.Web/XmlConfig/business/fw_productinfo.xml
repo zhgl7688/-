@@ -2,28 +2,45 @@
 <Form Connection="LUOLAI1401Context" Table="fw_productinfo" IsView="False" FilterTreeBindField="proid" TreeGridIdField="proid" TreeGridNameField="proid" TreeGridParentIdField="proid">
   <SubTables />
   <SaveProducre />
-  <Buttons />
+  <Buttons>
+    <Button Id="GXshenhe" Title="审核" ListVisible="False" Reload="False" IconCls="bullet_tick">
+      <ServerBehavior Connection="LUOLAI1401Context" CommandText="exec ups_examine @FID,'&quot; + (System.Web.HttpContext.Current.Session[&quot;sys_user&quot;] as sys_user).UserCode + &quot;','1','X'" DataType="Value">
+        <Inputs>
+          <Input ParameterName="@FID" SourceField="Fid" />
+        </Inputs>
+      </ServerBehavior>
+      <ScriptAfter><![CDATA[alert(data)]]></ScriptAfter>
+    </Button>
+    <Button Id="Gshenhe" Title="审核" IconCls="bullet_tick" Reload="True" AllowBatch="True" FormVisible="False">
+      <ServerBehavior Connection="LUOLAI1401Context" CommandText="exec ups_examine @FID,'&quot; + (System.Web.HttpContext.Current.Session[&quot;sys_user&quot;] as sys_user).UserCode + &quot;','1','L'" DataType="Value">
+        <Inputs>
+          <Input ParameterName="@FID" SourceField="IDS" />
+        </Inputs>
+      </ServerBehavior>
+      <ScriptAfter><![CDATA[alert(data)]]></ScriptAfter>
+    </Button>
+  </Buttons>
   <GroupFilters />
   <Fields>
-    <Field Table="fw_productinfo" Field="proid" DbType="int" Required="True" ListVisible="True" FormVisible="True" ControlType="AutoId" ReadOnly="True" Title="商品编号">
+    <Field Table="fw_productinfo" Field="Fid" DbType="int" Required="True" ListVisible="True" FormVisible="True" ControlType="AutoId" ReadOnly="True" Title="商品编号">
       <CascadeFilter />
     </Field>
-    <Field Table="fw_productinfo" Field="catid" DbType="int" Required="False" ListVisible="True" FormVisible="True" ControlType="NumberBox" Title="分类编号">
+    <Field Table="fw_productinfo" Field="catid" DbType="int" Required="False" ListVisible="True" FormVisible="True" ControlType="Dropdown" Title="分类编号" Searchable="True" ControlValue="分类">
       <CascadeFilter />
     </Field>
-    <Field Table="fw_productinfo" Field="proname" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="品名">
+    <Field Table="fw_productinfo" Field="proname" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="品名" Searchable="True">
       <CascadeFilter />
     </Field>
-    <Field Table="fw_productinfo" Field="spec" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="规格">
+    <Field Table="fw_productinfo" Field="spec" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="Dropdown" Title="规格" ControlValue="计量单位">
       <CascadeFilter />
     </Field>
-    <Field Table="fw_productinfo" Field="memid" DbType="char" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="会员">
+    <Field Table="fw_productinfo" Field="memid" DbType="char" Required="False" ListVisible="True" FormVisible="True" ControlType="Dropdown" Title="会员" Searchable="True" ControlValue="会员">
       <CascadeFilter />
     </Field>
     <Field Table="fw_productinfo" Field="price" DbType="decimal" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="单价">
       <CascadeFilter />
     </Field>
-    <Field Table="fw_productinfo" Field="sellmode" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="交易模式">
+    <Field Table="fw_productinfo" Field="sellmode" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="Dropdown" Title="交易模式" ControlValue="交易模式" Searchable="True">
       <CascadeFilter />
     </Field>
     <Field Table="fw_productinfo" Field="grade" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="牌号">
@@ -35,31 +52,37 @@
     <Field Table="fw_productinfo" Field="stock" DbType="int" Required="False" ListVisible="True" FormVisible="True" ControlType="NumberBox" Title="库存">
       <CascadeFilter />
     </Field>
-    <Field Table="fw_productinfo" Field="isactive" DbType="int" Required="False" ListVisible="True" FormVisible="True" ControlType="NumberBox" Title="是否已上架">
+    <Field Table="fw_productinfo" Field="isactive" DbType="int" Required="False" ListVisible="True" FormVisible="True" ControlType="Dropdown" Title="是否上架" Searchable="True" ControlValue="是否">
       <CascadeFilter />
     </Field>
-    <Field Table="fw_productinfo" Field="depositseller" DbType="int" Required="False" ListVisible="True" FormVisible="True" ControlType="NumberBox" Title="卖家保证金率%">
+    <Field Table="fw_productinfo" Field="depositseller" DbType="decimal" Required="False" ListVisible="True" FormVisible="True" ControlType="NumberBox" Title="卖家保证金率%">
       <CascadeFilter />
     </Field>
-    <Field Table="fw_productinfo" Field="depositbuyer" DbType="int" Required="False" ListVisible="True" FormVisible="True" ControlType="NumberBox" Title="买家保证金率%">
+    <Field Table="fw_productinfo" Field="depositbuyer" DbType="decimal" Required="False" ListVisible="True" FormVisible="True" ControlType="NumberBox" Title="买家保证金率%">
       <CascadeFilter />
     </Field>
-    <Field Table="fw_productinfo" Field="issale" DbType="int" Required="False" ListVisible="True" FormVisible="True" ControlType="NumberBox" Title="销售（求购）">
-      <CascadeFilter />
-    </Field>
-    <Field Table="fw_productinfo" Field="createdate" DbType="datetime" Required="False" ListVisible="True" FormVisible="True" ControlType="Date" Title="创建日期">
-      <CascadeFilter />
-    </Field>
-    <Field Table="fw_productinfo" Field="modifydate" DbType="datetime" Required="False" ListVisible="True" FormVisible="True" ControlType="Date" Title="修改日期">
+    <Field Table="fw_productinfo" Field="issale" DbType="int" Required="False" ListVisible="True" FormVisible="True" ControlType="Dropdown" Title="销售（求购）" Searchable="True" ControlValue="销售求购">
       <CascadeFilter />
     </Field>
     <Field Table="fw_productinfo" Field="viewcount" DbType="int" Required="False" ListVisible="True" FormVisible="True" ControlType="NumberBox" Title="热度">
       <CascadeFilter />
     </Field>
-    <Field Table="fw_productinfo" Field="remark" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="备注">
+    <Field Connection="LUOLAI1401Context" Table="fw_productinfo" ControlType="Date" ReadOnly="True" FormVisible="True" FormInfoArea="" Title="挂牌时间" Field="CreateDate" DbType="datetime" Searchable="True" ListVisible="True">
       <CascadeFilter />
     </Field>
-    <Field Table="fw_productinfo" Field="procode" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="Guid编号">
+    <Field Table="fw_productinfo" Field="remark" DbType="varchar" Required="False" ListVisible="False" FormVisible="True" ControlType="TextBox" Title="备注" FormWidth="3">
+      <CascadeFilter />
+    </Field>
+    <Field Table="fw_productinfo" Field="ispassed" DbType="int" Required="False" ListVisible="True" FormVisible="True" ControlType="Dropdown" Title="是否审核" Searchable="True" ReadOnly="True" ControlValue="审核状态" DefaultValue="">
+      <CascadeFilter />
+    </Field>
+    <Field Connection="LUOLAI1401Context" Table="fw_productinfo" ControlType="TextBox" FormVisible="True" FormInfoArea="表单信息" Title="创建人" Field="CreatePerson" DbType="varchar" ReadOnly="True">
+      <CascadeFilter />
+    </Field>
+    <Field Connection="LUOLAI1401Context" Table="fw_productinfo" ControlType="TextBox" ReadOnly="True" FormVisible="True" FormInfoArea="表单信息" Title="修改人" Field="UpdatePerson" DbType="varchar">
+      <CascadeFilter />
+    </Field>
+    <Field Connection="LUOLAI1401Context" Table="fw_productinfo" ControlType="Date" ReadOnly="True" FormVisible="True" FormInfoArea="表单信息" Title="修改日期" Field="UpdateDate" DbType="datetime">
       <CascadeFilter />
     </Field>
   </Fields>

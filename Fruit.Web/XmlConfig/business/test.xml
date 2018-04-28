@@ -1,0 +1,457 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Form Connection="LUOLAI1401Context" Table="fw_Objection" IsView="False" FilterTreeBindField="" TreeGridIdField="objectionid" TreeGridNameField="objectionid" TreeGridParentIdField="objectionid">
+  <SubTables />
+  <SaveProducre />
+  <Buttons />
+  <GroupFilters />
+  <Fields>
+    <Field Table="v_MemberAll" Field="phone" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="AutoId" ReadOnly="True" />
+    <Field Table="v_MemberAll" Field="Fid" DbType="char" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" />
+    <Field Table="v_MemberAll" Field="memid" DbType="char" Required="True" ListVisible="True" FormVisible="True" ControlType="TextBox" />
+    <Field Table="v_MemberAll" Field="realname" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" />
+    <Field Table="v_MemberAll" Field="gender" DbType="int" Required="False" ListVisible="True" FormVisible="True" ControlType="NumberBox" />
+    <Field Table="v_MemberAll" Field="email" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" />
+    <Field Table="v_MemberAll" Field="qq" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" />
+    <Field Table="v_MemberAll" Field="wechat" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" />
+    <Field Table="v_MemberAll" Field="regtime" DbType="datetime" Required="False" ListVisible="True" FormVisible="True" ControlType="Date" />
+    <Field Table="v_MemberAll" Field="lasttime" DbType="datetime" Required="False" ListVisible="True" FormVisible="True" ControlType="Date" />
+    <Field Table="v_MemberAll" Field="ispassed" DbType="int" Required="False" ListVisible="True" FormVisible="True" ControlType="NumberBox" />
+    <Field Table="v_MemberAll" Field="isenabled" DbType="int" Required="False" ListVisible="True" FormVisible="True" ControlType="NumberBox" />
+    <Field Table="v_MemberAll" Field="corpid" DbType="int" Required="False" ListVisible="True" FormVisible="True" ControlType="NumberBox" />
+    <Field Table="v_MemberAll" Field="CreateDate" DbType="datetime" Required="False" ListVisible="False" FormVisible="True" ControlType="Date" ReadOnly="True" Title="创建日期" />
+    <Field Table="v_MemberAll" Field="CreatePerson" DbType="varchar" Required="False" ListVisible="False" FormVisible="True" ControlType="TextBox" ReadOnly="True" Title="创建人" />
+    <Field Table="v_MemberAll" Field="UpdateDate" DbType="datetime" Required="False" ListVisible="False" FormVisible="True" ControlType="Date" ReadOnly="True" Title="更改日期" />
+    <Field Table="v_MemberAll" Field="UpdatePerson" DbType="varchar" Required="False" ListVisible="False" FormVisible="True" ControlType="TextBox" ReadOnly="True" Title="更改人" />
+    <Field Table="v_MemberAll" Field="Cimg1" DbType="int" Required="False" ListVisible="True" FormVisible="True" ControlType="NumberBox" />
+    <Field Table="v_MemberAll" Field="Cimg2" DbType="int" Required="False" ListVisible="True" FormVisible="True" ControlType="NumberBox" />
+    <Field Table="v_MemberAll" Field="Cimg3" DbType="int" Required="False" ListVisible="True" FormVisible="True" ControlType="NumberBox" />
+    <Field Table="v_MemberAll" Field="Cimgcode1" DbType="int" Required="False" ListVisible="True" FormVisible="True" ControlType="NumberBox" />
+    <Field Table="v_MemberAll" Field="Cimgcode2" DbType="int" Required="False" ListVisible="True" FormVisible="True" ControlType="NumberBox" />
+    <Field Table="v_MemberAll" Field="Cletterurl" DbType="int" Required="False" ListVisible="True" FormVisible="True" ControlType="NumberBox" />
+    <Field Table="v_MemberAll" Field="Xletterurl" DbType="int" Required="False" ListVisible="True" FormVisible="True" ControlType="NumberBox" />
+    <Field Table="v_MemberAll" Field="corpname" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" />
+    <Field Table="v_MemberAll" Field="abbname" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" />
+    <Field Table="v_Orderinfo" Field="ordid" DbType="char" Required="True" ListVisible="True" FormVisible="True" ControlType="AutoId" ReadOnly="True">
+      <CascadeFilter />
+    </Field>
+    <Field Table="v_Orderinfo" Field="selleruserid" DbType="char" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox">
+      <CascadeFilter />
+    </Field>
+    <Field Table="v_Orderinfo" Field="buyeruserid" DbType="char" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox">
+      <CascadeFilter />
+    </Field>
+    <Field Table="v_Orderinfo" Field="tranmode" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox">
+      <CascadeFilter />
+    </Field>
+    <Field Table="v_Orderinfo" Field="contracturl" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox">
+      <CascadeFilter />
+    </Field>
+    <Field Table="v_Orderinfo" Field="fromid" DbType="int" Required="False" ListVisible="True" FormVisible="True" ControlType="NumberBox">
+      <CascadeFilter />
+    </Field>
+    <Field Table="v_Orderinfo" Field="ordstate" DbType="int" Required="False" ListVisible="True" FormVisible="True" ControlType="NumberBox">
+      <CascadeFilter />
+    </Field>
+    <Field Table="v_Orderinfo" Field="totalamount" DbType="decimal" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox">
+      <CascadeFilter />
+    </Field>
+    <Field Table="v_Orderinfo" Field="buyerDepAmt" DbType="decimal" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox">
+      <CascadeFilter />
+    </Field>
+    <Field Table="v_Orderinfo" Field="sellerDepAmt" DbType="decimal" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox">
+      <CascadeFilter />
+    </Field>
+    <Field Table="v_Orderinfo" Field="isactive" DbType="int" Required="False" ListVisible="True" FormVisible="True" ControlType="NumberBox">
+      <CascadeFilter />
+    </Field>
+    <Field Table="v_Orderinfo" Field="ordcode" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox">
+      <CascadeFilter />
+    </Field>
+    <Field Table="v_Orderinfo" Field="CreateDate" DbType="datetime" Required="False" ListVisible="False" FormVisible="True" ControlType="Date" ReadOnly="True" Title="创建日期">
+      <CascadeFilter />
+    </Field>
+    <Field Table="v_Orderinfo" Field="CreatePerson" DbType="varchar" Required="False" ListVisible="False" FormVisible="True" ControlType="TextBox" ReadOnly="True" Title="创建人">
+      <CascadeFilter />
+    </Field>
+    <Field Table="v_Orderinfo" Field="UpdateDate" DbType="datetime" Required="False" ListVisible="False" FormVisible="True" ControlType="Date" ReadOnly="True" Title="更改日期">
+      <CascadeFilter />
+    </Field>
+    <Field Table="v_Orderinfo" Field="UpdatePerson" DbType="varchar" Required="False" ListVisible="False" FormVisible="True" ControlType="TextBox" ReadOnly="True" Title="更改人">
+      <CascadeFilter />
+    </Field>
+    <Field Table="v_Orderinfo" Field="SelfMentioning" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox">
+      <CascadeFilter />
+    </Field>
+    <Field Table="v_Orderinfo" Field="NameDriver" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox">
+      <CascadeFilter />
+    </Field>
+    <Field Table="v_Orderinfo" Field="DeliveryAddress" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox">
+      <CascadeFilter />
+    </Field>
+    <Field Table="v_Orderinfo" Field="pathfilename" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox">
+      <CascadeFilter />
+    </Field>
+    <Field Table="v_Orderinfo" Field="LicensePlate" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox">
+      <CascadeFilter />
+    </Field>
+    <Field Table="v_Orderinfo" Field="pathvoucher" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox">
+      <CascadeFilter />
+    </Field>
+    <Field Table="v_Orderinfo" Field="objectionid" DbType="int" Required="True" ListVisible="True" FormVisible="True" ControlType="NumberBox">
+      <CascadeFilter />
+    </Field>
+    <Field Table="v_ObjectionResult" Field="objectionid" DbType="int" Required="True" ListVisible="True" FormVisible="True" ControlType="AutoId" ReadOnly="True" Title="1">
+      <CascadeFilter />
+    </Field>
+    <Field Table="v_ObjectionResult" Field="phone" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox">
+      <CascadeFilter />
+    </Field>
+    <Field Table="v_ObjectionResult" Field="Fid" DbType="char" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox">
+      <CascadeFilter />
+    </Field>
+    <Field Table="v_ObjectionResult" Field="memid" DbType="char" Required="True" ListVisible="True" FormVisible="True" ControlType="TextBox">
+      <CascadeFilter />
+    </Field>
+    <Field Table="v_ObjectionResult" Field="realname" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox">
+      <CascadeFilter />
+    </Field>
+    <Field Table="v_ObjectionResult" Field="gender" DbType="int" Required="False" ListVisible="True" FormVisible="True" ControlType="NumberBox">
+      <CascadeFilter />
+    </Field>
+    <Field Table="v_ObjectionResult" Field="email" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox">
+      <CascadeFilter />
+    </Field>
+    <Field Table="v_ObjectionResult" Field="qq" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox">
+      <CascadeFilter />
+    </Field>
+    <Field Table="v_ObjectionResult" Field="wechat" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox">
+      <CascadeFilter />
+    </Field>
+    <Field Table="v_ObjectionResult" Field="regtime" DbType="datetime" Required="False" ListVisible="True" FormVisible="True" ControlType="Date">
+      <CascadeFilter />
+    </Field>
+    <Field Table="v_ObjectionResult" Field="lasttime" DbType="datetime" Required="False" ListVisible="True" FormVisible="True" ControlType="Date">
+      <CascadeFilter />
+    </Field>
+    <Field Table="v_ObjectionResult" Field="ispassed" DbType="int" Required="False" ListVisible="True" FormVisible="True" ControlType="NumberBox">
+      <CascadeFilter />
+    </Field>
+    <Field Table="v_ObjectionResult" Field="isenabled" DbType="int" Required="False" ListVisible="True" FormVisible="True" ControlType="NumberBox">
+      <CascadeFilter />
+    </Field>
+    <Field Table="v_ObjectionResult" Field="corpid" DbType="int" Required="False" ListVisible="True" FormVisible="True" ControlType="NumberBox">
+      <CascadeFilter />
+    </Field>
+    <Field Table="v_ObjectionResult" Field="CreateDate" DbType="datetime" Required="False" ListVisible="False" FormVisible="True" ControlType="Date" ReadOnly="True" Title="创建日期">
+      <CascadeFilter />
+    </Field>
+    <Field Table="v_ObjectionResult" Field="CreatePerson" DbType="varchar" Required="False" ListVisible="False" FormVisible="True" ControlType="TextBox" ReadOnly="True" Title="创建人">
+      <CascadeFilter />
+    </Field>
+    <Field Table="v_ObjectionResult" Field="UpdateDate" DbType="datetime" Required="False" ListVisible="False" FormVisible="True" ControlType="Date" ReadOnly="True" Title="更改日期">
+      <CascadeFilter />
+    </Field>
+    <Field Table="v_ObjectionResult" Field="UpdatePerson" DbType="varchar" Required="False" ListVisible="False" FormVisible="True" ControlType="TextBox" ReadOnly="True" Title="更改人">
+      <CascadeFilter />
+    </Field>
+    <Field Table="v_ObjectionResult" Field="Cimg1" DbType="int" Required="False" ListVisible="True" FormVisible="True" ControlType="NumberBox">
+      <CascadeFilter />
+    </Field>
+    <Field Table="v_ObjectionResult" Field="Cimg2" DbType="int" Required="False" ListVisible="True" FormVisible="True" ControlType="NumberBox">
+      <CascadeFilter />
+    </Field>
+    <Field Table="v_ObjectionResult" Field="Cimg3" DbType="int" Required="False" ListVisible="True" FormVisible="True" ControlType="NumberBox">
+      <CascadeFilter />
+    </Field>
+    <Field Table="v_ObjectionResult" Field="Cimgcode1" DbType="int" Required="False" ListVisible="True" FormVisible="True" ControlType="NumberBox">
+      <CascadeFilter />
+    </Field>
+    <Field Table="v_ObjectionResult" Field="Cimgcode2" DbType="int" Required="False" ListVisible="True" FormVisible="True" ControlType="NumberBox">
+      <CascadeFilter />
+    </Field>
+    <Field Table="v_ObjectionResult" Field="Cletterurl" DbType="int" Required="False" ListVisible="True" FormVisible="True" ControlType="NumberBox">
+      <CascadeFilter />
+    </Field>
+    <Field Table="v_ObjectionResult" Field="Xletterurl" DbType="int" Required="False" ListVisible="True" FormVisible="True" ControlType="NumberBox">
+      <CascadeFilter />
+    </Field>
+    <Field Table="v_ObjectionResult" Field="corpname" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox">
+      <CascadeFilter />
+    </Field>
+    <Field Table="v_ObjectionResult" Field="abbname" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox">
+      <CascadeFilter />
+    </Field>
+    <Field Table="v_ObjectionResult1" Field="objectionid" DbType="int" Required="True" ListVisible="True" FormVisible="True" ControlType="AutoId" ReadOnly="True" Title="33" />
+    <Field Table="v_ObjectionResult1" Field="phone" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" />
+    <Field Table="v_ObjectionResult1" Field="Fid" DbType="char" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" />
+    <Field Table="v_ObjectionResult1" Field="memid" DbType="char" Required="True" ListVisible="True" FormVisible="True" ControlType="TextBox" />
+    <Field Table="v_ObjectionResult1" Field="realname" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" />
+    <Field Table="v_ObjectionResult1" Field="gender" DbType="int" Required="False" ListVisible="True" FormVisible="True" ControlType="NumberBox" />
+    <Field Table="v_ObjectionResult1" Field="email" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" />
+    <Field Table="v_ObjectionResult1" Field="qq" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" />
+    <Field Table="v_ObjectionResult1" Field="wechat" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" />
+    <Field Table="v_ObjectionResult1" Field="regtime" DbType="datetime" Required="False" ListVisible="True" FormVisible="True" ControlType="Date" />
+    <Field Table="v_ObjectionResult1" Field="lasttime" DbType="datetime" Required="False" ListVisible="True" FormVisible="True" ControlType="Date" />
+    <Field Table="v_ObjectionResult1" Field="ispassed" DbType="int" Required="False" ListVisible="True" FormVisible="True" ControlType="NumberBox" />
+    <Field Table="v_ObjectionResult1" Field="isenabled" DbType="int" Required="False" ListVisible="True" FormVisible="True" ControlType="NumberBox" />
+    <Field Table="v_ObjectionResult1" Field="corpid" DbType="int" Required="False" ListVisible="True" FormVisible="True" ControlType="NumberBox" />
+    <Field Table="v_ObjectionResult1" Field="CreateDate" DbType="datetime" Required="False" ListVisible="False" FormVisible="True" ControlType="Date" ReadOnly="True" Title="创建日期" />
+    <Field Table="v_ObjectionResult1" Field="CreatePerson" DbType="varchar" Required="False" ListVisible="False" FormVisible="True" ControlType="TextBox" ReadOnly="True" Title="创建人" />
+    <Field Table="v_ObjectionResult1" Field="UpdateDate" DbType="datetime" Required="False" ListVisible="False" FormVisible="True" ControlType="Date" ReadOnly="True" Title="更改日期" />
+    <Field Table="v_ObjectionResult1" Field="UpdatePerson" DbType="varchar" Required="False" ListVisible="False" FormVisible="True" ControlType="TextBox" ReadOnly="True" Title="更改人" />
+    <Field Table="v_ObjectionResult1" Field="Cimg1" DbType="int" Required="False" ListVisible="True" FormVisible="True" ControlType="NumberBox" />
+    <Field Table="v_ObjectionResult1" Field="Cimg2" DbType="int" Required="False" ListVisible="True" FormVisible="True" ControlType="NumberBox" />
+    <Field Table="v_ObjectionResult1" Field="Cimg3" DbType="int" Required="False" ListVisible="True" FormVisible="True" ControlType="NumberBox" />
+    <Field Table="v_ObjectionResult1" Field="Cimgcode1" DbType="int" Required="False" ListVisible="True" FormVisible="True" ControlType="NumberBox" />
+    <Field Table="v_ObjectionResult1" Field="Cimgcode2" DbType="int" Required="False" ListVisible="True" FormVisible="True" ControlType="NumberBox" />
+    <Field Table="v_ObjectionResult1" Field="Cletterurl" DbType="int" Required="False" ListVisible="True" FormVisible="True" ControlType="NumberBox" />
+    <Field Table="v_ObjectionResult1" Field="Xletterurl" DbType="int" Required="False" ListVisible="True" FormVisible="True" ControlType="NumberBox" />
+    <Field Table="v_ObjectionResult1" Field="corpname" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" />
+    <Field Table="v_ObjectionResult1" Field="abbname" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" />
+    <Field Table="fw_Objection" Field="objectionid" DbType="int" Required="True" ListVisible="True" FormVisible="True" ControlType="AutoId" ReadOnly="True" />
+    <Field Table="fw_Objection" Field="orderid" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" />
+    <Field Table="fw_Objection" Field="orderprice" DbType="decimal" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" />
+    <Field Table="fw_Objection" Field="Objectionstatus" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" />
+    <Field Table="fw_Objection" Field="otherprice" DbType="decimal" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" />
+    <Field Table="fw_Objection" Field="otherstatus" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" />
+    <Field Table="fw_Objection" Field="explain" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" />
+    <Field Table="fw_Objection" Field="MemId" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" />
+    <Field Table="fw_Objection" Field="MemIdSeller" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" />
+    <Field Table="fw_Objection" Field="CreateDate" DbType="datetime" Required="False" ListVisible="False" FormVisible="True" ControlType="Date" ReadOnly="True" Title="创建日期" />
+    <Field Table="fw_Objection" Field="CreatePerson" DbType="varchar" Required="False" ListVisible="False" FormVisible="True" ControlType="TextBox" ReadOnly="True" Title="创建人" />
+    <Field Table="fw_Objection" Field="UpdateDate" DbType="datetime" Required="False" ListVisible="False" FormVisible="True" ControlType="Date" ReadOnly="True" Title="更改日期" />
+    <Field Table="fw_Objection" Field="UpdatePerson" DbType="varchar" Required="False" ListVisible="False" FormVisible="True" ControlType="TextBox" ReadOnly="True" Title="更改人" />
+    <Field Table="fw_Objection" Field="CancelDate" DbType="datetime" Required="False" ListVisible="True" FormVisible="True" ControlType="Date" />
+    <Field Table="fw_Objection" Field="objState" DbType="int" Required="False" ListVisible="True" FormVisible="True" ControlType="NumberBox" />
+    <Field Table="fw_Objection" Field="isShow" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" />
+    <Field Table="fw_Objection" Field="IsAgreed" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" />
+    <Field Table="fw_Objection" Field="IsOnJudge" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" />
+    <Field Table="fw_Objection" Field="img0" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" />
+    <Field Table="fw_Objection" Field="img1" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" />
+    <Field Table="fw_Objection" Field="img2" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" />
+    <Field Table="fw_Objection" Field="Cimg1" DbType="int" Required="False" ListVisible="True" FormVisible="True" ControlType="NumberBox" />
+    <Field Table="fw_Objection" Field="Cimg2" DbType="int" Required="False" ListVisible="True" FormVisible="True" ControlType="NumberBox" />
+    <Field Table="fw_Objection" Field="Cimg3" DbType="int" Required="False" ListVisible="True" FormVisible="True" ControlType="NumberBox" />
+    <Field Table="fw_orderinfo" Field="ordid" DbType="char" Required="True" ListVisible="True" FormVisible="True" ControlType="AutoId" ReadOnly="True" />
+    <Field Table="fw_orderinfo" Field="selleruserid" DbType="char" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" />
+    <Field Table="fw_orderinfo" Field="buyeruserid" DbType="char" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" />
+    <Field Table="fw_orderinfo" Field="tranmode" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" />
+    <Field Table="fw_orderinfo" Field="contracturl" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" />
+    <Field Table="fw_orderinfo" Field="fromid" DbType="int" Required="False" ListVisible="True" FormVisible="True" ControlType="NumberBox" />
+    <Field Table="fw_orderinfo" Field="ordstate" DbType="int" Required="False" ListVisible="True" FormVisible="True" ControlType="NumberBox" />
+    <Field Table="fw_orderinfo" Field="totalamount" DbType="decimal" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" />
+    <Field Table="fw_orderinfo" Field="buyerDepAmt" DbType="decimal" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" />
+    <Field Table="fw_orderinfo" Field="sellerDepAmt" DbType="decimal" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" />
+    <Field Table="fw_orderinfo" Field="isactive" DbType="int" Required="False" ListVisible="True" FormVisible="True" ControlType="NumberBox" />
+    <Field Table="fw_orderinfo" Field="ordcode" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" />
+    <Field Table="fw_orderinfo" Field="CreateDate" DbType="datetime" Required="False" ListVisible="False" FormVisible="True" ControlType="Date" ReadOnly="True" Title="创建日期" />
+    <Field Table="fw_orderinfo" Field="CreatePerson" DbType="varchar" Required="False" ListVisible="False" FormVisible="True" ControlType="TextBox" ReadOnly="True" Title="创建人" />
+    <Field Table="fw_orderinfo" Field="UpdateDate" DbType="datetime" Required="False" ListVisible="False" FormVisible="True" ControlType="Date" ReadOnly="True" Title="更改日期" />
+    <Field Table="fw_orderinfo" Field="UpdatePerson" DbType="varchar" Required="False" ListVisible="False" FormVisible="True" ControlType="TextBox" ReadOnly="True" Title="更改人" />
+    <Field Table="fw_orderinfo" Field="SelfMentioning" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" />
+    <Field Table="fw_orderinfo" Field="NameDriver" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" />
+    <Field Table="fw_orderinfo" Field="DeliveryAddress" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" />
+    <Field Table="fw_orderinfo" Field="pathfilename" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" />
+    <Field Table="fw_orderinfo" Field="LicensePlate" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" />
+    <Field Table="fw_orderinfo" Field="pathvoucher" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" />
+    <Field Table="fw_ObjectionResult" Field="objectionid" DbType="int" Required="True" ListVisible="True" FormVisible="True" ControlType="AutoId" ReadOnly="True">
+      <CascadeFilter />
+    </Field>
+    <Field Table="fw_ObjectionResult" Field="orderid" DbType="varchar" Required="True" ListVisible="True" FormVisible="True" ControlType="TextBox">
+      <CascadeFilter />
+    </Field>
+    <Field Table="fw_ObjectionResult" Field="payment" DbType="decimal" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox">
+      <CascadeFilter />
+    </Field>
+    <Field Table="fw_ObjectionResult" Field="paymentmode" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox">
+      <CascadeFilter />
+    </Field>
+    <Field Table="fw_ObjectionResult" Field="paymentendtime" DbType="datetime" Required="False" ListVisible="True" FormVisible="True" ControlType="Date">
+      <CascadeFilter />
+    </Field>
+    <Field Table="fw_ObjectionResult" Field="explain" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox">
+      <CascadeFilter />
+    </Field>
+    <Field Table="fw_ObjectionResult" Field="resultstatus" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox">
+      <CascadeFilter />
+    </Field>
+    <Field Table="fw_ObjectionResult" Field="resultperson" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox">
+      <CascadeFilter />
+    </Field>
+    <Field Table="fw_ObjectionResult" Field="resultphone" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox">
+      <CascadeFilter />
+    </Field>
+    <Field Table="fw_ObjectionResult" Field="finalresult" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox">
+      <CascadeFilter />
+    </Field>
+    <Field Table="fw_ObjectionResult" Field="MemId" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox">
+      <CascadeFilter />
+    </Field>
+    <Field Table="fw_ObjectionResult" Field="SellerAccessed" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox">
+      <CascadeFilter />
+    </Field>
+    <Field Table="fw_ObjectionResult" Field="BuyerAccessed" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox">
+      <CascadeFilter />
+    </Field>
+    <Field Table="fw_ObjectionResult" Field="SellerReason" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox">
+      <CascadeFilter />
+    </Field>
+    <Field Table="fw_ObjectionResult" Field="BuyerReason" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox">
+      <CascadeFilter />
+    </Field>
+    <Field Table="fw_ObjectionResult" Field="SellerPay" DbType="decimal" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox">
+      <CascadeFilter />
+    </Field>
+    <Field Table="fw_ObjectionResult" Field="BuyerPay" DbType="decimal" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox">
+      <CascadeFilter />
+    </Field>
+    <Field Table="fw_ObjectionResult" Field="IsContinue" DbType="int" Required="False" ListVisible="True" FormVisible="True" ControlType="NumberBox">
+      <CascadeFilter />
+    </Field>
+    <Field Table="fw_ObjectionResult" Field="CreateDate" DbType="datetime" Required="False" ListVisible="False" FormVisible="True" ControlType="Date" ReadOnly="True" Title="创建日期">
+      <CascadeFilter />
+    </Field>
+    <Field Table="fw_ObjectionResult" Field="CreatePerson" DbType="varchar" Required="False" ListVisible="False" FormVisible="True" ControlType="TextBox" ReadOnly="True" Title="创建人">
+      <CascadeFilter />
+    </Field>
+    <Field Table="fw_ObjectionResult" Field="UpdateDate" DbType="datetime" Required="False" ListVisible="False" FormVisible="True" ControlType="Date" ReadOnly="True" Title="更改日期">
+      <CascadeFilter />
+    </Field>
+    <Field Table="fw_ObjectionResult" Field="UpdatePerson" DbType="varchar" Required="False" ListVisible="False" FormVisible="True" ControlType="TextBox" ReadOnly="True" Title="更改人">
+      <CascadeFilter />
+    </Field>
+    <Field Table="fw_ObjectionResult" Field="selleruserid" DbType="char" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox">
+      <CascadeFilter />
+    </Field>
+    <Field Table="fw_ObjectionResult" Field="buyeruserid" DbType="char" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox">
+      <CascadeFilter />
+    </Field>
+    <Field Table="fw_Objection" Field="objectionid" DbType="int" Required="True" ListVisible="True" FormVisible="True" ControlType="AutoId" ReadOnly="True" />
+    <Field Table="fw_Objection" Field="orderid" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" />
+    <Field Table="fw_Objection" Field="orderprice" DbType="decimal" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" />
+    <Field Table="fw_Objection" Field="Objectionstatus" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" />
+    <Field Table="fw_Objection" Field="otherprice" DbType="decimal" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" />
+    <Field Table="fw_Objection" Field="otherstatus" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" />
+    <Field Table="fw_Objection" Field="explain" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" />
+    <Field Table="fw_Objection" Field="MemId" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" />
+    <Field Table="fw_Objection" Field="MemIdSeller" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" />
+    <Field Table="fw_Objection" Field="CreateDate" DbType="datetime" Required="False" ListVisible="False" FormVisible="True" ControlType="Date" ReadOnly="True" Title="创建日期" />
+    <Field Table="fw_Objection" Field="CreatePerson" DbType="varchar" Required="False" ListVisible="False" FormVisible="True" ControlType="TextBox" ReadOnly="True" Title="创建人" />
+    <Field Table="fw_Objection" Field="UpdateDate" DbType="datetime" Required="False" ListVisible="False" FormVisible="True" ControlType="Date" ReadOnly="True" Title="更改日期" />
+    <Field Table="fw_Objection" Field="UpdatePerson" DbType="varchar" Required="False" ListVisible="False" FormVisible="True" ControlType="TextBox" ReadOnly="True" Title="更改人" />
+    <Field Table="fw_Objection" Field="CancelDate" DbType="datetime" Required="False" ListVisible="True" FormVisible="True" ControlType="Date" />
+    <Field Table="fw_Objection" Field="objState" DbType="int" Required="False" ListVisible="True" FormVisible="True" ControlType="NumberBox" />
+    <Field Table="fw_Objection" Field="isShow" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" />
+    <Field Table="fw_Objection" Field="IsAgreed" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" />
+    <Field Table="fw_Objection" Field="IsOnJudge" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" />
+    <Field Table="fw_Objection" Field="IsContinue" DbType="int" Required="False" ListVisible="True" FormVisible="True" ControlType="NumberBox" />
+    <Field Table="fw_Objection" Field="img0" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" />
+    <Field Table="fw_Objection" Field="img1" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" />
+    <Field Table="fw_Objection" Field="img2" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" />
+    <Field Table="fw_Objection" Field="Cimg1" DbType="int" Required="False" ListVisible="True" FormVisible="True" ControlType="NumberBox" />
+    <Field Table="fw_Objection" Field="Cimg2" DbType="int" Required="False" ListVisible="True" FormVisible="True" ControlType="NumberBox" />
+    <Field Table="fw_Objection" Field="Cimg3" DbType="int" Required="False" ListVisible="True" FormVisible="True" ControlType="NumberBox" />
+    <Field Table="fw_Objection" Field="sysExplain" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" />
+    <Field Table="v_objection" Field="explain" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="AutoId" ReadOnly="True" />
+    <Field Table="v_objection" Field="otherstatus" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" />
+    <Field Table="v_objection" Field="isagreed" DbType="varchar" Required="True" ListVisible="True" FormVisible="True" ControlType="TextBox" />
+    <Field Table="v_objection" Field="iscontinue" DbType="varchar" Required="True" ListVisible="True" FormVisible="True" ControlType="TextBox" />
+    <Field Table="v_objection" Field="isonjudge" DbType="varchar" Required="True" ListVisible="True" FormVisible="True" ControlType="TextBox" />
+    <Field Table="v_Sys_code" Field="Code" DbType="varchar" Required="True" ListVisible="True" FormVisible="True" ControlType="AutoId" ReadOnly="True" />
+    <Field Table="v_Sys_code" Field="Value" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" />
+    <Field Table="v_Sys_code" Field="Text" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" />
+    <Field Table="v_Sys_code" Field="ParentCode" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" />
+    <Field Table="v_Sys_code" Field="Seq" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" />
+    <Field Table="v_Sys_code" Field="IsEnable" DbType="bit" Required="False" ListVisible="True" FormVisible="True" ControlType="CheckBox" />
+    <Field Table="v_Sys_code" Field="IsDefault" DbType="bit" Required="False" ListVisible="True" FormVisible="True" ControlType="CheckBox" />
+    <Field Table="v_Sys_code" Field="Description" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" />
+    <Field Table="v_Sys_code" Field="CodeTypeName" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" />
+    <Field Table="v_Sys_code" Field="CodeType" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" />
+    <Field Table="v_Sys_code" Field="CreatePerson" DbType="varchar" Required="False" ListVisible="False" FormVisible="True" ControlType="TextBox" ReadOnly="True" Title="创建人" />
+    <Field Table="v_Sys_code" Field="CreateDate" DbType="datetime" Required="False" ListVisible="False" FormVisible="True" ControlType="Date" ReadOnly="True" Title="创建日期" />
+    <Field Table="v_Sys_code" Field="UpdatePerson" DbType="varchar" Required="False" ListVisible="False" FormVisible="True" ControlType="TextBox" ReadOnly="True" Title="更改人" />
+    <Field Table="v_Sys_code" Field="UpdateDate" DbType="datetime" Required="False" ListVisible="False" FormVisible="True" ControlType="Date" ReadOnly="True" Title="更改日期" />
+    <Field Table="v_objection" Field="explain" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="AutoId" ReadOnly="True" />
+    <Field Table="v_objection" Field="otherstatus" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" />
+    <Field Table="v_objection" Field="isagreed" DbType="varchar" Required="True" ListVisible="True" FormVisible="True" ControlType="TextBox" />
+    <Field Table="v_objection" Field="iscontinue" DbType="varchar" Required="True" ListVisible="True" FormVisible="True" ControlType="TextBox" />
+    <Field Table="v_objection" Field="isonjudge" DbType="varchar" Required="True" ListVisible="True" FormVisible="True" ControlType="TextBox" />
+    <Field Table="v_MemberAll" Field="phone" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="AutoId" ReadOnly="True" />
+    <Field Table="v_MemberAll" Field="Fid" DbType="char" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" />
+    <Field Table="v_MemberAll" Field="memid" DbType="char" Required="True" ListVisible="True" FormVisible="True" ControlType="TextBox" />
+    <Field Table="v_MemberAll" Field="realname" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" />
+    <Field Table="v_MemberAll" Field="gender" DbType="int" Required="False" ListVisible="True" FormVisible="True" ControlType="NumberBox" />
+    <Field Table="v_MemberAll" Field="email" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" />
+    <Field Table="v_MemberAll" Field="qq" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" />
+    <Field Table="v_MemberAll" Field="wechat" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" />
+    <Field Table="v_MemberAll" Field="regtime" DbType="datetime" Required="False" ListVisible="True" FormVisible="True" ControlType="Date" />
+    <Field Table="v_MemberAll" Field="lasttime" DbType="datetime" Required="False" ListVisible="True" FormVisible="True" ControlType="Date" />
+    <Field Table="v_MemberAll" Field="ispassed" DbType="int" Required="False" ListVisible="True" FormVisible="True" ControlType="NumberBox" />
+    <Field Table="v_MemberAll" Field="isenabled" DbType="int" Required="False" ListVisible="True" FormVisible="True" ControlType="NumberBox" />
+    <Field Table="v_MemberAll" Field="corpid" DbType="int" Required="False" ListVisible="True" FormVisible="True" ControlType="NumberBox" />
+    <Field Table="v_MemberAll" Field="CreateDate" DbType="datetime" Required="False" ListVisible="False" FormVisible="True" ControlType="Date" ReadOnly="True" Title="创建日期" />
+    <Field Table="v_MemberAll" Field="CreatePerson" DbType="varchar" Required="False" ListVisible="False" FormVisible="True" ControlType="TextBox" ReadOnly="True" Title="创建人" />
+    <Field Table="v_MemberAll" Field="UpdateDate" DbType="datetime" Required="False" ListVisible="False" FormVisible="True" ControlType="Date" ReadOnly="True" Title="更改日期" />
+    <Field Table="v_MemberAll" Field="UpdatePerson" DbType="varchar" Required="False" ListVisible="False" FormVisible="True" ControlType="TextBox" ReadOnly="True" Title="更改人" />
+    <Field Table="v_MemberAll" Field="Cimg1" DbType="int" Required="False" ListVisible="True" FormVisible="True" ControlType="NumberBox" />
+    <Field Table="v_MemberAll" Field="Cimg2" DbType="int" Required="False" ListVisible="True" FormVisible="True" ControlType="NumberBox" />
+    <Field Table="v_MemberAll" Field="Cimg3" DbType="int" Required="False" ListVisible="True" FormVisible="True" ControlType="NumberBox" />
+    <Field Table="v_MemberAll" Field="Cimgcode1" DbType="int" Required="False" ListVisible="True" FormVisible="True" ControlType="NumberBox" />
+    <Field Table="v_MemberAll" Field="Cimgcode2" DbType="int" Required="False" ListVisible="True" FormVisible="True" ControlType="NumberBox" />
+    <Field Table="v_MemberAll" Field="Cletterurl" DbType="int" Required="False" ListVisible="True" FormVisible="True" ControlType="NumberBox" />
+    <Field Table="v_MemberAll" Field="Xletterurl" DbType="int" Required="False" ListVisible="True" FormVisible="True" ControlType="NumberBox" />
+    <Field Table="v_MemberAll" Field="corpname" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" />
+    <Field Table="v_MemberAll" Field="abbname" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" />
+    <Field Table="v_objection" Field="objectionid" DbType="int" Required="True" ListVisible="True" FormVisible="True" ControlType="AutoId" ReadOnly="True" />
+    <Field Table="v_objection" Field="orderid" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" />
+    <Field Table="v_objection" Field="orderprice" DbType="decimal" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" />
+    <Field Table="v_objection" Field="Objectionstatus" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" />
+    <Field Table="v_objection" Field="otherprice" DbType="decimal" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" />
+    <Field Table="v_objection" Field="otherstatus" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" />
+    <Field Table="v_objection" Field="explain" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" />
+    <Field Table="v_objection" Field="MemId" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" />
+    <Field Table="v_objection" Field="MemIdSeller" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" />
+    <Field Table="v_objection" Field="CreateDate" DbType="datetime" Required="False" ListVisible="False" FormVisible="True" ControlType="Date" ReadOnly="True" Title="创建日期" />
+    <Field Table="v_objection" Field="CreatePerson" DbType="varchar" Required="False" ListVisible="False" FormVisible="True" ControlType="TextBox" ReadOnly="True" Title="创建人" />
+    <Field Table="v_objection" Field="UpdateDate" DbType="datetime" Required="False" ListVisible="False" FormVisible="True" ControlType="Date" ReadOnly="True" Title="更改日期" />
+    <Field Table="v_objection" Field="UpdatePerson" DbType="varchar" Required="False" ListVisible="False" FormVisible="True" ControlType="TextBox" ReadOnly="True" Title="更改人" />
+    <Field Table="v_objection" Field="CancelDate" DbType="datetime" Required="False" ListVisible="True" FormVisible="True" ControlType="Date" />
+    <Field Table="v_objection" Field="objState" DbType="int" Required="False" ListVisible="True" FormVisible="True" ControlType="NumberBox" />
+    <Field Table="v_objection" Field="isShow" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" />
+    <Field Table="v_objection" Field="isagreed" DbType="varchar" Required="True" ListVisible="True" FormVisible="True" ControlType="TextBox" />
+    <Field Table="v_objection" Field="iscontinue" DbType="varchar" Required="True" ListVisible="True" FormVisible="True" ControlType="TextBox" />
+    <Field Table="v_objection" Field="isonjudge" DbType="varchar" Required="True" ListVisible="True" FormVisible="True" ControlType="TextBox" />
+    <Field Table="v_objection" Field="img0" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" />
+    <Field Table="v_objection" Field="img1" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" />
+    <Field Table="v_objection" Field="img2" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" />
+    <Field Table="v_objection" Field="Cimg1" DbType="int" Required="False" ListVisible="True" FormVisible="True" ControlType="NumberBox" />
+    <Field Table="v_objection" Field="Cimg2" DbType="int" Required="False" ListVisible="True" FormVisible="True" ControlType="NumberBox" />
+    <Field Table="v_objection" Field="Cimg3" DbType="int" Required="False" ListVisible="True" FormVisible="True" ControlType="NumberBox" />
+    <Field Table="fw_Objection" Field="objectionid" DbType="int" Required="True" ListVisible="True" FormVisible="True" ControlType="AutoId" ReadOnly="True" />
+    <Field Table="fw_Objection" Field="orderid" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" />
+    <Field Table="fw_Objection" Field="orderprice" DbType="decimal" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" />
+    <Field Table="fw_Objection" Field="Objectionstatus" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" />
+    <Field Table="fw_Objection" Field="otherprice" DbType="decimal" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" />
+    <Field Table="fw_Objection" Field="otherstatus" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" />
+    <Field Table="fw_Objection" Field="explain" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" />
+    <Field Table="fw_Objection" Field="MemId" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" />
+    <Field Table="fw_Objection" Field="MemIdSeller" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" />
+    <Field Table="fw_Objection" Field="CreateDate" DbType="datetime" Required="False" ListVisible="False" FormVisible="True" ControlType="Date" ReadOnly="True" Title="创建日期" />
+    <Field Table="fw_Objection" Field="CreatePerson" DbType="varchar" Required="False" ListVisible="False" FormVisible="True" ControlType="TextBox" ReadOnly="True" Title="创建人" />
+    <Field Table="fw_Objection" Field="UpdateDate" DbType="datetime" Required="False" ListVisible="False" FormVisible="True" ControlType="Date" ReadOnly="True" Title="更改日期" />
+    <Field Table="fw_Objection" Field="UpdatePerson" DbType="varchar" Required="False" ListVisible="False" FormVisible="True" ControlType="TextBox" ReadOnly="True" Title="更改人" />
+    <Field Table="fw_Objection" Field="CancelDate" DbType="datetime" Required="False" ListVisible="True" FormVisible="True" ControlType="Date" />
+    <Field Table="fw_Objection" Field="objState" DbType="int" Required="False" ListVisible="True" FormVisible="True" ControlType="NumberBox" />
+    <Field Table="fw_Objection" Field="isShow" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" />
+    <Field Table="fw_Objection" Field="IsAgreed" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" />
+    <Field Table="fw_Objection" Field="IsOnJudge" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" />
+    <Field Table="fw_Objection" Field="IsContinue" DbType="int" Required="False" ListVisible="True" FormVisible="True" ControlType="NumberBox" />
+    <Field Table="fw_Objection" Field="img0" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" />
+    <Field Table="fw_Objection" Field="img1" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" />
+    <Field Table="fw_Objection" Field="img2" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" />
+    <Field Table="fw_Objection" Field="Cimg1" DbType="int" Required="False" ListVisible="True" FormVisible="True" ControlType="NumberBox" />
+    <Field Table="fw_Objection" Field="Cimg2" DbType="int" Required="False" ListVisible="True" FormVisible="True" ControlType="NumberBox" />
+    <Field Table="fw_Objection" Field="Cimg3" DbType="int" Required="False" ListVisible="True" FormVisible="True" ControlType="NumberBox" />
+    <Field Table="fw_Objection" Field="sysExplain" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" />
+  </Fields>
+</Form>

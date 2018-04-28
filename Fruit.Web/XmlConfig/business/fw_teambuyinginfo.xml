@@ -1,31 +1,110 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Form Connection="LUOLAI1401Context" Table="fw_teambuyinginfo" IsView="False" FilterTreeBindField="" TreeGridIdField="" TreeGridNameField="" TreeGridParentIdField="">
+<Form Connection="LUOLAI1401Context" Table="fw_teambuying" IsView="False" FilterTreeBindField="" TreeGridIdField="" TreeGridNameField="" TreeGridParentIdField="">
   <SubTables />
   <SaveProducre />
-  <Buttons />
+  <Buttons>
+    <Button Id="TXShenhe" Title="审核" IconCls="bullet_tick" ListVisible="False" Reload="False">
+      <ServerBehavior Connection="LUOLAI1401Context" CommandText="exec ups_examine @FID,'&quot; + (System.Web.HttpContext.Current.Session[&quot;sys_user&quot;] as sys_user).UserCode + &quot;','3','X'" DataType="Value">
+        <Inputs>
+          <Input SourceField="procode" ParameterName="@FID" />
+        </Inputs>
+      </ServerBehavior>
+      <ScriptAfter><![CDATA[alert(data)]]></ScriptAfter>
+    </Button>
+    <Button Id="TShenhe" Title="审核" IconCls="bullet_tick" Reload="True" AllowBatch="True" FormVisible="False">
+      <ServerBehavior Connection="LUOLAI1401Context" CommandText="exec ups_examine @FID,'&quot; + (System.Web.HttpContext.Current.Session[&quot;sys_user&quot;] as sys_user).UserCode + &quot;','3','L'" DataType="Value">
+        <Inputs>
+          <Input SourceField="IDS" ParameterName="@FID" />
+        </Inputs>
+      </ServerBehavior>
+      <ScriptAfter><![CDATA[alert(data)]]></ScriptAfter>
+    </Button>
+  </Buttons>
   <GroupFilters />
   <Fields>
-    <Field Table="fw_captialaccountinfo" Field="accid" DbType="int" Required="True" ListVisible="True" FormVisible="True" ControlType="AutoId" ReadOnly="True" Title="编号" />
-    <Field Table="fw_captialaccountinfo" Field="amount" DbType="decimal" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="商品编号" />
-    <Field Table="fw_captialaccountinfo" Field="ordid" DbType="char" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" />
-    <Field Table="fw_captialaccountinfo" Field="remark" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" />
-    <Field Table="fw_captialaccountinfo" Field="HandleType" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" />
-    <Field Table="fw_captialaccountinfo" Field="HandleAmount" DbType="decimal" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" />
-    <Field Table="fw_captialaccountinfo" Field="HandleDate" DbType="datetime" Required="False" ListVisible="True" FormVisible="True" ControlType="Date" />
-    <Field Table="fw_captialaccountinfo" Field="corpid" DbType="int" Required="False" ListVisible="True" FormVisible="True" ControlType="NumberBox" />
-    <Field Table="fw_teambuyinginfo" Field="teamid" DbType="int" Required="True" ListVisible="True" FormVisible="True" ControlType="AutoId" ReadOnly="True" Title="编号" />
-    <Field Table="fw_teambuyinginfo" Field="proid" DbType="int" Required="False" ListVisible="True" FormVisible="True" ControlType="NumberBox" Title="商品编号" />
-    <Field Table="fw_teambuyinginfo" Field="primePrice" DbType="decimal" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="原价" />
-    <Field Table="fw_teambuyinginfo" Field="teamPrice" DbType="decimal" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="团购价" />
-    <Field Table="fw_teambuyinginfo" Field="counts" DbType="int" Required="False" ListVisible="True" FormVisible="True" ControlType="NumberBox" Title="商品总数量" />
-    <Field Table="fw_teambuyinginfo" Field="memid" DbType="char" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="发布人" />
-    <Field Table="fw_teambuyinginfo" Field="starttime" DbType="datetime" Required="False" ListVisible="True" FormVisible="True" ControlType="Date" Title="开始时间" />
-    <Field Table="fw_teambuyinginfo" Field="Endtime" DbType="datetime" Required="False" ListVisible="True" FormVisible="True" ControlType="Date" Title="结束时间" />
-    <Field Table="fw_teambuyinginfo" Field="minUserCount" DbType="int" Required="False" ListVisible="True" FormVisible="True" ControlType="NumberBox" Title="最低团购人数" />
-    <Field Table="fw_teambuyinginfo" Field="minProdCount" DbType="decimal" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="商品起订量" />
-    <Field Table="fw_teambuyinginfo" Field="imgurl" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="团购宣传图片" />
-    <Field Table="fw_teambuyinginfo" Field="remark" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="备注" />
-    <Field Table="fw_teambuyinginfo" Field="isactive" DbType="int" Required="False" ListVisible="True" FormVisible="True" ControlType="NumberBox" Title="是否启用（团购开始）" />
-    <Field Table="fw_teambuyinginfo" Field="teamcode" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="Guid编号" />
+    <Field Table="fw_teambuying" Field="procode" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="AutoId" ControlValue="序号" Title="团购编号">
+      <CascadeFilter />
+    </Field>
+    <Field Table="fw_teambuying" Field="catid" DbType="int" Required="False" ListVisible="True" FormVisible="True" ControlType="NumberBox" Title="分类编号">
+      <CascadeFilter />
+    </Field>
+    <Field Table="fw_teambuying" Field="proname" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="团购商品名称" Searchable="True">
+      <CascadeFilter />
+    </Field>
+    <Field Table="fw_teambuying" Field="spec" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="规格">
+      <CascadeFilter />
+    </Field>
+    <Field Table="fw_teambuying" Field="memid" DbType="char" Required="False" ListVisible="True" FormVisible="True" ControlType="Dropdown" Title="发布会员" ControlValue="会员" Searchable="True">
+      <CascadeFilter />
+    </Field>
+    <Field Table="fw_teambuying" Field="sellmode" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="销售模式">
+      <CascadeFilter />
+    </Field>
+    <Field Table="fw_teambuying" Field="price" DbType="decimal" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="原价">
+      <CascadeFilter />
+    </Field>
+    <Field Table="fw_teambuying" Field="GroupPrice" DbType="decimal" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="团购价">
+      <CascadeFilter />
+    </Field>
+    <Field Table="fw_teambuying" Field="grade" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="牌号">
+      <CascadeFilter />
+    </Field>
+    <Field Table="fw_teambuying" Field="minprodcount" DbType="int" Required="False" ListVisible="True" FormVisible="True" ControlType="NumberBox" Title="起购量">
+      <CascadeFilter />
+    </Field>
+    <Field Table="fw_teambuying" Field="stock" DbType="int" Required="False" ListVisible="True" FormVisible="True" ControlType="NumberBox" Title="库存">
+      <CascadeFilter />
+    </Field>
+    <Field Table="fw_teambuying" Field="isactive" DbType="int" Required="False" ListVisible="True" FormVisible="True" ControlType="Dropdown" Title="是否上架" ControlValue="是否" Searchable="True">
+      <CascadeFilter />
+    </Field>
+    <Field Table="fw_teambuying" Field="depositbuyer" DbType="decimal" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="买家保证金率">
+      <CascadeFilter />
+    </Field>
+    <Field Table="fw_teambuying" Field="cautionAmt" DbType="numeric" Required="False" ListVisible="True" FormVisible="True" ControlType="NumberBox" Title="保证金">
+      <CascadeFilter />
+    </Field>
+    <Field Table="fw_teambuying" Field="viewcount" DbType="int" Required="False" ListVisible="False" FormVisible="True" ControlType="NumberBox" Title="查看次数(热度)">
+      <CascadeFilter />
+    </Field>
+    <Field Table="fw_teambuying" Field="endtime" DbType="datetime" Required="False" ListVisible="True" FormVisible="True" ControlType="DateTime" Title="结束时间">
+      <CascadeFilter />
+    </Field>
+    <Field Table="fw_teambuying" Field="starttime" DbType="datetime" Required="False" ListVisible="True" FormVisible="True" ControlType="DateTime" Title="开始时间">
+      <CascadeFilter />
+    </Field>
+    <Field Table="fw_teambuying" Field="ispassed" DbType="int" Required="False" ListVisible="True" FormVisible="True" ControlType="Dropdown" Title="是否审核通过" ControlValue="是否">
+      <CascadeFilter />
+    </Field>
+    <Field Table="fw_teambuying" Field="cautionFlay" DbType="char" Required="False" ListVisible="True" FormVisible="True" ControlType="Dropdown" Title="是否已支付保证金" ControlValue="是否">
+      <CascadeFilter />
+    </Field>
+    <Field Table="fw_teambuying" Field="ispayback" DbType="int" Required="False" ListVisible="True" FormVisible="True" ControlType="Dropdown" Title="是否退回" ControlValue="是否">
+      <CascadeFilter />
+    </Field>
+    <Field Table="fw_teambuying" Field="dealFlag" DbType="int" Required="True" ListVisible="True" FormVisible="True" ControlType="Dropdown" Title="是否已处理" ControlValue="是否">
+      <CascadeFilter />
+    </Field>
+    <Field Table="fw_teambuying" Field="dealTimes" DbType="varchar" Required="True" ListVisible="True" FormVisible="True" ControlType="Date" Title="处理日期">
+      <CascadeFilter />
+    </Field>
+    <Field Table="fw_teambuying" Field="isSuccess" DbType="int" Required="True" ListVisible="True" FormVisible="True" ControlType="Dropdown" Title="是否处理成功" ControlValue="是否">
+      <CascadeFilter />
+    </Field>
+    <Field Table="fw_teambuying" Field="remark" DbType="varchar" Required="False" ListVisible="False" FormVisible="True" ControlType="TextBox" Title="备注" FormWidth="2">
+      <CascadeFilter />
+    </Field>
+    <Field Table="fw_teambuying" Field="CreatePerson" DbType="varchar" Required="False" ListVisible="False" FormVisible="True" ControlType="TextBox" ReadOnly="True" Title="创建人">
+      <CascadeFilter />
+    </Field>
+    <Field Table="fw_teambuying" Field="UpdateDate" DbType="datetime" Required="False" ListVisible="False" FormVisible="True" ControlType="Date" ReadOnly="True" Title="更改日期">
+      <CascadeFilter />
+    </Field>
+    <Field Table="fw_teambuying" Field="UpdatePerson" DbType="varchar" Required="False" ListVisible="False" FormVisible="True" ControlType="TextBox" ReadOnly="True" Title="更改人">
+      <CascadeFilter />
+    </Field>
+    <Field Table="fw_teambuying" Field="CreateDate" DbType="datetime" Required="False" ListVisible="False" FormVisible="True" ControlType="Date" ReadOnly="True" Title="创建日期">
+      <CascadeFilter />
+    </Field>
   </Fields>
 </Form>

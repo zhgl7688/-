@@ -1,10 +1,14 @@
 ﻿@section scripts {
 <script type="text/javascript">
+    var data = @MvcHtmlString.Create(JsonExtension.ToJson(Model));
+   var col_fw_newsinfo_isslide_RefText_formatter = function(v, r) {return r.isslide_RefText;}
+   var col_fw_newsinfo_userid_RefText_formatter = function(v, r) {return r.userid_RefText;}
     $(function(){
         if($('#searchDialogTemplate').length == 1) {
             $('#showSearch').show();
         }
         var db = fruit.databind.root;
+        db.loadData(data);
 
             $.extend(db.options, {
                 searchClick: function(){
@@ -90,6 +94,17 @@
     <a class="easyui-linkbutton" iconcls="icon-edit" plain="true" data-bind="click:'edit'">编辑</a>
     <a class="easyui-linkbutton" iconcls="icon-cross" plain="true" data-bind="click:'delete'">删除</a>
     <a class="easyui-splitbutton" plain="true" data-options="iconCls:'icon-download'" suffix="xls" data-bind="click:'download'">导出</a>
+    <div class="condition_buttons">
+        <a id="showSearch" style="display:none" class="easyui-linkbutton" data-bind="click:'showSearchClick'" data-options="iconCls:'icon-search', plain:true" href="#">更多条件...</a>
+        <a class="easyui-linkbutton" data-bind="click:'searchClick'" data-options="iconCls:'icon-search', plain:true" href="#">搜索</a>
+        <a class="easyui-linkbutton" data-bind="click:'clearClick'" data-options="iconCls:'icon-clear', plain:true" href="#">清空</a>
+    </div>
+</div>
+<div id="condition" class="container_12" style="position:relative;max-height:35px">
+    <div class="grid-group-2"><div class="lbl">标题</div>
+    <div class="val"><input data-bind="value:'serach.newstitle'" type="text" class="z-txt" /></div></div>
+    <div class="grid-group-1"><div class="lbl">发布人</div>
+    <div class="val"><input data-bind="value:'serach.userid', datasource:'dataSource.userid'" type="text" class="z-txt easyui-combobox" /></div></div>
 </div>
 <table id="grid" data-bind="datagrid" data-options="fixSize:{w:4, h:'auto'}, autoRowHeight: false, rownumbers:true, method:'get', url:'/api/message/fw_newsinfo', pagination:true, pageSize:20, checkOnSelect:true, selectOnCheck:true, singleSelect:false">
 <thead>
@@ -97,15 +112,11 @@
     <th field="SelectedRowKey" data-options="checkbox:true"></th>
     <th field="newsid">编号    </th>
     <th field="newstitle" data-options="editor:{type:'validatebox',options:{required:false}}">标题    </th>
-    <th field="newscontent" data-options="editor:{type:'validatebox',options:{required:false}}">内容    </th>
     <th field="category" data-options="editor:{type:'validatebox',options:{required:false}}">频道    </th>
     <th field="clicks" data-options="editor:{type:'numberbox',options:{required:false}}">热度    </th>
-    <th field="isslide" data-options="editor:{type:'numberbox',options:{required:false}}">是否资讯页轮播新闻    </th>
-    <th field="slidepicurl" data-options="editor:{type:'validatebox',options:{required:false}}">轮播图片    </th>
-    <th field="imgurl" data-options="editor:{type:'validatebox',options:{required:false}}">标题图    </th>
-    <th field="userid" data-options="editor:{type:'numberbox',options:{required:false}}">发布人    </th>
+    <th field="isslide" data-options="editor:{type:'combobox', options:{required:false}}" formatter="col_fw_newsinfo_isslide_RefText_formatter">是否资讯页轮播    </th>
+    <th field="userid" formatter="col_fw_newsinfo_userid_RefText_formatter">发布人    </th>
     <th field="pubtime" data-options="editor:{type:'datebox',options:{required:false},formatter:fruit.formatter.Date}"  formatter="formatter:fruit.formatter.Date">发布时间    </th>
-    <th field="newscode" data-options="editor:{type:'validatebox',options:{required:false}}">Guid编号    </th>
 </tr>
 </thead>
 </table>

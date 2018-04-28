@@ -12,8 +12,8 @@ using Newtonsoft.Json.Linq;
 namespace Fruit.Web.Areas.Business.Controllers
 {
     public partial class Fw_ProductinfoController : Controller
-    {
-
+    { 
+        
     }
 
     public partial class Fw_ProductinfoApiController: ApiController

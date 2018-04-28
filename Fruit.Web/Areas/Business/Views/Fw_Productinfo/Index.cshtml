@@ -1,10 +1,40 @@
 ﻿@section scripts {
 <script type="text/javascript">
+    var data = @MvcHtmlString.Create(JsonExtension.ToJson(Model));
+   var col_fw_productinfo_catid_RefText_formatter = function(v, r) {return r.catid_RefText;}
+   var col_fw_productinfo_spec_RefText_formatter = function(v, r) {return r.spec_RefText;}
+   var col_fw_productinfo_memid_RefText_formatter = function(v, r) {return r.memid_RefText;}
+   var col_fw_productinfo_sellmode_RefText_formatter = function(v, r) {return r.sellmode_RefText;}
+   var col_fw_productinfo_isactive_RefText_formatter = function(v, r) {return r.isactive_RefText;}
+   var col_fw_productinfo_issale_RefText_formatter = function(v, r) {return r.issale_RefText;}
+    var col_fw_productinfo_ispassed_RefText_formatter = function (v, r) {
+        if (r.ispassed_RefText == "未审核")
+            return "<span style='color:red'>" + r.ispassed_RefText + "</span>";
+        return r.ispassed_RefText;
+    }
     $(function(){
         if($('#searchDialogTemplate').length == 1) {
             $('#showSearch').show();
         }
         var db = fruit.databind.root;
+        db.loadData(data);
+        $.extend(db, {
+        buttonGshenhe : function() {
+            var grid = db.binds.grid;
+            var rows = grid.getSelections();
+            if(rows.length == 0) {
+                fruit.message('warning', '请先选择一个挂牌管理');
+                return;
+            }
+            var row = rows[0];
+            row.IDS = grid.joinSelectedColumn('Fid');
+            function ScriptAfter(data) {
+                alert(data)
+                db.invoke('refresh');
+            }
+            fruit.ajax({url:'/api/Business/Fw_Productinfo/doGshenhe', method:'post', data: JSON.stringify(row), success:ScriptAfter});
+        }
+        });
 
             $.extend(db.options, {
                 searchClick: function(){
@@ -42,9 +72,9 @@
         $.extend(db.options, {
             add: function(){
                 fruit.ajax({
-                        url:'/api/Business/Fw_Productinfo/Newproid',
+                        url:'/api/Business/Fw_Productinfo/NewFid',
                         success:function(data) {
-                            parent.showDocTab('', '挂牌管理明细', '/Business/Fw_Productinfo/edit/' + data);
+                            parent.showDocTab('icon-medal_gold_1', '挂牌管理明细', '/Business/Fw_Productinfo/edit/' + data);
                         }
                     })
             },
@@ -55,7 +85,7 @@
                         fruit.message('warning', '请先选择一个挂牌管理');
                         return;
                     }
-                    parent.showDocTab('icon-house_in', '挂牌管理明细', '/Business/Fw_Productinfo/edit/' + row.proid);
+                    parent.showDocTab('icon-house_in', '挂牌管理明细', '/Business/Fw_Productinfo/edit/' + row.Fid);
             },
              'delete': function() {
                     var grid = db.binds.grid;
@@ -63,7 +93,7 @@
                     if(rows.length == 0) return;
                     var ids = [];
                     $.each(rows, function(){
-                        ids.push(this.proid);
+                        ids.push(this.Fid);
                     });
                     $.messager.confirm('确认', '您确认要删除所选记录吗？', function(r){
                         if(r){
@@ -90,30 +120,68 @@
     <a class="easyui-linkbutton" iconcls="icon-edit" plain="true" data-bind="click:'edit'">编辑</a>
     <a class="easyui-linkbutton" iconcls="icon-cross" plain="true" data-bind="click:'delete'">删除</a>
     <a class="easyui-splitbutton" plain="true" data-options="iconCls:'icon-download'" suffix="xls" data-bind="click:'download'">导出</a>
+    <a class="easyui-linkbutton" iconcls="icon-bullet_tick" plain="true" data-bind="click:'buttonGshenhe'" DynamicReadOnly="Disable">审核</a>
+    <div class="condition_buttons">
+        <a id="showSearch" style="display:none" class="easyui-linkbutton" data-bind="click:'showSearchClick'" data-options="iconCls:'icon-search', plain:true" href="#">更多条件...</a>
+        <a class="easyui-linkbutton" data-bind="click:'searchClick'" data-options="iconCls:'icon-search', plain:true" href="#">搜索</a>
+        <a class="easyui-linkbutton" data-bind="click:'clearClick'" data-options="iconCls:'icon-clear', plain:true" href="#">清空</a>
+    </div>
 </div>
+<div id="condition" class="container_12" style="position:relative;max-height:60px">
+    <div class="grid-group-1"><div class="lbl">分类编号</div>
+    <div class="val"><input data-bind="value:'serach.catid', datasource:'dataSource.catid'" type="text" class="z-txt easyui-combobox" /></div></div>
+    <div class="grid-group-1"><div class="lbl">品名</div>
+    <div class="val"><input data-bind="value:'serach.proname'" type="text" class="z-txt" /></div></div>
+    <div class="grid-group-1"><div class="lbl">会员</div>
+    <div class="val"><input data-bind="value:'serach.memid', datasource:'dataSource.memid'" type="text" class="z-txt easyui-combobox" /></div></div>
+    <div class="grid-group-1"><div class="lbl">交易模式</div>
+    <div class="val"><input data-bind="value:'serach.sellmode', datasource:'dataSource.sellmode'" type="text" class="z-txt easyui-combobox" /></div></div>
+    <div class="grid-group-1"><div class="lbl">是否上架</div>
+    <div class="val"><input data-bind="value:'serach.isactive', datasource:'dataSource.isactive'" type="text" class="z-txt easyui-combobox" /></div></div>
+    <div class="grid-group-1"><div class="lbl">销售（求购）</div>
+    <div class="val"><input data-bind="value:'serach.issale', datasource:'dataSource.issale'" type="text" class="z-txt easyui-combobox" /></div></div>
+</div>
+<script id="searchDialogTemplate" type="text/html">
+<div id="condition" class="container_8" style="position:relative;">
+    <div class="grid-group-1"><div class="lbl">分类编号</div>
+    <div class="val"><input data-bind="value:'serach.catid', datasource:'dataSource.catid'" type="text" class="z-txt easyui-combobox" /></div></div>
+    <div class="grid-group-1"><div class="lbl">品名</div>
+    <div class="val"><input data-bind="value:'serach.proname'" type="text" class="z-txt" /></div></div>
+    <div class="grid-group-1"><div class="lbl">会员</div>
+    <div class="val"><input data-bind="value:'serach.memid', datasource:'dataSource.memid'" type="text" class="z-txt easyui-combobox" /></div></div>
+    <div class="grid-group-1"><div class="lbl">交易模式</div>
+    <div class="val"><input data-bind="value:'serach.sellmode', datasource:'dataSource.sellmode'" type="text" class="z-txt easyui-combobox" /></div></div>
+    <div class="grid-group-1"><div class="lbl">是否上架</div>
+    <div class="val"><input data-bind="value:'serach.isactive', datasource:'dataSource.isactive'" type="text" class="z-txt easyui-combobox" /></div></div>
+    <div class="grid-group-1"><div class="lbl">销售（求购）</div>
+    <div class="val"><input data-bind="value:'serach.issale', datasource:'dataSource.issale'" type="text" class="z-txt easyui-combobox" /></div></div>
+    <div class="grid-group-1"><div class="lbl">挂牌时间</div>
+    <div class="val"><input data-bind="value:'serach.CreateDate'" type="text" class="z-txt easyui-daterange" /></div></div>
+    <div class="grid-group-1"><div class="lbl">是否审核</div>
+    <div class="val"><input data-bind="value:'serach.ispassed', datasource:'dataSource.ispassed'" type="text" class="z-txt easyui-combobox" /></div></div>
+</div>
+</script>
 <table id="grid" data-bind="datagrid" data-options="fixSize:{w:4, h:'auto'}, autoRowHeight: false, rownumbers:true, method:'get', url:'/api/business/fw_productinfo', pagination:true, pageSize:20, checkOnSelect:true, selectOnCheck:true, singleSelect:false">
 <thead>
 <tr>
     <th field="SelectedRowKey" data-options="checkbox:true"></th>
-    <th field="proid">商品编号    </th>
-    <th field="catid" data-options="editor:{type:'numberbox',options:{required:false}}">分类编号    </th>
+    <th field="Fid">商品编号    </th>
+    <th field="catid" data-options="editor:{type:'combobox', options:{required:false}}" formatter="col_fw_productinfo_catid_RefText_formatter">分类编号    </th>
     <th field="proname" data-options="editor:{type:'validatebox',options:{required:false}}">品名    </th>
-    <th field="spec" data-options="editor:{type:'validatebox',options:{required:false}}">规格    </th>
-    <th field="memid" data-options="editor:{type:'validatebox',options:{required:false}}">会员    </th>
+    <th field="spec" data-options="editor:{type:'combobox', options:{required:false}}" formatter="col_fw_productinfo_spec_RefText_formatter">规格    </th>
+    <th field="memid" data-options="editor:{type:'combobox', options:{required:false}}" formatter="col_fw_productinfo_memid_RefText_formatter">会员    </th>
     <th field="price" data-options="editor:{type:'validatebox',options:{required:false}}">单价    </th>
-    <th field="sellmode" data-options="editor:{type:'validatebox',options:{required:false}}">交易模式    </th>
+    <th field="sellmode" data-options="editor:{type:'combobox', options:{required:false}}" formatter="col_fw_productinfo_sellmode_RefText_formatter">交易模式    </th>
     <th field="grade" data-options="editor:{type:'validatebox',options:{required:false}}">牌号    </th>
     <th field="minprodcount" data-options="editor:{type:'numberbox',options:{required:false}}">起订量    </th>
     <th field="stock" data-options="editor:{type:'numberbox',options:{required:false}}">库存    </th>
-    <th field="isactive" data-options="editor:{type:'numberbox',options:{required:false}}">是否已上架    </th>
-    <th field="depositseller" data-options="editor:{type:'numberbox',options:{required:false}}">卖家保证金率%    </th>
-    <th field="depositbuyer" data-options="editor:{type:'numberbox',options:{required:false}}">买家保证金率%    </th>
-    <th field="issale" data-options="editor:{type:'numberbox',options:{required:false}}">销售（求购）    </th>
-    <th field="createdate" data-options="editor:{type:'datebox',options:{required:false},formatter:fruit.formatter.Date}"  formatter="formatter:fruit.formatter.Date">创建日期    </th>
-    <th field="modifydate" data-options="editor:{type:'datebox',options:{required:false},formatter:fruit.formatter.Date}"  formatter="formatter:fruit.formatter.Date">修改日期    </th>
+    <th field="isactive" data-options="editor:{type:'combobox', options:{required:false}}" formatter="col_fw_productinfo_isactive_RefText_formatter">是否上架    </th>
+    <th field="depositseller" data-options="editor:{type:'numberbox',options:{precision:2, required:false}}">卖家保证金率%    </th>
+    <th field="depositbuyer" data-options="editor:{type:'numberbox',options:{precision:2, required:false}}">买家保证金率%    </th>
+    <th field="issale" data-options="editor:{type:'combobox', options:{required:false}}" formatter="col_fw_productinfo_issale_RefText_formatter">销售（求购）    </th>
     <th field="viewcount" data-options="editor:{type:'numberbox',options:{required:false}}">热度    </th>
-    <th field="remark" data-options="editor:{type:'validatebox',options:{required:false}}">备注    </th>
-    <th field="procode" data-options="editor:{type:'validatebox',options:{required:false}}">Guid编号    </th>
+    <th field="CreateDate" formatter="formatter:fruit.formatter.Date">挂牌时间    </th>
+    <th field="ispassed" formatter="col_fw_productinfo_ispassed_RefText_formatter">是否审核    </th>
 </tr>
 </thead>
 </table>

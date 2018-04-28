@@ -19,7 +19,7 @@ namespace Fruit.Models
             {
                 UserSeq = info.GetString("UserSeq");
                 CompCode = info.GetString("CompCode");
-                IsEnable = info.GetBoolean("IsEnable");
+                IsEnable = info.GetString("IsEnable") == "1" ? true : false;
                 RoleName = info.GetString("RoleName");
                 Mobile = info.GetString("Mobile");
                 OrganizeName = info.GetString("OrganizeName");

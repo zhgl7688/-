@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Form Connection="LUOLAI1401Context" Table="fw_depositinfo" IsView="False" FilterTreeBindField="depid" TreeGridIdField="depid" TreeGridNameField="depid" TreeGridParentIdField="depid">
+  <SubTables />
+  <SaveProducre />
+  <Buttons />
+  <GroupFilters />
+  <Fields>
+    <Field Table="fw_depositinfo" Field="depid" DbType="int" Required="True" ListVisible="True" FormVisible="True" ControlType="AutoId" ReadOnly="True" Title="编号" ControlValue="序号">
+      <CascadeFilter />
+    </Field>
+    <Field Table="fw_depositinfo" Field="cat1" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="Dropdown" Title="一级分类" ControlValue="父级分类">
+      <CascadeFilter />
+    </Field>
+    <Field Table="fw_depositinfo" Field="cat2" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="Dropdown" Title="二级分类" ControlValue="分类">
+      <CascadeFilter ParentField="cat1" Enable="True" ConditionField="parentid" FullIfParentNull="False" />
+    </Field>
+    <Field Table="fw_depositinfo" Field="memid" DbType="char" Required="False" ListVisible="True" FormVisible="True" ControlType="Dropdown" Title="卖家" ControlValue="会员">
+      <CascadeFilter />
+    </Field>
+    <Field Table="fw_depositinfo" Field="deposit" DbType="numeric" Required="False" ListVisible="True" FormVisible="True" ControlType="NumberBox" Title="保证金率">
+      <CascadeFilter />
+    </Field>
+  </Fields>
+</Form>

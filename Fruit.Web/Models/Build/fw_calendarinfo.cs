@@ -16,12 +16,14 @@ namespace Fruit.Web.Models
     
     public partial class fw_calendarinfo
     {
+        public string caldate { get; set; }
+        public string starttime { get; set; }
+        public string endtime { get; set; }
         [Key, Column(Order = 0), DatabaseGenerated(DatabaseGeneratedOption.None)]
-        public DateTime caldate { get; set; }
-        public DateTime? starttime { get; set; }
-        public DateTime? endtime { get; set; }
-        public int? handleuserid { get; set; }
-        public DateTime? handletime { get; set; }
-        public string calcode { get; set; }
+        public int calcode { get; set; }
+        public DateTime? CreateDate { get; set; }
+        public string CreatePerson { get; set; }
+        public DateTime? UpdateDate { get; set; }
+        public string UpdatePerson { get; set; }
     }
 }

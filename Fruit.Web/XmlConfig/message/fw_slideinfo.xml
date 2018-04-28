@@ -5,11 +5,33 @@
   <Buttons />
   <GroupFilters />
   <Fields>
-    <Field Table="fw_slideinfo" Field="id" DbType="int" Required="True" ListVisible="True" FormVisible="True" ControlType="AutoId" ReadOnly="True" Title="编号" />
-    <Field Table="fw_slideinfo" Field="title" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="标题" />
-    <Field Table="fw_slideinfo" Field="imgurl" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="图片地址" />
-    <Field Table="fw_slideinfo" Field="linkurl" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="链接地址" />
-    <Field Table="fw_slideinfo" Field="clickcounts" DbType="int" Required="False" ListVisible="True" FormVisible="True" ControlType="NumberBox" Title="热度" />
-    <Field Table="fw_slideinfo" Field="code" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="Guid编号" />
+    <Field Table="fw_slideinfo" Field="id" DbType="int" Required="True" ListVisible="True" FormVisible="True" ControlType="AutoId" ReadOnly="True" Title="编号">
+      <CascadeFilter />
+    </Field>
+    <Field Table="fw_slideinfo" Field="title" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="标题" FormWidth="2" Searchable="True">
+      <CascadeFilter />
+    </Field>
+    <Field Table="fw_slideinfo" Field="imgurl" DbType="varchar" Required="False" ListVisible="False" FormVisible="True" ControlType="File" Title="图片地址">
+      <CascadeFilter />
+      <FileControlInfo />
+    </Field>
+    <Field Table="fw_slideinfo" Field="linkurl" DbType="varchar" Required="False" ListVisible="False" FormVisible="True" ControlType="TextBox" Title="链接地址">
+      <CascadeFilter />
+    </Field>
+    <Field Table="fw_slideinfo" Field="clickcounts" DbType="int" Required="False" ListVisible="True" FormVisible="True" ControlType="NumberBox" Title="热度">
+      <CascadeFilter />
+    </Field>
+    <Field Connection="LUOLAI1401Context" Table="fw_slideinfo" Title="创建日期" Field="CreateDate" ControlType="Date" FormVisible="True" DbType="datetime">
+      <CascadeFilter />
+    </Field>
+    <Field Connection="LUOLAI1401Context" Table="fw_slideinfo" Title="创建人" Field="CreatePerson" ControlType="TextBox" FormVisible="True" DbType="varchar">
+      <CascadeFilter />
+    </Field>
+    <Field Connection="LUOLAI1401Context" Table="fw_slideinfo" Title="修改日期" Field="UpdateDate" ControlType="Date" FormVisible="True" DbType="datetime">
+      <CascadeFilter />
+    </Field>
+    <Field Connection="LUOLAI1401Context" Table="fw_slideinfo" Title="修改人" Field="UpdatePerson" ControlType="TextBox" FormVisible="True" DbType="varchar">
+      <CascadeFilter />
+    </Field>
   </Fields>
 </Form>

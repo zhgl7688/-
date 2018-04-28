@@ -1,60 +1,27 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <AutoCompleteRules>
-  <Rule Id="用户选择" Connection="LUOLAI1401Context" Table="PersonInfo" ListFields="name,psncode" Filter="/*TABLEALIAS*/CompCode={USER.CompCode}" ValueFields="psncode" ColumnTitles="业务员编号,业务员名称" />
-  <Rule Id="客户状态" Connection="SysContext" Table="sys_code" ListFields="Text" Filter="/*TABLEALIAS*/CodeType='IOWarehourse'" ValueFields="Value" />
-  <Rule Id="客户类型" Connection="SysContext" Table="sys_code" ListFields="Text" Filter="/*TABLEALIAS*/CodeType='QualityRequire'" ValueFields="Value" />
+  <Rule Id="交易模式" Connection="SysContext" Table="sys_code" ListFields="Text" Filter="/*TABLEALIAS*/CodeType='TradingMode'" ValueFields="Value" />
+  <Rule Id="是否" Connection="SysContext" Table="sys_code" ListFields="Text" Filter="/*TABLEALIAS*/CodeType='YN'" ValueFields="Value" />
+  <Rule Id="销售求购" Connection="SysContext" Table="sys_code" ListFields="Text" Filter="/*TABLEALIAS*/CodeType='forseek'" ValueFields="Value" />
+  <Rule Id="会员" Connection="LUOLAI1401Context" Table="fw_memberinfo" ListFields="realname" ValueFields="memid" />
   <Rule Id="计量单位" Connection="SysContext" Table="sys_code" ListFields="Text" Filter="/*TABLEALIAS*/CodeType='MeasureUnit'" ValueFields="Value" />
-  <Rule Id="计量单位组" Connection="SysContext" Table="sys_code" ListFields="Text" ValueFields="Value" />
-  <Rule Id="选择客户" Connection="LUOLAI1401Context" Table="wq_termPop" ListFields="PopCode,PopName" Filter="/*TABLEALIAS*/CompCode='0000'" ValueFields="PopCode" ColumnTitles="客户名称,客户编号" />
-  <Rule Id="app权限弹出" Connection="LUOLAI1401Context" Table="sys_menu_app" ListFields="MenuCode,MenuName,Description" ReturnFields="MenuCode,RMenuName" ValueFields="MenuCode,MenuName" ColumnTitles="模块编号,模块名称,说明" />
-  <Rule Id="证件类型" Connection="SysContext" Table="sys_code" ListFields="Text" Filter="/*TABLEALIAS*/CodeType='idtype'" ReturnFields="idtype1,idtype2,idtype3,idtype4,idtype5" ValueFields="Value" ColumnTitles="身份证,军官证,学生证,护照,毕业证" />
-  <Rule Id="婚姻状况" Connection="SysContext" Table="sys_code" ListFields="Text" Filter="/*TABLEALIAS*/CodeType='marital'" ReturnFields="unmarried,married" ValueFields="Value" ColumnTitles="未婚,已婚" />
-  <Rule Id="政治面貌" Connection="SysContext" Table="sys_code" ListFields="Text" Filter="/*TABLEALIAS*/CodeType='polity'" ReturnFields="polity1,polity2,polity3" ValueFields="Value" ColumnTitles="群主,团员,共产党员" />
-  <Rule Id="最高学历" Connection="SysContext" Table="sys_code" ListFields="Text" Filter="/*TABLEALIAS*/CodeType='lasteducation'" ReturnFields="lasteducation1,lasteducation2,lasteducation3,lasteducation4,lasteducation5,lasteducation6,lasteducation7" ValueFields="Value" ColumnTitles="小学,初中,高中,大专、本科,研究生,博士" />
-  <Rule Id="最高学位" Connection="SysContext" Table="sys_code" ListFields="Text" Filter="/*TABLEALIAS*/CodeType='HighestDegree'" ReturnFields="HighestDegree1,HighestDegree2" ValueFields="Value" ColumnTitles="博士后,学士" />
-  <Rule Id="职称" Connection="SysContext" Table="sys_code" ListFields="Text" Filter="/*TABLEALIAS*/CodeType='rank'" ReturnFields="rank1,rank2,rank3,rank4" ValueFields="Value" ColumnTitles="工程师,高级工程师、会计师,人力资源师" />
-  <Rule Id="性别" Connection="SysContext" Table="sys_code" ListFields="Text" Filter="/*TABLEALIAS*/CodeType='Sex'" ValueFields="Value" />
-  <Rule Id="在职状态" Connection="SysContext" Table="sys_code" ListFields="Text" Filter="/*TABLEALIAS*/CodeType='forstatus'" ValueFields="Value" />
-  <Rule Id="所属组织" Connection="SysContext" Table="sys_organize" ListFields="OrganizeCode,OrganizeName" Filter="/*TABLEALIAS*/CompCode='0000'" ValueFields="OrganizeCode" ColumnTitles="组织编号,组织名称" />
-  <Rule Id="所属角色" Connection="SysContext" Table="sys_role" ListFields="RoleCode,RoleName" Filter="/*TABLEALIAS*/CompCode='{SESSION.CompCode}'" ValueFields="RoleCode" ColumnTitles="角色编号,角色名称" />
-  <Rule Id="是否" Connection="SysContext" Table="sys_code" ListFields="Text" Filter="/*TABLEALIAS*/CodeType='yes/no'" ValueFields="Value" />
-  <Rule Id="是否开启" Connection="SysContext" Table="sys_code" ListFields="Text" Filter="/*TABLEALIAS*/CodeType='sfkq'" ValueFields="Text" />
-  <Rule Id="考勤结果" Connection="SysContext" Table="sys_code" ListFields="Text" Filter="/*TABLEALIAS*/CodeType='kqjg'" ValueFields="Text" />
-  <Rule Id="审核结果" Connection="SysContext" Table="sys_code" ListFields="Text" Filter="/*TABLEALIAS*/CodeType='shjg'" ValueFields="Text" />
-  <Rule Id="客户编号" Connection="LUOLAI1401Context" Table="wq_termPop" ListFields="PopName" Filter="/*TABLEALIAS*/CompCode={USER.CompCode}" ValueFields="PopCode" ColumnTitles="客户编号,客户名字" />
-  <Rule Id="产品选择" Connection="SMTERPContext" Table="tbBdProduct" ListFields="Name" ValueFields="Guid" ColumnTitles="产品编号,产品名称" />
-  <Rule Id="颜色选择" Connection="SMTERPContext" Table="tbBdColor" ListFields="Name" ValueFields="Guid" />
-  <Rule Id="发票类型" Connection="LUOLAI1401Context" Table="HR_NewInvoices" ListFields="Remarks" ValueFields="FID" ColumnTitles="发票类型" />
-  <Rule Id="人员类别" Connection="SysContext" Table="sys_code" ListFields="Text" Filter="/*TABLEALIAS*/CodeType='PersonType'" ValueFields="Value" />
-  <Rule Id="合作单位" Connection="LUOLAI1401Context" Table="BD_Customers" ListFields="Contact" ValueFields="FID" />
-  <Rule Id="员工" Connection="LUOLAI1401Context" Table="HR_PractiseCerts" ListFields="FID,empID" ValueFields="FID" ColumnTitles="编号,姓名" />
-  <Rule Id="证书类别" Connection="SysContext" Table="sys_code" ListFields="Text" Filter="CodeType='zhengshutype'" ValueFields="Value" />
-  <Rule Id="合同类别" Connection="SysContext" Table="sys_code" ListFields="Text" Filter="/*TABLEALIAS*/CodeType='HtType'" ValueFields="Value" />
-  <Rule Id="单位" Connection="SysContext" Table="sys_code" ListFields="Text" Filter="/*TABLEALIAS*/CodeType='HtCorp'" ValueFields="Value" />
-  <Rule Id="所在地" Connection="SysContext" Table="sys_code" ListFields="Text" Filter="/*TABLEALIAS*/CodeType='Region'" ValueFields="Value" />
-  <Rule Id="合同选择" Connection="LUOLAI1401Context" Table="PM_Contracts" ListFields="Code" ValueFields="Code" />
-  <Rule Id="合作单位选择" Connection="LUOLAI1401Context" Table="BD_Customers" ListFields="FID,Contact,Address" ValueFields="FID" ColumnTitles="编号,联系人,地址" />
-  <Rule Id="保证金状态" Connection="SysContext" Table="sys_code" ListFields="Text" Filter="/*TABLEALIAS*/CodeType='depAmt'" ValueFields="Value" />
+  <Rule Id="上下架" Connection="SysContext" Table="sys_code" ListFields="Text" Filter="/*TABLEALIAS*/CodeType='UpdownFrame'" ValueFields="Value" />
+  <Rule Id="来源模块" Connection="SysContext" Table="sys_code" ListFields="Text" Filter="/*TABLEALIAS*/CodeType='SourceModule'" ValueFields="Value" />
+  <Rule Id="性别" Connection="SysContext" Table="sys_code" ListFields="Text" Filter="/*TABLEALIAS*/CodeType='Gender'" ValueFields="Value" />
+  <Rule Id="订单状态" Connection="SysContext" Table="sys_code" ListFields="Text" Filter="/*TABLEALIAS*/CodeType='OrderState'" ValueFields="Value" />
+  <Rule Id="订单选择" Connection="LUOLAI1401Context" Table="fw_orderinfo" ListFields="ordid" ValueFields="ordid" />
+  <Rule Id="违约方" Connection="SysContext" Table="sys_code" ListFields="Text" Filter="/*TABLEALIAS*/CodeType='Breach'" ValueFields="Value" />
+  <Rule Id="父级分类" Connection="LUOLAI1401Context" Table="fw_categoryinfo" ListFields="catname" Filter="/*TABLEALIAS*/parentid='0'" ValueFields="catid" />
+  <Rule Id="分类" Connection="LUOLAI1401Context" Table="fw_categoryinfo" ListFields="catname" Filter="/*TABLEALIAS*/parentid !='0'" ValueFields="catid" />
+  <Rule Id="审核状态" Connection="SysContext" Table="sys_code" ListFields="Text" Filter="/*TABLEALIAS*/CodeType='ShState'" ValueFields="Value" />
+  <Rule Id="议价原因" Connection="SysContext" Table="sys_code" ListFields="Text" Filter="/*TABLEALIAS*/CodeType='HandleState'" ValueFields="Value" />
+  <Rule Id="其他费用" Connection="SysContext" Table="sys_code" ListFields="Text" Filter="/*TABLEALIAS*/CodeType='OtherState'" ValueFields="Value" />
+  <Rule Id="异议状态" Connection="SysContext" Table="sys_code" ListFields="Text" Filter="/*TABLEALIAS*/CodeType='ObjState'" ValueFields="Value" />
   <Rule Id="支付方式" Connection="SysContext" Table="sys_code" ListFields="Text" Filter="/*TABLEALIAS*/CodeType='PayKind'" ValueFields="Value" />
-  <Rule Id="纳税类别" Connection="SysContext" Table="sys_code" ListFields="Text" Filter="/*TABLEALIAS*/CodeType='taxType'" ValueFields="Value" />
-  <Rule Id="发票种类" Connection="SysContext" Table="sys_code" ListFields="Text" Filter="/*TABLEALIAS*/CodeType='invoiceType'" ValueFields="Value" />
-  <Rule Id="社保类别" Connection="SysContext" Table="sys_code" ListFields="Text" Filter="/*TABLEALIAS*/CodeType='FType'" ValueFields="Value" />
-  <Rule Id="部门选择" Connection="LUOLAI1401Context" Table="BD_Department" ListFields="FName" ValueFields="FCode,FName" />
-  <Rule Id="项目选择" Connection="LUOLAI1401Context" Table="PM_ProjectInfos" ListFields="ProjName" ValueFields="Code" ColumnTitles="工程名称" />
-  <Rule Id="证书选择" Connection="LUOLAI1401Context" Table="HR_PractiseCerts" ListFields="certNo,certOrgan" ReturnFields="certNO" ValueFields="certNo" ColumnTitles="证书编号,发证机关" />
-  <Rule Id="承包合同" Connection="LUOLAI1401Context" Table="PM_Contracts" ListFields="Code,Corp,Amt" ValueFields="Code" ColumnTitles="合同号,单位,造价" />
-  <Rule Id="公积金类别" Connection="SysContext" Table="sys_code" ListFields="Text" Filter="/*TABLEALIAS*/CodeType='SBType'" ValueFields="Value" />
-  <Rule Id="保证金状态报表" Connection="SysContext" Table="sys_code" ListFields="Text" Filter="/*TABLEALIAS*/CodeType='depAmt'" ValueFields="Text" />
-  <Rule Id="专业" Connection="SysContext" Table="sys_code" ListFields="Text" Filter="/*TABLEALIAS*/CodeType='zhengshutype'" ValueFields="Value" />
-  <Rule Id="收支类型" Connection="SysContext" Table="sys_code" ListFields="Text" Filter="/*TABLEALIAS*/CodeType='SHZHType'" ValueFields="Value" />
-  <Rule Id="是否退回" Connection="SysContext" Table="sys_code" ListFields="Text" Filter="/*TABLEALIAS*/CodeType='Tui'" ValueFields="Value" />
-  <Rule Id="有无" Connection="SysContext" Table="sys_code" ListFields="Text" Filter="/*TABLEALIAS*/CodeType='yw'" ValueFields="Value" />
-  <Rule Id="工程类别" Connection="SysContext" Table="sys_code" ListFields="Text" Filter="/*TABLEALIAS*/CodeType='GCLB'" ValueFields="Value" />
-  <Rule Id="发票选择" Connection="LUOLAI1401Context" Table="FA_Invoices" ListFields="invoiceTitle,invoiceCode,Amt,invoiceContent" ReturnFields="invoiceCode" ValueFields="invoiceCode" ColumnTitles="发票抬头,发票号,开票金额,开票内容" />
-  <Rule Id="报表单位" Connection="SysContext" Table="sys_code" ListFields="Text" Filter="/*TABLEALIAS*/CodeType='HtCorp'" ValueFields="Text" />
-  <Rule Id="报表分部负责人" Connection="LUOLAI1401Context" Table="BD_Customers" ListFields="Contact" ValueFields="Contact" />
-  <Rule Id="报表工程类别" Connection="SysContext" Table="sys_code" ListFields="Text" Filter="/*TABLEALIAS*/CodeType='GCLB'" ValueFields="Text" />
-  <Rule Id="报表收支类型" Connection="SysContext" Table="sys_code" ListFields="Text" Filter="/*TABLEALIAS*/CodeType='SHZHType'" ValueFields="Text" />
-  <Rule Id="报表单位" Connection="SysContext" Table="sys_code" ListFields="Text" Filter="/*TABLEALIAS*/CodeType='HtCorp'" ValueFields="Text" />
-  <Rule Id="人员企业证书" Connection="LUOLAI1401Context" Table="v_Certificate" ListFields="Name" ValueFields="FID" />
+  <Rule Id="登录用户" Connection="SysContext" Table="sys_user" ListFields="UserName" ValueFields="UserCode" />
+  <Rule Id="涨跌" Connection="SysContext" Table="sys_code" ListFields="Text" Filter="/*TABLEALIAS*/CodeType='ZF'" ValueFields="Value" />
+  <Rule Id="认证状态" Connection="SysContext" Table="sys_code" ListFields="Text" Filter="/*TABLEALIAS*/CodeType='RZZT'" ValueFields="Value" />
+  <Rule Id="交货方式" Connection="SysContext" Table="sys_code" ListFields="Text" Filter="/*TABLEALIAS*/CodeType='JHFS'" ValueFields="Value" />
+  <Rule Id="是否同意" Connection="SysContext" Table="sys_code" ListFields="Text" Filter="/*TABLEALIAS*/CodeType='JJResult'" ValueFields="Value" />
+  <Rule Id="用户企业信息" Connection="LUOLAI1401Context" Table="v_MemberAll" ListFields="corpname" ValueFields="memid" />
 </AutoCompleteRules>

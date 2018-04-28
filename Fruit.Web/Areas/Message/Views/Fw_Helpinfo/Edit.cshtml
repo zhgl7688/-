@@ -1,4 +1,6 @@
 ﻿@section scripts {
+<script src="~/Content/js/ueditor/ueditor.config.js"></script>
+<script src="~/Content/js/ueditor/ueditor.all.min.js"></script>
 <script type="text/javascript">
     var data = @MvcHtmlString.Create(JsonExtension.ToJson(Model));
     $(function(){
@@ -76,28 +78,32 @@
 <div id="divrelations" style="width:100px; display:none;"></div>
 <div id="master" class="container_12" data-bind="inputwidth:0.9">
 <input type="hidden" data-bind="value:'form._row_state'" />
-    <div class="grid-group-1"><div class="lbl">编号</div>
-   <div class="val">
-<input type="text" data-bind="value:'form.helpid', readOnly:true" class="z-txt readonly" /></div></div>
-    <div class="grid-group-1"><div class="lbl">标题</div>
+<input type="hidden" data-bind="value:'form.helpid'" />
+    <div class="grid-group-2"><div class="lbl">标题</div>
    <div class="val">
 <input type="text" data-bind="value:'form.helptitle'" class="easyui-validatebox z-txt" data-options="required:false" /></div></div>
-    <div class="grid-group-1"><div class="lbl">内容</div>
-   <div class="val">
-<input type="text" data-bind="value:'form.helpcontent'" class="easyui-validatebox z-txt" data-options="required:false" /></div></div>
     <div class="grid-group-1"><div class="lbl">是否启用或删除</div>
    <div class="val">
-<input type="text" data-bind="value:'form.isenabled'" class="z-txt easyui-numberbox" data-options="required:false" /></div></div>
-    <div class="grid-group-1"><div class="lbl">操作人</div>
+<input type="text" data-bind="value:'form.isenabled',datasource:'dataSource.isenabled'" class="z-txt easyui-combobox" data-options="required:false, readonly:false" /></div></div>
+    <div class="grid-group-8"><div class="lbl">内容</div>
    <div class="val">
-<input type="text" data-bind="value:'form.handleuserid'" class="z-txt easyui-numberbox" data-options="required:false" /></div></div>
+<input type="hidden" data-bind="value:'form.helpcontent_h'" richtextbox="helpcontent_h_editor"><script id="helpcontent_h_editor" type="text/plan"></script></div></div>
+</div>
+<div id="tt" class="easyui-tabs">
+    <div title="表单信息" style="padding-top:2px;">
+        <div class="container_12" id="BillDetail" data-bind="inputwidth:0.9,autoheight:181">
     <div class="grid-group-1"><div class="lbl">创建日期</div>
    <div class="val">
-<input type="text" data-bind="value:'form.createtime'" class="easyui-validatebox z-txt" data-options="required:false" /></div></div>
+<input type="text" data-bind="value:'form.CreateDate',readOnly:false" class="z-txt easyui-datebox" /></div></div>
+    <div class="grid-group-1"><div class="lbl">创建人</div>
+   <div class="val">
+<input type="text" data-bind="value:'form.CreatePerson'" class="easyui-validatebox z-txt" data-options="required:false" /></div></div>
     <div class="grid-group-1"><div class="lbl">修改日期</div>
    <div class="val">
-<input type="text" data-bind="value:'form.modifytime'" class="easyui-validatebox z-txt" data-options="required:false" /></div></div>
-    <div class="grid-group-1"><div class="lbl">Guid编号</div>
+<input type="text" data-bind="value:'form.UpdateDate',readOnly:false" class="z-txt easyui-datebox" /></div></div>
+    <div class="grid-group-1"><div class="lbl">修改人</div>
    <div class="val">
-<input type="text" data-bind="value:'form.helpcode'" class="easyui-validatebox z-txt" data-options="required:false" /></div></div>
+<input type="text" data-bind="value:'form.UpdatePerson'" class="easyui-validatebox z-txt" data-options="required:false" /></div></div>
+        </div>
+    </div>
 </div>

@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Form Connection="LUOLAI1401Context" Table="fw_directprice" IsView="False" FilterTreeBindField="directid" TreeGridIdField="directid" TreeGridNameField="directid" TreeGridParentIdField="directid">
+  <SubTables />
+  <SaveProducre />
+  <Buttons />
+  <GroupFilters />
+  <Fields>
+    <Field Table="fw_directprice" Field="directid" DbType="int" Required="True" ListVisible="True" FormVisible="True" ControlType="AutoId" ReadOnly="True" ControlValue="序号" Title="编号">
+      <CascadeFilter />
+    </Field>
+    <Field Table="fw_directprice" Field="directtitle" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="标题" Searchable="True">
+      <CascadeFilter />
+    </Field>
+    <Field Table="fw_directprice" Field="catid0" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="分类" Searchable="True">
+      <CascadeFilter />
+    </Field>
+    <Field Table="fw_directprice" Field="directtime0" DbType="datetime" Required="False" ListVisible="True" FormVisible="True" ControlType="Date" Title="数据时间" Searchable="True">
+      <CascadeFilter />
+    </Field>
+    <Field Table="fw_directprice" Field="directprice0" DbType="decimal" Required="False" ListVisible="True" FormVisible="True" ControlType="Date" Title="指导价">
+      <CascadeFilter />
+    </Field>
+    <Field Table="fw_directprice" Field="isshow" DbType="int" Required="False" ListVisible="True" FormVisible="True" ControlType="Dropdown" Title="是否显示" Searchable="True" ControlValue="是否">
+      <CascadeFilter />
+    </Field>
+    <Field Table="fw_directprice" Field="floatprice0" DbType="decimal" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="浮动价格">
+      <CascadeFilter />
+    </Field>
+    <Field Table="fw_directprice" Field="floatrate0" DbType="float" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="浮动率">
+      <CascadeFilter />
+    </Field>
+    <Field Table="fw_directprice" Field="CreateDate" DbType="datetime" Required="False" ListVisible="False" FormVisible="True" ControlType="Date" ReadOnly="True" Title="创建日期">
+      <CascadeFilter />
+    </Field>
+    <Field Table="fw_directprice" Field="CreatePerson" DbType="varchar" Required="False" ListVisible="False" FormVisible="True" ControlType="TextBox" ReadOnly="True" Title="创建人">
+      <CascadeFilter />
+    </Field>
+    <Field Table="fw_directprice" Field="UpdateDate" DbType="datetime" Required="False" ListVisible="False" FormVisible="True" ControlType="Date" ReadOnly="True" Title="更改日期">
+      <CascadeFilter />
+    </Field>
+    <Field Table="fw_directprice" Field="UpdatePerson" DbType="varchar" Required="False" ListVisible="False" FormVisible="True" ControlType="TextBox" ReadOnly="True" Title="更改人">
+      <CascadeFilter />
+    </Field>
+  </Fields>
+</Form>

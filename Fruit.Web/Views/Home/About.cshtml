@@ -19,7 +19,7 @@
                                 <div class="work-item green">
                                     <i class="iconfont">&#xe61f;</i>
                                     <span class="num">0</span>
-                                    <label>证书过期提醒</label>
+                                    <label>未审核挂牌信息</label>
                                 </div>
                             </div>
                         </li>
@@ -28,7 +28,7 @@
                                 <div class="work-item red">
                                     <i class="iconfont">&#xe622;</i>
                                     <span class="num">0</span>
-                                    <label>保证金提醒</label>
+                                    <label>未审核竞价信息</label>
                                 </div>
                             </div>
                         </li>
@@ -37,7 +37,7 @@
                                 <div class="work-item yellow">
                                     <i class="iconfont">&#xe6f9;</i>
                                     <span class="num">0&nbsp;<span class="unit">条</span></span>
-                                    <label>敬请期待...</label>
+                                    <label>未审核团购信息</label>
                                 </div>
                             </div>
                         </li>
@@ -46,7 +46,7 @@
                                 <div class="work-item blue">
                                     <i class="iconfont">&#xe6c3;</i>
                                     <span class="num">0&nbsp;<span class="unit">个</span></span>
-                                    <label>敬请期待...</label>
+                                    <label>待认证信息</label>
                                 </div>
                             </div>
                         </li>
@@ -81,7 +81,7 @@
     <div class="todo-title">
         <i class="iconfont">&#xe61f;</i>
         <span class="num">0</span>
-        <label>证书过期提醒</label>
+        <label>提醒</label>
     </div>
     <div class="todo-items">
         <ul id="greenUrl"></ul>
@@ -92,25 +92,45 @@
     <div class="todo-title">
         <i class="iconfont">&#xe61f;</i>
         <span class="num">0</span>
-        <label>保证金提醒</label>
+        <label>提醒</label>
     </div>
     <div class="todo-items">
         <ul id="redUrl"></ul>
     </div>
 
 </div>
+
+<div class="todo-panel" id="yellow">
+    <div class="todo-title">
+        <i class="iconfont">&#xe61f;</i>
+        <span class="num">0</span>
+        <label>提醒</label>
+    </div>
+    <div class="todo-items">
+        <ul id="yellowUrl"></ul>
+    </div>
+
+</div>
+
+<div class="todo-panel" id="blue">
+    <div class="todo-title">
+        <i class="iconfont">&#xe61f;</i>
+        <span class="num">0</span>
+        <label>提醒</label>
+    </div>
+    <div class="todo-items">
+        <ul id="blueUrl"></ul>
+    </div>
+
+</div>
 <script src="~/Content/jquery-notify/jquery-1.8.3.js"></script>
-<script src="~/Content/easyui/jquery.easyui.min.js"></script>
-
- 
-
-
+<script src="~/Content/easyui/jquery.easyui.min.js"></script> 
 @section scripts{
     <script src="~/Content/js/jquery.ajax.js"></script>
     <script type="text/javascript">
 
         $(function () {
-            //证书提醒
+            //挂牌提醒
             $.api.ajax_mvc({ model: 'remindGreen' },
                 { method: 'remindGreen' },
                 function (data) {
@@ -119,11 +139,10 @@
                         $(".green .num").text(lengthNum).append('&nbsp;<span class="unit">条</span>');
                         $("#green .num").html(lengthNum).append('&nbsp;<span class="unit">条</span>');
                         for (var i = 0; i < data.length; i++) {
-                            var DateListener = Date.parse(data[i].expireDate) > Date.parse(new Date()) ? "即将过期" : "已经过期";
+                            //var DateListener = Date.parse(data[i].expireDate) > Date.parse(new Date()) ? "即将过期" : "已经过期";
                             var listLi = '<li>' +
                                                      '<span></span>' +
-                                                     '<a class="btnUrl" data-title="证书管理"  data-url="./Rols/Practisecert/edit/' + data[i].FID + '"   class="ellipsis"> 客户<span>' + data[i].FName + '</span>的证书' + DateListener + '</a>' +
-                                                     '<label>过期时间：' + data[i].expireDate + '</label>' +
+                                '<a class="btnUrl" data-title="挂牌管理"  data-url="/Business/Fw_Productinfo/edit/' + data[i].Fid + '"   class="ellipsis"> 会员<span>' + data[i].realname + '</span>的挂牌未审核</a>' +
                                                      '</li> '
                             $("#greenUrl").append(listLi);
                         }
@@ -131,28 +150,60 @@
                     }
                 });
 
-            //保证金提醒
+            //竞价提醒
             $.api.ajax_mvc({ model: 'remindRed' },
            { method: 'remindRed' },
            function (data) {
                if (data) {
-                 
                    var lengthNum = data.length;
                    $(".red .num").text(lengthNum).append('&nbsp;<span class="unit">条</span>');
                    $("#red .num").html(lengthNum).append('&nbsp;<span class="unit">条</span>');
                    for (var i = 0; i < data.length; i++) {
-                       var DateListener = Date.parse(data[i].bidDate) > Date.parse(new Date()) ? "即将过期" : "已经过期";
                        var listLi = '<li>' +
                                                 '<span></span>' +
-                                                '<a class="btnUrl"  data-title="投标项目管理"  data-url="./Project/Bidprojectinfo/edit/' + data[i].Code + '" class="ellipsis"> <span>编号' + data[i].Code + '</span>' + DateListener + '</a>' +
-                                                '<label>过期时间：' + data[i].bidDate + '</label>' +
+                                                '<a class="btnUrl"  data-title="未审核竞价信息"  data-url="/Business/Fw_Auctionbuyinginfo/edit/' + data[i].aucid + '" class="ellipsis"> 发布人<span>' + data[i].realname + '</span>的竞价信息未审核</a>' +
                                                 '</li> '
                        $("#redUrl").append(listLi);
                    }
 
                }
            });
+            //团购提醒
+            $.api.ajax_mvc({ model: 'remindyellow' },
+           { method: 'remindyellow' },
+           function (data) {
+               if (data) {
+                   var lengthNum = data.length;
+                   $(".yellow .num").text(lengthNum).append('&nbsp;<span class="unit">条</span>');
+                   $("#yellow .num").html(lengthNum).append('&nbsp;<span class="unit">条</span>');
+                   for (var i = 0; i < data.length; i++) {
+                       var listLi = '<li>' +
+                                                '<span></span>' +
+                                                '<a class="btnUrl"  data-title="未审核团购"  data-url="/Business/Fw_Teambuyinginfo/edit/' + data[i].teamid + '" class="ellipsis"> 发布人<span>' + data[i].realname + '</span>的团购信息未审核</a>' +
+                                                '</li> '
+                       $("#yellowUrl").append(listLi);
+                   }
 
+               }
+           });
+            //待认证提醒
+            $.api.ajax_mvc({ model: 'remindblue' },
+           { method: 'remindblue' },
+           function (data) {
+               if (data) {
+                   var lengthNum = data.length;
+                   $(".blue .num").text(lengthNum).append('&nbsp;<span class="unit">条</span>');
+                   $("#blue .num").html(lengthNum).append('&nbsp;<span class="unit">条</span>');
+                   for (var i = 0; i < data.length; i++) {
+                       var listLi = '<li>' +
+                                                '<span></span>' +
+                                                '<a class="btnUrl"  data-title="会员认证"  data-url="/Member/Fw_Memberinfo/edit/' + data[i].Fid + '" class="ellipsis"> 会员<span>' + data[i].memid + '</span>的账户等待认证</a>' +
+                                                '</li> '
+                       $("#blueUrl").append(listLi);
+                   }
+
+               }
+           });
 
             //点击跳转
             $(".btnUrl").click(function () { 

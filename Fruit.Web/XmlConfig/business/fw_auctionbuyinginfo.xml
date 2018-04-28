@@ -2,23 +2,85 @@
 <Form Connection="LUOLAI1401Context" Table="fw_auctionbuyinginfo" IsView="False" FilterTreeBindField="aucid" TreeGridIdField="aucid" TreeGridNameField="aucid" TreeGridParentIdField="aucid">
   <SubTables />
   <SaveProducre />
-  <Buttons />
+  <Buttons>
+    <Button Id="JXShenhe" Title="审核" IconCls="bullet_tick" ListVisible="False" Reload="False">
+      <ServerBehavior Connection="LUOLAI1401Context" CommandText="exec ups_examine @FID,'&quot; + (System.Web.HttpContext.Current.Session[&quot;sys_user&quot;] as sys_user).UserCode + &quot;','2','X'" DataType="Value">
+        <Inputs>
+          <Input SourceField="aucid" ParameterName="@FID" />
+        </Inputs>
+      </ServerBehavior>
+      <ScriptAfter><![CDATA[alert(data)]]></ScriptAfter>
+    </Button>
+    <Button Id="JShenhe" Title="审核" IconCls="bullet_tick" Reload="True" AllowBatch="True" FormVisible="False">
+      <ServerBehavior Connection="LUOLAI1401Context" CommandText="exec ups_examine @FID,'&quot; + (System.Web.HttpContext.Current.Session[&quot;sys_user&quot;] as sys_user).UserCode + &quot;','2','L'" DataType="Value">
+        <Inputs>
+          <Input SourceField="IDS" ParameterName="@FID" />
+        </Inputs>
+      </ServerBehavior>
+      <ScriptAfter><![CDATA[alert(data)]]></ScriptAfter>
+    </Button>
+  </Buttons>
   <GroupFilters />
   <Fields>
-    <Field Table="fw_auctionbuyinginfo" Field="aucid" DbType="int" Required="True" ListVisible="True" FormVisible="True" ControlType="AutoId" ReadOnly="True" Title="竞拍编号" />
-    <Field Table="fw_auctionbuyinginfo" Field="proid" DbType="int" Required="False" ListVisible="True" FormVisible="True" ControlType="NumberBox" Title="商品编号" />
-    <Field Table="fw_auctionbuyinginfo" Field="primePrice" DbType="decimal" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="原价" />
-    <Field Table="fw_auctionbuyinginfo" Field="floorPrice" DbType="decimal" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="底价" />
-    <Field Table="fw_auctionbuyinginfo" Field="addPrice" DbType="int" Required="False" ListVisible="True" FormVisible="True" ControlType="NumberBox" Title="加价幅度" />
-    <Field Table="fw_auctionbuyinginfo" Field="cellingPrice" DbType="decimal" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="最高价" />
-    <Field Table="fw_auctionbuyinginfo" Field="counts" DbType="int" Required="False" ListVisible="True" FormVisible="True" ControlType="NumberBox" Title="数量" />
-    <Field Table="fw_auctionbuyinginfo" Field="memid" DbType="char" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="发布人" />
-    <Field Table="fw_auctionbuyinginfo" Field="starttime" DbType="datetime" Required="False" ListVisible="True" FormVisible="True" ControlType="Date" Title="开始时间" />
-    <Field Table="fw_auctionbuyinginfo" Field="endtime" DbType="datetime" Required="False" ListVisible="True" FormVisible="True" ControlType="Date" Title="结束时间" />
-    <Field Table="fw_auctionbuyinginfo" Field="minUserCount" DbType="int" Required="False" ListVisible="True" FormVisible="True" ControlType="NumberBox" Title="最小竞拍人数" />
-    <Field Table="fw_auctionbuyinginfo" Field="imgurl" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="竞拍宣传图" />
-    <Field Table="fw_auctionbuyinginfo" Field="remark" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="备注" />
-    <Field Table="fw_auctionbuyinginfo" Field="isactive" DbType="int" Required="False" ListVisible="True" FormVisible="True" ControlType="NumberBox" Title="竞拍上架" />
-    <Field Table="fw_auctionbuyinginfo" Field="auccode" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="GUID" />
+    <Field Table="fw_auctionbuyinginfo" Field="aucid" DbType="int" Required="True" ListVisible="True" FormVisible="True" ControlType="AutoId" ReadOnly="True" Title="竞拍编号">
+      <CascadeFilter />
+    </Field>
+    <Field Table="fw_auctionbuyinginfo" Field="ProName" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="商品名称" Searchable="True">
+      <CascadeFilter />
+    </Field>
+    <Field Table="fw_auctionbuyinginfo" Field="primePrice" DbType="decimal" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="原价">
+      <CascadeFilter />
+    </Field>
+    <Field Table="fw_auctionbuyinginfo" Field="floorPrice" DbType="decimal" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="底价">
+      <CascadeFilter />
+    </Field>
+    <Field Table="fw_auctionbuyinginfo" Field="addPrice" DbType="int" Required="False" ListVisible="True" FormVisible="True" ControlType="NumberBox" Title="加价幅度">
+      <CascadeFilter />
+    </Field>
+    <Field Table="fw_auctionbuyinginfo" Field="cellingPrice" DbType="decimal" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="最高价">
+      <CascadeFilter />
+    </Field>
+    <Field Table="fw_auctionbuyinginfo" Field="counts" DbType="int" Required="False" ListVisible="True" FormVisible="True" ControlType="NumberBox" Title="数量">
+      <CascadeFilter />
+    </Field>
+    <Field Table="fw_auctionbuyinginfo" Field="memid" DbType="char" Required="False" ListVisible="True" FormVisible="True" ControlType="Dropdown" Title="发布人" ControlValue="会员" Searchable="True">
+      <CascadeFilter />
+    </Field>
+    <Field Table="fw_auctionbuyinginfo" Field="starttime" DbType="datetime" Required="False" ListVisible="True" FormVisible="True" ControlType="Date" Title="开始时间">
+      <CascadeFilter />
+    </Field>
+    <Field Table="fw_auctionbuyinginfo" Field="endtime" DbType="datetime" Required="False" ListVisible="True" FormVisible="True" ControlType="Date" Title="结束时间">
+      <CascadeFilter />
+    </Field>
+    <Field Table="fw_auctionbuyinginfo" Field="minUserCount" DbType="int" Required="False" ListVisible="True" FormVisible="True" ControlType="NumberBox" Title="最小竞拍人数">
+      <CascadeFilter />
+    </Field>
+    <Field Table="fw_auctionbuyinginfo" Field="imgurl" DbType="varchar" Required="False" ListVisible="False" FormVisible="True" ControlType="TextBox" Title="竞拍宣传图">
+      <CascadeFilter />
+    </Field>
+    <Field Connection="LUOLAI1401Context" Table="fw_auctionbuyinginfo" Field="ispassed" ControlType="Dropdown" Title="是否审核" ControlValue="审核状态" Searchable="True" FormVisible="True" ListVisible="True" ReadOnly="True" DbType="int">
+      <CascadeFilter />
+    </Field>
+    <Field Table="fw_auctionbuyinginfo" Field="remark" DbType="varchar" Required="False" ListVisible="False" FormVisible="True" ControlType="TextBox" Title="备注" FormWidth="3">
+      <CascadeFilter />
+    </Field>
+    <Field Table="fw_auctionbuyinginfo" Field="isactive" DbType="int" Required="False" ListVisible="True" FormVisible="True" ControlType="Dropdown" Title="竞拍上架" Searchable="True" ControlValue="上下架">
+      <CascadeFilter />
+    </Field>
+    <Field Table="fw_auctionbuyinginfo" Field="auccode" DbType="varchar" Required="False" ListVisible="False" FormVisible="False" ControlType="TextBox" Title="GUID">
+      <CascadeFilter />
+    </Field>
+    <Field Connection="LUOLAI1401Context" Table="fw_auctionbuyinginfo" Title="创建时间" Field="CreateDate" ControlType="Date" DbType="datetime" FormVisible="True">
+      <CascadeFilter />
+    </Field>
+    <Field Connection="LUOLAI1401Context" Table="fw_auctionbuyinginfo" Title="创建人" Field="CreatePerson" ControlType="TextBox" DbType="varchar" FormVisible="True">
+      <CascadeFilter />
+    </Field>
+    <Field Connection="LUOLAI1401Context" Table="fw_auctionbuyinginfo" Title="修改日期" Field="UpdateDate" ControlType="Date" DbType="datetime" FormVisible="True">
+      <CascadeFilter />
+    </Field>
+    <Field Connection="LUOLAI1401Context" Table="fw_auctionbuyinginfo" Title="修改人" Field="UpdatePerson" ControlType="TextBox" DbType="varchar" FormVisible="True">
+      <CascadeFilter />
+    </Field>
   </Fields>
 </Form>

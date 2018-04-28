@@ -51,20 +51,18 @@ namespace Fruit.Web.Areas.Message.Controllers
         [System.ComponentModel.DataAnnotations.Schema.NotMapped]class fw_slideinfoListModel {
             public int id { get; set; }
             public string title { get; set; }
-            public string imgurl { get; set; }
-            public string linkurl { get; set; }
             public int? clickcounts { get; set; }
-            public string code { get; set; }
         }
         public object Get()
         {
             var sbCondition = new System.Text.StringBuilder();
+            SerachCondition.TextBox(sbCondition, "title", "a.title", "");
 
             if(sbCondition.Length>4) sbCondition.Length-=4;
             var pageReq = new PageRequest();
             using (var db = new LUOLAI1401Context())
             {
-                return pageReq.ToPageList<fw_slideinfoListModel>(db.Database, "a.id ,a.title ,a.imgurl ,a.linkurl ,a.clickcounts ,a.code ", "fw_slideinfo a ", sbCondition.ToString(), "a.id", "desc");
+                return pageReq.ToPageList<fw_slideinfoListModel>(db.Database, "a.id ,a.title ,a.clickcounts ", "fw_slideinfo a ", sbCondition.ToString(), "a.id", "desc");
             }
         }
         public object Post(JObject post)
@@ -75,6 +73,8 @@ namespace Fruit.Web.Areas.Message.Controllers
                 var dbForm = db.fw_slideinfo.Find(form.id);
                 if (dbForm == null)
                 {
+                    form.CreateDate = DateTime.Now;
+                    form.CreatePerson = (HttpContext.Current.Session["sys_user"] as sys_user).UserName;
                     db.fw_slideinfo.Add(form);
                 }
                 else
@@ -83,7 +83,8 @@ namespace Fruit.Web.Areas.Message.Controllers
                     dbForm.imgurl = form.imgurl;
                     dbForm.linkurl = form.linkurl;
                     dbForm.clickcounts = form.clickcounts;
-                    dbForm.code = form.code;
+                    dbForm.UpdateDate = form.UpdateDate = DateTime.Now;
+                    dbForm.UpdatePerson = form.UpdatePerson = (HttpContext.Current.Session["sys_user"] as sys_user).UserName;
                 }
                 // 记录多级零时主键对应(key int 为 js 生成的页内全局唯一编号)
                 var _id_maps = new Dictionary<int, object[]>();

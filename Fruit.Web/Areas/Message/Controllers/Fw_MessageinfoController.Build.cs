@@ -50,25 +50,24 @@ namespace Fruit.Web.Areas.Message.Controllers
     {
         [System.ComponentModel.DataAnnotations.Schema.NotMapped]class fw_messageinfoListModel {
             public int messid { get; set; }
+            public string title { get; set; }
             public string fromid { get; set; }
             public string toid { get; set; }
-            public string title { get; set; }
-            public string messcontent { get; set; }
-            public string attachmenturl { get; set; }
-            public DateTime? createtime { get; set; }
             public int? isread { get; set; }
             public int? isdelete { get; set; }
-            public string messcode { get; set; }
         }
         public object Get()
         {
             var sbCondition = new System.Text.StringBuilder();
+            SerachCondition.TextBox(sbCondition, "title", "a.title", "");
+            SerachCondition.TextBox(sbCondition, "fromid", "a.fromid", "");
+            SerachCondition.TextBox(sbCondition, "toid", "a.toid", "");
 
             if(sbCondition.Length>4) sbCondition.Length-=4;
             var pageReq = new PageRequest();
             using (var db = new LUOLAI1401Context())
             {
-                return pageReq.ToPageList<fw_messageinfoListModel>(db.Database, "a.messid ,a.fromid ,a.toid ,a.title ,a.messcontent ,a.attachmenturl ,a.createtime ,a.isread ,a.isdelete ,a.messcode ", "fw_messageinfo a ", sbCondition.ToString(), "a.messid", "desc");
+                return pageReq.ToPageList<fw_messageinfoListModel>(db.Database, "a.messid ,a.title ,a.fromid ,a.toid ,a.isread ,a.isdelete ", "fw_messageinfo a ", sbCondition.ToString(), "a.messid", "desc");
             }
         }
         public object Post(JObject post)
@@ -79,19 +78,21 @@ namespace Fruit.Web.Areas.Message.Controllers
                 var dbForm = db.fw_messageinfo.Find(form.messid);
                 if (dbForm == null)
                 {
+                    form.CreateDate = DateTime.Now;
+                    form.CreatePerson = (HttpContext.Current.Session["sys_user"] as sys_user).UserName;
                     db.fw_messageinfo.Add(form);
                 }
                 else
                 {
+                    dbForm.title = form.title;
                     dbForm.fromid = form.fromid;
                     dbForm.toid = form.toid;
-                    dbForm.title = form.title;
-                    dbForm.messcontent = form.messcontent;
                     dbForm.attachmenturl = form.attachmenturl;
-                    dbForm.createtime = form.createtime;
                     dbForm.isread = form.isread;
+                    dbForm.messcontent = form.messcontent;
                     dbForm.isdelete = form.isdelete;
-                    dbForm.messcode = form.messcode;
+                    dbForm.UpdateDate = form.UpdateDate = DateTime.Now;
+                    dbForm.UpdatePerson = form.UpdatePerson = (HttpContext.Current.Session["sys_user"] as sys_user).UserName;
                 }
                 // 记录多级零时主键对应(key int 为 js 生成的页内全局唯一编号)
                 var _id_maps = new Dictionary<int, object[]>();

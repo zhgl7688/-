@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report CommonReport="True" From="Rinout_hist" OrderField="日期">
+  <DrillReports />
+  <Fields>
+    <Field Table="Rinout_hist" Field="会员手机" Alias="会员手机" Title="会员手机" ControlType="TextBox" />
+    <Field Table="Rinout_hist" Field="公司名" Alias="公司名" Title="公司名" ControlType="TextBox" />
+    <Field Table="Rinout_hist" Field="订单号" Alias="订单号" Title="订单号" ControlType="TextBox" />
+    <Field Table="Rinout_hist" Field="操作名称" Alias="操作名称" Title="操作名称" />
+    <Field Table="Rinout_hist" Field="冻结变化" Alias="冻结变化" Title="冻结变化" />
+    <Field Table="Rinout_hist" Field="余额变化" Alias="余额变化" Title="余额变化" />
+    <Field Table="Rinout_hist" Field="最后冻结" Alias="最后冻结" Title="最后冻结" />
+    <Field Table="Rinout_hist" Field="最后余额" Alias="最后余额" Title="最后余额" />
+    <Field Table="Rinout_hist" Field="日期" Alias="日期" Title="日期" />
+  </Fields>
+  <Charts>
+    <XAxis FieldUid="会员手机" />
+    <YAxis FieldUid="会员手机" />
+    <Series />
+  </Charts>
+</Report>

@@ -153,7 +153,7 @@ namespace Fruit.Web.Controllers
                         var file = db.sys_file.Find(fileId, serial);
                         if (file != null)
                         {
-                            var path = Server.MapPath("~" + file.Path);
+                            var path = Server.MapPath("~" + file.Path.Replace("http://www.yuanliaoonline.com", ""));
                             if (System.IO.File.Exists(path))
                             {
                                 System.IO.File.Delete(path);

@@ -29,6 +29,12 @@ namespace Fruit.Web.Areas.Member.Controllers
         public ActionResult Edit(int id)
         {
             fw_userinfo form = null;
+            List<ComboItem> isadmin = null, isenabled = null;
+            using(var db = new SysContext())
+            {
+                isadmin = db.Database.SqlQuery<ComboItem>("select Text Text, Value Value from sys_code where " + string.Format("{0}", "/*TABLEALIAS*/CodeType='YN'")).ToList();
+                isenabled = db.Database.SqlQuery<ComboItem>("select Text Text, Value Value from sys_code where " + string.Format("{0}", "/*TABLEALIAS*/CodeType='YN'")).ToList();
+            }
             using(var db = new LUOLAI1401Context())
             {
                 form = db.fw_userinfo.Find(id);
@@ -42,7 +48,7 @@ namespace Fruit.Web.Areas.Member.Controllers
                     userid = id
                 };
             }
-            return View(new { form = form, dataSource = new {  }});
+            return View(new { form = form, dataSource = new { isadmin,isenabled }});
         }
 
     }
@@ -51,12 +57,12 @@ namespace Fruit.Web.Areas.Member.Controllers
         [System.ComponentModel.DataAnnotations.Schema.NotMapped]class fw_userinfoListModel {
             public int userid { get; set; }
             public string username { get; set; }
-            public string userpass { get; set; }
-            public string regtime { get; set; }
-            public string lasttime { get; set; }
-            public int? isadmin { get; set; }
-            public int? isenabled { get; set; }
-            public string usercode { get; set; }
+            public DateTime? regtime { get; set; }
+            public DateTime? lasttime { get; set; }
+            public string isadmin { get; set; }
+            public string isadmin_RefText { get; set; }
+            public string isenabled { get; set; }
+            public string isenabled_RefText { get; set; }
         }
         public object Get()
         {
@@ -66,7 +72,7 @@ namespace Fruit.Web.Areas.Member.Controllers
             var pageReq = new PageRequest();
             using (var db = new LUOLAI1401Context())
             {
-                return pageReq.ToPageList<fw_userinfoListModel>(db.Database, "a.userid ,a.username ,a.userpass ,a.regtime ,a.lasttime ,a.isadmin ,a.isenabled ,a.usercode ", "fw_userinfo a ", sbCondition.ToString(), "a.userid", "desc");
+                return pageReq.ToPageList<fw_userinfoListModel>(db.Database, "a.userid ,a.username ,a.regtime ,a.lasttime ,b.Text isadmin_RefText ,a.isadmin ,c.Text isenabled_RefText ,a.isenabled ", "fw_userinfo a LEFT JOIN [SYS_YLW].dbo.sys_code b ON a.isadmin = b.Value AND (b.CodeType='YN') LEFT JOIN [SYS_YLW].dbo.sys_code c ON a.isenabled = c.Value AND (c.CodeType='YN') ", sbCondition.ToString(), "a.userid", "desc");
             }
         }
         public object Post(JObject post)
@@ -77,6 +83,8 @@ namespace Fruit.Web.Areas.Member.Controllers
                 var dbForm = db.fw_userinfo.Find(form.userid);
                 if (dbForm == null)
                 {
+                    form.CreateDate = DateTime.Now;
+                    form.CreatePerson = (HttpContext.Current.Session["sys_user"] as sys_user).UserName;
                     db.fw_userinfo.Add(form);
                 }
                 else
@@ -87,7 +95,8 @@ namespace Fruit.Web.Areas.Member.Controllers
                     dbForm.lasttime = form.lasttime;
                     dbForm.isadmin = form.isadmin;
                     dbForm.isenabled = form.isenabled;
-                    dbForm.usercode = form.usercode;
+                    dbForm.UpdateDate = form.UpdateDate = DateTime.Now;
+                    dbForm.UpdatePerson = form.UpdatePerson = (HttpContext.Current.Session["sys_user"] as sys_user).UserName;
                 }
                 // 记录多级零时主键对应(key int 为 js 生成的页内全局唯一编号)
                 var _id_maps = new Dictionary<int, object[]>();

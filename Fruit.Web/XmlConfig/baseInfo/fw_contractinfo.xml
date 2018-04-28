@@ -5,12 +5,27 @@
   <Buttons />
   <GroupFilters />
   <Fields>
-    <Field Table="fw_contractinfo" Field="conid" DbType="varchar" Required="True" ListVisible="True" FormVisible="True" ControlType="AutoId" ReadOnly="True" Title="编号" />
-    <Field Table="fw_contractinfo" Field="conname" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="合同名" />
-    <Field Table="fw_contractinfo" Field="linkurl" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="文档地址" />
-    <Field Table="fw_contractinfo" Field="handleuserid" DbType="int" Required="False" ListVisible="True" FormVisible="True" ControlType="NumberBox" Title="操作人" />
-    <Field Table="fw_contractinfo" Field="createtime" DbType="smalldatetime" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="建立日期" />
-    <Field Table="fw_contractinfo" Field="modifytime" DbType="smalldatetime" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="修改日期" />
-    <Field Table="fw_contractinfo" Field="concode" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="Guid编号" />
+    <Field Table="fw_contractinfo" Field="conid" DbType="varchar" Required="True" ListVisible="True" FormVisible="True" ControlType="AutoId" ReadOnly="True" Title="编号">
+      <CascadeFilter />
+    </Field>
+    <Field Table="fw_contractinfo" Field="conname" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="合同名" FormWidth="1" Searchable="True">
+      <CascadeFilter />
+    </Field>
+    <Field Table="fw_contractinfo" Field="linkurl" DbType="varchar" Required="False" ListVisible="False" FormVisible="True" ControlType="File" Title="文档地址">
+      <CascadeFilter />
+      <FileControlInfo />
+    </Field>
+    <Field Connection="LUOLAI1401Context" Table="fw_contractinfo" Field="CreateDate" Title="创建日期" ControlType="Date" FormVisible="True" ReadOnly="True" DbType="datetime">
+      <CascadeFilter />
+    </Field>
+    <Field Connection="LUOLAI1401Context" Table="fw_contractinfo" Field="CreatePerson" Title="创建人" ControlType="TextBox" FormVisible="True" ReadOnly="True" DbType="varchar">
+      <CascadeFilter />
+    </Field>
+    <Field Connection="LUOLAI1401Context" Table="fw_contractinfo" Field="UpdateDate" Title="修改日期" ControlType="Date" FormVisible="True" ReadOnly="True" DbType="datetime">
+      <CascadeFilter />
+    </Field>
+    <Field Connection="LUOLAI1401Context" Table="fw_contractinfo" Field="UpdatePerson" Title="修改人" ControlType="TextBox" FormVisible="True" ReadOnly="True" DbType="varchar">
+      <CascadeFilter />
+    </Field>
   </Fields>
 </Form>

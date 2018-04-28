@@ -1,0 +1,122 @@
+﻿@section scripts {
+<script type="text/javascript">
+    $(function(){
+        if($('#searchDialogTemplate').length == 1) {
+            $('#showSearch').show();
+        }
+        var db = fruit.databind.root;
+
+            $.extend(db.options, {
+                searchClick: function(){
+                    var serach = db.getData('serach');
+                    db.invoke('setLoadParams', serach);
+                },
+                showSearchClick: function() {
+                    var serachDialog = $('<div></div>').html($('#searchDialogTemplate').html());
+                    var serachDialogDB = new fruit.databind(serachDialog[0], {
+                        onInit:function(){
+                            this.loadData(data);
+                            var serach = db.getData('serach');
+                            this.loadData({serach:serach});
+                        }
+                    });
+                    serachDialog.dialog({title:'搜索', width:600, height:500, cache:false,modal:true,buttons:[
+                        {text:'搜索',handler:function(){
+                            var serach = serachDialogDB.getData('serach');
+                            db.loadData({serach:serach});
+                            db.invoke('setLoadParams', serach);
+                            serachDialog.dialog('close');
+                        }},
+                        {text:'关闭',handler:function(){
+                            serachDialog.dialog('close');
+                        }},
+                    ], onClose:function(){
+                        serachDialog.dialog('destroy');
+                    }});
+                },
+                clearClick: function(){
+                    db.clearData('serach');
+                    db.invoke('setLoadParams', {});
+                }
+            });
+        $.extend(db.options, {
+            add: function(){
+                fruit.ajax({
+                        url:'/api/Business/Test/Newobjectionid',
+                        success:function(data) {
+                            parent.showDocTab('icon-tag_blue', '测试明细', '/Business/Test/edit/' + data);
+                        }
+                    })
+            },
+            edit: function(){
+                    var grid = db.binds.grid;
+                    var row = grid.getSelected();
+                    if(row == null) {
+                        fruit.message('warning', '请先选择一个测试');
+                        return;
+                    }
+                    parent.showDocTab('icon-house_in', '测试明细', '/Business/Test/edit/' + row.objectionid);
+            },
+             'delete': function() {
+                    var grid = db.binds.grid;
+                    var rows = grid.getSelections();
+                    if(rows.length == 0) return;
+                    var ids = [];
+                    $.each(rows, function(){
+                        ids.push(this.objectionid);
+                    });
+                    $.messager.confirm('确认', '您确认要删除所选记录吗？', function(r){
+                        if(r){
+                            grid.jq.showLoading('正在处理…');
+                            fruit.ajax({
+                                method:'DELETE',
+                                url: '/api/Business/Test/'+ids.join(),
+                                success: function(data) {
+                                    grid.jq.hideLoading();
+                                    grid.refresh();
+                                }
+                            })
+                        }
+                    });
+                },
+        });
+    });
+</script>
+}
+<div class="z-toolbar">
+
+    <a class="easyui-linkbutton" iconcls="icon-arrow_refresh" plain="true" data-bind="click:'refresh'">刷新</a>
+    <a class="easyui-linkbutton" iconcls="icon-add" plain="true" data-bind="click:'add'">新增</a>
+    <a class="easyui-linkbutton" iconcls="icon-edit" plain="true" data-bind="click:'edit'">编辑</a>
+    <a class="easyui-linkbutton" iconcls="icon-cross" plain="true" data-bind="click:'delete'">删除</a>
+    <a class="easyui-splitbutton" plain="true" data-options="iconCls:'icon-download'" suffix="xls" data-bind="click:'download'">导出</a>
+</div>
+<table id="grid" data-bind="datagrid" data-options="fixSize:{w:4, h:'auto'}, autoRowHeight: false, rownumbers:true, method:'get', url:'/api/business/test', pagination:true, pageSize:20, checkOnSelect:true, selectOnCheck:true, singleSelect:false">
+<thead>
+<tr>
+    <th field="SelectedRowKey" data-options="checkbox:true"></th>
+    <th field="objectionid">objectionid    </th>
+    <th field="orderid" data-options="editor:{type:'validatebox',options:{required:false}}">orderid    </th>
+    <th field="orderprice" data-options="editor:{type:'validatebox',options:{required:false}}">orderprice    </th>
+    <th field="Objectionstatus" data-options="editor:{type:'validatebox',options:{required:false}}">Objectionstatus    </th>
+    <th field="otherprice" data-options="editor:{type:'validatebox',options:{required:false}}">otherprice    </th>
+    <th field="otherstatus" data-options="editor:{type:'validatebox',options:{required:false}}">otherstatus    </th>
+    <th field="explain" data-options="editor:{type:'validatebox',options:{required:false}}">explain    </th>
+    <th field="MemId" data-options="editor:{type:'validatebox',options:{required:false}}">MemId    </th>
+    <th field="MemIdSeller" data-options="editor:{type:'validatebox',options:{required:false}}">MemIdSeller    </th>
+    <th field="CancelDate" data-options="editor:{type:'datebox',options:{required:false},formatter:fruit.formatter.Date}"  formatter="formatter:fruit.formatter.Date">CancelDate    </th>
+    <th field="objState" data-options="editor:{type:'numberbox',options:{required:false}}">objState    </th>
+    <th field="isShow" data-options="editor:{type:'validatebox',options:{required:false}}">isShow    </th>
+    <th field="IsAgreed" data-options="editor:{type:'validatebox',options:{required:false}}">IsAgreed    </th>
+    <th field="IsOnJudge" data-options="editor:{type:'validatebox',options:{required:false}}">IsOnJudge    </th>
+    <th field="IsContinue" data-options="editor:{type:'numberbox',options:{required:false}}">IsContinue    </th>
+    <th field="img0" data-options="editor:{type:'validatebox',options:{required:false}}">img0    </th>
+    <th field="img1" data-options="editor:{type:'validatebox',options:{required:false}}">img1    </th>
+    <th field="img2" data-options="editor:{type:'validatebox',options:{required:false}}">img2    </th>
+    <th field="Cimg1" data-options="editor:{type:'numberbox',options:{required:false}}">Cimg1    </th>
+    <th field="Cimg2" data-options="editor:{type:'numberbox',options:{required:false}}">Cimg2    </th>
+    <th field="Cimg3" data-options="editor:{type:'numberbox',options:{required:false}}">Cimg3    </th>
+    <th field="sysExplain" data-options="editor:{type:'validatebox',options:{required:false}}">sysExplain    </th>
+</tr>
+</thead>
+</table>

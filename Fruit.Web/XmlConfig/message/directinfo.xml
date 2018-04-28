@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Form Connection="LUOLAI1401Context" Table="fw_Direct" IsView="False" FilterTreeBindField="" TreeGridIdField="" TreeGridNameField="" TreeGridParentIdField="" UseGridEdit="True">
+  <SubTables />
+  <SaveProducre />
+  <Buttons>
+    <Button Id="BFB" Title="发布" Order="1" IconCls="chart_line" Reload="True" FormVisible="False">
+      <ServerBehavior Connection="LUOLAI1401Context" CommandText="exec ups_examine '','&quot; + (System.Web.HttpContext.Current.Session[&quot;sys_user&quot;] as sys_user).UserCode + &quot;','5','L'" DataType="Value">
+        <Inputs />
+      </ServerBehavior>
+      <ScriptAfter><![CDATA[alert(data);]]></ScriptAfter>
+    </Button>
+  </Buttons>
+  <GroupFilters />
+  <Fields>
+    <Field Table="fw_Direct" Field="dirid" DbType="varchar" Required="True" ListVisible="True" FormVisible="True" ControlType="AutoId" ReadOnly="True" Title="编号" ControlValue="序号">
+      <CascadeFilter />
+    </Field>
+    <Field Table="fw_Direct" Field="item" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="大类" ColumnWidth="100" ReadOnly="True">
+      <CascadeFilter />
+    </Field>
+    <Field Table="fw_Direct" Field="corpname" DbType="nvarchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="厂商" ColumnWidth="250">
+      <CascadeFilter />
+    </Field>
+    <Field Table="fw_Direct" Field="dirname" DbType="nvarchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="牌号" ColumnWidth="150" ReadOnly="True">
+      <CascadeFilter />
+    </Field>
+    <Field Table="fw_Direct" Field="dirvalue" DbType="decimal" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="指数值" ColumnWidth="100">
+      <CascadeFilter />
+    </Field>
+    <Field Table="fw_Direct" Field="UpValue" DbType="int" Required="False" ListVisible="True" FormVisible="True" ControlType="NumberBox" Title="涨幅" ColumnWidth="100">
+      <CascadeFilter />
+    </Field>
+  </Fields>
+</Form>

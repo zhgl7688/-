@@ -19,7 +19,17 @@ namespace Fruit.Web.Areas.Message.Controllers
         public ActionResult Index(string id = null)        {
             if (id == null)
             {
-                return View();
+                // 提供搜索下拉框数据源
+                List<ComboItem> memid, frommodule;
+                using(var db = new LUOLAI1401Context())
+                {
+                    memid = db.fw_memberinfo.Select(i=>new ComboItem{ Text = i.realname, Value = "" +  i.memid }).ToList();
+                }
+                using(var db = new SysContext())
+                {
+                    frommodule = db.Database.SqlQuery<ComboItem>("select Text Text, Value Value from sys_code where " + string.Format("{0}", "/*TABLEALIAS*/CodeType='SourceModule'")).ToList();
+                }
+                return View(new {dataSource = new {memid,frommodule}});
             }
             else
             {
@@ -29,8 +39,14 @@ namespace Fruit.Web.Areas.Message.Controllers
         public ActionResult Edit(int id)
         {
             fw_recordinfo form = null;
+            List<ComboItem> frommodule = null, memid = null;
+            using(var db = new SysContext())
+            {
+                frommodule = db.Database.SqlQuery<ComboItem>("select Text Text, Value Value from sys_code where " + string.Format("{0}", "/*TABLEALIAS*/CodeType='SourceModule'")).ToList();
+            }
             using(var db = new LUOLAI1401Context())
             {
+                memid = db.fw_memberinfo.Select(i=>new ComboItem{ Text = i.realname, Value = "" + i.memid }).ToList();
                 form = db.fw_recordinfo.Find(id);
             }
             ViewBag.RowState = 2;
@@ -42,7 +58,7 @@ namespace Fruit.Web.Areas.Message.Controllers
                     Id = id
                 };
             }
-            return View(new { form = form, dataSource = new {  }});
+            return View(new { form = form, dataSource = new { frommodule,memid }});
         }
 
     }
@@ -52,21 +68,23 @@ namespace Fruit.Web.Areas.Message.Controllers
             public int Id { get; set; }
             public int? fromid { get; set; }
             public string frommodule { get; set; }
+            public string frommodule_RefText { get; set; }
             public decimal? price { get; set; }
             public decimal? counts { get; set; }
             public string memid { get; set; }
-            public DateTime? createdate { get; set; }
-            public string fromcode { get; set; }
+            public string memid_RefText { get; set; }
         }
         public object Get()
         {
             var sbCondition = new System.Text.StringBuilder();
+            SerachCondition.Dropdown(sbCondition, "frommodule", "a.frommodule", "");
+            SerachCondition.Dropdown(sbCondition, "memid", "a.memid", "");
 
             if(sbCondition.Length>4) sbCondition.Length-=4;
             var pageReq = new PageRequest();
             using (var db = new LUOLAI1401Context())
             {
-                return pageReq.ToPageList<fw_recordinfoListModel>(db.Database, "a.Id ,a.fromid ,a.frommodule ,a.price ,a.counts ,a.memid ,a.createdate ,a.fromcode ", "fw_recordinfo a ", sbCondition.ToString(), "a.Id", "desc");
+                return pageReq.ToPageList<fw_recordinfoListModel>(db.Database, "a.Id ,a.fromid ,b.Text frommodule_RefText ,a.frommodule ,a.price ,a.counts ,c.realname memid_RefText ,a.memid ", "fw_recordinfo a LEFT JOIN [SYS_YLW].dbo.sys_code b ON a.frommodule = b.Value AND (b.CodeType='SourceModule') LEFT JOIN fw_memberinfo c ON a.memid = c.memid ", sbCondition.ToString(), "a.Id", "desc");
             }
         }
         public object Post(JObject post)
@@ -77,6 +95,8 @@ namespace Fruit.Web.Areas.Message.Controllers
                 var dbForm = db.fw_recordinfo.Find(form.Id);
                 if (dbForm == null)
                 {
+                    form.CreateDate = DateTime.Now;
+                    form.CreatePerson = (HttpContext.Current.Session["sys_user"] as sys_user).UserName;
                     db.fw_recordinfo.Add(form);
                 }
                 else
@@ -86,8 +106,8 @@ namespace Fruit.Web.Areas.Message.Controllers
                     dbForm.price = form.price;
                     dbForm.counts = form.counts;
                     dbForm.memid = form.memid;
-                    dbForm.createdate = form.createdate;
-                    dbForm.fromcode = form.fromcode;
+                    dbForm.UpdateDate = form.UpdateDate = DateTime.Now;
+                    dbForm.UpdatePerson = form.UpdatePerson = (HttpContext.Current.Session["sys_user"] as sys_user).UserName;
                 }
                 // 记录多级零时主键对应(key int 为 js 生成的页内全局唯一编号)
                 var _id_maps = new Dictionary<int, object[]>();

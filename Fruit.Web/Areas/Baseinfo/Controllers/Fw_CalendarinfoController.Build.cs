@@ -26,7 +26,7 @@ namespace Fruit.Web.Areas.Baseinfo.Controllers
                 return View("Edit", id);
             }
         }
-        public ActionResult Edit(DateTime id)
+        public ActionResult Edit(int id)
         {
             fw_calendarinfo form = null;
             using(var db = new LUOLAI1401Context())
@@ -39,7 +39,7 @@ namespace Fruit.Web.Areas.Baseinfo.Controllers
                 ViewBag.RowState = 1;
                 form = new fw_calendarinfo
                 {
-                    caldate = id
+                    calcode = id
                 };
             }
             return View(new { form = form, dataSource = new {  }});
@@ -49,22 +49,21 @@ namespace Fruit.Web.Areas.Baseinfo.Controllers
     public partial class Fw_CalendarinfoApiController : ApiController
     {
         [System.ComponentModel.DataAnnotations.Schema.NotMapped]class fw_calendarinfoListModel {
+            public int? calcode { get; set; }
             public string caldate { get; set; }
-            public DateTime? starttime { get; set; }
-            public DateTime? endtime { get; set; }
-            public int? handleuserid { get; set; }
-            public DateTime? handletime { get; set; }
-            public string calcode { get; set; }
+            public string starttime { get; set; }
+            public string endtime { get; set; }
         }
         public object Get()
         {
             var sbCondition = new System.Text.StringBuilder();
+            SerachCondition.Date(sbCondition, "caldate", "a.caldate", "");
 
             if(sbCondition.Length>4) sbCondition.Length-=4;
             var pageReq = new PageRequest();
             using (var db = new LUOLAI1401Context())
             {
-                return pageReq.ToPageList<fw_calendarinfoListModel>(db.Database, "a.caldate ,a.starttime ,a.endtime ,a.handleuserid ,a.handletime ,a.calcode ", "fw_calendarinfo a ", sbCondition.ToString(), "a.caldate", "desc");
+                return pageReq.ToPageList<fw_calendarinfoListModel>(db.Database, "a.calcode ,a.caldate ,a.starttime ,a.endtime ", "fw_calendarinfo a ", sbCondition.ToString(), "a.calcode", "desc");
             }
         }
         public object Post(JObject post)
@@ -72,18 +71,20 @@ namespace Fruit.Web.Areas.Baseinfo.Controllers
             var form = post["form"].ToObject<fw_calendarinfo>(JsonExtension.FixJsonSerializer);
             using (var db = new LUOLAI1401Context())
             {
-                var dbForm = db.fw_calendarinfo.Find(form.caldate);
+                var dbForm = db.fw_calendarinfo.Find(form.calcode);
                 if (dbForm == null)
                 {
+                    form.CreateDate = DateTime.Now;
+                    form.CreatePerson = (HttpContext.Current.Session["sys_user"] as sys_user).UserName;
                     db.fw_calendarinfo.Add(form);
                 }
                 else
                 {
+                    dbForm.caldate = form.caldate;
                     dbForm.starttime = form.starttime;
                     dbForm.endtime = form.endtime;
-                    dbForm.handleuserid = form.handleuserid;
-                    dbForm.handletime = form.handletime;
-                    dbForm.calcode = form.calcode;
+                    dbForm.UpdateDate = form.UpdateDate = DateTime.Now;
+                    dbForm.UpdatePerson = form.UpdatePerson = (HttpContext.Current.Session["sys_user"] as sys_user).UserName;
                 }
                 // 记录多级零时主键对应(key int 为 js 生成的页内全局唯一编号)
                 var _id_maps = new Dictionary<int, object[]>();
@@ -93,20 +94,20 @@ namespace Fruit.Web.Areas.Baseinfo.Controllers
         }
         public object Delete(string id)
         {
-            var _ids = new List<DateTime>();
+            var _ids = new List<int>();
 
             using (var db = new LUOLAI1401Context())
             {
                 foreach(string _id in id.Split(','))
                 {
-                    var did = DateTime.Parse(_id);
-                    db.fw_calendarinfo.Remove(r => r.caldate == did);
+                    var did = int.Parse(_id);
+                    db.fw_calendarinfo.Remove(r => r.calcode == did);
                 }
                 db.SaveChanges();
             }
             return true;
         }
-        public object Newcaldate()
+        public object Newcalcode()
         {
             return new SysSerialServices().GetNewSerial("fw_calendarinfo");
         }

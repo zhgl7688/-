@@ -2,21 +2,134 @@
 <Form Connection="LUOLAI1401Context" Table="fw_memberinfo" IsView="False" FilterTreeBindField="memid" TreeGridIdField="memid" TreeGridNameField="memid" TreeGridParentIdField="memid">
   <SubTables />
   <SaveProducre />
-  <Buttons />
+  <Buttons>
+    <Button Id="BVIP" Title="认证" Order="1" FormVisible="False" Reload="True" IconCls="bullet_tick" ListVisible="True">
+      <ServerBehavior Connection="LUOLAI1401Context" CommandText="exec ups_examine @FID,'&quot; + (System.Web.HttpContext.Current.Session[&quot;sys_user&quot;] as sys_user).UserCode + &quot;','4','L'" DataType="Value">
+        <Inputs>
+          <Input SourceField="Fid" ParameterName="@FID" />
+        </Inputs>
+      </ServerBehavior>
+      <ScriptAfter><![CDATA[alert(data);]]></ScriptAfter>
+    </Button>
+    <Button Id="BVIPX" Title="认证" Order="2" IconCls="bullet_tick" Reload="False" ListVisible="False" FormVisible="True">
+      <ServerBehavior CommandText="exec ups_examine @FID,'&quot; + (System.Web.HttpContext.Current.Session[&quot;sys_user&quot;] as sys_user).UserCode + &quot;','4','X'" Connection="LUOLAI1401Context" DataType="Value">
+        <Inputs>
+          <Input SourceField="Fid" ParameterName="@FID" />
+        </Inputs>
+      </ServerBehavior>
+      <ScriptAfter><![CDATA[alert(data);]]></ScriptAfter>
+    </Button>
+    <Button Id="BPQX" Title="取消认证" Order="3" FormVisible="False" Reload="True" IconCls="cdr_cross" AllowBatch="True">
+      <ServerBehavior Connection="LUOLAI1401Context" CommandText="exec ups_examine @FID,'&quot; + (System.Web.HttpContext.Current.Session[&quot;sys_user&quot;] as sys_user).UserCode + &quot;','7','L'" DataType="Value">
+        <Inputs>
+          <Input SourceField="IDS" ParameterName="@FID" />
+        </Inputs>
+      </ServerBehavior>
+      <ScriptAfter><![CDATA[alert(data);]]></ScriptAfter>
+    </Button>
+    <Button Id="BQXRZ" Title="取消认证" Order="3" IconCls="cdr_cross" Reload="False" ListVisible="False">
+      <ServerBehavior CommandText="exec ups_examine @FID,'&quot; + (System.Web.HttpContext.Current.Session[&quot;sys_user&quot;] as sys_user).UserCode + &quot;','7','X'" Connection="LUOLAI1401Context" DataType="Value">
+        <Inputs>
+          <Input SourceField="Fid" ParameterName="@FID" />
+        </Inputs>
+      </ServerBehavior>
+      <ScriptAfter><![CDATA[alert(data);]]></ScriptAfter>
+    </Button>
+    <Button Id="BXH" Title="销户" Order="4" FormVisible="False" Reload="True" IconCls="cancel">
+      <ServerBehavior CommandText="exec ups_examine @FID,'&quot; + (System.Web.HttpContext.Current.Session[&quot;sys_user&quot;] as sys_user).UserCode + &quot;','6','L'" Connection="LUOLAI1401Context" DataType="Value">
+        <Inputs>
+          <Input SourceField="Fid" ParameterName="@FID" />
+        </Inputs>
+      </ServerBehavior>
+      <ScriptAfter><![CDATA[alert(data);]]></ScriptAfter>
+      <ScriptBefore><![CDATA[if(confirm("确定要稍户吗？"))
+{
+  return true;
+}else{
+   return false;
+}]]></ScriptBefore>
+    </Button>
+  </Buttons>
   <GroupFilters />
   <Fields>
-    <Field Table="fw_memberinfo" Field="memid" DbType="char" Required="True" ListVisible="True" FormVisible="True" ControlType="AutoId" ReadOnly="True" Title="会员手机" />
-    <Field Table="fw_memberinfo" Field="mempass" DbType="char" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="密码" />
-    <Field Table="fw_memberinfo" Field="realname" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="真实姓名" />
-    <Field Table="fw_memberinfo" Field="gender" DbType="int" Required="False" ListVisible="True" FormVisible="True" ControlType="NumberBox" Title="性别" />
-    <Field Table="fw_memberinfo" Field="email" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="Email" />
-    <Field Table="fw_memberinfo" Field="qq" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="QQ" />
-    <Field Table="fw_memberinfo" Field="wechat" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="微信" />
-    <Field Table="fw_memberinfo" Field="regtime" DbType="datetime" Required="False" ListVisible="True" FormVisible="True" ControlType="Date" Title="注册时间" />
-    <Field Table="fw_memberinfo" Field="lasttime" DbType="datetime" Required="False" ListVisible="True" FormVisible="True" ControlType="Date" Title="最后登录" />
-    <Field Table="fw_memberinfo" Field="ispassed" DbType="int" Required="False" ListVisible="True" FormVisible="True" ControlType="NumberBox" Title="是否已认证" />
-    <Field Table="fw_memberinfo" Field="isenabled" DbType="int" Required="False" ListVisible="True" FormVisible="True" ControlType="NumberBox" Title="是否启用" />
-    <Field Table="fw_memberinfo" Field="corpid" DbType="int" Required="False" ListVisible="True" FormVisible="True" ControlType="NumberBox" Title="企业编号" />
-    <Field Table="fw_memberinfo" Field="memcode" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="Guid编号" />
+    <Field Connection="LUOLAI1401Context" Table="fw_memberinfo" ControlType="AutoId" Title="流水号" Field="Fid" DbType="char" ReadOnly="True">
+      <CascadeFilter />
+    </Field>
+    <Field Table="fw_memberinfo" Field="memid" DbType="char" Required="True" ListVisible="True" FormVisible="True" ControlType="TextBox" ReadOnly="False" Title="会员手机" Searchable="True">
+      <CascadeFilter />
+    </Field>
+    <Field Table="fw_memberinfo" Field="mempass" DbType="char" Required="False" ListVisible="False" FormVisible="False" ControlType="TextBox" Title="密码">
+      <CascadeFilter />
+    </Field>
+    <Field Table="fw_memberinfo" Field="realname" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="公司名" Searchable="True">
+      <CascadeFilter />
+    </Field>
+    <Field Table="fw_memberinfo" Field="gender" DbType="int" Required="False" ListVisible="True" FormVisible="True" ControlType="Dropdown" Title="性别" ControlValue="性别">
+      <CascadeFilter />
+    </Field>
+    <Field Table="fw_memberinfo" Field="email" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="Email">
+      <CascadeFilter />
+    </Field>
+    <Field Table="fw_memberinfo" Field="qq" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="QQ" Searchable="True">
+      <CascadeFilter />
+    </Field>
+    <Field Table="fw_memberinfo" Field="wechat" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="微信" Searchable="True">
+      <CascadeFilter />
+    </Field>
+    <Field Table="fw_memberinfo" Field="regtime" DbType="datetime" Required="False" ListVisible="True" FormVisible="True" ControlType="DateTime" Title="注册时间">
+      <CascadeFilter />
+    </Field>
+    <Field Table="fw_memberinfo" Field="lasttime" DbType="datetime" Required="False" ListVisible="True" FormVisible="True" ControlType="DateTime" Title="最后登录">
+      <CascadeFilter />
+    </Field>
+    <Field Table="fw_memberinfo" Field="ispassed" DbType="int" Required="False" ListVisible="True" FormVisible="True" ControlType="Dropdown" Title="认证状态" ControlValue="认证状态" DefaultValue="" ReadOnly="True" Searchable="True">
+      <CascadeFilter />
+    </Field>
+    <Field Table="fw_memberinfo" Field="isenabled" DbType="int" Required="False" ListVisible="True" FormVisible="True" ControlType="Dropdown" Title="是否启用" ControlValue="是否">
+      <CascadeFilter />
+    </Field>
+    <Field Table="fw_memberinfo" Field="corpid" DbType="int" Required="False" ListVisible="False" FormVisible="False" ControlType="NumberBox" Title="企业编号">
+      <CascadeFilter />
+    </Field>
+    <Field Connection="LUOLAI1401Context" Table="fw_memberinfo" Title="营业执照" Field="Cimg1" ControlType="File" DbType="int" FormVisible="True" ListVisible="True" ColumnWidth="70">
+      <FileControlInfo />
+      <CascadeFilter />
+    </Field>
+    <Field Connection="LUOLAI1401Context" Table="fw_memberinfo" Title="机构信用代码证" Field="Cimg2" ControlType="File" DbType="int" FormVisible="True" ListVisible="True" ColumnWidth="120">
+      <FileControlInfo />
+      <CascadeFilter />
+    </Field>
+    <Field Connection="LUOLAI1401Context" Table="fw_memberinfo" Field="Cimg3" Title="银行开户许可证" ControlType="File" DbType="int" FormVisible="True" ListVisible="True" ColumnWidth="120">
+      <FileControlInfo />
+      <CascadeFilter />
+    </Field>
+    <Field Connection="LUOLAI1401Context" Table="fw_memberinfo" Field="Cimgcode1" Title="法人身份证（正）" ControlType="File" DbType="int" FormVisible="True" ListVisible="True" ColumnWidth="120">
+      <FileControlInfo />
+      <CascadeFilter />
+    </Field>
+    <Field Connection="LUOLAI1401Context" Table="fw_memberinfo" Field="Cimgcode2" Title="法人身份证（反）" ControlType="File" DbType="int" FormVisible="True" ListVisible="True" ColumnWidth="120">
+      <FileControlInfo />
+      <CascadeFilter />
+    </Field>
+    <Field Connection="LUOLAI1401Context" Table="fw_memberinfo" Field="Xletterurl" ControlType="File" ListVisible="True" FormVisible="True" Title="销户申请书" DbType="int" ColumnWidth="100">
+      <FileControlInfo />
+      <CascadeFilter />
+    </Field>
+    <Field Connection="LUOLAI1401Context" Table="fw_memberinfo" Title="委托交易书" Field="Cletterurl" ControlType="File" DbType="int" FormVisible="True" ListVisible="True" ColumnWidth="100">
+      <FileControlInfo />
+      <CascadeFilter />
+    </Field>
+    <Field Connection="LUOLAI1401Context" Table="fw_memberinfo" Field="CreateDate" Title="创建日期" ControlType="Date" FormVisible="True" DbType="datetime">
+      <CascadeFilter />
+    </Field>
+    <Field Connection="LUOLAI1401Context" Table="fw_memberinfo" Field="CreatePerson" Title="创建人" ControlType="TextBox" FormVisible="True" DbType="varchar">
+      <CascadeFilter />
+    </Field>
+    <Field Connection="LUOLAI1401Context" Table="fw_memberinfo" Field="UpdateDate" Title="修改日期" ControlType="Date" FormVisible="True" DbType="datetime">
+      <CascadeFilter />
+    </Field>
+    <Field Connection="LUOLAI1401Context" Table="fw_memberinfo" Field="UpdatePerson" Title="修改人" ControlType="TextBox" FormVisible="True" DbType="varchar">
+      <CascadeFilter />
+    </Field>
   </Fields>
 </Form>

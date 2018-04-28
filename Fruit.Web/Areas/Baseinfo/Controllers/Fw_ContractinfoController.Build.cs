@@ -51,21 +51,17 @@ namespace Fruit.Web.Areas.Baseinfo.Controllers
         [System.ComponentModel.DataAnnotations.Schema.NotMapped]class fw_contractinfoListModel {
             public string conid { get; set; }
             public string conname { get; set; }
-            public string linkurl { get; set; }
-            public int? handleuserid { get; set; }
-            public string createtime { get; set; }
-            public string modifytime { get; set; }
-            public string concode { get; set; }
         }
         public object Get()
         {
             var sbCondition = new System.Text.StringBuilder();
+            SerachCondition.TextBox(sbCondition, "conname", "a.conname", "");
 
             if(sbCondition.Length>4) sbCondition.Length-=4;
             var pageReq = new PageRequest();
             using (var db = new LUOLAI1401Context())
             {
-                return pageReq.ToPageList<fw_contractinfoListModel>(db.Database, "a.conid ,a.conname ,a.linkurl ,a.handleuserid ,a.createtime ,a.modifytime ,a.concode ", "fw_contractinfo a ", sbCondition.ToString(), "a.conid", "desc");
+                return pageReq.ToPageList<fw_contractinfoListModel>(db.Database, "a.conid ,a.conname ", "fw_contractinfo a ", sbCondition.ToString(), "a.conid", "desc");
             }
         }
         public object Post(JObject post)
@@ -76,16 +72,16 @@ namespace Fruit.Web.Areas.Baseinfo.Controllers
                 var dbForm = db.fw_contractinfo.Find(form.conid);
                 if (dbForm == null)
                 {
+                    form.CreateDate = DateTime.Now;
+                    form.CreatePerson = (HttpContext.Current.Session["sys_user"] as sys_user).UserName;
                     db.fw_contractinfo.Add(form);
                 }
                 else
                 {
                     dbForm.conname = form.conname;
                     dbForm.linkurl = form.linkurl;
-                    dbForm.handleuserid = form.handleuserid;
-                    dbForm.createtime = form.createtime;
-                    dbForm.modifytime = form.modifytime;
-                    dbForm.concode = form.concode;
+                    dbForm.UpdateDate = form.UpdateDate = DateTime.Now;
+                    dbForm.UpdatePerson = form.UpdatePerson = (HttpContext.Current.Session["sys_user"] as sys_user).UserName;
                 }
                 // 记录多级零时主键对应(key int 为 js 生成的页内全局唯一编号)
                 var _id_maps = new Dictionary<int, object[]>();

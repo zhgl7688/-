@@ -1,0 +1,140 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Form Connection="LUOLAI1401Context" Table="fw_ObjectionResult" IsView="False" FilterTreeBindField="objectionid" TreeGridIdField="objectionid" TreeGridNameField="objectionid" TreeGridParentIdField="objectionid" UseVTab="True" VTab="异议处理|/business/Objection,异议结果|#" UseGridEdit="False">
+  <SubTables>
+    <Table IsView="False" Table="v_objection" Filter="" Title="异议申请">
+      <Rels>
+        <FieldRel MainField="objectionid" RelField="objectionid" />
+      </Rels>
+      <Fields>
+        <Field Table="v_objection" Field="orderid" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="AutoId" ReadOnly="True" Title="订单号" />
+        <Field Table="v_objection" Field="orderprice" DbType="decimal" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="订单价格" ReadOnly="True" />
+        <Field Table="v_objection" Field="Objectionstatus" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="异议原因" ReadOnly="True" />
+        <Field Table="v_objection" Field="otherstatus" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="额外金额类型" ReadOnly="True" />
+        <Field Table="v_objection" Field="otherprice" DbType="decimal" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="额外金额" ReadOnly="True" />
+        <Field Table="v_objection" Field="explain" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="说明" ReadOnly="True" />
+        <Field Table="v_objection" Field="MemId" DbType="varchar" Required="False" ListVisible="False" FormVisible="False" ControlType="TextBox" ReadOnly="True" />
+        <Field Table="v_objection" Field="MemIdSeller" DbType="varchar" Required="False" ListVisible="False" FormVisible="False" ControlType="TextBox" ReadOnly="True" />
+        <Field Table="v_objection" Field="CreateDate" DbType="datetime" Required="False" ListVisible="False" FormVisible="False" ControlType="Date" ReadOnly="True" Title="创建日期" />
+        <Field Table="v_objection" Field="CreatePerson" DbType="varchar" Required="False" ListVisible="False" FormVisible="False" ControlType="TextBox" ReadOnly="True" Title="创建人" />
+        <Field Table="v_objection" Field="UpdateDate" DbType="datetime" Required="False" ListVisible="False" FormVisible="False" ControlType="Date" ReadOnly="True" Title="更改日期" />
+        <Field Table="v_objection" Field="UpdatePerson" DbType="varchar" Required="False" ListVisible="False" FormVisible="False" ControlType="TextBox" ReadOnly="True" Title="更改人" />
+        <Field Table="v_objection" Field="isShow" DbType="varchar" Required="False" ListVisible="False" FormVisible="False" ControlType="TextBox" />
+        <Field Table="v_objection" Field="IsAgreed" DbType="varchar" Required="False" ListVisible="True" FormVisible="False" ControlType="TextBox" ReadOnly="True" Title="对方是否同意" />
+        <Field Table="v_objection" Field="IsContinue" DbType="varchar" Required="False" ListVisible="True" FormVisible="False" ControlType="TextBox" ReadOnly="True" Title="订单是否继续" />
+        <Field Table="v_objection" Field="IsOnJudge" DbType="varchar" Required="False" ListVisible="True" FormVisible="False" ControlType="TextBox" ReadOnly="True" Title="是否平台介入" ControlValue="是否" />
+        <Field Table="v_objection" Field="img0" DbType="varchar" Required="False" ListVisible="False" FormVisible="False" ControlType="TextBox" />
+        <Field Table="v_objection" Field="img1" DbType="varchar" Required="False" ListVisible="False" FormVisible="False" ControlType="TextBox" />
+        <Field Table="v_objection" Field="img2" DbType="varchar" Required="False" ListVisible="False" FormVisible="False" ControlType="TextBox" />
+        <Field Table="v_objection" Field="Cimg1" DbType="int" Required="False" ListVisible="False" FormVisible="False" ControlType="NumberBox" />
+        <Field Table="v_objection" Field="Cimg2" DbType="int" Required="False" ListVisible="False" FormVisible="False" ControlType="NumberBox" />
+        <Field Table="v_objection" Field="Cimg3" DbType="int" Required="False" ListVisible="False" FormVisible="False" ControlType="NumberBox" />
+      </Fields>
+    </Table>
+    <Table IsView="False" Table="v_Orderinfo" Filter="" Title="订单" UseChildrenTable="False">
+      <Rels>
+        <FieldRel RelField="objectionid" MainField="objectionid" />
+      </Rels>
+      <Fields>
+        <Field Table="v_Orderinfo" Field="selleruserid" DbType="char" Required="False" ListVisible="True" FormVisible="True" ControlType="AutoId" ReadOnly="True" Title="卖家" />
+        <Field Table="v_Orderinfo" Field="buyeruserid" DbType="char" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="买家" ReadOnly="True" />
+        <Field Table="v_Orderinfo" Field="tranmode" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="交易方式" ReadOnly="True" />
+        <Field Table="v_Orderinfo" Field="ordstate" DbType="int" Required="False" ListVisible="True" FormVisible="True" ControlType="Dropdown" Title="订单状态" ControlValue="订单状态" ReadOnly="True" />
+        <Field Table="v_Orderinfo" Field="totalamount" DbType="decimal" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="总金额" ReadOnly="True" />
+        <Field Table="v_Orderinfo" Field="buyerDepAmt" DbType="decimal" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="买家保证金" ReadOnly="True" />
+        <Field Table="v_Orderinfo" Field="sellerDepAmt" DbType="decimal" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="卖家保证金" ReadOnly="True" />
+        <Field Table="v_Orderinfo" Field="CreateDate" DbType="datetime" Required="False" ListVisible="False" FormVisible="True" ControlType="Date" ReadOnly="True" Title="创建日期" />
+        <Field Table="v_Orderinfo" Field="SelfMentioning" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="Dropdown" Title="交货方式" ControlValue="交货方式" ReadOnly="True" />
+      </Fields>
+    </Table>
+    <Table IsView="False" Table="v_ObjectionResult1" Filter="" Title="卖家信息">
+      <Rels>
+        <FieldRel MainField="objectionid" RelField="objectionid" />
+      </Rels>
+      <Fields>
+        <Field Table="v_ObjectionResult1" Title="会员编号" Field="memid" DbType="char" Required="True" ListVisible="True" FormVisible="True" ControlType="TextBox" ReadOnly="True" />
+        <Field Table="v_ObjectionResult1" Title="手机号码" Field="phone" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="AutoId" ReadOnly="True" />
+        <Field Table="v_ObjectionResult1" Title="真实姓名" Field="realname" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" ReadOnly="True" />
+        <Field Table="v_ObjectionResult1" Title="性别" Field="gender" DbType="int" Required="False" ListVisible="True" FormVisible="True" ControlType="NumberBox" ReadOnly="True" />
+        <Field Table="v_ObjectionResult1" Title="电子信箱" Field="email" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" ReadOnly="True" />
+        <Field Table="v_ObjectionResult1" Title="QQ号码" Field="qq" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" ReadOnly="True" />
+        <Field Table="v_ObjectionResult1" Title="微信号码" Field="wechat" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" ReadOnly="True" />
+        <Field Table="v_ObjectionResult1" Title="注册日期" Field="regtime" DbType="datetime" Required="False" ListVisible="True" FormVisible="True" ControlType="Date" ReadOnly="True" />
+        <Field Table="v_ObjectionResult1" Title="公司全称" Field="corpname" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" ReadOnly="True" />
+        <Field Table="v_ObjectionResult1" Title="公司简称" Field="abbname" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" ReadOnly="True" />
+      </Fields>
+    </Table>
+    <Table IsView="False" Table="v_ObjectionResult" Filter="" Title="买家信息">
+      <Rels>
+        <FieldRel MainField="objectionid" RelField="objectionid" />
+      </Rels>
+      <Fields>
+        <Field Table="v_ObjectionResult1" Title="会员编号" Field="memid" DbType="char" Required="True" ListVisible="True" FormVisible="True" ControlType="TextBox" ReadOnly="True" />
+        <Field Table="v_ObjectionResult1" Title="手机号码" Field="phone" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="AutoId" ReadOnly="True" />
+        <Field Table="v_ObjectionResult1" Title="真实姓名" Field="realname" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" ReadOnly="True" />
+        <Field Table="v_ObjectionResult1" Title="性别" Field="gender" DbType="int" Required="False" ListVisible="True" FormVisible="True" ControlType="NumberBox" ReadOnly="True" />
+        <Field Table="v_ObjectionResult1" Title="电子信箱" Field="email" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" ReadOnly="True" />
+        <Field Table="v_ObjectionResult1" Title="QQ号码" Field="qq" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" ReadOnly="True" />
+        <Field Table="v_ObjectionResult1" Title="微信号码" Field="wechat" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" ReadOnly="True" />
+        <Field Table="v_ObjectionResult1" Title="注册日期" Field="regtime" DbType="datetime" Required="False" ListVisible="True" FormVisible="True" ControlType="Date" ReadOnly="True" />
+        <Field Table="v_ObjectionResult1" Title="公司全称" Field="corpname" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" ReadOnly="True" />
+        <Field Table="v_ObjectionResult1" Title="公司简称" Field="abbname" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" ReadOnly="True" />
+      </Fields>
+    </Table>
+  </SubTables>
+  <SaveProducre />
+  <Buttons />
+  <GroupFilters />
+  <Fields>
+    <Field Table="fw_ObjectionResult" Field="objectionid" DbType="int" Required="True" ListVisible="True" FormVisible="True" ControlType="AutoId" ReadOnly="True" Title="异议编号">
+      <CascadeFilter />
+    </Field>
+    <Field Table="fw_ObjectionResult" Field="MemId" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="Dropdown" Title="异议申请人" ControlValue="用户企业信息" Searchable="True" ReadOnly="True">
+      <CascadeFilter />
+    </Field>
+    <Field Table="fw_ObjectionResult" Field="orderid" DbType="varchar" Required="True" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="订单编号" Searchable="True" ReadOnly="True">
+      <CascadeFilter />
+    </Field>
+    <Field Connection="LUOLAI1401Context" Table="fw_ObjectionResult" ControlType="Dropdown" FormVisible="True" ListVisible="True" Title="订单是否继续" Field="IsContinue" DbType="int" ControlValue="是否">
+      <CascadeFilter />
+    </Field>
+    <Field Connection="LUOLAI1401Context" Table="fw_ObjectionResult" ControlType="Dropdown" FormVisible="True" ControlValue="用户企业信息" Title="违约方" Field="paymemId" DbType="varchar" ListVisible="True">
+      <CascadeFilter />
+    </Field>
+    <Field Table="fw_ObjectionResult" Field="payment" DbType="decimal" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="违约金额">
+      <CascadeFilter />
+    </Field>
+    <Field Table="fw_ObjectionResult" Field="paymentmode" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="Dropdown" Title="支付方式" ControlValue="支付方式">
+      <CascadeFilter />
+    </Field>
+    <Field Table="fw_ObjectionResult" Field="paymentendtime" DbType="datetime" Required="False" ListVisible="True" FormVisible="True" ControlType="Date" Title="最晚支付时间">
+      <CascadeFilter />
+    </Field>
+    <Field Table="fw_ObjectionResult" Field="resultstatus" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="Dropdown" Title="处理状态" ControlValue="异议状态" ReadOnly="False">
+      <CascadeFilter />
+    </Field>
+    <Field Table="fw_ObjectionResult" Field="explain" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="MultiTextBox" Title="说明">
+      <CascadeFilter />
+    </Field>
+    <Field Table="fw_ObjectionResult" Field="resultperson" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="客服">
+      <CascadeFilter />
+    </Field>
+    <Field Table="fw_ObjectionResult" Field="resultphone" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="客服电话">
+      <CascadeFilter />
+    </Field>
+    <Field Table="fw_ObjectionResult" Field="finalresult" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="银行处理结果" ReadOnly="True">
+      <CascadeFilter />
+    </Field>
+    <Field Table="fw_ObjectionResult" Field="CreateDate" DbType="datetime" Required="False" ListVisible="False" FormVisible="True" ControlType="Date" ReadOnly="True" Title="创建日期">
+      <CascadeFilter />
+    </Field>
+    <Field Table="fw_ObjectionResult" Field="CreatePerson" DbType="varchar" Required="False" ListVisible="False" FormVisible="True" ControlType="TextBox" ReadOnly="True" Title="创建人">
+      <CascadeFilter />
+    </Field>
+    <Field Table="fw_ObjectionResult" Field="UpdateDate" DbType="datetime" Required="False" ListVisible="False" FormVisible="True" ControlType="Date" ReadOnly="True" Title="更改日期">
+      <CascadeFilter />
+    </Field>
+    <Field Table="fw_ObjectionResult" Field="UpdatePerson" DbType="varchar" Required="False" ListVisible="False" FormVisible="True" ControlType="TextBox" ReadOnly="True" Title="更改人">
+      <CascadeFilter />
+    </Field>
+  </Fields>
+</Form>

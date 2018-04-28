@@ -52,7 +52,6 @@ namespace Fruit.Web.Areas.Baseinfo.Controllers
             public int catid { get; set; }
             public string catname { get; set; }
             public int? parentid { get; set; }
-            public string catcode { get; set; }
         }
         public object Get()
         {
@@ -62,7 +61,7 @@ namespace Fruit.Web.Areas.Baseinfo.Controllers
             var pageReq = new PageRequest();
             using (var db = new LUOLAI1401Context())
             {
-                return pageReq.ToPageList<fw_categoryinfoListModel>(db.Database, "a.catid ,a.catname ,a.parentid ,a.catcode ", "fw_categoryinfo a ", sbCondition.ToString(), "a.catid", "desc");
+                return pageReq.ToPageList<fw_categoryinfoListModel>(db.Database, "a.catid ,a.catname ,a.parentid ", "fw_categoryinfo a ", sbCondition.ToString(), "a.catid", "desc");
             }
         }
         public object Post(JObject post)
@@ -73,13 +72,16 @@ namespace Fruit.Web.Areas.Baseinfo.Controllers
                 var dbForm = db.fw_categoryinfo.Find(form.catid);
                 if (dbForm == null)
                 {
+                    form.CreateDate = DateTime.Now;
+                    form.CreatePerson = (HttpContext.Current.Session["sys_user"] as sys_user).UserName;
                     db.fw_categoryinfo.Add(form);
                 }
                 else
                 {
                     dbForm.catname = form.catname;
                     dbForm.parentid = form.parentid;
-                    dbForm.catcode = form.catcode;
+                    dbForm.UpdateDate = form.UpdateDate = DateTime.Now;
+                    dbForm.UpdatePerson = form.UpdatePerson = (HttpContext.Current.Session["sys_user"] as sys_user).UserName;
                 }
                 // 记录多级零时主键对应(key int 为 js 生成的页内全局唯一编号)
                 var _id_maps = new Dictionary<int, object[]>();

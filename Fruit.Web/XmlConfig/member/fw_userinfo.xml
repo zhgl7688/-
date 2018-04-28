@@ -1,17 +1,42 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Form Connection="LUOLAI1401Context" Table="fw_userinfo" IsView="False" FilterTreeBindField="userid" TreeGridIdField="userid" TreeGridNameField="userid" TreeGridParentIdField="userid">
+<Form Connection="LUOLAI1401Context" Table="fw_userinfo" IsView="False" FilterTreeBindField="" TreeGridIdField="userid" TreeGridNameField="userid" TreeGridParentIdField="userid">
   <SubTables />
   <SaveProducre />
   <Buttons />
   <GroupFilters />
   <Fields>
-    <Field Table="fw_userinfo" Field="userid" DbType="int" Required="True" ListVisible="True" FormVisible="True" ControlType="AutoId" ReadOnly="True" Title="用户编号" />
-    <Field Table="fw_userinfo" Field="username" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="用户名" />
-    <Field Table="fw_userinfo" Field="userpass" DbType="char" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="密码" />
-    <Field Table="fw_userinfo" Field="regtime" DbType="smalldatetime" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="注册时间" />
-    <Field Table="fw_userinfo" Field="lasttime" DbType="smalldatetime" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="最后登录" />
-    <Field Table="fw_userinfo" Field="isadmin" DbType="int" Required="False" ListVisible="True" FormVisible="True" ControlType="NumberBox" Title="是否管理员" />
-    <Field Table="fw_userinfo" Field="isenabled" DbType="int" Required="False" ListVisible="True" FormVisible="True" ControlType="NumberBox" Title="是否启用" />
-    <Field Table="fw_userinfo" Field="usercode" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="Guid编号" />
+    <Field Table="fw_userinfo" Field="userid" DbType="int" Required="True" ListVisible="True" FormVisible="True" ControlType="AutoId" ReadOnly="True" Title="编号">
+      <CascadeFilter />
+    </Field>
+    <Field Table="fw_userinfo" Field="username" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="TextBox" Title="用户名" Searchable="False">
+      <CascadeFilter />
+    </Field>
+    <Field Table="fw_userinfo" Field="userpass" DbType="char" Required="False" ListVisible="False" FormVisible="True" ControlType="TextBox" Title="密码" ReadOnly="True" Searchable="False">
+      <CascadeFilter />
+    </Field>
+    <Field Table="fw_userinfo" Field="regtime" DbType="datetime" Required="False" ListVisible="True" FormVisible="True" ControlType="DateTime" Title="注册时间">
+      <CascadeFilter />
+    </Field>
+    <Field Table="fw_userinfo" Field="lasttime" DbType="datetime" Required="False" ListVisible="True" FormVisible="True" ControlType="DateTime" Title="最后登录">
+      <CascadeFilter />
+    </Field>
+    <Field Table="fw_userinfo" Field="isadmin" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="Dropdown" Title="是否管理员" ControlValue="是否">
+      <CascadeFilter />
+    </Field>
+    <Field Table="fw_userinfo" Field="isenabled" DbType="varchar" Required="False" ListVisible="True" FormVisible="True" ControlType="Dropdown" Title="是否启用" ControlValue="是否">
+      <CascadeFilter />
+    </Field>
+    <Field Table="fw_userinfo" Field="CreateDate" DbType="datetime" Required="False" ListVisible="False" FormVisible="True" ControlType="Date" ReadOnly="True" Title="创建日期">
+      <CascadeFilter />
+    </Field>
+    <Field Table="fw_userinfo" Field="CreatePerson" DbType="varchar" Required="False" ListVisible="False" FormVisible="True" ControlType="TextBox" ReadOnly="True" Title="创建人">
+      <CascadeFilter />
+    </Field>
+    <Field Table="fw_userinfo" Field="UpdateDate" DbType="datetime" Required="False" ListVisible="False" FormVisible="True" ControlType="Date" ReadOnly="True" Title="更改日期">
+      <CascadeFilter />
+    </Field>
+    <Field Table="fw_userinfo" Field="UpdatePerson" DbType="varchar" Required="False" ListVisible="False" FormVisible="True" ControlType="TextBox" ReadOnly="True" Title="更改人">
+      <CascadeFilter />
+    </Field>
   </Fields>
 </Form>
